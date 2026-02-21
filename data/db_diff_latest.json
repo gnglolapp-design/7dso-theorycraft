@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "added": {
     "characters": [],
     "weapons": [],
@@ -33,9 +32,4 @@
     ],
     "weapons": []
   }
-=======
-  "added": {},
-  "removed": {},
-  "changed": {}
->>>>>>> 907c138 (V12: patches 1-6 (parsing debug, context, conditional potentials, presets share, meta snapshot))
 }
