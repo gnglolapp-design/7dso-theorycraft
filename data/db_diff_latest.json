@@ -1,5 +1,16 @@
 {
-  "added": {},
-  "removed": {},
-  "changed": {}
+  "added": {
+    "characters": [],
+    "weapons": [],
+    "skills": []
+  },
+  "removed": {
+    "characters": [],
+    "weapons": [],
+    "skills": []
+  },
+  "changed": {
+    "characters": [],
+    "weapons": []
+  }
 }
