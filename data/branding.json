@@ -1,0 +1,39 @@
+{
+  "version": "1",
+  "theme": "optionB_dark_competitive",
+  "banner": {
+    "enabled": true,
+    "url": "assets/bravehearts_banner.png",
+    "alt": "Brave Hearts"
+  },
+  "stickers": {
+    "enabled": true,
+    "items": [
+      {
+        "id": "melio",
+        "url": "assets/melio-removebg-preview.png",
+        "className": "sticker melio",
+        "alt": "",
+        "opacity": 0.22
+      },
+      {
+        "id": "escanor",
+        "url": "assets/escanor-removebg-preview.png",
+        "className": "sticker esca",
+        "alt": "",
+        "opacity": 0.22
+      },
+      {
+        "id": "hawk",
+        "url": "assets/HawkRender.webp",
+        "className": "sticker hawk",
+        "alt": "",
+        "opacity": 0.18
+      }
+    ]
+  },
+  "guild": {
+    "code": "BRAVEHEARTS",
+    "expiryDays": 7
+  }
+}

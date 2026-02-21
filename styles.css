@@ -3,8 +3,8 @@
   --shadow:0 10px 30px rgba(0,0,0,.35);--radius:18px;--radius2:24px;
   --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   --sans:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  --accent: rgba(124,92,255,.95);
-  --accent2: rgba(35,196,131,.85);
+  --accent: rgba(142,27,27,.95);
+  --accent2: rgba(191,199,213,.80);
 }
 *{box-sizing:border-box}html,body{height:100%}
 body{
@@ -83,6 +83,7 @@ a{color:inherit}
 .page-title{font-size:22px;font-weight:950;margin:6px 0 12px 0}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .p{color:var(--text);line-height:1.5;margin:0 0 10px 0}
 .list{margin:0;padding-left:18px;line-height:1.6}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px}
@@ -166,6 +167,21 @@ a{color:inherit}
 .pill.good{border-color:rgba(35,196,131,.35);background:rgba(35,196,131,.12)}
 .pill.warn{border-color:rgba(255,211,110,.35);background:rgba(255,211,110,.12)}
 .pill.bad{border-color:rgba(255,77,90,.35);background:rgba(255,77,90,.12)}
+
+.pillbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill input[type="checkbox"]{accent-color:var(--accentBlue)}
+
+/* Brave Hearts presets */
+.banner{margin:10px 0;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04)}
+.banner.warn{border-color:rgba(255,211,110,.35);background:rgba(255,211,110,.10)}
+.bhPane .list{padding-left:0;margin-top:10px}
+.preset-card{border:1px solid rgba(255,255,255,.10);border-radius:12px;background:rgba(255,255,255,.03);padding:12px;margin:10px 0}
+.preset-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.preset-title{font-weight:700}
+.preset-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.preset-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.preset-notes{margin-top:8px;color:rgba(255,255,255,.78)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
 .hero{
   border-radius:var(--radius2);
   border:1px solid rgba(255,255,255,.10);
@@ -197,10 +213,13 @@ a{color:inherit}
 .hist svg{width:100%;height:100%;display:block}
 .bar{fill:rgba(124,92,255,.8)}
 .axisText{fill:rgba(154,163,178,.9);font-size:10px;font-family:var(--sans)}
+.chartWrap{width:100%;height:260px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.02);overflow:hidden;margin-top:10px}
+.chartCanvas{width:100%;height:260px;display:block}
 @media (max-width:1100px){
   .layout{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr}
   .grid3{grid-template-columns:1fr}
+  .grid4{grid-template-columns:1fr}
   .choiceGrid{grid-template-columns:1fr}
   .sticker{display:none}
 }
@@ -222,3 +241,98 @@ a{color:inherit}
 .tierRow{padding:6px 0;border-top:1px solid rgba(255,255,255,.08)}
 .tierRow:first-child{border-top:none}
 .dbInfoBtn{margin-right:8px}
+
+
+/* ---------- V9: Option B (clean dark competitive) ---------- */
+body.theme-option-b, .theme-option-b{
+  background: var(--bg);
+}
+
+.theme-option-b .topbar{
+  backdrop-filter: blur(10px);
+}
+
+.btn.icon{
+  padding: 10px 12px;
+  width: 44px;
+  text-align:center;
+}
+
+.ctaRow{
+  display:flex;
+  gap:10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.hero.bannerOff .banner{
+  display:none;
+}
+
+#stickerLayer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index: 0;
+}
+#stickerLayer .sticker, #stickerLayer img.sticker{
+  position:absolute;
+}
+#stickerLayer .sticker.melio{ left: -40px; bottom: -60px; width: 260px; transform: rotate(-4deg); }
+#stickerLayer .sticker.esca{ right: -30px; bottom: -70px; width: 260px; transform: rotate(4deg); }
+#stickerLayer .sticker.hawk{ right: 14%; top: 86px; width: 160px; }
+
+.layout{ position:relative; z-index: 1; }
+
+/* Drawer sidebar (<= 900px) */
+.sidebarOverlay{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.55);
+  z-index: 40;
+}
+
+@media (max-width: 900px){
+  .topbar-actions #btnMenu{ display:inline-flex; }
+  .sidebar{
+    position:fixed;
+    left:0;
+    top:76px;
+    bottom:0;
+    width: min(360px, 92vw);
+    transform: translateX(-105%);
+    transition: transform .18s ease;
+    z-index: 50;
+    border-right: 1px solid var(--border);
+    background: rgba(15,17,21,.96);
+  }
+  body.sidebarOpen .sidebar{ transform: translateX(0); }
+  .layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 901px){
+  .topbar-actions #btnMenu{ display:none; }
+}
+
+/* Guild badge */
+.badge.guild{
+  border-color: rgba(142,27,27,.55);
+  color: rgba(191,199,213,.95);
+  background: rgba(142,27,27,.20);
+}
+
+/* --- V9.1: landing + subtle esport feel (A dominant, small B) --- */
+.muted{ color: var(--muted); }
+
+/* Subtle card interaction */
+.card{ transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease; }
+.card:hover{ border-color: rgba(191,199,213,0.22); box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+
+/* Make primary CTA slightly more pronounced */
+.btn.primary{ box-shadow: 0 10px 22px rgba(0,0,0,0.35); }
+
+
+.tableWrap{width:100%;overflow:auto;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.02)}
+.tableWrap table{width:100%;min-width:760px}

@@ -1,8 +1,8 @@
-// 7DS: Origin — Theorycraft (Guidé v3)
+// 7DS: Origin — Theorycraft (Guidé v9)
 // Offline-first: compatible file:// (no fetch required for defaults).
 // Données: localStorage + Import/Export (Discord-friendly).
 
-const STORAGE_KEY = "7ds_origin_theorycraft_guided_v3";
+const STORAGE_KEY = "7ds_origin_theorycraft_guided_v9";
 
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
@@ -44,6 +44,21 @@ function readEmbeddedDefaults(){
     return null;
   }
 }
+
+function readEmbeddedJson(id){
+  try{
+    const el = document.getElementById(id);
+    if (!el) return null;
+    const txt = el.textContent || "";
+    return JSON.parse(txt);
+  }catch(e){
+    console.warn(id + " parse error", e);
+    return null;
+  }
+}
+
+// Character kits (skills + potentials): pre-release placeholders; to be refined after launch.
+const KITS_PACKAGE = readEmbeddedJson("kits-json") || {schema_version:"0.0", characters:[]};
 
 let defaults = readEmbeddedDefaults() || {
   meta:{version:"guided-3.0.0", updated:"—"},
@@ -96,6 +111,11 @@ function saveState(){
 let state = loadState();
 if (!state.settings.formula_profile) state.settings.formula_profile = 'cbt_v1';
 if (!state.settings.db_source) state.settings.db_source = 'auto';
+if (state.settings.hidden_global_multiplier == null) state.settings.hidden_global_multiplier = 1;
+if (state.settings.hidden_defense_coefficient == null) state.settings.hidden_defense_coefficient = 1;
+if (!state.settings.crit_order) state.settings.crit_order = "afterDef";
+if (!state.settings.pierce_mode) state.settings.pierce_mode = "multiplicative";
+if (!state.settings.element_stage) state.settings.element_stage = "late";
 
 function getActiveDb(){
   if (state.settings.db_source === 'session' && state._sessionDb) return state._sessionDb;
@@ -110,6 +130,70 @@ function getActiveDbLabel(){
   if (LIVE_DB_META) return 'DB live (auto)';
   if ((state.db.characters?.length||0) || (state.db.weapons?.length||0)) return 'DB locale';
   return 'DB exemple';
+}
+
+function getKitCharacters(){
+  // Prefer DB characters if they already contain skills/potentials; else use embedded kits.
+  const db = getActiveDb();
+  const fromDb = (db?.characters || []).filter(c => Array.isArray(c.skills) || Array.isArray(c.potentials));
+  if (fromDb.length) return fromDb.map(c => ({
+    id: c.id || c.slug || c.name,
+    name: c.name || c.id || "Character",
+    element: c.element || c.elem || "neutral",
+    skills: Array.isArray(c.skills) ? c.skills : [],
+    potentials: Array.isArray(c.potentials) ? c.potentials : []
+  }));
+  return (KITS_PACKAGE.characters || []).map(c => deepCopy(c));
+}
+
+function findKitCharById(id){
+  if (!id) return null;
+  return getKitCharacters().find(c => String(c.id) === String(id)) || null;
+}
+
+function modelSignature(){
+  const s = state.settings || {};
+  return [
+    s.crit_order || "",
+    s.defense_formula || s.mitigation_model || "",
+    s.pierce_mode || "",
+    s.element_stage || "",
+    String(s.hidden_global_multiplier ?? ""),
+    String(s.hidden_defense_coefficient ?? "")
+  ].join("|");
+}
+
+function applyPotentialsToBuild(build){
+  const b = deepCopy(build);
+  b.stats = b.stats || {};
+  const charId = b.character_id || b.characterId || "";
+  const enabled = new Set((b.potentials_enabled || b.potentialsEnabled || []).map(String));
+  const ch = findKitCharById(charId);
+  if (!ch || !enabled.size) return b;
+
+  // Ensure buffs array exists.
+  if (!Array.isArray(b.buffs)) b.buffs = [];
+
+  for (const p of (ch.potentials || [])){
+    if (!enabled.has(String(p.id))) continue;
+    const t = p.type || "stat_add";
+    if (t === "stat_add"){
+      const k = p.stat;
+      b.stats[k] = toNum(b.stats[k], 0) + toNum(p.value, 0);
+    }else if (t === "buff"){
+      // Expect same schema as build.buffs[]
+      b.buffs.push({
+        stat: p.stat || "dmg",
+        value: toNum(p.value, 0),
+        type: p.buff_type || p.calc || "add",
+        scope: p.scope || "all",
+        enabled: true,
+        source: "potential",
+        id: "pot_" + String(p.id)
+      });
+    }
+  }
+  return b;
 }
 
 function getActiveDbX(){
@@ -184,6 +268,9 @@ function setView(view){
   if (view === "weights") refreshWeightsSelectors();
   if (view === "database") refreshDbUI();
   if (view === "calibrate") refreshCalSelectors();
+  if (view === "sandbox") refreshSandboxSelectors();
+  if (view === "boss") refreshBossSelectors();
+  if (view === "bravehearts") refreshBraveHeartsUI();
 }
 
 function bindNav(){
@@ -398,7 +485,8 @@ const SHARE_MAX_JSON_CHARS = 12000; // safety
 const SHARE_SOFT_URL_MAX = 9000;
 const SHARE_ALLOWED_SETTINGS = [
   'formula_profile','mitigation_model','mitigation_k','crit_cap','burst_bonus_pct',
-  'burst_mode','orb_gain_per_skill','initial_orbs','mc_seed','hist_bins'
+  'burst_mode','orb_gain_per_skill','initial_orbs','mc_seed','hist_bins',
+  'pierce_cap','resist_cap','elem_adv_bonus_pct','elem_disadv_penalty_pct'
 ];
 
 function base64UrlEncode(str){
@@ -511,7 +599,7 @@ function validateSharePayload(o){
   const b = o.items.build;
   if (typeof b.name !== 'string' || b.name.length > 120) throw new Error('Build.name invalide.');
   if (!b.stats || typeof b.stats !== 'object') throw new Error('Build.stats invalide.');
-  const allowedStats = ['atk','def','crit_rate_pct','crit_dmg_pct','dmg_bonus_pct','def_pen_pct','dmg_taken_pct','element','hp'];
+  const allowedStats = ['atk','def','hp','element','crit_rate_pct','crit_dmg_pct','crit_resist_pen_pct','crit_def_pen_pct','dmg_bonus_pct','dmg_taken_pct','skill_dmg_pct','ult_dmg_pct','dmg_mult_pct','def_pen_pct','res_pen_pct','pierce_pct'];
   for (const k of Object.keys(b.stats)){
     if (!allowedStats.includes(k)) delete b.stats[k];
   }
@@ -550,6 +638,9 @@ function validateSharePayload(o){
   e.def = clamp(toNum(e.def,0), 0, 200000);
   e.burst_resist = clamp(toNum(e.burst_resist,0), 0, 1);
   e.dmg_reduction_pct = clamp(toNum(e.dmg_reduction_pct,0), 0, 95);
+  e.resistance_pct = clamp(toNum(e.resistance_pct,0), -100, 300);
+  e.crit_resist_pct = clamp(toNum(e.crit_resist_pct,0), 0, 200);
+  e.crit_def_pct = clamp(toNum(e.crit_def_pct,0), 0, 300);
   e.element = (typeof e.element === 'string' && e.element.length<=20) ? e.element : 'neutral';
   e.hp = clamp(toNum(e.hp,0), 0, 1e12);
 
@@ -1040,6 +1131,11 @@ function refreshBuildsUI(){
 function loadBuildToForm(b){
   const s = b.stats || {};
   $("#buildName").value = b.name || "";
+  // Character link + potentials
+  const charId = b.character_id || b.characterId || "";
+  const sel = $("#buildCharacter");
+  if (sel) sel.value = charId;
+  renderBuildPotentials(charId, b.potentials_enabled || b.potentialsEnabled || []);
   $("#statAtk").value = s.atk ?? 0;
   $("#statDef").value = s.def ?? 0;
   $("#statCrit").value = s.crit_rate_pct ?? 0;
@@ -1050,9 +1146,41 @@ function loadBuildToForm(b){
   $("#statElement").value = s.element ?? "neutral";
 }
 
+function renderBuildPotentials(charId, enabledIds=[]){
+  const wrap = $("#buildPotentials");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+  if (!charId){
+    wrap.innerHTML = "<span class='hint tiny'>Sélectionne un personnage pour afficher ses potentiels.</span>";
+    return;
+  }
+  const ch = findKitCharById(charId);
+  if (!ch){
+    wrap.innerHTML = "<span class='hint tiny'>Aucun kit trouvé pour ce personnage (DB/kits).</span>";
+    return;
+  }
+  const enabled = new Set((enabledIds||[]).map(String));
+  const pots = Array.isArray(ch.potentials) ? ch.potentials : [];
+  if (!pots.length){
+    wrap.innerHTML = "<span class='hint tiny'>Ce personnage n’a pas de potentiels définis (pour l’instant).</span>";
+    return;
+  }
+  for (const p of pots){
+    const id = String(p.id);
+    const pill = document.createElement("label");
+    pill.className = "pill";
+    pill.innerHTML = `<input type='checkbox' data-pot='${escapeHtml(id)}' ${enabled.has(id)?"checked":""}/> <span>${escapeHtml(p.name||id)}</span>`;
+    wrap.appendChild(pill);
+  }
+}
+
 function readBuildForm(){
+  const charId = $("#buildCharacter")?.value || "";
+  const enabled = $$("#buildPotentials input[data-pot]").filter(x=>x.checked).map(x=>x.getAttribute("data-pot"));
   return {
     name: ($("#buildName").value || "").trim(),
+    character_id: charId || undefined,
+    potentials_enabled: enabled,
     stats: {
       atk: toNum($("#statAtk").value, 0),
       def: toNum($("#statDef").value, 0),
@@ -1066,10 +1194,34 @@ function readBuildForm(){
   };
 }
 
+function refreshBuildCharacterSelect(){
+  const sel = $("#buildCharacter");
+  if (!sel) return;
+  const cur = sel.value;
+  // Keep first option (none)
+  sel.querySelectorAll("option").forEach((o,i)=>{ if (i>0) o.remove(); });
+  const chars = getKitCharacters();
+  for (const c of chars){
+    const opt = document.createElement("option");
+    opt.value = String(c.id);
+    opt.textContent = c.name || String(c.id);
+    sel.appendChild(opt);
+  }
+  if (cur && chars.some(c => String(c.id) === String(cur))) sel.value = cur;
+}
+
 function bindBuilds(){
+  // Character select -> potentials
+  $("#buildCharacter")?.addEventListener("change", () => {
+    const charId = $("#buildCharacter").value || "";
+    renderBuildPotentials(charId, []);
+  });
+
   $("#btnNewBuild")?.addEventListener("click", () => {
     selectedBuildId = null;
     $("#buildName").value = "";
+    if ($("#buildCharacter")) $("#buildCharacter").value = "";
+    renderBuildPotentials("", []);
     $("#statAtk").value = 5000;
     $("#statDef").value = 0;
     $("#statCrit").value = 35;
@@ -1091,11 +1243,15 @@ function bindBuilds(){
       if (!b){ $("#buildMsg").textContent = "Build introuvable."; return; }
       b.name = data.name;
       b.stats = data.stats;
+      b.character_id = data.character_id;
+      b.potentials_enabled = data.potentials_enabled;
       // keep source if already set
       b.source = b.source || {character_id:null, weapon_id:null};
       $("#buildMsg").textContent = "Build modifié.";
     }else{
       const b = {id: uid("b"), name: data.name, stats: data.stats, source:{character_id:null, weapon_id:null}};
+      if (data.character_id) b.character_id = data.character_id;
+      b.potentials_enabled = data.potentials_enabled || [];
       state.builds.unshift(b);
       selectedBuildId = b.id;
       $("#buildMsg").textContent = "Build créé.";
@@ -1779,11 +1935,19 @@ function refreshWeightsSelectors(){
 function refreshCalSelectors(){
   fillSelect($("#calBuild"), state.builds, b => b.name);
   fillSelect($("#calSc"), state.scenarios, s => s.name);
+  // Calibration Lab (multi-cas)
+  fillSelect($("#cal2Build"), state.builds, b => b.name);
+  fillSelect($("#cal2Sc"), state.scenarios, s => s.name);
+  refreshCal2Table();
 }
 function refreshAllSelectors(){
+  refreshBuildCharacterSelect();
   refreshSimSelectors();
   refreshCompareSelectors();
   refreshWeightsSelectors();
+  refreshScalingSelectors();
+  refreshSandboxSelectors();
+  refreshBossSelectors();
   refreshDbSelectors();
   refreshCalSelectors();
 }
@@ -1885,16 +2049,239 @@ function isBurstActiveAt(t, rot, settings){
   return t >= start && t <= (start + dur);
 }
 
-function baseHitDamage(build, enemy, settings, overrideK=null){
-  const atk = build.stats.atk || 0;
-  const bonus = pctToMul(build.stats.dmg_bonus_pct || 0);
-  const taken = pctToMul(build.stats.dmg_taken_pct || 0);
+// --- Damage engine (flexible, GC-like v1) ---
+// Note: 7DSO formules exactes non confirmées. Ce moteur est configurable et calibrable.
+// stats build supportées (optionnelles): atk, pierce_pct, res_pen_pct, def_pen_pct,
+// crit_rate_pct, crit_dmg_pct, crit_resist_pen_pct, crit_def_pen_pct,
+// dmg_bonus_pct, dmg_taken_pct, skill_dmg_pct, ult_dmg_pct, dmg_mult_pct.
+// enemy supportés (optionnels): def, resistance_pct, crit_resist_pct, crit_def_pct, element, dmg_reduction_pct.
+
+function elementMultiplier(attEl, defEl, settings){
+  const advMap = settings.element_adv_map || {
+    fire: "wind",
+    wind: "earth",
+    earth: "water",
+    water: "fire",
+    light: "dark",
+    dark: "light"
+  };
+  const adv = (settings.elem_adv_bonus_pct ?? 30) / 100;
+  const dis = (settings.elem_disadv_penalty_pct ?? -20) / 100; // negative means penalty
+  if (!attEl || !defEl || attEl === "neutral" || defEl === "neutral") return 1;
+  if (attEl === defEl) return 1;
+  if (advMap[attEl] === defEl) return 1 + adv;
+  // if defender has advantage over attacker -> attacker disadvantaged
+  if (advMap[defEl] === attEl) return 1 + dis;
+  return 1;
+}
+
+function aggregateBuffs(build, ctx){
+  const buffs = Array.isArray(build.buffs) ? build.buffs : [];
+  // Additive % deltas
+  const add = {
+    atk_pct: 0,
+    dmg_pct: 0,
+    skill_dmg_pct: 0,
+    ult_dmg_pct: 0,
+    crit_rate_pct: 0,
+    crit_dmg_pct: 0,
+    pierce_pct: 0,
+    def_pen_pct: 0,
+    res_pen_pct: 0
+  };
+  // Multiplicative multipliers (1 + x)
+  let dmgMul = 1;
+  let atkMul = 1;
+
+  for (const b of buffs){
+    if (!b || typeof b !== "object") continue;
+    if (b.enabled === false) continue;
+    const scope = b.scope || "all";
+    if (scope !== "all"){
+      if (ctx?.kind === "skill" && scope !== "skill") continue;
+      if (ctx?.kind === "ultimate" && scope !== "ultimate") continue;
+    }
+    const stat = b.stat;
+    const val = toNum(b.value, 0);
+    const type = b.type || "add"; // add|mul
+    if (type === "mul"){
+      if (stat === "dmg") dmgMul *= (1 + val/100);
+      else if (stat === "atk") atkMul *= (1 + val/100);
+      continue;
+    }
+    // additive
+    if (stat === "atk_pct") add.atk_pct += val;
+    else if (stat === "dmg_pct") add.dmg_pct += val;
+    else if (stat === "skill_dmg_pct") add.skill_dmg_pct += val;
+    else if (stat === "ult_dmg_pct") add.ult_dmg_pct += val;
+    else if (stat === "crit_rate_pct") add.crit_rate_pct += val;
+    else if (stat === "crit_dmg_pct") add.crit_dmg_pct += val;
+    else if (stat === "pierce_pct") add.pierce_pct += val;
+    else if (stat === "def_pen_pct") add.def_pen_pct += val;
+    else if (stat === "res_pen_pct") add.res_pen_pct += val;
+  }
+
+  // Support legacy "dmg_mult_pct" stat as a global multiplicative bucket
+  const legacyDmgMult = toNum(build.stats?.dmg_mult_pct, 0);
+  if (legacyDmgMult) dmgMul *= (1 + legacyDmgMult/100);
+
+  return { add, dmgMul, atkMul };
+}
+
+function computedStatsForContext(build, ctx, settings){
+  const s = build.stats || {};
+  const { add, dmgMul, atkMul } = aggregateBuffs(build, ctx);
+
+  const out = {
+    atk: toNum(s.atk, 0),
+    pierce_pct: toNum(s.pierce_pct, 0),
+    res_pen_pct: toNum(s.res_pen_pct, 0),
+    def_pen_pct: toNum(s.def_pen_pct, 0),
+    crit_rate_pct: toNum(s.crit_rate_pct, 0),
+    crit_dmg_pct: toNum(s.crit_dmg_pct, 0),
+    crit_resist_pen_pct: toNum(s.crit_resist_pen_pct, 0),
+    crit_def_pen_pct: toNum(s.crit_def_pen_pct, 0),
+    dmg_bonus_pct: toNum(s.dmg_bonus_pct, 0),
+    dmg_taken_pct: toNum(s.dmg_taken_pct, 0),
+    skill_dmg_pct: toNum(s.skill_dmg_pct, 0),
+    ult_dmg_pct: toNum(s.ult_dmg_pct, 0),
+    element: (typeof s.element === "string" ? s.element : "neutral"),
+    _dmgMul: dmgMul,
+    _atkMul: atkMul
+  };
+
+  out.atk = out.atk * (1 + add.atk_pct/100) * atkMul;
+
+  out.dmg_bonus_pct += add.dmg_pct;
+  out.skill_dmg_pct += add.skill_dmg_pct;
+  out.ult_dmg_pct += add.ult_dmg_pct;
+  out.crit_rate_pct += add.crit_rate_pct;
+  out.crit_dmg_pct += add.crit_dmg_pct;
+  out.pierce_pct += add.pierce_pct;
+  out.def_pen_pct += add.def_pen_pct;
+  out.res_pen_pct += add.res_pen_pct;
+
+  // Caps
+  const pierceCap = settings.pierce_cap ?? 300;
+  out.pierce_pct = clamp(out.pierce_pct, -100, pierceCap);
+  out.def_pen_pct = clamp(out.def_pen_pct, 0, 95);
+  out.res_pen_pct = clamp(out.res_pen_pct, 0, 300);
+  out.crit_rate_pct = clamp(out.crit_rate_pct, 0, settings.crit_cap ?? 100);
+  out.crit_dmg_pct = clamp(out.crit_dmg_pct, 0, 500);
+  return out;
+}
+
+function mitigationFactorWithDefPen(enemyDef, defPenPct, settings, overrideK=null){
+  const defCoef = (settings.hidden_defense_coefficient ?? 1);
+  const effDef = Math.max(0, (enemyDef * defCoef) * (1 - (defPenPct/100)));
+  const kUsed = overrideK !== null ? overrideK : settings.mitigation_k;
+
+  if (settings.mitigation_model === "linear"){
+    const cap = 0.80;
+    const k = Math.max(1, kUsed);
+    const red = clamp(effDef / k, 0, cap);
+    return 1 - red;
+  }
+  const K = Math.max(1, kUsed);
+  const red = effDef / (effDef + K);
+  return 1 - red;
+}
+
+function singleHitDamage(build, enemy, settings, ctx, mode, rng, overrideK=null){
+  const cs = computedStatsForContext(build, ctx, settings);
+
+  // Base multipliers
   const enemyRed = 1 - ((enemy.dmg_reduction_pct || 0)/100);
-  const mit = mitigationFactor(enemy.def || 0, build, settings, overrideK);
-  return atk * bonus * taken * enemyRed * mit;
+  const takenMul = pctToMul(cs.dmg_taken_pct || 0);
+
+  // Contextual dmg bucket
+  let dmgBonusPct = cs.dmg_bonus_pct || 0;
+  if (ctx?.kind === "skill") dmgBonusPct += (cs.skill_dmg_pct || 0);
+  if (ctx?.kind === "ultimate") dmgBonusPct += (cs.ult_dmg_pct || 0);
+  const dmgBonusMul = pctToMul(dmgBonusPct);
+
+  const critOrder = settings.crit_order || "afterDef";
+  const pierceMode = settings.pierce_mode || "multiplicative";
+  const elementStage = settings.element_stage || "late";
+
+  // Element multiplier (applied early or late depending on config)
+  const eleMulRaw = elementMultiplier(cs.element, enemy.element || "neutral", settings);
+  const eleEarlyMul = (elementStage === "early") ? eleMulRaw : 1;
+  const eleLateMul  = (elementStage === "late")  ? eleMulRaw : 1;
+
+  // Mitigation + pierce-like term (GC-inspired)
+  const mit = mitigationFactorWithDefPen(enemy.def || 0, cs.def_pen_pct || 0, settings, overrideK);
+
+  const enemyRes = toNum(enemy.resistance_pct, 0);
+  const resistCap = settings.resist_cap ?? 200;
+  const effEnemyRes = clamp(enemyRes - (cs.res_pen_pct || 0), -100, resistCap);
+  const pierceDelta = ((cs.pierce_pct || 0) - effEnemyRes) / 100;
+  const pierceDeltaClamped = clamp(pierceDelta, -0.90, 3.00);
+
+  // Crit terms (with enemy crit resist/def)
+  const enemyCritRes = clamp(toNum(enemy.crit_resist_pct, 0), 0, 200);
+  const enemyCritDef = clamp(toNum(enemy.crit_def_pct, 0), 0, 300);
+
+  const critChance = clamp((cs.crit_rate_pct || 0) - enemyCritRes + (cs.crit_resist_pen_pct || 0), 0, settings.crit_cap ?? 100) / 100;
+  const critDmg = Math.max(0, (cs.crit_dmg_pct || 0) - enemyCritDef + (cs.crit_def_pen_pct || 0)) / 100;
+
+  const critMul = (mode === "expected")
+    ? ((1 - critChance) * 1 + critChance * (1 + critDmg))
+    : ((rng() < critChance) ? (1 + critDmg) : 1);
+
+  // Core base (pre mitigation)
+  let core = (cs.atk || 0) * (ctx?.mult || 0) * eleEarlyMul;
+
+  if (critOrder === "beforeDef"){
+    core *= critMul;
+  }
+
+  // Apply mitigation + pierce mode
+  let afterMit;
+  if (pierceMode === "additive"){
+    // Pierce contributes as a separate term not reduced by DEF mitigation (heuristic, calibrable)
+    afterMit = (core * mit) + (core * pierceDeltaClamped);
+  } else {
+    // Default: multiplicative pierce
+    const pierceMul = 1 + pierceDeltaClamped;
+    afterMit = core * mit * pierceMul;
+  }
+
+  let base = afterMit * dmgBonusMul * cs._dmgMul * takenMul * enemyRed * eleLateMul;
+
+  // Hidden global multiplier (calibration)
+  base *= (settings.hidden_global_multiplier ?? 1);
+
+  if (critOrder === "afterDef"){
+    base *= critMul;
+  }
+
+  return base;
+}
+
+
+function actionDamage(build, enemy, settings, ctx, mode, rng, overrideK=null){
+  const hits = Math.max(1, Math.round(ctx?.hits || 1));
+  let total = 0;
+  if (mode === "expected"){
+    // Expected: per-hit identical expectation
+    total = singleHitDamage(build, enemy, settings, ctx, "expected", rng, overrideK) * hits;
+  } else {
+    for (let i=0;i<hits;i++){
+      total += singleHitDamage(build, enemy, settings, ctx, "mc", rng, overrideK);
+    }
+  }
+  return total;
+}
+
+function baseHitDamage(build, enemy, settings, overrideK=null){
+  // Legacy helper (for older parts of the UI): one hit, mult=1
+  const ctx = { kind: "skill", mult: 1, hits: 1 };
+  return singleHitDamage(build, enemy, settings, ctx, "expected", makeRng(1), overrideK);
 }
 
 function expectedCritMultiplier(build, settings){
+  // Legacy helper: expected crit multiplier after enemy-less caps.
   const cr = clamp(build.stats.crit_rate_pct || 0, 0, settings.crit_cap) / 100;
   const cd = (build.stats.crit_dmg_pct || 0) / 100;
   return (1 - cr) * 1 + cr * (1 + cd);
@@ -1910,7 +2297,7 @@ function makeRng(seed){
 
 function simulateOnce(build, rot, scen, duration, settings, mode, rng){
   const enemy = scen.enemy || {};
-  const base = baseHitDamage(build, enemy, settings);
+  // baseHitDamage (legacy) — actionDamage() used per action
   const burstBonusMul = 1 + (settings.burst_bonus_pct || 0)/100;
   const burstRes = 1 - (enemy.burst_resist || 0);
 
@@ -1943,22 +2330,11 @@ function simulateOnce(build, rot, scen, duration, settings, mode, rng){
       burstMul *= burstBonusMul * burstRes;
     }
 
-    if (mode === "expected"){
-      const critMul = expectedCritMultiplier(build, settings);
-      const dealt = base * mult * hits * burstMul * critMul;
-      dmg += dealt;
-      addTrace(`${tNow.toFixed(1)}s: ${key} dealt=${Math.round(dealt)}`);
-    } else {
-      const cr = clamp(build.stats.crit_rate_pct || 0, 0, settings.crit_cap)/100;
-      const cd = (build.stats.crit_dmg_pct || 0)/100;
-      let dealt = 0;
-      for (let i=0;i<hits;i++){
-        const isCrit = rng() < cr;
-        dealt += base * mult * burstMul * (isCrit ? (1+cd) : 1);
-      }
-      dmg += dealt;
-      addTrace(`${tNow.toFixed(1)}s: ${key} dealt=${Math.round(dealt)}`);
-    }
+    const ctx = { kind, mult, hits };
+    const dealt = actionDamage(build, enemy, settings, ctx, (mode === "expected" ? "expected" : "mc"), rng) * burstMul;
+    dmg += dealt;
+    addTrace(`${tNow.toFixed(1)}s: ${key} dealt=${Math.round(dealt)}`);
+
 
     if (kind === "skill"){
       orbs = Math.min(7, orbs + (settings.orb_gain_per_skill || 0));
@@ -2033,6 +2409,7 @@ function runSimulation(build, rot, scen, duration, iters, mode){
   } else {
     const n = Math.max(1, iters);
     for (let i=0;i<n;i++){
+      // Deterministic per-iteration seed derived from base rng (reproducible).
       const seed = (Math.floor(rngBase()*1e9) ^ (i*2654435761)) >>> 0;
       const rng = makeRng(seed);
       const out = simulateOnce(build, rot, scen, duration, settings, "mc", rng);
@@ -2043,11 +2420,23 @@ function runSimulation(build, rot, scen, duration, iters, mode){
 
   const sorted = [...dpsSamples].sort((a,b)=>a-b);
   const mean = sorted.reduce((a,b)=>a+b,0) / sorted.length;
+
+  let std = 0;
+  if (sorted.length > 1){
+    const v = sorted.reduce((acc,x)=>acc + (x-mean)*(x-mean), 0) / (sorted.length - 1);
+    std = Math.sqrt(v);
+  }
+
+  const p05 = quantile(sorted, 0.05);
   const p10 = quantile(sorted, 0.10);
   const p50 = quantile(sorted, 0.50);
   const p90 = quantile(sorted, 0.90);
+  const p95 = quantile(sorted, 0.95);
 
-  return { mean, p10, p50, p90, samples: dpsSamples, trace };
+  const min = sorted[0];
+  const max = sorted[sorted.length-1];
+
+  return { mean, std, min, max, p05, p10, p50, p90, p95, samples: dpsSamples, trace };
 }
 
 // ---------- Results render ----------
@@ -2088,36 +2477,46 @@ function renderSimOutput(res, mode){
   const stable = mode === "expected";
   const stability = stable ? `<span class="pill good">Stable (Expected)</span>` : `<span class="pill warn">RNG (Monte‑Carlo)</span>`;
   const hist = renderHistogram(res.samples, state.settings.hist_bins);
-  return `
+
+  const core = `
     <div class="row" style="justify-content:space-between">
       ${stability}
       <span class="pill">DPS moyen: <b>${fmt(res.mean)}</b></span>
     </div>
     <hr style="border:none;border-top:1px solid var(--border); margin:12px 0;">
-    <div class="grid3">
-      <div class="pill">P10: <b>${fmt(res.p10)}</b></div>
+    <div class="grid4">
+      <div class="pill">P05: <b>${fmt(res.p05)}</b></div>
       <div class="pill">P50: <b>${fmt(res.p50)}</b></div>
+      <div class="pill">P95: <b>${fmt(res.p95)}</b></div>
+      <div class="pill">Écart‑type: <b>${fmt(res.std)}</b></div>
+    </div>
+    <div class="grid4" style="margin-top:10px">
+      <div class="pill">Min: <b>${fmt(res.min)}</b></div>
+      <div class="pill">P10: <b>${fmt(res.p10)}</b></div>
       <div class="pill">P90: <b>${fmt(res.p90)}</b></div>
+      <div class="pill">Max: <b>${fmt(res.max)}</b></div>
     </div>
     ${hist}
     <div class="hint">Astuce : pour comparer A vs B, garde le même scénario + rotation + durée.</div>
   `;
+  return core;
 }
 
 // ---------- Simulate UI ----------
 let lastTrace = null;
 function runSim(){
-  const build = findById(state.builds, $("#simBuild").value);
+  const build0 = findById(state.builds, $("#simBuild").value);
   const rot = findById(state.rotations, $("#simRot").value);
   const scen = findById(state.scenarios, $("#simSc").value);
   const duration = Math.max(1, toNum($("#simDur").value, 30));
   const iters = Math.max(1, Math.round(toNum($("#simIters").value, 2000)));
   const mode = $("#simMode").value;
 
-  if (!build || !rot || !scen){
+  if (!build0 || !rot || !scen){
     $("#simMsg").textContent = "Sélectionne un build, une rotation et un scénario.";
     return;
   }
+  const build = applyPotentialsToBuild(build0);
   $("#simMsg").textContent = "Simulation...";
   const res = runSimulation(build, rot, scen, duration, iters, mode);
 
@@ -2125,8 +2524,8 @@ function runSim(){
   try{
     state._lastSimSummary = {
       at: new Date().toISOString(),
-      sim: { build_id: build.id, rot_id: rot.id, scen_id: scen.id, duration, iters, mode },
-      result: { mean: res.mean, p10: res.p10, p50: res.p50, p90: res.p90 }
+      sim: { build_id: build0.id, rot_id: rot.id, scen_id: scen.id, duration, iters, mode, character_id: build0.character_id||null, potentials_enabled: build0.potentials_enabled||[] },
+      result: { mean: res.mean, std: res.std, p05: res.p05, p10: res.p10, p50: res.p50, p90: res.p90, p95: res.p95 }
     };
     saveState();
   }catch(e){ console.warn(e); }
@@ -2151,18 +2550,20 @@ function bindSim(){
 
 // ---------- Compare UI ----------
 function runCompare(){
-  const a = findById(state.builds, $("#cmpA").value);
-  const b = findById(state.builds, $("#cmpB").value);
+  const a0 = findById(state.builds, $("#cmpA").value);
+  const b0 = findById(state.builds, $("#cmpB").value);
   const rot = findById(state.rotations, $("#cmpRot").value);
   const scen = findById(state.scenarios, $("#cmpSc").value);
   const duration = Math.max(1, toNum($("#cmpDur").value, 30));
   const iters = Math.max(1, Math.round(toNum($("#cmpIters").value, 4000)));
   const mode = $("#cmpMode").value;
 
-  if (!a || !b || !rot || !scen){
+  if (!a0 || !b0 || !rot || !scen){
     $("#cmpMsg").textContent = "Choisis A, B, rotation, scénario.";
     return;
   }
+  const a = applyPotentialsToBuild(a0);
+  const b = applyPotentialsToBuild(b0);
   $("#cmpMsg").textContent = "Comparaison...";
   const ra = runSimulation(a, rot, scen, duration, iters, mode);
   const rb = runSimulation(b, rot, scen, duration, iters, mode);
@@ -2192,17 +2593,18 @@ function bindCompare(){
 
 // ---------- Weights UI ----------
 function runWeights(){
-  const build = findById(state.builds, $("#wBuild").value);
+  const build0 = findById(state.builds, $("#wBuild").value);
   const rot = findById(state.rotations, $("#wRot").value);
   const scen = findById(state.scenarios, $("#wSc").value);
   const duration = Math.max(1, toNum($("#wDur").value, 30));
   const mode = $("#wMode").value;
   const stepPct = Math.max(0.1, toNum($("#wStep").value, 1));
 
-  if (!build || !rot || !scen){
+  if (!build0 || !rot || !scen){
     $("#wMsg").textContent = "Choisis build, rotation, scénario.";
     return;
   }
+  const build = applyPotentialsToBuild(build0);
   $("#wMsg").textContent = "Calcul...";
   const baseRes = runSimulation(build, rot, scen, duration, mode==="mc"?4000:1, mode);
   const base = baseRes.mean;
@@ -2248,11 +2650,427 @@ function bindWeights(){
   });
 }
 
+
+// ---------- Scaling Analyzer ----------
+function refreshScalingSelectors(){
+  fillSelect($("#scBuild"), state.builds, (x)=>x.name, selectedBuildId);
+  fillSelect($("#scRot"), state.rotations, (x)=>x.name, selectedRotId);
+  fillSelect($("#scSc"), state.scenarios, (x)=>x.name, selectedScId);
+}
+
+function setCanvasSize(canvas){
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const w = Math.max(300, Math.floor(rect.width));
+  const h = Math.max(180, Math.floor(rect.height));
+  canvas.width = Math.floor(w * dpr);
+  canvas.height = Math.floor(h * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {w, h, ctx};
+}
+
+function drawLineChart(canvas, xs, ys, opts={}){
+  const dims = setCanvasSize(canvas);
+  if (!dims) return;
+  const {w,h,ctx} = dims;
+  ctx.clearRect(0,0,w,h);
+
+  const padL = 46, padR = 12, padT = 12, padB = 28;
+  const plotW = w - padL - padR;
+  const plotH = h - padT - padB;
+
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const yMin0 = Math.min(...ys), yMax0 = Math.max(...ys);
+  const yPad = (yMax0 - yMin0) * 0.08;
+  const yMin = yMin0 - yPad;
+  const yMax = yMax0 + yPad;
+
+  const xToPx = (x)=> padL + (xMax===xMin ? 0.5*plotW : ((x-xMin)/(xMax-xMin))*plotW);
+  const yToPx = (y)=> padT + (yMax===yMin ? 0.5*plotH : ((yMax-y)/(yMax-yMin))*plotH);
+
+  // Axes
+  ctx.strokeStyle = "rgba(255,255,255,0.12)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(padL, padT);
+  ctx.lineTo(padL, padT + plotH);
+  ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.stroke();
+
+  // Grid + labels (3 ticks)
+  ctx.font = "12px system-ui, -apple-system, Segoe UI, Roboto";
+  const ticks = 3;
+  for (let i=0;i<=ticks;i++){
+    const ty = padT + (plotH/ticks)*i;
+    const val = yMax - (yMax-yMin)*(i/ticks);
+    ctx.strokeStyle = "rgba(255,255,255,0.06)";
+    ctx.beginPath();
+    ctx.moveTo(padL, ty);
+    ctx.lineTo(padL+plotW, ty);
+    ctx.stroke();
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.fillText(fmt(val), 6, ty+4);
+  }
+
+  // Line
+  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i=0;i<xs.length;i++){
+    const px = xToPx(xs[i]);
+    const py = yToPx(ys[i]);
+    if (i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+  }
+  ctx.stroke();
+
+  // Points
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  for (let i=0;i<xs.length;i++){
+    const px = xToPx(xs[i]);
+    const py = yToPx(ys[i]);
+    ctx.beginPath();
+    ctx.arc(px, py, 3, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  // X labels (min/max)
+  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.fillText(String(opts.xLabelMin ?? fmt(xMin)), padL, padT+plotH+18);
+  const maxTxt = String(opts.xLabelMax ?? fmt(xMax));
+  const tw = ctx.measureText(maxTxt).width;
+  ctx.fillText(maxTxt, padL+plotW-tw, padT+plotH+18);
+
+  if (opts.title){
+    ctx.fillStyle = "rgba(255,255,255,0.75)";
+    ctx.fillText(opts.title, padL, 12);
+  }
+}
+
+function exportCanvasPng(canvas, filename){
+  if (!canvas) return;
+  try{
+    const link = document.createElement('a');
+    link.download = filename || 'chart.png';
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }catch(e){
+    console.warn(e);
+    alert("Export PNG impossible sur ce navigateur.");
+  }
+}
+
+function runScaling(){
+  const build0 = findById(state.builds, $("#scBuild").value);
+  const rot = findById(state.rotations, $("#scRot").value);
+  const scen = findById(state.scenarios, $("#scSc").value);
+  const duration = Math.max(1, toNum($("#scDur").value, 30));
+  const statKey = $("#scStat").value;
+  const fromPct = toNum($("#scFrom").value, -10);
+  const toPct = toNum($("#scTo").value, 20);
+  const steps = clamp(Math.round(toNum($("#scSteps").value, 13)), 5, 41);
+  const mode = $("#scMode").value;
+
+  if (!build0 || !rot || !scen){
+    $("#scMsg").textContent = "Choisis build, rotation, scénario.";
+    return;
+  }
+  const build = applyPotentialsToBuild(build0);
+  $("#scMsg").textContent = "Calcul...";
+
+  const pts = [];
+  for (let i=0;i<steps;i++){
+    const t = steps===1 ? 0 : i/(steps-1);
+    const pct = fromPct + (toPct-fromPct)*t;
+
+    const b2 = deepCopy(build);
+    const v0 = b2.stats[statKey] || 0;
+
+    if (statKey === "atk"){
+      const baseAtk = (v0===0 ? 100 : v0);
+      b2.stats.atk = baseAtk * (1 + pct/100);
+    } else {
+      b2.stats[statKey] = v0 * (1 + pct/100);
+    }
+
+    const iters = (mode === "mc") ? 2000 : 1;
+    const res = runSimulation(b2, rot, scen, duration, iters, mode);
+    pts.push({pct, dps: res.mean});
+  }
+
+  const xs = pts.map(p=>p.pct);
+  const ys = pts.map(p=>p.dps);
+
+  let best = pts[0];
+  for (const p of pts){ if (p.dps > best.dps) best = p; }
+
+  $("#scOut").classList.remove("empty");
+  $("#scOut").innerHTML = `
+    <div class="row" style="justify-content:space-between">
+      <span class="pill">Stat: <b>${escapeHtml($("#scStat").selectedOptions[0].textContent)}</b></span>
+      <span class="pill good">Meilleur: <b>${fmt(best.dps)}</b> à <b>${fmtPct(best.pct)}</b></span>
+    </div>
+    <div class="chartWrap">
+      <canvas id="scCanvas" class="chartCanvas" aria-label="Courbe de scaling"></canvas>
+    </div>
+    <div class="hint tiny">Lecture: la courbe montre l’impact de ±% sur la stat, toutes choses égales (rotation/scénario identiques).</div>
+  `;
+
+  const canvas = $("#scCanvas");
+  const statLabel = $("#scStat").selectedOptions[0].textContent;
+  drawLineChart(canvas, xs, ys, {title: `DPS vs ${statLabel} (Δ%)`, xLabelMin: `${fromPct}%`, xLabelMax: `${toPct}%`});
+
+  const onResize = () => {
+    try{ drawLineChart(canvas, xs, ys, {title: `DPS vs ${statLabel} (Δ%)`, xLabelMin: `${fromPct}%`, xLabelMax: `${toPct}%`}); }catch(e){}
+  };
+  window.addEventListener("resize", onResize, {once:true});
+
+  $("#scMsg").textContent = "Terminé.";
+}
+
+function bindScaling(){
+  $("#btnScaling")?.addEventListener("click", runScaling);
+  $("#btnScalingExport")?.addEventListener("click", () => {
+    const c = $("#scCanvas");
+    if (!c){ alert("Trace d’abord une courbe."); return; }
+    exportCanvasPng(c, 'scaling.png');
+  });
+  $("#btnScalingExplain")?.addEventListener("click", () => {
+    openModal("Scaling Analyzer", `
+      <div class="p">Cet outil trace une courbe : on fait varier une seule stat (ex : +20% Crit DMG) et on calcule le DPS correspondant.</div>
+      <div class="p">Usage typique : détecter les <b>soft-caps</b> (pente qui baisse) et voir si une stat te donne encore de la valeur.</div>
+      <div class="hint warn">En mode Monte‑Carlo, la courbe peut être bruitée. Utilise Expected pour une lecture stable.</div>
+    `, [{label:"OK", kind:"primary", onClick: closeModal}]);
+  });
+}
+
+
+// ---------- Combat Sandbox ----------
+function refreshSandboxSelectors(){
+  fillSelect($("#sbBuild"), state.builds, (x)=>x.name, selectedBuildId);
+  fillSelect($("#sbRot"), state.rotations, (x)=>x.name, selectedRotId);
+  fillSelect($("#sbScen"), state.scenarios, (x)=>x.name, selectedScId);
+}
+
+function chooseActionAtTime(rot, tNow, cds, orbs){
+  // Similar to simulateOnce scheduling, but we pick the first valid action.
+  const actions = (rot && rot.actions) ? rot.actions : [];
+  for (const a of actions){
+    const key = a.label || a.kind;
+    const readyAt = cds.get(key) ?? 0;
+    if (tNow < readyAt) continue;
+    const req = a.requiresOrbs || 0;
+    if (req > 0 && orbs < req) continue;
+    return a;
+  }
+  return {kind:"wait", label:"wait", cd:1, hits:0, mult:0};
+}
+
+function runSandbox(){
+  const build0 = findById(state.builds, $("#sbBuild").value);
+  const rot = findById(state.rotations, $("#sbRot").value);
+  const scen = findById(state.scenarios, $("#sbScen").value);
+  const turns = clamp(Math.round(toNum($("#sbTurns").value, 15)), 1, 200);
+  const secPerTurn = Math.max(0.1, toNum($("#sbTurnSeconds").value, 1));
+  const mode = $("#sbMode").value;
+  const iters = clamp(Math.round(toNum($("#sbIters").value, 500)), 1, 5000);
+
+  if (!build0 || !rot || !scen){ $("#sbMsg").textContent = "Choisis un build, une rotation et un scénario."; return; }
+  const build = applyPotentialsToBuild(build0);
+  $("#sbMsg").textContent = "Simulation...";
+
+  const enemy = scen.enemy || {};
+  const base = baseHitDamage(build, enemy, state.settings);
+  const burstBonusMul = 1 + (state.settings.burst_bonus_pct || 0)/100;
+  const burstRes = 1 - (enemy.burst_resist || 0);
+
+  // Turn-based approximation: each turn we attempt one action.
+  const cds = new Map();
+  let orbs = state.settings.initial_orbs || 0;
+  let cum = 0;
+  const rows = [];
+  const cumSeries = [];
+  const rngBase = makeRng(state.settings.mc_seed || 12345);
+
+  for (let turn=1; turn<=turns; turn++){
+    const tNow = (turn-1) * secPerTurn;
+    const a = chooseActionAtTime(rot, tNow, cds, orbs);
+    const key = a.label || a.kind;
+    const hits = Math.max(1, Math.round(a.hits || 1));
+    const mult = a.mult || 0;
+
+    let burstMul = 1;
+    if (a.burstEligible && isBurstActiveAt(tNow, rot, state.settings)){
+      burstMul *= burstBonusMul * burstRes;
+    }
+
+    let dealt = 0;
+    if (key === 'wait' || a.kind === 'wait' || mult === 0){
+      dealt = 0;
+    } else if (mode === 'expected'){
+      dealt = base * mult * hits * burstMul * expectedCritMultiplier(build, state.settings);
+    } else {
+      // MC: sample a single outcome for the turn using deterministic seed per turn.
+      const seed = (Math.floor(rngBase()*1e9) ^ (turn*2654435761)) >>> 0;
+      const rng = makeRng(seed);
+      const cr = clamp(build.stats.crit_rate_pct || 0, 0, state.settings.crit_cap)/100;
+      const cd = (build.stats.crit_dmg_pct || 0)/100;
+      for (let i=0;i<hits;i++){
+        const isCrit = rng() < cr;
+        dealt += base * mult * burstMul * (isCrit ? (1+cd) : 1);
+      }
+      // Reduce noise by averaging a few internal samples if requested.
+      if (iters > 1){
+        let sum = dealt;
+        const n = Math.min(iters, 50);
+        for (let k=1;k<n;k++){
+          const r2 = makeRng((seed ^ (k*97))>>>0);
+          let d2 = 0;
+          for (let i=0;i<hits;i++) d2 += base * mult * burstMul * ((r2()<cr)?(1+cd):1);
+          sum += d2;
+        }
+        dealt = sum / Math.min(iters, 50);
+      }
+    }
+
+    // Orb model (same as simulateOnce)
+    if (a.kind === 'skill') orbs = Math.min(7, orbs + (state.settings.orb_gain_per_skill || 0));
+    if (a.kind === 'ultimate'){
+      const req = a.requiresOrbs || 0;
+      if (req > 0) orbs = Math.max(0, orbs - req);
+    }
+
+    const cdTime = Math.max(0, a.cd || 0);
+    cds.set(key, tNow + cdTime);
+
+    cum += dealt;
+    rows.push({turn, action:key, dealt, cum, orbs});
+    cumSeries.push(cum);
+  }
+
+  // Render table
+  const tbody = $("#sbTable tbody");
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.turn}</td>
+      <td>${escapeHtml(r.action)}</td>
+      <td>${fmt(r.dealt)}</td>
+      <td>${fmt(r.cum)}</td>
+      <td>${r.orbs}</td>
+    </tr>
+  `).join("");
+
+  const totalSeconds = turns * secPerTurn;
+  const dps = cum / totalSeconds;
+  $("#sbSummary").innerHTML = `
+    <div class="results">
+      <div class="kpi"><div class="k">Dégâts totaux</div><div class="v">${fmt(cum)}</div></div>
+      <div class="kpi"><div class="k">Durée</div><div class="v">${fmt(totalSeconds)} s</div></div>
+      <div class="kpi"><div class="k">DPS moyen</div><div class="v">${fmt(dps)}</div></div>
+      <div class="hint tiny">Rotation: <b>${escapeHtml(rot.name)}</b> · Scénario: <b>${escapeHtml(scen.name)}</b></div>
+    </div>
+  `;
+
+  const xs = rows.map(r=>r.turn);
+  drawLineChart($("#sbCanvas"), xs, cumSeries, {title:"Cumul dégâts par tour", xLabelMin:"T1", xLabelMax:`T${turns}`});
+  $("#sbMsg").textContent = "Terminé.";
+}
+
+function bindSandbox(){
+  $("#sbRun")?.addEventListener('click', runSandbox);
+  $("#sbExport")?.addEventListener('click', () => exportCanvasPng($("#sbCanvas"), 'combat-sandbox.png'));
+}
+
+
+// ---------- Boss scaling infini ----------
+function refreshBossSelectors(){
+  fillSelect($("#bossBuild"), state.builds, (x)=>x.name, selectedBuildId);
+  fillSelect($("#bossRot"), state.rotations, (x)=>x.name, selectedRotId);
+  fillSelect($("#bossScen"), state.scenarios, (x)=>x.name, selectedScId);
+}
+
+function runBossScaling(){
+  const build0 = findById(state.builds, $("#bossBuild").value);
+  const rot = findById(state.rotations, $("#bossRot").value);
+  const scenBase = findById(state.scenarios, $("#bossScen").value);
+  if (!build0 || !rot || !scenBase){ $("#bossMsg").textContent = "Choisis un build, une rotation et un scénario."; return; }
+  const build = applyPotentialsToBuild(build0);
+
+  const duration = Math.max(1, toNum($("#bossDuration").value, 30));
+  const mode = $("#bossMode").value;
+  const iters = clamp(Math.round(toNum($("#bossIters").value, 400)), 1, 5000);
+  const metric = $("#bossMetric").value;
+
+  const Lmin = clamp(Math.round(toNum($("#bossLmin").value, 1)), 1, 9999);
+  const Lmax = clamp(Math.round(toNum($("#bossLmax").value, 200)), Lmin, 9999);
+  const defBase = Math.max(0, toNum($("#bossDefBase").value, 1200));
+  const defPer = Math.max(0, toNum($("#bossDefPer").value, 35));
+  const hpBase = Math.max(1, toNum($("#bossHpBase").value, 500000));
+  const hpPer = Math.max(0, toNum($("#bossHpPer").value, 25000));
+
+  $("#bossMsg").textContent = "Calcul...";
+
+  const rows = [];
+  const xs = [];
+  const ys = [];
+
+  // Keep burst_resist and dmg_reduction_pct from base scenario enemy if present.
+  const baseEnemy = scenBase.enemy || {};
+
+  for (let lvl=Lmin; lvl<=Lmax; lvl++){
+    const enemy = Object.assign({}, baseEnemy, {
+      def: defBase + (lvl-1)*defPer,
+      hp: hpBase + (lvl-1)*hpPer,
+    });
+    const scen = Object.assign({}, scenBase, {enemy});
+
+    const out = runSimulation(build, rot, scen, duration, iters, mode);
+    const dps = out.mean;
+    const hp = enemy.hp;
+    const ttk = dps > 0 ? (hp / dps) : Infinity;
+    rows.push({lvl, def: enemy.def, hp, dps, ttk});
+    xs.push(lvl);
+    ys.push(metric === 'ttk' ? ttk : dps);
+  }
+
+  // Render table (top 40 rows for performance)
+  const tbody = $("#bossTable tbody");
+  const slice = rows.slice(0, 60);
+  tbody.innerHTML = slice.map(r => `
+    <tr>
+      <td>${r.lvl}</td>
+      <td>${fmt(r.def)}</td>
+      <td>${fmt(r.hp)}</td>
+      <td>${fmt(r.dps)}</td>
+      <td>${isFinite(r.ttk)? fmt(r.ttk) : '∞'}</td>
+    </tr>
+  `).join("");
+
+  // Heuristic: find first lvl where ttk > 300s
+  const hard = rows.find(r => r.ttk > 300);
+  const hint = hard ? `Palier estimé: ~niveau <b>${hard.lvl-1}</b> (TTK>300s à partir de ${hard.lvl}).` : `Pas de mur TTK>300s jusqu’au niveau ${Lmax}.`;
+  $("#bossHint").innerHTML = hint;
+
+  const title = metric === 'ttk' ? 'TTK vs Niveau' : 'DPS vs Niveau';
+  drawLineChart($("#bossCanvas"), xs, ys, {title, xLabelMin:`L${Lmin}`, xLabelMax:`L${Lmax}`});
+  $("#bossMsg").textContent = "Terminé.";
+}
+
+function bindBossScaling(){
+  $("#bossRun")?.addEventListener('click', runBossScaling);
+  $("#bossExport")?.addEventListener('click', () => exportCanvasPng($("#bossCanvas"), 'boss-scaling.png'));
+  $("#bossMetric")?.addEventListener('change', () => {
+    // re-run to redraw with different metric using existing inputs
+    try{ runBossScaling(); }catch(e){}
+  });
+}
+
 // ---------- Calibration ----------
 function predictSingleHitDamage(build, scen, mult, hits, burstOn, overrideK){
   const enemy = scen.enemy || {};
-  const base = baseHitDamage(build, enemy, state.settings, overrideK);
-  const critMul = expectedCritMultiplier(build, state.settings);
 
   let burstMul = 1;
   if (burstOn){
@@ -2260,18 +3078,22 @@ function predictSingleHitDamage(build, scen, mult, hits, burstOn, overrideK){
     const burstRes = 1 - (enemy.burst_resist || 0);
     burstMul = burstBonusMul * burstRes;
   }
-  return base * mult * hits * burstMul * critMul;
+
+  const ctx = { kind: "skill", mult, hits };
+  const rng = makeRng(1);
+  return actionDamage(build, enemy, state.settings, ctx, "expected", rng, overrideK) * burstMul;
 }
 
 function runCalibrate(){
-  const build = findById(state.builds, $("#calBuild").value);
+  const build0 = findById(state.builds, $("#calBuild").value);
   const scen = findById(state.scenarios, $("#calSc").value);
   const mult = toNum($("#calMult").value, 2.2);
   const hits = Math.max(1, Math.round(toNum($("#calHits").value, 1)));
   const obs = toNum($("#calObserved").value, NaN);
   const burstSel = $("#calBurst").value;
 
-  if (!build || !scen){ $("#calMsg").textContent = "Choisis un build et un scénario."; return; }
+  if (!build0 || !scen){ $("#calMsg").textContent = "Choisis un build et un scénario."; return; }
+  const build = applyPotentialsToBuild(build0);
   if (!isFinite(obs) || obs <= 0){ $("#calMsg").textContent = "Entre un dégât observé valide."; return; }
 
   let burstOn = false;
@@ -2349,6 +3171,752 @@ function bindCalibration(){
   `, [{label:"OK", kind:"primary", onClick: closeModal}]));
 }
 
+
+// ---------- Calibration Lab (multi-cas) ----------
+function ensureCalibrationLabState(){
+  state.calibrationLab = state.calibrationLab || { cases: [], best: null };
+}
+
+function computePredictedForCase(c){
+  const b = state.builds[c.buildIndex] || state.builds.find(x => x.id === c.buildId) || state.builds[0];
+  const s = state.scenarios[c.scIndex] || state.scenarios.find(x => x.id === c.scId) || state.scenarios[0];
+  if (!b || !s) return 0;
+
+  const enemy = s.enemy || {def:0, resistance_pct:0, crit_resist_pct:0, crit_def_pct:0, dmg_reduction_pct:0, element:"neutral"};
+  const ctx = { kind: c.kind || "skill", mult: toNum(c.mult, 1), hits: toNum(c.hits, 1) };
+  const rng = mulberry32(1234567);
+  // Use expected mode for deterministic calibration
+  const dmg = actionDamage(b, enemy, state.settings, ctx, "expected", rng, null);
+  return dmg;
+}
+
+function computeCal2Stats(){
+  ensureCalibrationLabState();
+  const cases = state.calibrationLab.cases || [];
+  if (!cases.length) return {rmse:0, mape:0};
+  const errs = [];
+  const ape = [];
+  for (const c of cases){
+    const pred = computePredictedForCase(c);
+    const obs = toNum(c.observed, 0);
+    const e = pred - obs;
+    errs.push(e*e);
+    if (obs > 0) ape.push(Math.abs(e)/obs);
+  }
+  const rmse = Math.sqrt(errs.reduce((a,b)=>a+b,0)/errs.length);
+  const mape = ape.length ? (ape.reduce((a,b)=>a+b,0)/ape.length) : 0;
+  return {rmse, mape};
+}
+
+function refreshCal2Table(){
+  ensureCalibrationLabState();
+  const tb = $("#cal2Table tbody");
+  const statsEl = $("#cal2Stats");
+  if (!tb || !statsEl) return;
+
+  const cases = state.calibrationLab.cases || [];
+  tb.innerHTML = "";
+  cases.forEach((c, i) => {
+    const b = state.builds.find(x => x.id === c.buildId) || state.builds[0];
+    const s = state.scenarios.find(x => x.id === c.scId) || state.scenarios[0];
+    const pred = computePredictedForCase(c);
+    const obs = toNum(c.observed, 0);
+    const errPct = obs > 0 ? ((pred-obs)/obs*100) : 0;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${escapeHtml(b?.name || "—")}</td>
+      <td>${escapeHtml(s?.name || "—")}</td>
+      <td>${escapeHtml(c.kind || "skill")}</td>
+      <td>${fmtNum(toNum(c.mult,0), 2)}</td>
+      <td>${fmtNum(toNum(c.hits,0), 0)}</td>
+      <td>${fmtNum(obs, 0)}</td>
+      <td>${fmtNum(pred, 0)}</td>
+      <td class="${Math.abs(errPct) <= 5 ? "good" : (Math.abs(errPct) <= 12 ? "warn" : "bad")}">${fmtNum(errPct, 2)}%</td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  const st = computeCal2Stats();
+  statsEl.textContent = cases.length
+    ? `Cas: ${cases.length} • RMSE: ${fmtNum(st.rmse, 0)} • Erreur abs. moyenne: ${fmtNum(st.mape*100, 2)}%`
+    : "Aucun cas.";
+}
+
+function addCal2Case(){
+  ensureCalibrationLabState();
+  const msg = $("#cal2Msg");
+  const buildId = $("#cal2Build")?.value || "";
+  const scId = $("#cal2Sc")?.value || "";
+  const kind = $("#cal2Kind")?.value || "skill";
+  const mult = toNum($("#cal2Mult")?.value, 1);
+  const hits = Math.max(1, Math.round(toNum($("#cal2Hits")?.value, 1)));
+  const observed = toNum($("#cal2Observed")?.value, 0);
+
+  if (!buildId || !scId){
+    if (msg) msg.textContent = "Choisis un build et un scénario.";
+    return;
+  }
+  if (!(observed > 0)){
+    if (msg) msg.textContent = "Entre un dégât observé (> 0).";
+    return;
+  }
+
+  state.calibrationLab.cases.push({
+    id: uid("case"),
+    buildId, scId, kind, mult, hits, observed
+  });
+
+  if (msg) msg.textContent = "Cas ajouté.";
+  saveState();
+  refreshCal2Table();
+}
+
+function clearCal2Cases(){
+  ensureCalibrationLabState();
+  state.calibrationLab.cases = [];
+  state.calibrationLab.best = null;
+  $("#cal2Best")?.classList.add("empty");
+  $("#cal2Best") && ($("#cal2Best").innerHTML = '<div class="emptyState">Ajoute au moins 3 cas pour lancer l’Auto-Fit.</div>');
+  $("#btnCal2Apply") && ($("#btnCal2Apply").disabled = true);
+  $("#cal2FitMsg") && ($("#cal2FitMsg").textContent = "");
+  saveState();
+  refreshCal2Table();
+}
+
+function evaluateRMSEForCases(cases){
+  if (!cases.length) return 1e18;
+  let sse = 0;
+  for (const c of cases){
+    const pred = computePredictedForCase(c);
+    const obs = toNum(c.observed, 0);
+    const e = pred - obs;
+    sse += e*e;
+  }
+  return Math.sqrt(sse / cases.length);
+}
+
+function autoFitContinuous(cases, ranges){
+  // Grid search coarse then refine; returns {bestG, bestD, rmse}
+  const gRange = ranges.g;
+  const dRange = ranges.d;
+  let best = {g: state.settings.hidden_global_multiplier || 1, d: state.settings.hidden_defense_coefficient || 1, rmse: 1e18};
+
+  const prevG = state.settings.hidden_global_multiplier || 1;
+  const prevD = state.settings.hidden_defense_coefficient || 1;
+
+  for (const g of gRange){
+    state.settings.hidden_global_multiplier = g;
+    for (const d of dRange){
+      state.settings.hidden_defense_coefficient = d;
+      const rmse = evaluateRMSEForCases(cases);
+      if (rmse < best.rmse){
+        best = {g, d, rmse};
+      }
+    }
+  }
+
+  // restore baseline (caller may apply best)
+  state.settings.hidden_global_multiplier = prevG;
+  state.settings.hidden_defense_coefficient = prevD;
+
+  return best;
+}
+
+function genRange(center, span, step){
+  const a = center - span;
+  const b = center + span;
+  const out = [];
+  for (let x=a; x<=b+1e-12; x+=step) out.push(Math.round(x*100000)/100000);
+  return out;
+}
+
+function runAutoFitAdvanced(){
+  ensureCalibrationLabState();
+  const casesAll = state.calibrationLab.cases || [];
+  const msg = $("#cal2FitMsg");
+  const bestEl = $("#cal2Best");
+  const applyBtn = $("#btnCal2Apply");
+
+  if (casesAll.length < 3){
+    if (msg) msg.textContent = "Ajoute au moins 3 cas.";
+    return;
+  }
+
+  // Heuristic B: prefilter with sample subset + early stop
+  const speed = $("#cal2Speed")?.value || "fast";
+  const earlyStopPct = toNum($("#cal2Stop")?.value, 4) / 100;
+  const sampleN = Math.max(3, Math.round(toNum($("#cal2Sample")?.value, 8)));
+
+  const subset = casesAll.slice(0, sampleN);
+
+  const structures = [];
+  const critOrders = ["beforeDef","afterDef"];
+  const defModels = ["linear","ratio"];
+  const pierceModes = ["multiplicative","additive"];
+  const elemStages = ["early","late"];
+
+  for (const co of critOrders){
+    for (const dm of defModels){
+      for (const pm of pierceModes){
+        for (const es of elemStages){
+          structures.push({crit_order: co, mitigation_model: dm, pierce_mode: pm, element_stage: es});
+        }
+      }
+    }
+  }
+
+  const baseline = {
+    crit_order: state.settings.crit_order || "afterDef",
+    mitigation_model: state.settings.mitigation_model || "ratio",
+    pierce_mode: state.settings.pierce_mode || "multiplicative",
+    element_stage: state.settings.element_stage || "late",
+    g: state.settings.hidden_global_multiplier || 1,
+    d: state.settings.hidden_defense_coefficient || 1
+  };
+
+  const prev = {...state.settings};
+  let best = {rmse: 1e18, structure: null, g: baseline.g, d: baseline.d};
+
+  // coarse ranges depend on speed
+  const coarseG = speed === "fast" ? genRange(1.0, 0.25, 0.03) : genRange(1.0, 0.35, 0.02);
+  const coarseD = speed === "fast" ? genRange(1.0, 0.60, 0.06) : genRange(1.0, 0.80, 0.05);
+
+  const refineStepG = speed === "fast" ? 0.01 : 0.008;
+  const refineStepD = speed === "fast" ? 0.02 : 0.015;
+
+  if (msg) msg.textContent = `Recherche structurelle… (${structures.length} combinaisons)`;
+
+  // Pre-filter: score on subset
+  const scored = [];
+  for (const st of structures){
+    state.settings.crit_order = st.crit_order;
+    state.settings.mitigation_model = st.mitigation_model;
+    state.settings.pierce_mode = st.pierce_mode;
+    state.settings.element_stage = st.element_stage;
+
+    const r = autoFitContinuous(subset, {g: coarseG, d: coarseD});
+    scored.push({...st, rmse: r.rmse, g: r.g, d: r.d});
+
+    if (subset.length && (r.rmse / Math.max(1, avgObserved(subset))) <= earlyStopPct){
+      // early-stop structure search if already very good on subset
+      break;
+    }
+  }
+
+  scored.sort((a,b)=>a.rmse-b.rmse);
+  const topK = speed === "fast" ? scored.slice(0, 4) : scored.slice(0, 6);
+
+  if (msg) msg.textContent = `Refine sur ${topK.length} meilleures structures…`;
+
+  for (const st of topK){
+    state.settings.crit_order = st.crit_order;
+    state.settings.mitigation_model = st.mitigation_model;
+    state.settings.pierce_mode = st.pierce_mode;
+    state.settings.element_stage = st.element_stage;
+
+    // refine around the coarse best for that structure
+    const refineG = genRange(st.g, 0.06, refineStepG);
+    const refineD = genRange(st.d, 0.12, refineStepD);
+    const r = autoFitContinuous(casesAll, {g: refineG, d: refineD});
+    if (r.rmse < best.rmse){
+      best = {rmse: r.rmse, structure: {...st}, g: r.g, d: r.d};
+    }
+
+    const rel = r.rmse / Math.max(1, avgObserved(casesAll));
+    if (rel <= earlyStopPct) break;
+  }
+
+  // restore previous settings
+  Object.assign(state.settings, prev);
+
+  state.calibrationLab.best = best.structure ? {
+    ...best.structure,
+    hidden_global_multiplier: best.g,
+    hidden_defense_coefficient: best.d,
+    rmse: best.rmse
+  } : null;
+
+  const relPct = (best.rmse / Math.max(1, avgObserved(casesAll))) * 100;
+
+  if (bestEl){
+    bestEl.classList.remove("empty");
+    bestEl.innerHTML = best.structure ? `
+      <div class="grid3">
+        <div><div class="muted tiny">critOrder</div><div><b>${escapeHtml(best.structure.crit_order)}</b></div></div>
+        <div><div class="muted tiny">defenseFormula</div><div><b>${escapeHtml(best.structure.mitigation_model)}</b></div></div>
+        <div><div class="muted tiny">pierceMode</div><div><b>${escapeHtml(best.structure.pierce_mode)}</b></div></div>
+      </div>
+      <div class="grid3" style="margin-top:10px">
+        <div><div class="muted tiny">elementStage</div><div><b>${escapeHtml(best.structure.element_stage)}</b></div></div>
+        <div><div class="muted tiny">hidden_global_multiplier</div><div><b>${fmtNum(best.g, 4)}</b></div></div>
+        <div><div class="muted tiny">hidden_defense_coefficient</div><div><b>${fmtNum(best.d, 4)}</b></div></div>
+      </div>
+      <div class="hint tiny" style="margin-top:10px">RMSE: <b>${fmtNum(best.rmse, 0)}</b> (≈ ${fmtNum(relPct, 2)}% des dégâts moyens)</div>
+    ` : '<div class="emptyState">Auto-Fit impossible (cas invalides ?).</div>';
+  }
+
+  if (msg) msg.textContent = best.structure ? "Terminé. Tu peux appliquer le modèle." : "Échec Auto-Fit.";
+  if (applyBtn) applyBtn.disabled = !best.structure;
+
+  saveState();
+  refreshCal2Table();
+}
+
+function avgObserved(cases){
+  if (!cases.length) return 0;
+  const s = cases.reduce((a,c)=>a+toNum(c.observed,0),0);
+  return s/cases.length;
+}
+
+function applyBestCal2Model(){
+  ensureCalibrationLabState();
+  const best = state.calibrationLab.best;
+  if (!best) return;
+  state.settings.crit_order = best.crit_order;
+  state.settings.mitigation_model = best.mitigation_model;
+  state.settings.pierce_mode = best.pierce_mode;
+  state.settings.element_stage = best.element_stage;
+  state.settings.hidden_global_multiplier = best.hidden_global_multiplier;
+  state.settings.hidden_defense_coefficient = best.hidden_defense_coefficient;
+  saveState();
+  refreshCal2Table();
+  toast("Modèle appliqué.");
+}
+
+function bindCalibrationLab(){
+  ensureCalibrationLabState();
+  $("#btnCal2Add")?.addEventListener("click", addCal2Case);
+  $("#btnCal2Clear")?.addEventListener("click", clearCal2Cases);
+  $("#btnCal2Fit")?.addEventListener("click", runAutoFitAdvanced);
+  $("#btnCal2Apply")?.addEventListener("click", applyBestCal2Model);
+}
+
+
+// ---------- Brave Hearts presets (community, local-first) ----------
+const BH_PRESETS_KEY = "7ds_origin_bh_presets_local_v1";
+
+function readEmbeddedOfficialPresets(){
+  try{
+    const el = document.getElementById("bh-presets-official-json");
+    if (!el) return {meta:{version:"—",updated:"—"}, presets:[]};
+    const obj = JSON.parse(el.textContent || "{}");
+    if (!obj || !Array.isArray(obj.presets)) return {meta:{version:"—",updated:"—"}, presets:[]};
+    return obj;
+  }catch(e){
+    console.warn("bh-presets-official-json parse error", e);
+    return {meta:{version:"—",updated:"—"}, presets:[]};
+  }
+}
+
+function loadLocalBhPresets(){
+  try{
+    const raw = localStorage.getItem(BH_PRESETS_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr : [];
+  }catch(e){
+    console.warn(e);
+    return [];
+  }
+}
+
+function saveLocalBhPresets(arr){
+  localStorage.setItem(BH_PRESETS_KEY, JSON.stringify(arr || []));
+}
+
+function stableStringify(obj){
+  if (obj === null || typeof obj !== 'object') return JSON.stringify(obj);
+  if (Array.isArray(obj)) return '[' + obj.map(stableStringify).join(',') + ']';
+  const keys = Object.keys(obj).sort();
+  return '{' + keys.map(k => JSON.stringify(k)+':'+stableStringify(obj[k])).join(',') + '}';
+}
+
+function modelSignature(settings){
+  // Minimal signature for mismatch warnings (not security).
+  const pick = {
+    formula_profile: settings.formula_profile || 'cbt_v1',
+    mitigation_model: settings.mitigation_model || null,
+    mitigation_k: settings.mitigation_k || null,
+    crit_cap: settings.crit_cap || null,
+    crit_order: settings.crit_order || 'afterDef',
+    pierce_mode: settings.pierce_mode || 'multiplicative',
+    element_stage: settings.element_stage || 'late',
+    hidden_global_multiplier: settings.hidden_global_multiplier ?? 1,
+    hidden_defense_coefficient: settings.hidden_defense_coefficient ?? 1,
+  };
+  const s = stableStringify(pick);
+  // cheap hash
+  let h = 2166136261;
+  for (let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return "m_" + (h>>>0).toString(16);
+}
+
+function getBhCurrentModelSig(){
+  return modelSignature(state.settings || {});
+}
+
+function ensureBhPresetId(p){
+  if (!p.id) p.id = uid('bh');
+  return p;
+}
+
+function renderPresetCard(p, kind){
+  const isOfficial = kind === 'official';
+  const curSig = getBhCurrentModelSig();
+  const sig = p.model_sig || '';
+  const mismatch = (sig && sig !== curSig);
+  const role = p.role || '—';
+  const ctx = p.context || '—';
+  const author = p.author || '—';
+  const status = isOfficial ? 'OFFICIAL' : (p.status || 'LOCAL');
+
+  const pills = [
+    `<span class="pill">${escapeHtml(role)}</span>`,
+    `<span class="pill">${escapeHtml(ctx)}</span>`,
+    `<span class="pill ${isOfficial? 'good':''}">${escapeHtml(status)}</span>`,
+    mismatch ? `<span class="pill warn">Modèle différent</span>` : `<span class="pill good">Modèle OK</span>`,
+  ].join('');
+
+  const actions = isOfficial
+    ? `
+      <button class="btn" data-bh="copy" data-id="${escapeHtml(p.id)}">Copier en local</button>
+      <button class="btn primary" data-bh="apply" data-id="${escapeHtml(p.id)}">Appliquer</button>
+    `
+    : `
+      <button class="btn" data-bh="edit" data-id="${escapeHtml(p.id)}">Éditer</button>
+      <button class="btn" data-bh="export" data-id="${escapeHtml(p.id)}">Exporter</button>
+      <button class="btn" data-bh="delete" data-id="${escapeHtml(p.id)}">Supprimer</button>
+      <button class="btn primary" data-bh="apply" data-id="${escapeHtml(p.id)}">Appliquer</button>
+    `;
+
+  return `
+    <div class="preset-card" data-kind="${kind}" data-id="${escapeHtml(p.id)}">
+      <div class="preset-head">
+        <div>
+          <div class="preset-title">${escapeHtml(p.name || 'Preset')}</div>
+          <div class="hint tiny">par ${escapeHtml(author)} · <span class="mono">${escapeHtml(sig || '—')}</span></div>
+        </div>
+        <div class="preset-meta">${pills}</div>
+        <div class="preset-actions">${actions}</div>
+      </div>
+      ${p.notes ? `<div class="preset-notes">${escapeHtml(p.notes)}</div>` : ''}
+    </div>
+  `;
+}
+
+function getBhOfficialList(){
+  const pack = readEmbeddedOfficialPresets();
+  $("#bhOfficialSource") && ($("#bhOfficialSource").textContent = `${pack.meta?.version || 'repo'}`);
+  return pack.presets || [];
+}
+
+function getBhLocalList(){
+  return loadLocalBhPresets();
+}
+
+function filterPresets(list, q, role){
+  const qq = (q || '').trim().toLowerCase();
+  return list.filter(p => {
+    if (role && (p.role||'') !== role) return false;
+    if (!qq) return true;
+    const hay = `${p.name||''} ${p.role||''} ${p.context||''} ${p.author||''}`.toLowerCase();
+    return hay.includes(qq);
+  });
+}
+
+function refreshBraveHeartsUI(){
+  // Tabs
+  const isLocal = $("#bhTabLocal")?.classList.contains('active');
+  $("#bhOfficial").style.display = isLocal ? 'none' : 'block';
+  $("#bhLocal").style.display = isLocal ? 'block' : 'none';
+
+  // Official
+  const offQ = $("#bhOfficialSearch")?.value || '';
+  const offRole = $("#bhOfficialFilter")?.value || '';
+  const official = filterPresets(getBhOfficialList(), offQ, offRole);
+  $("#bhOfficialList").innerHTML = official.length
+    ? official.map(p => renderPresetCard(p,'official')).join('')
+    : `<div class="hint">Aucun preset officiel.</div>`;
+
+  // Local
+  const locQ = $("#bhLocalSearch")?.value || '';
+  const locals = filterPresets(getBhLocalList(), locQ, '');
+  $("#bhLocalList").innerHTML = locals.length
+    ? locals.map(p => renderPresetCard(p,'local')).join('')
+    : `<div class="hint">Aucun preset local. Clique sur “Créer”.</div>`;
+}
+
+function bhWarnIfModelMismatch(preset, onContinue){
+  const sig = preset.model_sig || '';
+  const cur = getBhCurrentModelSig();
+  if (!sig || sig === cur){
+    onContinue();
+    return;
+  }
+  openModal(
+    "Modèle différent",
+    `<div class="hint">Ce preset a été créé avec le modèle <span class="mono">${escapeHtml(sig)}</span> mais ton modèle actif est <span class="mono">${escapeHtml(cur)}</span>. Les résultats peuvent changer.</div>`,
+    [
+      {label:"Annuler", variant:""},
+      {label:"Appliquer quand même", variant:"primary", onClick: onContinue}
+    ]
+  );
+}
+
+function bhApplyPreset(preset){
+  const payload = preset.payload || {};
+  // Resolve build
+  let buildId = payload.buildId || null;
+  let rotId = payload.rotationId || null;
+  let scId = payload.scenarioId || null;
+
+  // Allow embedded objects (optional)
+  if (!buildId && payload.build){
+    const b = deepCopy(payload.build);
+    b.id = uid('b');
+    state.builds.push(b);
+    buildId = b.id;
+  }
+  if (!rotId && payload.rotation){
+    const r = deepCopy(payload.rotation);
+    r.id = uid('r');
+    state.rotations.push(r);
+    rotId = r.id;
+  }
+  if (!scId && payload.scenario){
+    const s = deepCopy(payload.scenario);
+    s.id = uid('s');
+    state.scenarios.push(s);
+    scId = s.id;
+  }
+
+  // Select
+  if (buildId) selectedBuildId = buildId;
+  if (rotId) selectedRotId = rotId;
+  if (scId) selectedScId = scId;
+
+  saveState();
+  refreshAll();
+  if (buildId) loadBuildToForm(findById(state.builds, buildId));
+  if (rotId) loadRotToForm(findById(state.rotations, rotId));
+  if (scId) loadScToForm(findById(state.scenarios, scId));
+  setView('simulate');
+}
+
+function bhCopyOfficialToLocal(preset){
+  const locals = getBhLocalList();
+  const copy = deepCopy(preset);
+  copy.status = 'LOCAL';
+  copy.id = uid('bh');
+  // If model_sig is empty, bind it now to current model for clearer warnings
+  if (!copy.model_sig) copy.model_sig = getBhCurrentModelSig();
+  locals.unshift(copy);
+  saveLocalBhPresets(locals);
+  refreshBraveHeartsUI();
+}
+
+function bhExportPreset(preset){
+  const blob = new Blob([JSON.stringify(preset, null, 2)], {type:'application/json'});
+  downloadBlob(blob, `preset_${(preset.name||'bravehearts').replace(/\W+/g,'_')}.json`);
+}
+
+function bhCreateOrEditPreset(existing=null){
+  const curSig = getBhCurrentModelSig();
+  const builds = state.builds || [];
+  const rots = state.rotations || [];
+  const scs = state.scenarios || [];
+
+  const p = existing ? deepCopy(existing) : {
+    id: uid('bh'),
+    name: '',
+    role: 'DPS',
+    context: 'Boss',
+    author: '',
+    status: 'LOCAL',
+    notes: '',
+    model_sig: curSig,
+    payload: {buildId: builds[0]?.id||null, rotationId: rots[0]?.id||null, scenarioId: scs[0]?.id||null}
+  };
+
+  const buildOptions = builds.map(b => `<option value="${escapeHtml(b.id)}" ${b.id===p.payload.buildId?'selected':''}>${escapeHtml(b.name||b.id)}</option>`).join('');
+  const rotOptions = [`<option value="">(aucune)</option>`].concat(rots.map(r => `<option value="${escapeHtml(r.id)}" ${r.id===p.payload.rotationId?'selected':''}>${escapeHtml(r.name||r.id)}</option>`)).join('');
+  const scOptions = [`<option value="">(aucun)</option>`].concat(scs.map(s => `<option value="${escapeHtml(s.id)}" ${s.id===p.payload.scenarioId?'selected':''}>${escapeHtml(s.name||s.id)}</option>`)).join('');
+
+  openModal(
+    existing ? 'Éditer preset' : 'Créer un preset',
+    `
+      <div class="grid2">
+        <div>
+          <label class="lbl">Nom</label>
+          <input id="bhName" class="input" value="${escapeHtml(p.name)}" placeholder="Ex: DPS Boss — Hawk" />
+        </div>
+        <div>
+          <label class="lbl">Auteur</label>
+          <input id="bhAuthor" class="input" value="${escapeHtml(p.author)}" placeholder="Pseudo" />
+        </div>
+        <div>
+          <label class="lbl">Rôle</label>
+          <select id="bhRole" class="input">
+            <option ${p.role==='DPS'?'selected':''}>DPS</option>
+            <option ${p.role==='Support'?'selected':''}>Support</option>
+            <option ${p.role==='Tank'?'selected':''}>Tank</option>
+          </select>
+        </div>
+        <div>
+          <label class="lbl">Contexte</label>
+          <input id="bhContext" class="input" value="${escapeHtml(p.context)}" placeholder="Boss / Farm / PvP…" />
+        </div>
+        <div>
+          <label class="lbl">Build</label>
+          <select id="bhBuild" class="input">${buildOptions || '<option value="">(crée un build d\'abord)</option>'}</select>
+        </div>
+        <div>
+          <label class="lbl">Rotation</label>
+          <select id="bhRot" class="input">${rotOptions}</select>
+        </div>
+        <div>
+          <label class="lbl">Scénario</label>
+          <select id="bhSc" class="input">${scOptions}</select>
+        </div>
+        <div>
+          <label class="lbl">Modèle</label>
+          <div class="hint"><span class="mono">${escapeHtml(p.model_sig || curSig)}</span></div>
+        </div>
+      </div>
+      <label class="lbl" style="margin-top:10px">Notes</label>
+      <textarea id="bhNotes" class="input" rows="4" placeholder="Conseils, conditions, remarques…">${escapeHtml(p.notes||'')}</textarea>
+    `,
+    [
+      {label:'Annuler', variant:''},
+      {label:'Enregistrer', variant:'primary', onClick: () => {
+        const locals = getBhLocalList();
+        p.name = $("#bhName").value.trim() || 'Preset';
+        p.author = $("#bhAuthor").value.trim() || '—';
+        p.role = $("#bhRole").value;
+        p.context = $("#bhContext").value.trim() || '—';
+        p.notes = $("#bhNotes").value.trim();
+        p.model_sig = curSig; // bind to current model (choice B)
+        p.payload = {
+          buildId: $("#bhBuild").value || null,
+          rotationId: $("#bhRot").value || null,
+          scenarioId: $("#bhSc").value || null,
+        };
+        // Upsert
+        const idx = locals.findIndex(x => x.id === p.id);
+        if (idx >= 0) locals[idx] = p; else locals.unshift(p);
+        saveLocalBhPresets(locals);
+        refreshBraveHeartsUI();
+      }}
+    ]
+  );
+}
+
+function bhImportPresets(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json,.json';
+  input.onchange = async () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    const txt = await file.text();
+    let obj;
+    try{ obj = JSON.parse(txt); }catch(e){ alert('JSON invalide'); return; }
+    const locals = getBhLocalList();
+    const curSig = getBhCurrentModelSig();
+    if (Array.isArray(obj)){
+      for (const p of obj){
+        if (!p || typeof p !== 'object') continue;
+        ensureBhPresetId(p);
+        p.status = 'LOCAL';
+        if (!p.model_sig) p.model_sig = curSig;
+        locals.unshift(p);
+      }
+    } else {
+      ensureBhPresetId(obj);
+      obj.status = 'LOCAL';
+      if (!obj.model_sig) obj.model_sig = curSig;
+      locals.unshift(obj);
+    }
+    saveLocalBhPresets(locals);
+    refreshBraveHeartsUI();
+  };
+  input.click();
+}
+
+function bhExportAllLocal(){
+  const arr = getBhLocalList();
+  const blob = new Blob([JSON.stringify(arr, null, 2)], {type:'application/json'});
+  downloadBlob(blob, 'bravehearts_presets_local.json');
+}
+
+function bindBraveHearts(){
+  // Tabs
+  $("#bhTabOfficial")?.addEventListener('click', () => {
+    $("#bhTabOfficial").classList.add('active');
+    $("#bhTabLocal").classList.remove('active');
+    refreshBraveHeartsUI();
+  });
+  $("#bhTabLocal")?.addEventListener('click', () => {
+    $("#bhTabLocal").classList.add('active');
+    $("#bhTabOfficial").classList.remove('active');
+    refreshBraveHeartsUI();
+  });
+
+  // Search / filter
+  $("#bhOfficialSearch")?.addEventListener('input', refreshBraveHeartsUI);
+  $("#bhOfficialFilter")?.addEventListener('change', refreshBraveHeartsUI);
+  $("#bhLocalSearch")?.addEventListener('input', refreshBraveHeartsUI);
+
+  // Buttons
+  $("#bhCreate")?.addEventListener('click', () => bhCreateOrEditPreset(null));
+  $("#bhImport")?.addEventListener('click', bhImportPresets);
+  $("#bhExportAll")?.addEventListener('click', bhExportAllLocal);
+
+  // Delegated actions
+  $("#view-bravehearts")?.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-bh]');
+    if (!btn) return;
+    const act = btn.dataset.bh;
+    const id = btn.dataset.id;
+    const card = btn.closest('.preset-card');
+    const kind = card?.dataset.kind;
+    const list = (kind === 'official') ? getBhOfficialList() : getBhLocalList();
+    const p = list.find(x => x.id === id);
+    if (!p) return;
+
+    if (act === 'apply'){
+      bhWarnIfModelMismatch(p, () => bhApplyPreset(p));
+      return;
+    }
+    if (act === 'copy'){
+      bhCopyOfficialToLocal(p);
+      return;
+    }
+    if (act === 'export'){
+      bhExportPreset(p);
+      return;
+    }
+    if (act === 'delete'){
+      openModal('Supprimer', `<div class="hint">Supprimer “${escapeHtml(p.name)}” ?</div>`, [
+        {label:'Annuler', variant:''},
+        {label:'Supprimer', variant:'primary', onClick: () => {
+          const locals = getBhLocalList().filter(x => x.id !== p.id);
+          saveLocalBhPresets(locals);
+          refreshBraveHeartsUI();
+        }}
+      ]);
+      return;
+    }
+    if (act === 'edit'){
+      bhCreateOrEditPreset(p);
+      return;
+    }
+  });
+}
+
+
+
 // ---------- Header / status ----------
 function refreshHeader(){
   $("#uiVersion").textContent = state.meta?.version || "—";
@@ -2399,7 +3967,12 @@ function init(){
   bindSim();
   bindCompare();
   bindWeights();
+  bindScaling();
+  bindSandbox();
+  bindBossScaling();
   bindCalibration();
+  bindCalibrationLab();
+  bindBraveHearts();
   bindSettings();
 
   refreshAll();
@@ -2409,3 +3982,13 @@ function init(){
   try{ maybePromptShareImport(); }catch(e){ console.warn(e); }
 }
 init();
+
+
+// ---- V9 hooks (for extensions) ----
+try{
+  window.BH = window.BH || {};
+  window.BH.setView = setView;
+  window.BH.refreshAll = refreshAll;
+  window.BH.saveState = saveState;
+  window.BH.loadState = loadState;
+} catch(e){ console.warn(e); }

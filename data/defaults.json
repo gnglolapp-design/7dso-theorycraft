@@ -1,8 +1,12 @@
 {
   "meta": {
-    "version": "guided-3.0.0",
+    "version": "guided-10.0.0",
     "updated": "2026-02-21",
     "notes": [
+      "V10: Module Brave Hearts (presets officiels + presets locaux communautaires, liés au modèle avec avertissement).",
+      "V9.7: Auto-Fit avancé (critOrder/defenseFormula/pierceMode/elementStage) + Calibration Lab multi-cas (heuristiques rapides).",
+      "V9.4: Damage engine complet (perfo/res, crit resist/def, éléments, buffs, caps) + calibration corrigée.",
+      "V9.3: Combat sandbox (multi-tours) + Boss scaling infini + Export PNG.",
       "Offline-first (compatible file://).",
       "Modèle ajustable tant que les formules officielles ne sont pas 100% confirmées.",
       "Import/Export pour partager builds/rotations/scénarios/DB sur Discord."
@@ -19,7 +23,11 @@
     "initial_orbs": 0,
     "mc_seed": 12345,
     "hist_bins": 24,
-    "verbose_trace": false
+    "verbose_trace": false,
+    "pierce_cap": 300,
+    "resist_cap": 200,
+    "elem_adv_bonus_pct": 30,
+    "elem_disadv_penalty_pct": -20
   },
   "limits": {
     "confirmed_like": [

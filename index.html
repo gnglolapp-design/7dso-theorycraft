@@ -17,6 +17,7 @@
       <span class="badge" id="uiBadge">OFFLINE</span>
     </div>
     <div class="topbar-actions">
+      <button id="btnMenu" class="btn ghost icon" title="Menu">☰</button>
       <button id="btnTour" class="btn ghost" title="Aide guidée">Visite guidée</button>
       <button id="btnAbout" class="btn ghost" title="Ce que l'outil sait / ne sait pas">Limites</button>
       <button id="btnShare" class="btn" title="Partager un setup via lien (Discord)">Partager</button>
@@ -24,14 +25,12 @@
       <button id="btnImport" class="btn">Importer</button>
     </div>
   </header>
+  <div id="sidebarOverlay" class="sidebarOverlay" hidden></div>
 
   <!-- Stickers (décor) -->
-  <img class="sticker melio" src="assets/melio.png" alt="" />
-  <img class="sticker esca" src="assets/escanor.png" alt="" />
-  <img class="sticker hawk" src="assets/hawk.webp" alt="" />
-
-  <main class="layout">
-    <aside class="sidebar">
+  <div id="stickerLayer" aria-hidden="true"></div>
+<main class="layout">
+    <aside class="sidebar" id="sidebar">
       <div class="card">
         <div class="card-title">Démarrer</div>
         <button id="btnQuickstart" class="btn primary wide">Quickstart (1 clic)</button>
@@ -57,7 +56,11 @@
         <button class="nav-item" data-view="simulate">Simuler</button>
         <button class="nav-item" data-view="compare">Comparer</button>
         <button class="nav-item" data-view="weights">Priorité des stats</button>
+        <button class="nav-item" data-view="scaling">Scaling analyzer</button>
+        <button class="nav-item" data-view="sandbox">Combat sandbox</button>
+        <button class="nav-item" data-view="boss">Boss scaling infini</button>
         <button class="nav-item" data-view="calibrate">Calibration</button>
+        <button class="nav-item" data-view="guild">Espace guilde</button>
         <button class="nav-item" data-view="settings">Réglages</button>
       </nav>
 
@@ -79,6 +82,11 @@
         <div class="hero">
           <img class="banner" src="assets/bravehearts_banner.png" alt="Brave Hearts"/>
           <div class="heroOverlay">
+            <div class="ctaRow">
+              <button class="btn primary" data-go="wizard">Démarrer (assistant)</button>
+              <button class="btn" data-go="simulate">Simuler</button>
+              <button class="btn ghost" data-go="guild">Espace guilde</button>
+            </div>
             <div class="heroTitle">7DS: Origin — Theorycraft pour la guilde</div>
             <div class="heroSub">
               Objectif : rendre le theorycraft <b>simple</b> pour tous (même sans stats),
@@ -120,6 +128,46 @@
             <button class="btn" id="btnLoadExample2">Charger “Burst / Nuke”</button>
           </div>
           <div class="hint">Les exemples servent à apprendre. Modifie, renomme, compare.</div>
+        </div>
+
+        <div class="grid3" style="margin-top:14px">
+          <div class="card">
+            <div class="card-title">Fonctionnalités</div>
+            <ul class="list">
+              <li><b>Simulation</b> (expected + Monte‑Carlo)</li>
+              <li><b>Comparer</b> A/B instantané</li>
+              <li><b>Priorité des stats</b> (poids)</li>
+              <li><b>Scénarios</b> + rotations</li>
+              <li><b>DB</b> (persos / armes) + presets</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">Pour la guilde</div>
+            <ul class="list">
+              <li>Presets “Brave Hearts” (validés)</li>
+              <li>Partage Discord (export + lien)</li>
+              <li>Mode guilde (accès local)</li>
+              <li>Changelog et versions</li>
+              <li>Templates pour testeurs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">Méthodologie</div>
+            <div class="p">
+              L’outil est un <b>modèle ajustable</b> : la précision dépend de la DB et de la calibration.
+              Utilise <b>Comparer</b> en gardant le même scénario/rotation.
+            </div>
+            <div class="kv" style="margin-top:10px">
+              <div class="k">Version</div><div class="v"><span id="homeVersion">—</span></div>
+              <div class="k">Données</div><div class="v"><span id="homeData">—</span></div>
+              <div class="k">Mode</div><div class="v"><span id="homeMode">—</span></div>
+            </div>
+            <div class="row" style="margin-top:12px">
+              <button class="btn primary" data-go="wizard">Démarrer</button>
+              <button class="btn" data-go="compare">Comparer</button>
+              <button class="btn ghost" data-go="settings">Méthode</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -196,6 +244,20 @@
             <div class="card-title">Créer / modifier</div>
             <div class="form">
               <label>Nom du build <input id="buildName" placeholder="ex: tristan_dps"/></label>
+
+              <div class="grid2">
+                <label class="withHelp">Personnage (optionnel) <span class="help" data-tip="Lie ce build à un personnage (skills + potentiels). Utile pour activer/désactiver des potentiels et préparer des skills." >?</span>
+                  <select id="buildCharacter">
+                    <option value="">— Aucun —</option>
+                  </select>
+                </label>
+                <div>
+                  <div class="k">Potentiels</div>
+                  <div id="buildPotentials" class="pillbox" aria-label="Potentiels" style="margin-top:6px"></div>
+                  <div class="hint tiny">Les potentiels activés s’appliquent pendant les simulations (pas d’impact permanent sur la DB).</div>
+                </div>
+              </div>
+
               <div class="grid2">
                 <label class="withHelp">ATK <span class="help" data-tip="Stat principale de comparaison. Si la DB est importée, ATK peut être auto.">?</span>
                   <input id="statAtk" type="number" min="0" step="1"/>
@@ -470,6 +532,195 @@
         </div>
       </section>
 
+      <section class="view" id="view-scaling">
+        <div class="page-title">Scaling analyzer</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="p">Fais varier une stat (en %) et observe l’impact sur le DPS avec le même scénario et la même rotation.</div>
+            <div class="form">
+              <label>Build <select id="scBuild"></select></label>
+              <label>Rotation <select id="scRot"></select></label>
+              <label>Scénario <select id="scSc"></select></label>
+
+              <div class="grid3">
+                <label>Durée (s) <input id="scDur" type="number" min="1" step="1" value="30"/></label>
+                <label>Mode
+                  <select id="scMode">
+                    <option value="expected">Expected (recommandé)</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+                <label>Stat
+                  <select id="scStat">
+                    <option value="atk">ATK</option>
+                    <option value="crit_rate_pct">Crit %</option>
+                    <option value="crit_dmg_pct">Crit DMG %</option>
+                    <option value="dmg_bonus_pct">Bonus dégâts %</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="grid3">
+                <label>De (%) <input id="scFrom" type="number" step="1" value="-10"/></label>
+                <label>À (%) <input id="scTo" type="number" step="1" value="20"/></label>
+                <label>Points <input id="scSteps" type="number" min="5" max="41" step="1" value="13"/></label>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="btnScaling">Tracer</button>
+                <button class="btn ghost" id="btnScalingExplain">Comment lire</button>
+                <button class="btn ghost" id="btnScalingExport">Exporter PNG</button>
+              </div>
+              <div class="hint tiny" id="scMsg"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Courbe</div>
+            <div id="scOut" class="results empty">
+              <div class="emptyState">Trace une courbe pour visualiser la rentabilité d’une stat.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-sandbox">
+        <div class="page-title">Combat sandbox</div>
+        <div class="p">Simulation multi-tours (orbes/énergie + rotation). C’est un outil comparatif : il vise la reproductibilité, pas une fidélité 1:1 au jeu.</div>
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="form">
+              <label>Build <select id="sbBuild"></select></label>
+              <label>Rotation <select id="sbRot"></select></label>
+              <label>Scénario <select id="sbScen"></select></label>
+
+              <div class="grid2">
+                <label>Tours <input id="sbTurns" type="number" min="1" max="200" step="1" value="15"/></label>
+                <label>Secondes / tour <input id="sbTurnSeconds" type="number" min="0.1" step="0.1" value="1"/></label>
+              </div>
+
+              <div class="grid2">
+                <label>Mode
+                  <select id="sbMode">
+                    <option value="expected">Expected</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+                <label>Itérations (MC) <input id="sbIters" type="number" min="1" max="5000" step="1" value="500"/></label>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="sbRun">Simuler</button>
+                <button class="btn ghost" id="sbExport">Exporter PNG</button>
+              </div>
+              <div class="hint tiny" id="sbMsg"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Résumé</div>
+            <div id="sbSummary" class="results empty">
+              <div class="emptyState">Lance une simulation pour voir le détail tour par tour.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="chartWrap">
+              <canvas id="sbCanvas" class="chartCanvas" width="900" height="420"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Tours</div>
+            <div class="tableWrap" style="max-height:420px; overflow:auto;">
+              <table class="table" id="sbTable">
+                <thead>
+                  <tr><th>Tour</th><th>Action</th><th>Dégâts</th><th>Cumul</th><th>Orbes</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-boss">
+        <div class="page-title">Boss scaling infini</div>
+        <div class="p">Courbe DPS/TTK en faisant monter les stats ennemies par niveau. Utile pour estimer un palier max et comparer des builds.</div>
+
+        <div class="grid3">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="form">
+              <label>Build <select id="bossBuild"></select></label>
+              <label>Rotation <select id="bossRot"></select></label>
+              <label>Scénario (base) <select id="bossScen"></select></label>
+
+              <div class="grid2">
+                <label>Durée simulation (s) <input id="bossDuration" type="number" min="1" max="999" step="1" value="30"/></label>
+                <label>Mode
+                  <select id="bossMode">
+                    <option value="expected">Expected</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="grid2">
+                <label>Itérations (MC) <input id="bossIters" type="number" min="1" max="5000" step="1" value="400"/></label>
+                <label>Graph
+                  <select id="bossMetric">
+                    <option value="dps">DPS</option>
+                    <option value="ttk">TTK (s)</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="divider"></div>
+              <div class="card-title">Scaling</div>
+              <div class="grid2">
+                <label>Niveau min <input id="bossLmin" type="number" min="1" max="9999" step="1" value="1"/></label>
+                <label>Niveau max <input id="bossLmax" type="number" min="1" max="9999" step="1" value="200"/></label>
+              </div>
+              <div class="grid2">
+                <label>DEF base <input id="bossDefBase" type="number" min="0" step="1" value="1200"/></label>
+                <label>+DEF / niveau <input id="bossDefPer" type="number" min="0" step="1" value="35"/></label>
+              </div>
+              <div class="grid2">
+                <label>HP base <input id="bossHpBase" type="number" min="1" step="1" value="500000"/></label>
+                <label>+HP / niveau <input id="bossHpPer" type="number" min="0" step="1" value="25000"/></label>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="bossRun">Calculer</button>
+                <button class="btn ghost" id="bossExport">Exporter PNG</button>
+              </div>
+              <div class="hint tiny" id="bossMsg"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Courbe</div>
+            <div class="chartWrap">
+              <canvas id="bossCanvas" class="chartCanvas" width="900" height="420"></canvas>
+            </div>
+            <div class="hint" id="bossHint">—</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Table</div>
+            <div class="tableWrap" style="max-height:420px; overflow:auto;">
+              <table class="table" id="bossTable">
+                <thead>
+                  <tr><th>Niv</th><th>DEF</th><th>HP</th><th>DPS</th><th>TTK</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="view" id="view-calibrate">
         <div class="page-title">Calibration (fiabilité)</div>
         <div class="grid2">
@@ -507,7 +758,84 @@
           </div>
         </div>
 
+        
         <div class="card" style="margin-top:14px">
+          <div class="card-title">Calibration Lab (multi-cas) — Auto-Fit avancé</div>
+          <div class="p">
+            Ajoute plusieurs cas (observé en jeu) puis lance <b>Auto-Fit avancé</b>. 
+            Le système teste rapidement plusieurs structures de modèle (crit/DEF/pierce/élément) et ajuste automatiquement les coefficients continus pour minimiser l’erreur globale (RMSE).
+          </div>
+
+          <div class="grid2">
+            <div class="card" style="margin:0">
+              <div class="card-title">Ajouter un cas</div>
+              <div class="form">
+                <label>Build <select id="cal2Build"></select></label>
+                <label>Scénario <select id="cal2Sc"></select></label>
+                <div class="grid3">
+                  <label>Type
+                    <select id="cal2Kind">
+                      <option value="skill">Skill</option>
+                      <option value="ultimate">Ultimate</option>
+                    </select>
+                  </label>
+                  <label>Multiplicateur <input id="cal2Mult" type="number" step="0.1" value="2.2"/></label>
+                  <label>Hits <input id="cal2Hits" type="number" step="1" value="1"/></label>
+                </div>
+                <label>Dégâts observés (total) <input id="cal2Observed" type="number" step="1" placeholder="ex: 184532"/></label>
+                <div class="row">
+                  <button class="btn primary" id="btnCal2Add">Ajouter</button>
+                  <button class="btn ghost" id="btnCal2Clear">Vider</button>
+                </div>
+                <div class="hint tiny" id="cal2Msg"></div>
+              </div>
+            </div>
+
+            <div class="card" style="margin:0">
+              <div class="card-title">Auto-Fit avancé</div>
+              <div class="form">
+                <div class="grid3">
+                  <label>Vitesse
+                    <select id="cal2Speed">
+                      <option value="fast" selected>Rapide (recommandé)</option>
+                      <option value="balanced">Équilibré</option>
+                    </select>
+                  </label>
+                  <label>Seuil early-stop (% RMSE)
+                    <input id="cal2Stop" type="number" step="0.1" value="4.0"/>
+                  </label>
+                  <label>Échantillon (préfiltre)
+                    <input id="cal2Sample" type="number" step="1" value="8"/>
+                  </label>
+                </div>
+                <div class="row">
+                  <button class="btn primary" id="btnCal2Fit">Auto-Fit avancé</button>
+                  <button class="btn" id="btnCal2Apply" disabled>Appliquer le meilleur modèle</button>
+                </div>
+                <div class="hint tiny" id="cal2FitMsg"></div>
+              </div>
+              <div id="cal2Best" class="results empty" style="margin-top:10px">
+                <div class="emptyState">Ajoute au moins 3 cas pour lancer l’Auto-Fit.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin:14px 0 0 0">
+            <div class="card-title">Cas enregistrés</div>
+            <div class="tableWrap">
+              <table class="table" id="cal2Table">
+                <thead>
+                  <tr>
+                    <th>#</th><th>Build</th><th>Scénario</th><th>Type</th><th>Mult</th><th>Hits</th><th>Observé</th><th>Prédit</th><th>Erreur</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="hint tiny" id="cal2Stats"></div>
+          </div>
+        </div>
+<div class="card" style="margin-top:14px">
           <div class="card-title">Recommandation de process</div>
           <ul class="list">
             <li>Test sur <b>un même boss</b>, sans buffs variables.</li>
@@ -518,7 +846,38 @@
         </div>
       </section>
 
-      <section class="view" id="view-settings">
+      
+      <section class="view" id="view-guild">
+        <div class="page-title">Espace guilde</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Accès Brave Hearts</div>
+            <div class="hint">GitHub Pages ne permet pas un vrai login sécurisé. Cet accès sert à activer le “mode guilde” sur ce navigateur (presets, pages internes, etc.).</div>
+            <div class="form">
+              <label>Code d’accès
+                <input id="guildPass" placeholder="Ex : BRAVEHEARTS-ALPHA" autocomplete="off"/>
+              </label>
+              <div class="row">
+                <button id="btnGuildEnter" class="btn primary">Entrer</button>
+                <button id="btnGuildLogout" class="btn ghost">Se déconnecter</button>
+              </div>
+              <div class="hint tiny" id="guildStatus">—</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Fonctionnalités guilde</div>
+            <ul class="bullets">
+              <li>Presets Brave Hearts (builds validés)</li>
+              <li>Partage rapide (lien + export JSON)</li>
+              <li>Notes internes et tags de guilde</li>
+              <li>Accès à des scénarios / profils recommandés</li>
+            </ul>
+            <div class="hint">Une fois activé, le mode guilde est mémorisé et expire automatiquement.</div>
+          </div>
+        </div>
+      </section>
+
+<section class="view" id="view-settings">
         <div class="page-title">Réglages</div>
         <div class="card">
           <div class="card-title">Modèle & hypothèses</div>
@@ -585,6 +944,54 @@
         </div>
 
         <div class="card" style="margin-top:14px">
+          <div class="card-title">Branding & guilde (local)</div>
+          <div class="p tiny">Sur GitHub Pages, ces réglages sont <b>locaux</b> (stockés dans ton navigateur). Ils ne sont pas une sécurité.</div>
+          <div class="form">
+            <div class="grid2">
+              <label>Bannière
+                <select id="brandBannerEnabled">
+                  <option value="on">On</option>
+                  <option value="off">Off</option>
+                </select>
+              </label>
+              <label>URL bannière
+                <input id="brandBannerUrl" placeholder="assets/bravehearts_banner.png"/>
+              </label>
+            </div>
+            <div class="grid2" style="margin-top:10px">
+              <label>Stickers
+                <select id="brandStickersEnabled">
+                  <option value="on">On</option>
+                  <option value="off">Off</option>
+                </select>
+              </label>
+              <label>Ajouter sticker (URL)
+                <input id="brandStickerAddUrl" placeholder="https://.../image.png"/>
+              </label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button class="btn" id="btnBrandAddSticker">Ajouter</button>
+              <button class="btn ghost" id="btnBrandClearStickers">Vider</button>
+            </div>
+            <div class="p tiny" id="brandStickerList"></div>
+            <div class="hr"></div>
+            <div class="grid2">
+              <label>Code guilde
+                <input id="brandGuildCode" placeholder="BRAVEHEARTS"/>
+              </label>
+              <label>Expiration (jours)
+                <input id="brandGuildExpiry" type="number" min="1" step="1"/>
+              </label>
+            </div>
+            <div class="row" style="margin-top:12px">
+              <button class="btn primary" id="btnBrandSave">Enregistrer</button>
+              <button class="btn ghost" id="btnBrandReset">Reset local</button>
+            </div>
+            <div class="hint tiny" id="brandMsg"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
           <div class="card-title">Limites & conseils</div>
           <div class="p" id="limitsBlock"></div>
         </div>
@@ -614,9 +1021,13 @@
   <script id="defaults-json" type="application/json">
 {
   "meta": {
-    "version": "guided-4.0.0",
+    "version": "guided-11.0.0",
     "updated": "2026-02-21",
     "notes": [
+      "V9.7: Auto-Fit avancé (critOrder/defenseFormula/pierceMode/elementStage) + Calibration Lab multi-cas (heuristiques rapides).",
+      "V9.4: Damage engine complet (perfo/res, crit resist/def, éléments, buffs, caps) + calibration corrigée.",
+      "V9.3: Combat sandbox (multi-tours) + Boss scaling infini + Export PNG.",
+      "V11: Framework skills + potentiels (kits) : sélection personnage sur build + activation potentiels (appliqués en simulation).",
       "Offline-first (compatible file://).",
       "Modèle ajustable tant que les formules officielles ne sont pas 100% confirmées.",
       "Import/Export pour partager builds/rotations/scénarios/DB sur Discord."
@@ -624,7 +1035,6 @@
   },
   "settings": {
     "mode": "simple",
-    "formula_profile": "cbt_v1",
     "mitigation_model": "def_over_def_plus_k",
     "mitigation_k": 1200,
     "crit_cap": 100,
@@ -634,7 +1044,11 @@
     "initial_orbs": 0,
     "mc_seed": 12345,
     "hist_bins": 24,
-    "verbose_trace": false
+    "verbose_trace": false,
+    "pierce_cap": 300,
+    "resist_cap": 200,
+    "elem_adv_bonus_pct": 30,
+    "elem_disadv_penalty_pct": -20
   },
   "limits": {
     "confirmed_like": [
@@ -851,11 +1265,50 @@
     ]
   }
 }
+</script>
+
+  <!-- Embedded character kits (skills + potentiels). Placeholder pre-release: à compléter/ajuster après sortie. -->
+  <script id="kits-json" type="application/json">
+  {
+    "schema_version": "0.1",
+    "characters": [
+      {
+        "id": "meliodas",
+        "name": "Meliodas (exemple)",
+        "element": "dark",
+        "skills": [
+          {"id":"s1","name":"Skill 1","kind":"skill","mult_pct":220,"hits":1},
+          {"id":"s2","name":"Skill 2","kind":"skill","mult_pct":280,"hits":1},
+          {"id":"ult","name":"Ultimate","kind":"ultimate","mult_pct":600,"hits":1}
+        ],
+        "potentials": [
+          {"id":"p_atk","name":"ATK +10%","type":"stat_add","stat":"atk_pct","value":10},
+          {"id":"p_crit","name":"Crit +5%","type":"stat_add","stat":"crit_rate_pct","value":5},
+          {"id":"p_skill","name":"Skill DMG +8%","type":"stat_add","stat":"skill_dmg_pct","value":8}
+        ]
+      },
+      {
+        "id": "escanor",
+        "name": "Escanor (exemple)",
+        "element": "fire",
+        "skills": [
+          {"id":"s1","name":"Skill 1","kind":"skill","mult_pct":180,"hits":2},
+          {"id":"s2","name":"Skill 2","kind":"skill","mult_pct":220,"hits":1},
+          {"id":"ult","name":"Ultimate","kind":"ultimate","mult_pct":720,"hits":1}
+        ],
+        "potentials": [
+          {"id":"p_cdmg","name":"Crit DMG +12%","type":"stat_add","stat":"crit_dmg_pct","value":12},
+          {"id":"p_bonus","name":"Dégâts +6%","type":"stat_add","stat":"dmg_bonus_pct","value":6}
+        ]
+      }
+    ]
+  }
   </script>
 
   <script src="data/formula_profiles.js"></script>
   <script src="data/db_live.js"></script>
 
   <script src="app.js"></script>
+  <script src="v9.js"></script>
 </body>
 </html>

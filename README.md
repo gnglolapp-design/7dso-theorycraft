@@ -1,6 +1,8 @@
-# 7DS: Origin — Theorycraft Web (Guided v5)
+# 7DS: Origin — Theorycraft Web (Guided v11)
 
-Outil web **24/7** (gratuit) + mode avancé pour theorycraft (formules par patch, presets, overrides).
+Outil web **24/7** (gratuit) + mode avancé pour theorycraft (calibration, presets Brave Hearts, scaling/sandbox).
+
+Nouveauté v11: **framework skills + potentiels (kits)**. Un build peut être lié à un personnage et activer des potentiels (appliqués pendant la simulation).
 
 ## 1) Hébergement gratuit 24/7 (GitHub Pages)
 
@@ -64,3 +66,13 @@ Dans `.github/workflows/update_db.yml` :
 - commit + push
 
 Le workflow exécutera `python tools/update_db.py --enable-7dsorigin` automatiquement.
+
+
+## V9.2
+- Scaling analyzer (courbe DPS vs Δ% stat)
+- Monte-Carlo: P05/P95 + écart-type + min/max dans la sortie Simuler
+
+## V9.3
+- Combat sandbox (multi-tours) : cumul dégâts par tour + table.
+- Boss scaling infini : courbes DPS/TTK vs niveau + table.
+- Export PNG : Scaling/Sandbox/Boss.
