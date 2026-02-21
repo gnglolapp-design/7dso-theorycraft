@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check conflict markers
+        run: |
+          if grep -RIn --exclude-dir=.git '<<<<<<< ' .; then
+            echo "Conflict markers found."
+            exit 1
+          fi
+      - name: Validate DB JSON
+        run: |
+          python -m json.tool data/db.json > /dev/null
+          python -m json.tool data/db_diff_latest.json > /dev/null
+      - name: Check JS syntax
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Node --check
+        run: |
+          node --check src/app.js
+          node --check src/main.js
+          node --check v9.js
+          node --check data/db_live.js
