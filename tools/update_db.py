@@ -475,6 +475,7 @@ def parse_genshin_weapons_list() -> Tuple[List[Dict[str,Any]], Dict[str,Any]]:
             i = max(i+1, i+ea+4)
             continue
         i += 1
+    return weapons_legacy, weapons_x
 
     
 # ----------------------------
@@ -957,7 +958,6 @@ def merge_sources_record(dst: Dict[str,Any], src: Dict[str,Any], source_name: st
     return dst
 
 
-return weapons_legacy, weapons_x
 
 def load_existing_db() -> Dict[str,Any]:
     if DB_JSON.exists():
@@ -1212,3 +1212,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
