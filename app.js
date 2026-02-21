@@ -1517,18 +1517,18 @@ function editAction(rot, idx){
     }},
   ]);
   setTimeout(() => {
-    const sel = $(\"#eaSkill\");
-    const dbg = $(\"#eaSkillDebug\");
+    const sel = $("#eaSkill");
+    const dbg = $("#eaSkillDebug");
     if (!sel || !dbg) return;
     const render = () => {
       const v = sel.value;
-      if (v === \"\") { dbg.textContent = \"Mode manuel.\"; return; }
+      if (v === "") { dbg.textContent = "Mode manuel."; return; }
       const sk = skills[Number(v)];
-      if (!sk) { dbg.textContent = \"—\"; return; }
+      if (!sk) { dbg.textContent = "—"; return; }
       const conf = sk.confidence_score != null ? sk.confidence_score : sk.confidenceScore;
       const eff = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
       const raw = sk.description_raw || sk.description || '';
-      dbg.innerHTML = `Conf: <b>${escapeHtml(String(conf ?? '—'))}</b> · Effets: <span class=\"mono\">${escapeHtml(JSON.stringify(eff))}</span>` + (raw ? `<br>Raw: <span class=\"mono\">${escapeHtml(raw.slice(0,220))}${raw.length>220?'…':''}</span>` : '');
+      dbg.innerHTML = `Conf: <b>${escapeHtml(String(conf ?? '—'))}</b> · Effets: <span class="mono">${escapeHtml(JSON.stringify(eff))}</span>` + (raw ? `<br>Raw: <span class="mono">${escapeHtml(raw.slice(0,220))}${raw.length>220?'…':''}</span>` : '');
     };
     sel.addEventListener('change', render);
     render();
@@ -4557,4 +4557,5 @@ try{
   window.BH.saveState = saveState;
   window.BH.loadState = loadState;
 } catch(e){ console.warn(e); }
+
 
