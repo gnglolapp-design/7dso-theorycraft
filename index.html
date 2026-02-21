@@ -56,11 +56,13 @@
         <button class="nav-item" data-view="simulate">Simuler</button>
         <button class="nav-item" data-view="compare">Comparer</button>
         <button class="nav-item" data-view="weights">Priorité des stats</button>
+        <button class="nav-item" data-view="meta">Meta Snapshot</button>
         <button class="nav-item" data-view="scaling">Scaling analyzer</button>
         <button class="nav-item" data-view="sandbox">Combat sandbox</button>
         <button class="nav-item" data-view="boss">Boss scaling infini</button>
         <button class="nav-item" data-view="calibrate">Calibration</button>
         <button class="nav-item" data-view="guild">Espace guilde</button>
+        <button class="nav-item" data-view="bravehearts">Brave Hearts</button>
         <button class="nav-item" data-view="settings">Réglages</button>
       </nav>
 
@@ -858,7 +860,103 @@
       </section>
 
       
-      <section class="view" id="view-guild">
+      
+      <section class="view" id="view-meta">
+        <div class="page-title">Meta Snapshot</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">État actuel</div>
+            <div class="p tiny" id="metaModelSig">—</div>
+            <div class="p tiny" id="metaDbMeta">—</div>
+            <div class="p tiny" id="metaCalMeta">—</div>
+            <div class="row" style="margin-top:10px">
+              <button class="btn" id="btnMetaCopyLink">Copier lien modèle</button>
+              <button class="btn ghost" id="btnMetaCopyJson">Exporter modèle JSON</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Weights rapides</div>
+            <div class="form">
+              <div class="grid3">
+                <label>Build <select id="metaBuild"></select></label>
+                <label>Rotation <select id="metaRot"></select></label>
+                <label>Scénario <select id="metaSc"></select></label>
+              </div>
+              <div class="grid3">
+                <label>Durée (s) <input id="metaDur" type="number" min="1" step="1" value="30"/></label>
+                <label>Mode
+                  <select id="metaMode">
+                    <option value="expected">Expected</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+                <label>Pas % <input id="metaStep" type="number" min="0.1" step="0.1" value="1"/></label>
+              </div>
+              <div class="row">
+                <button class="btn primary" id="btnMetaRun">Calculer</button>
+                <button class="btn ghost" id="btnMetaCopyReport">Copier rapport</button>
+              </div>
+              <div class="hint tiny" id="metaMsg">—</div>
+            </div>
+            <div class="out empty" id="metaOut"><div class="emptyState">Lance un calcul pour obtenir un snapshot.</div></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">Top presets Brave Hearts</div>
+          <div class="p tiny">Presets officiels (repo) + locaux (navigateur). Tri simple par rôle / contexte.</div>
+          <div class="row" style="gap:10px; margin-top:8px">
+            <input id="metaPresetSearch" placeholder="Rechercher preset (nom/auteur/role)..." style="flex:1"/>
+            <select id="metaPresetScope">
+              <option value="all">Tous</option>
+              <option value="official">Officiels</option>
+              <option value="local">Locaux</option>
+            </select>
+          </div>
+          <div class="listbox" id="metaPresetList" style="max-height:420px; margin-top:10px"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-bravehearts">
+        <div class="page-title">Brave Hearts</div>
+
+        <div class="card">
+          <div class="card-title">Presets</div>
+          <div class="row" style="gap:10px; margin-top:10px; flex-wrap:wrap">
+            <button class="btn active" id="bhTabOfficial">Officiels</button>
+            <button class="btn ghost" id="bhTabLocal">Locaux</button>
+            <div style="flex:1"></div>
+            <button class="btn" id="bhCreate">Créer</button>
+            <button class="btn" id="bhImport">Importer</button>
+            <button class="btn ghost" id="bhExportAll">Exporter tous</button>
+            <button class="btn ghost" id="bhExportOfficialPack">Générer pack officiel</button>
+          </div>
+          <div class="hr"></div>
+
+          <div id="bhOfficial">
+            <div class="row" style="gap:10px; margin-bottom:10px">
+              <input id="bhOfficialSearch" placeholder="Rechercher..." style="flex:1"/>
+              <select id="bhOfficialFilter">
+                <option value="">Tous rôles</option>
+                <option value="DPS">DPS</option>
+                <option value="Support">Support</option>
+                <option value="Tank">Tank</option>
+              </select>
+            </div>
+            <div class="hint tiny">Source: <span id="bhOfficialSource">—</span></div>
+            <div class="listbox" id="bhOfficialList" style="max-height:520px; margin-top:10px"></div>
+          </div>
+
+          <div id="bhLocal" style="display:none">
+            <div class="row" style="gap:10px; margin-bottom:10px">
+              <input id="bhLocalSearch" placeholder="Rechercher..." style="flex:1"/>
+            </div>
+            <div class="listbox" id="bhLocalList" style="max-height:520px"></div>
+          </div>
+        </div>
+      </section>
+
+<section class="view" id="view-guild">
         <div class="page-title">Espace guilde</div>
         <div class="grid2">
           <div class="card">
@@ -954,7 +1052,38 @@
           </div>
         </div>
 
+        
         <div class="card" style="margin-top:14px">
+          <div class="card-title">Contexte de test (skills/potentiels conditionnels)</div>
+          <div class="p tiny">Ces paramètres servent à simuler des conditions (“cible débuffée”, “HP bas”, stacks, etc.). Ils affectent aussi les effets parsés.</div>
+          <div class="form">
+            <div class="grid3">
+              <label>Cible débuffée
+                <select id="setCtxEnemyDebuffed">
+                  <option value="0">Non</option>
+                  <option value="1">Oui</option>
+                </select>
+              </label>
+              <label>HP% perso
+                <input id="setCtxHpPct" type="number" min="0" max="100" step="1"/>
+              </label>
+              <label>Stacks
+                <input id="setCtxStacks" type="number" min="0" step="1"/>
+              </label>
+            </div>
+            <div class="grid3">
+              <label>Nombre de débuffs sur la cible
+                <input id="setCtxDebuffCount" type="number" min="0" step="1"/>
+              </label>
+              <label>Alliés vivants
+                <input id="setCtxAllyCount" type="number" min="0" step="1"/>
+              </label>
+              <label>—</label>
+            </div>
+          </div>
+        </div>
+
+<div class="card" style="margin-top:14px">
           <div class="card-title">Branding & guilde (local)</div>
           <div class="p tiny">Sur GitHub Pages, ces réglages sont <b>locaux</b> (stockés dans ton navigateur). Ils ne sont pas une sécurité.</div>
           <div class="form">
@@ -1315,6 +1444,13 @@
     ]
   }
   </script>
+    <script id="bh-presets-official-json" type="application/json">
+    {
+      "meta": { "version": "repo", "updated": "—" },
+      "presets": []
+    }
+    </script>
+
 
   <script src="data/formula_profiles.js"></script>
   <script src="data/db_live.js"></script>

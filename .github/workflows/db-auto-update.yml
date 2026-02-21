@@ -1,0 +1,44 @@
+name: Auto-update DB
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'  # daily 03:17 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  update-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/requirements.txt
+
+      - name: Update DB
+        run: |
+          python tools/update_db.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/db.json data/db_live.js data/db_diff_latest.json data/db_snapshots || true
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "chore(db): auto update"
+          git push

@@ -1,14 +1,19 @@
 {
   "schema_version": "1.0",
+<<<<<<< HEAD
   "generated_at": "2026-02-21T22:23:22Z",
+=======
+  "generated_at": "2026-02-21T11:54:06Z",
+>>>>>>> 907c138 (V12: patches 1-6 (parsing debug, context, conditional potentials, presets share, meta snapshot))
   "modules": {
     "characters": {
-      "ch_bf334f71381a": {
-        "id": "ch_bf334f71381a",
-        "name": "Daisy",
-        "image_url": "https://sunderarmor.com/7DSO/portrait_hero/slot_daisy_001.png",
-        "description": "Shield Book Wand Shield Book",
+      "ch_demo_hawk": {
+        "id": "ch_demo_hawk",
+        "name": "Hawk (demo)",
+        "image_url": "assets/HawkRender.webp",
+        "description": "Entrée de démonstration. Lance la mise à jour DB pour récupérer les vrais personnages depuis genshin.gg/7dso.",
         "weapon_types": [
+<<<<<<< HEAD
           "Shield",
           "Book",
           "Wand"
@@ -4202,626 +4207,57 @@
         "weapon_types": [
           "Axe",
           "Greatsword",
+=======
+>>>>>>> 907c138 (V12: patches 1-6 (parsing debug, context, conditional potentials, presets share, meta snapshot))
           "Shield"
         ],
         "costumes": [],
-        "skills_by_weapon": {},
-        "potential_by_weapon": {},
+        "skills_by_weapon": {
+          "Shield": [
+            {
+              "name": "Demo Skill",
+              "type": "Normal Skill",
+              "key": "E",
+              "cooldown_sec": 8,
+              "description": "Exemple de skill. Remplacé par la DB live.",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 120,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 120% of Attack"
+                }
+              ]
+            }
+          ]
+        },
+        "potential_by_weapon": {
+          "Shield": [
+            {
+              "tier": 1,
+              "text": "Exemple: +5% ATK (placeholder)"
+            }
+          ]
+        },
         "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/escanor/"
-          }
-        }
-      },
-      "ch_82291a9bc4c2": {
-        "id": "ch_82291a9bc4c2",
-        "name": "Gowther",
-        "image_url": "https://sunderarmor.com/7DSO/portrait_hero/slot_gowther_001.png",
-        "description": "Book Wand Staff Book Wand",
-        "weapon_types": [
-          "Book",
-          "Wand",
-          "Staff"
-        ],
-        "costumes": [],
-        "skills_by_weapon": {},
-        "potential_by_weapon": {},
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/gowther/"
-          }
-        }
-      },
-      "ch_c47151a474e5": {
-        "id": "ch_c47151a474e5",
-        "name": "Klotho",
-        "image_url": "https://sunderarmor.com/7DSO/portrait_hero/slot_klotho_001.png",
-        "description": "Rapier Staff Book Rapier Staff",
-        "weapon_types": [
-          "Rapier",
-          "Staff",
-          "Book"
-        ],
-        "costumes": [],
-        "skills_by_weapon": {},
-        "potential_by_weapon": {},
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/klotho/"
-          }
-        }
-      },
-      "ch_b071bde55698": {
-        "id": "ch_b071bde55698",
-        "name": "Merlin",
-        "image_url": "https://sunderarmor.com/7DSO/portrait_hero/slot_merlin_001.png",
-        "description": "Book Wand Staff Book Wand",
-        "weapon_types": [
-          "Book",
-          "Wand",
-          "Staff"
-        ],
-        "costumes": [],
-        "skills_by_weapon": {},
-        "potential_by_weapon": {},
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/merlin/"
+          "demo": {
+            "source_url": "local"
           }
         }
       }
     },
     "weapons": {
-      "wp_26f6c6c2e8cd": {
-        "id": "wp_26f6c6c2e8cd",
-        "name": "Black Flame Wings Axe",
-        "weapon_type": "Axe",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_d8ac30c34cf0": {
-        "id": "wp_d8ac30c34cf0",
-        "name": "Black Flame Wings Dual Swords",
+      "wp_demo_duals": {
+        "id": "wp_demo_duals",
+        "name": "Skyborne Gale Dual Swords (demo)",
         "weapon_type": "Dual Swords",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sworddual_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_79ee7e6c71bd": {
-        "id": "wp_79ee7e6c71bd",
-        "name": "Black Flame Wings Gauntlets",
-        "weapon_type": "Gauntlets",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_gauntlets_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_c82cdbc5375c": {
-        "id": "wp_c82cdbc5375c",
-        "name": "Black Flame Wings Greatsword",
-        "weapon_type": "Greatsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword2h_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_0224513e76cb": {
-        "id": "wp_0224513e76cb",
-        "name": "Black Flame Wings Grimoire",
-        "weapon_type": "Book",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_book_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_d66e74b48142": {
-        "id": "wp_d66e74b48142",
-        "name": "Black Flame Wings Lance",
-        "weapon_type": "Lance",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_lance_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_9d20ec76976a": {
-        "id": "wp_9d20ec76976a",
-        "name": "Black Flame Wings Longsword",
-        "weapon_type": "Longsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword1h_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_12d3a17aedf3": {
-        "id": "wp_12d3a17aedf3",
-        "name": "Black Flame Wings Nunchaku",
-        "weapon_type": "Cudgel",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_cudgel3c_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_af50a1e5da10": {
-        "id": "wp_af50a1e5da10",
-        "name": "Black Flame Wings Rapier",
-        "weapon_type": "Rapier",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_rapier_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_4d03a5817923": {
-        "id": "wp_4d03a5817923",
-        "name": "Black Flame Wings Staff",
-        "weapon_type": "Staff",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_staff_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_6523fc168e18": {
-        "id": "wp_6523fc168e18",
-        "name": "Black Flame Wings Sword and Shield",
-        "weapon_type": "Shield",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_shield_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_956e8190a038": {
-        "id": "wp_956e8190a038",
-        "name": "Black Flame Wings Wand",
-        "weapon_type": "Wand",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_wand_0302.png",
-        "equipment_attack": 555,
-        "substat_name": "Crit Damage",
-        "substat_value": "6.3%",
-        "passive_text": "Activating a",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_d55a434b7556": {
-        "id": "wp_d55a434b7556",
-        "name": "Eternal Grace Axe",
-        "weapon_type": "Axe",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_59dc42d1b0c8": {
-        "id": "wp_59dc42d1b0c8",
-        "name": "Eternal Grace Dual Swords",
-        "weapon_type": "Dual Swords",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sworddual_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_df25c691910e": {
-        "id": "wp_df25c691910e",
-        "name": "Eternal Grace Gauntlets",
-        "weapon_type": "Gauntlets",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_gauntlets_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_93c6182b2f87": {
-        "id": "wp_93c6182b2f87",
-        "name": "Eternal Grace Greatsword",
-        "weapon_type": "Greatsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword2h_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_451ba6bebb91": {
-        "id": "wp_451ba6bebb91",
-        "name": "Eternal Grace Grimoire",
-        "weapon_type": "Book",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_book_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_b1c4dc1354c8": {
-        "id": "wp_b1c4dc1354c8",
-        "name": "Eternal Grace Lance",
-        "weapon_type": "Lance",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_lance_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_a15680ad5370": {
-        "id": "wp_a15680ad5370",
-        "name": "Eternal Grace Longsword",
-        "weapon_type": "Longsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword1h_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_a3a69f25d8fa": {
-        "id": "wp_a3a69f25d8fa",
-        "name": "Eternal Grace Nunchaku",
-        "weapon_type": "Cudgel",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_cudgel3c_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_73018c6de286": {
-        "id": "wp_73018c6de286",
-        "name": "Eternal Grace Rapier",
-        "weapon_type": "Rapier",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_rapier_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_8d130cc341ca": {
-        "id": "wp_8d130cc341ca",
-        "name": "Eternal Grace Staff",
-        "weapon_type": "Staff",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_staff_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_86ba06805bd5": {
-        "id": "wp_86ba06805bd5",
-        "name": "Eternal Grace Sword and Shield",
-        "weapon_type": "Shield",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_shield_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_2e7f47e2d876": {
-        "id": "wp_2e7f47e2d876",
-        "name": "Eternal Grace Wand",
-        "weapon_type": "Wand",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_wand_0307.png",
-        "equipment_attack": 624,
-        "substat_name": "Healing Efficiency",
-        "substat_value": "4.64%",
-        "passive_text": "Using a skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_8cd7990f7260": {
-        "id": "wp_8cd7990f7260",
-        "name": "Indomitable Guard Axe",
-        "weapon_type": "Axe",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_f786d242f96a": {
-        "id": "wp_f786d242f96a",
-        "name": "Indomitable Guard Dual Swords",
-        "weapon_type": "Dual Swords",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sworddual_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_30c118ddbf21": {
-        "id": "wp_30c118ddbf21",
-        "name": "Indomitable Guard Gauntlets",
-        "weapon_type": "Gauntlets",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_gauntlets_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_e207a45f5d8b": {
-        "id": "wp_e207a45f5d8b",
-        "name": "Indomitable Guard Greatsword",
-        "weapon_type": "Greatsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword2h_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_385e18e32747": {
-        "id": "wp_385e18e32747",
-        "name": "Indomitable Guard Grimoire",
-        "weapon_type": "Book",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_book_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_6294b3722b9f": {
-        "id": "wp_6294b3722b9f",
-        "name": "Indomitable Guard Lance",
-        "weapon_type": "Lance",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_lance_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_2dbd76b71ff9": {
-        "id": "wp_2dbd76b71ff9",
-        "name": "Indomitable Guard Longsword",
-        "weapon_type": "Longsword",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword1h_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_d72d67a2c0d3": {
-        "id": "wp_d72d67a2c0d3",
-        "name": "Indomitable Guard Nunchaku",
-        "weapon_type": "Cudgel",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_cudgel3c_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_568c7625e962": {
-        "id": "wp_568c7625e962",
-        "name": "Indomitable Guard Rapier",
-        "weapon_type": "Rapier",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_rapier_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_7af4384be45b": {
-        "id": "wp_7af4384be45b",
-        "name": "Indomitable Guard Staff",
-        "weapon_type": "Staff",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_staff_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_a7ebc936ee83": {
-        "id": "wp_a7ebc936ee83",
-        "name": "Indomitable Guard Sword and Shield",
-        "weapon_type": "Shield",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_shield_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_2d403d306d57": {
-        "id": "wp_2d403d306d57",
-        "name": "Indomitable Guard Wand",
-        "weapon_type": "Wand",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_wand_0402.png",
-        "equipment_attack": 607,
-        "substat_name": "Attack Increase",
-        "substat_value": "6.98%",
-        "passive_text": "Using the Tag Skill increases",
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/weapons/"
-          }
-        }
-      },
-      "wp_f321cfd8cc33": {
-        "id": "wp_f321cfd8cc33",
-        "name": "Shadow of Rupture Axe",
-        "weapon_type": "Axe",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0403.png",
-        "equipment_attack": 613,
+        "image_url": "assets/melio-removebg-preview.png",
+        "equipment_attack": 120,
         "substat_name": "Crit Rate",
-        "substat_value": "3.48%",
-        "passive_text": "Increases",
+        "substat_value": "+5%",
+        "passive_text": "Exemple de passif.",
         "sources": {
+<<<<<<< HEAD
           "genshin": {
             "source_url": "https://genshin.gg/7dso/weapons/"
           }
@@ -11126,10 +10562,15 @@
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tristan/"
+=======
+          "demo": {
+            "source_url": "local"
+>>>>>>> 907c138 (V12: patches 1-6 (parsing debug, context, conditional potentials, presets share, meta snapshot))
           }
         }
       }
     },
+    "skills": {},
     "passives": {},
     "sets": {},
     "buffs": {},
@@ -11137,135 +10578,16 @@
   },
   "indexes": {
     "characters": [
-      "ch_22cdc44ac2e6",
-      "ch_b8d215ef5eba",
-      "ch_bf334f71381a",
-      "ch_a1c945bbd31e",
-      "ch_aeeab13b5dea",
-      "ch_81b424f107e9",
-      "ch_c91ce9376532",
-      "ch_0e84efa613f7",
-      "ch_f5f84e3499cc",
-      "ch_ca084cee5f07",
-      "ch_1ae76cbc0b5b",
-      "ch_65a04325b1c1",
-      "ch_82291a9bc4c2",
-      "ch_a7441a63593d",
-      "ch_773fb2511a29",
-      "ch_da7cd83187da",
-      "ch_12ab5fc4592a",
-      "ch_a4603db7cee9",
-      "ch_c044994bcf37",
-      "ch_c47151a474e5",
-      "ch_d6d38d7265ff",
-      "ch_c87a4c6ba0cb",
-      "ch_b071bde55698",
-      "ch_11d44ccb41c2",
-      "ch_47c933d5dcec",
-      "ch_234eead55cec"
+      "ch_demo_hawk"
     ],
     "weapons": [
-      "wp_26f6c6c2e8cd",
-      "wp_d8ac30c34cf0",
-      "wp_79ee7e6c71bd",
-      "wp_c82cdbc5375c",
-      "wp_0224513e76cb",
-      "wp_d66e74b48142",
-      "wp_9d20ec76976a",
-      "wp_12d3a17aedf3",
-      "wp_af50a1e5da10",
-      "wp_4d03a5817923",
-      "wp_6523fc168e18",
-      "wp_956e8190a038",
-      "wp_3ef73ed9b19f",
-      "wp_9f230da44a16",
-      "wp_fda38571dbcf",
-      "wp_d990d3f1267a",
-      "wp_f1fe91ee4020",
-      "wp_1a399c1177d0",
-      "wp_c524d55c9713",
-      "wp_0a1f47c9ebce",
-      "wp_1a8ccf67742c",
-      "wp_e878ea2eb6af",
-      "wp_54dea907fe52",
-      "wp_b68a1e170ad7",
-      "wp_82099bbf4a4e",
-      "wp_e4debeaecae5",
-      "wp_971e9f9d1460",
-      "wp_896796ef712e",
-      "wp_6af220f80cec",
-      "wp_6186dfd11f8d",
-      "wp_d6722cfe48e5",
-      "wp_8da14c872e12",
-      "wp_858e316abae8",
-      "wp_81e9ca3585d5",
-      "wp_b7d4156d904a",
-      "wp_6e92b5e90bdb",
-      "wp_aab257ff8d68",
-      "wp_5b9367bb8f7d",
-      "wp_f335d6c4ef91",
-      "wp_ff4b17a0b5c8",
-      "wp_c0d08d7848cb",
-      "wp_d55a434b7556",
-      "wp_59dc42d1b0c8",
-      "wp_df25c691910e",
-      "wp_93c6182b2f87",
-      "wp_451ba6bebb91",
-      "wp_b1c4dc1354c8",
-      "wp_a15680ad5370",
-      "wp_a3a69f25d8fa",
-      "wp_73018c6de286",
-      "wp_8d130cc341ca",
-      "wp_86ba06805bd5",
-      "wp_2e7f47e2d876",
-      "wp_8cd7990f7260",
-      "wp_f786d242f96a",
-      "wp_30c118ddbf21",
-      "wp_e207a45f5d8b",
-      "wp_385e18e32747",
-      "wp_6294b3722b9f",
-      "wp_2dbd76b71ff9",
-      "wp_d72d67a2c0d3",
-      "wp_568c7625e962",
-      "wp_7af4384be45b",
-      "wp_a7ebc936ee83",
-      "wp_2d403d306d57",
-      "wp_abd86bb0503e",
-      "wp_ed348382e301",
-      "wp_02f7badbe960",
-      "wp_5a92aa457d84",
-      "wp_467ad6a521be",
-      "wp_6a95905943ce",
-      "wp_c41a7991e0aa",
-      "wp_b83ad9ea6356",
-      "wp_9fec6fc473eb",
-      "wp_19a4ab3aaec7",
-      "wp_427a09785e62",
-      "wp_19faf15f301e",
-      "wp_e8f10e8c936d",
-      "wp_87aa047692da",
-      "wp_f321cfd8cc33",
-      "wp_6b8d355eda7a",
-      "wp_81064d0323b1",
-      "wp_9b4de7e70660",
-      "wp_2998bedd6cd3",
-      "wp_7c4aa4f23853",
-      "wp_30aff57fca5c",
-      "wp_133d950a58cf",
-      "wp_88723aec824d",
-      "wp_8fc97dc83c39",
-      "wp_75b25d3f6bb7",
-      "wp_28b3b87a3dd3",
-      "wp_01196a6bb6be",
-      "wp_552bec8318f3",
-      "wp_023e2bc4d883"
+      "wp_demo_duals"
     ]
   },
   "source_priority": [
-    "genshin"
+    "demo"
   ],
   "notes": [
-    "DB générée automatiquement (best-effort).",
-    "Certaines données peuvent être incomplètes / changer au release."
+    "DB sample. Utilise GitHub Actions / UpdateDB.bat pour générer la vraie DB."
   ]
 }

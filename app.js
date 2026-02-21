@@ -117,6 +117,12 @@ if (!state.settings.crit_order) state.settings.crit_order = "afterDef";
 if (!state.settings.pierce_mode) state.settings.pierce_mode = "multiplicative";
 if (!state.settings.element_stage) state.settings.element_stage = "late";
 
+if (state.settings.context_enemy_debuffed == null) state.settings.context_enemy_debuffed = false;
+if (state.settings.context_hp_pct == null) state.settings.context_hp_pct = 100;
+if (state.settings.context_stacks == null) state.settings.context_stacks = 0;
+if (state.settings.context_debuff_count == null) state.settings.context_debuff_count = 0;
+if (state.settings.context_ally_count == null) state.settings.context_ally_count = 4;
+
 function getActiveDb(){
   if (state.settings.db_source === 'session' && state._sessionDb) return state._sessionDb;
   if (state.settings.db_source === 'imported') return state.db;
@@ -163,7 +169,46 @@ function modelSignature(){
   ].join("|");
 }
 
-function applyPotentialsToBuild(build){
+
+function isConditionMet(cond, ctx){
+  if (!cond) return true;
+  const t = cond.type || cond.kind;
+  if (!t) return true;
+  const hp = toNum(ctx?.hpPct, 100);
+  const stacks = Math.max(0, Math.round(toNum(ctx?.stacks, 0)));
+  const debuffs = Math.max(0, Math.round(toNum(ctx?.debuffCount, 0)));
+  const allies = Math.max(0, Math.round(toNum(ctx?.allyCount, 0)));
+  switch (t){
+    case "hp_below":
+    case "hp_pct_below":
+      return hp <= toNum(cond.threshold, 0);
+    case "hp_above":
+    case "hp_pct_above":
+      return hp >= toNum(cond.threshold, 0);
+    case "stacks_at_least":
+      return stacks >= Math.max(0, Math.round(toNum(cond.threshold, 0)));
+    case "debuffs_at_least":
+      return debuffs >= Math.max(0, Math.round(toNum(cond.threshold, 0)));
+    case "ally_count_at_least":
+      return allies >= Math.max(0, Math.round(toNum(cond.threshold, 0)));
+    case "enemy_debuffed":
+      return !!ctx?.enemyDebuffed;
+    default:
+      return true;
+  }
+}
+
+function getGlobalContextFromSettings(){
+  return {
+    enemyDebuffed: !!state.settings.context_enemy_debuffed,
+    hpPct: toNum(state.settings.context_hp_pct, 100),
+    stacks: toNum(state.settings.context_stacks, 0),
+    debuffCount: toNum(state.settings.context_debuff_count, 0),
+    allyCount: toNum(state.settings.context_ally_count, 4),
+  };
+}
+
+function applyPotentialsToBuild(build, ctx=null){
   const b = deepCopy(build);
   b.stats = b.stats || {};
   const charId = b.character_id || b.characterId || "";
@@ -171,11 +216,35 @@ function applyPotentialsToBuild(build){
   const ch = findKitCharById(charId);
   if (!ch || !enabled.size) return b;
 
+  const gctx = ctx || getGlobalContextFromSettings();
+
   // Ensure buffs array exists.
   if (!Array.isArray(b.buffs)) b.buffs = [];
 
   for (const p of (ch.potentials || [])){
     if (!enabled.has(String(p.id))) continue;
+
+    // Condition (optional)
+    if (!isConditionMet(p.condition, gctx)) continue;
+
+    // Parsed effects (preferred) – same handler as skill effects
+    if (Array.isArray(p.parsed_effects) && p.parsed_effects.length){
+      const cs = computedStatsForContext({stats: b.stats, buffs: b.buffs}, {kind:"skill"}, state.settings);
+      const cs2 = applyParsedEffectsToComputedStats(cs, p.parsed_effects, gctx);
+      // write back only supported stat keys that are safe to merge
+      // (minimal: atk, crit_rate, crit_dmg, dmg_bonus handled via buffs)
+      b.stats.atk = cs2.atk;
+      b.stats.crit_rate_pct = cs2.crit_rate_pct;
+      b.stats.crit_dmg_pct = cs2.crit_dmg_pct;
+      // dmg_bonus_pct is a bucket -> store as buff
+      const deltaBonus = (cs2.dmg_bonus_pct || 0) - (cs.dmg_bonus_pct || 0);
+      if (Math.abs(deltaBonus) > 1e-9){
+        b.buffs.push({stat:"dmg", value: deltaBonus, type:"add", scope:"all", enabled:true, source:"potential", id:"potfx_"+String(p.id)});
+      }
+      continue;
+    }
+
+    // Legacy schema
     const t = p.type || "stat_add";
     if (t === "stat_add"){
       const k = p.stat;
@@ -195,6 +264,7 @@ function applyPotentialsToBuild(build){
   }
   return b;
 }
+
 
 function getActiveDbX(){
   if (state.settings.db_source === 'session' && state._sessionDbX) return state._sessionDbX;
@@ -266,6 +336,8 @@ function setView(view){
   if (view === "simulate") refreshSimSelectors();
   if (view === "compare") refreshCompareSelectors();
   if (view === "weights") refreshWeightsSelectors();
+  if (view === "meta") refreshMetaSnapshot();
+  if (view === "bravehearts") refreshBraveHeartsUI();
   if (view === "database") refreshDbUI();
   if (view === "calibrate") refreshCalSelectors();
   if (view === "sandbox") refreshSandboxSelectors();
@@ -513,6 +585,20 @@ function getCurrentSimSelection(){
   const iters = Math.max(1, Math.round(toNum($("#simIters")?.value, 2000)));
   const mode = $("#simMode")?.value || 'expected';
   return {buildId, rotId, scId, duration, iters, mode};
+}
+
+function buildSharePayloadFromPreset(preset){
+  return {
+    version: 1,
+    created_at: new Date().toISOString(),
+    items: {
+      preset: deepCopy(preset),
+      model: {
+        settings: deepCopy(state.settings || {}),
+        model_sig: getBhCurrentModelSig(),
+      }
+    }
+  };
 }
 
 function buildSharePayload(){
@@ -1359,6 +1445,7 @@ function editAction(rot, idx){
     <div class="form">
       <label>Label <input id="eaLabel" value="${escapeHtml(a.label || "")}"/></label>
       ${skillSelectHtml}
+      <div id="eaSkillDebug" class="hint tiny" style="margin-top:-6px"></div>
       ${isTimeline ? `<label>Temps (s) <input id="eaT" type="number" step="0.1" value="${a.t ?? 0}"/></label>` : ``}
       <div class="grid3">
         <label>Multiplicateur <input id="eaMult" type="number" step="0.1" value="${a.mult ?? 1}"/></label>
@@ -1413,15 +1500,39 @@ function editAction(rot, idx){
           const t = String(sk.type||"").toLowerCase();
           a.kind = t.includes("ult") ? "ultimate" : "skill";
           if (!a.label) a.label = sk.name || a.label;
+          // Store parsed effects snapshot on the action (optional debug)
+          if (Array.isArray(sk.parsed_effects)) a.skill_effects = deepCopy(sk.parsed_effects);
+          if (sk.confidence_score != null) a.skill_confidence = sk.confidence_score;
+          if (sk.description_raw) a.skill_raw = sk.description_raw;
         }
       }else{
         delete a.skill_index;
+        delete a.skill_effects;
+        delete a.skill_confidence;
+        delete a.skill_raw;
       }
 
       saveRotDraft(rot);
       closeModal();
     }},
   ]);
+  setTimeout(() => {
+    const sel = $(\"#eaSkill\");
+    const dbg = $(\"#eaSkillDebug\");
+    if (!sel || !dbg) return;
+    const render = () => {
+      const v = sel.value;
+      if (v === \"\") { dbg.textContent = \"Mode manuel.\"; return; }
+      const sk = skills[Number(v)];
+      if (!sk) { dbg.textContent = \"—\"; return; }
+      const conf = sk.confidence_score != null ? sk.confidence_score : sk.confidenceScore;
+      const eff = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
+      const raw = sk.description_raw || sk.description || '';
+      dbg.innerHTML = `Conf: <b>${escapeHtml(String(conf ?? '—'))}</b> · Effets: <span class=\"mono\">${escapeHtml(JSON.stringify(eff))}</span>` + (raw ? `<br>Raw: <span class=\"mono\">${escapeHtml(raw.slice(0,220))}${raw.length>220?'…':''}</span>` : '');
+    };
+    sel.addEventListener('change', render);
+    render();
+  }, 0);
   // Prefill selected skill
   setTimeout(() => {
     const s = $("#eaSkill");
@@ -2055,6 +2166,11 @@ function refreshSettingsUI(){
   $("#setSeed").value = state.settings.mc_seed;
   $("#setBins").value = state.settings.hist_bins;
   $("#limitsBlock").innerHTML = renderLimitsHtml();
+  $("#setCtxEnemyDebuffed") && ($("#setCtxEnemyDebuffed").value = state.settings.context_enemy_debuffed ? "1":"0");
+  $("#setCtxHpPct") && ($("#setCtxHpPct").value = state.settings.context_hp_pct);
+  $("#setCtxStacks") && ($("#setCtxStacks").value = state.settings.context_stacks);
+  $("#setCtxDebuffCount") && ($("#setCtxDebuffCount").value = state.settings.context_debuff_count);
+  $("#setCtxAllyCount") && ($("#setCtxAllyCount").value = state.settings.context_ally_count);
 }
 function bindSettings(){
   // Profiles
@@ -2099,6 +2215,14 @@ function bindSettings(){
     state.settings.orb_gain_per_skill = Math.max(0, Math.round(toNum($("#setOrbGain").value, 2)));
     state.settings.mc_seed = Math.round(toNum($("#setSeed").value, 12345));
     state.settings.hist_bins = clamp(Math.round(toNum($("#setBins").value, 24)), 5, 60);
+
+    // Context
+    state.settings.context_enemy_debuffed = ($("#setCtxEnemyDebuffed")?.value === "1");
+    state.settings.context_hp_pct = clamp(Math.round(toNum($("#setCtxHpPct")?.value, 100)), 0, 100);
+    state.settings.context_stacks = Math.max(0, Math.round(toNum($("#setCtxStacks")?.value, 0)));
+    state.settings.context_debuff_count = Math.max(0, Math.round(toNum($("#setCtxDebuffCount")?.value, 0)));
+    state.settings.context_ally_count = Math.max(0, Math.round(toNum($("#setCtxAllyCount")?.value, 4)));
+
     saveState();
     $("#setMsg").textContent = "Réglages enregistrés.";
     refreshHeader();
@@ -2304,6 +2428,32 @@ function applyParsedEffectsToComputedStats(cs, effects, ctx){
           out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v;
         }
         break;
+      case "bonus_if_hp_below": {
+        const thr = toNum(e.threshold, 0);
+        const hp = toNum(ctx?.hpPct, 100);
+        if (hp <= thr){
+          out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v;
+        }
+        break;
+      }
+      case "bonus_per_stack": {
+        const stacks = Math.max(0, Math.round(toNum(ctx?.stacks, 0)));
+        out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v * stacks;
+        break;
+      }
+      case "bonus_per_debuff": {
+        const n = Math.max(0, Math.round(toNum(ctx?.debuffCount, 0)));
+        out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v * n;
+        break;
+      }
+      case "bonus_if_ally_count_at_least": {
+        const thr = Math.max(0, Math.round(toNum(e.threshold, 0)));
+        const n = Math.max(0, Math.round(toNum(ctx?.allyCount, 0)));
+        if (n >= thr){
+          out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v;
+        }
+        break;
+      }
       default:
         break;
     }
@@ -2340,7 +2490,11 @@ function actionCtxFromAction(build, rot, action, enemy, settings){
   return {
     kind, mult, hits,
     effects,
-    enemyDebuffed: !!(enemy?.is_debuffed || settings?.enemy_debuffed || false),
+    enemyDebuffed: !!(enemy?.is_debuffed || settings?.enemy_debuffed || settings?.context_enemy_debuffed || false),
+    hpPct: toNum(settings?.context_hp_pct, 100),
+    stacks: toNum(settings?.context_stacks, 0),
+    debuffCount: toNum(settings?.context_debuff_count, 0),
+    allyCount: toNum(settings?.context_ally_count, 4),
   };
 }
 
@@ -2805,6 +2959,141 @@ function bindWeights(){
   });
 }
 
+
+
+// ---------- Meta Snapshot ----------
+function refreshMetaSelectors(){
+  fillSelect($("#metaBuild"), state.builds, b => b.name, selectedBuildId);
+  fillSelect($("#metaRot"), state.rotations, r => r.name, selectedRotId);
+  fillSelect($("#metaSc"), state.scenarios, s => s.name, selectedScId);
+}
+
+function refreshMetaSnapshot(){
+  refreshMetaSelectors();
+  const sig = getBhCurrentModelSig();
+  $("#metaModelSig") && ($("#metaModelSig").innerHTML = `Modèle: <span class="mono">${escapeHtml(sig)}</span> · Profil: <b>${escapeHtml(state.settings.formula_profile || '—')}</b>`);
+  const db = getActiveDb();
+  const dbWhen = (LIVE_DB_META && (LIVE_DB_META.generated_at || LIVE_DB_META.updated)) || (db && db.updated) || state.meta?.updated || '—';
+  $("#metaDbMeta") && ($("#metaDbMeta").textContent = `DB: ${getActiveDbLabel()} · ${dbWhen} · persos=${db.characters?.length||0} · armes=${db.weapons?.length||0}`);
+  const st = computeCal2Stats();
+  const casesN = state.calibrationLab?.cases?.length || 0;
+  $("#metaCalMeta") && ($("#metaCalMeta").textContent = casesN ? `CalibrationLab: cas=${casesN} · RMSE=${fmtNum(st.rmse,0)} · MAPE=${fmtNum(st.mape*100,2)}%` : "CalibrationLab: aucun cas.");
+
+  // Presets list
+  const q = ($("#metaPresetSearch")?.value || '').trim().toLowerCase();
+  const scope = $("#metaPresetScope")?.value || 'all';
+  const off = (scope === 'local') ? [] : getBhOfficialList();
+  const loc = (scope === 'official') ? [] : getBhLocalList();
+  const list = [...off.map(p=>({...p,_kind:'official'})), ...loc.map(p=>({...p,_kind:'local'}))].filter(p => {
+    if (!q) return true;
+    const hay = `${p.name||''} ${p.author||''} ${p.role||''} ${p.context||''}`.toLowerCase();
+    return hay.includes(q);
+  }).slice(0, 30);
+
+  const box = $("#metaPresetList");
+  if (box){
+    box.innerHTML = list.length ? list.map(p => {
+      const kind = p._kind;
+      const btns = `<button class="btn primary" data-meta-apply="${escapeHtml(p.id)}" data-kind="${kind}">Appliquer</button>
+                    <button class="btn ghost" data-meta-link="${escapeHtml(p.id)}" data-kind="${kind}">Lien</button>`;
+      return `<div class="item">
+        <div class="item-title">${escapeHtml(p.name||'Preset')}</div>
+        <div class="item-sub">${escapeHtml(kind.toUpperCase())} · ${escapeHtml(p.role||'—')} · ${escapeHtml(p.context||'—')} · ${escapeHtml(p.author||'—')}</div>
+        <div class="row" style="margin-top:8px; gap:8px; flex-wrap:wrap">${btns}</div>
+      </div>`;
+    }).join("") : `<div class="hint">Aucun preset.</div>`;
+  }
+}
+
+function metaRunWeights(){
+  const b0 = findById(state.builds, $("#metaBuild")?.value) || state.builds[0];
+  const rot = findById(state.rotations, $("#metaRot")?.value) || state.rotations[0];
+  const scen = findById(state.scenarios, $("#metaSc")?.value) || state.scenarios[0];
+  const duration = Math.max(1, toNum($("#metaDur")?.value, 30));
+  const mode = $("#metaMode")?.value || "expected";
+  const stepPct = Math.max(0.1, toNum($("#metaStep")?.value, 1));
+  if (!b0 || !rot || !scen){
+    $("#metaMsg").textContent = "Choisis build/rotation/scénario.";
+    return;
+  }
+  const build = applyPotentialsToBuild(b0);
+  $("#metaMsg").textContent = "Calcul...";
+  const baseRes = runSimulation(build, rot, scen, duration, mode==="mc"?4000:1, mode);
+  const base = baseRes.mean;
+
+  const statsToTest = [
+    {key:"atk", label:"+ATK"},
+    {key:"crit_rate_pct", label:"+Crit %"},
+    {key:"crit_dmg_pct", label:"+Crit DMG %"},
+    {key:"dmg_bonus_pct", label:"+Bonus dégâts %"},
+  ];
+
+  let rows = [];
+  for (const st of statsToTest){
+    const b2 = deepCopy(build);
+    const v0 = b2.stats[st.key] || 0;
+    b2.stats[st.key] = v0 * (1 + stepPct/100) + (st.key==="atk" && v0===0 ? 100 : 0);
+    const r2 = runSimulation(b2, rot, scen, duration, mode==="mc"?4000:1, mode);
+    const d2 = r2.mean;
+    const gain = (base !== 0) ? ((d2 - base)/base)*100 : NaN;
+    rows.push({label: st.label, gainPct: gain});
+  }
+  rows.sort((a,b)=>b.gainPct-a.gainPct);
+
+  $("#metaOut")?.classList.remove("empty");
+  $("#metaOut") && ($("#metaOut").innerHTML = `
+    <div class="pill">Base DPS: <b>${fmt(base)}</b> · pas: <b>${fmtPct(stepPct)}</b></div>
+    <div class="hr"></div>
+    <div class="listbox" style="max-height:none">
+      ${rows.map(r => `<div class="item"><div class="item-title">${escapeHtml(r.label)}</div><div class="item-sub">Gain: <b>${fmtPct(r.gainPct)}</b></div></div>`).join("")}
+    </div>
+  `);
+  $("#metaMsg").textContent = "Terminé.";
+}
+
+function bindMeta(){
+  $("#btnMetaRun")?.addEventListener("click", () => { metaRunWeights(); });
+  $("#metaPresetSearch")?.addEventListener("input", refreshMetaSnapshot);
+  $("#metaPresetScope")?.addEventListener("change", refreshMetaSnapshot);
+
+  $("#btnMetaCopyJson")?.addEventListener("click", () => {
+    const payload = {model_sig: getBhCurrentModelSig(), settings: state.settings};
+    downloadJson("model_settings.json", payload);
+  });
+
+  $("#btnMetaCopyLink")?.addEventListener("click", () => {
+    openShareModal({version:1, created_at:new Date().toISOString(), items:{model:{settings:deepCopy(state.settings), model_sig:getBhCurrentModelSig()}}});
+  });
+
+  $("#btnMetaCopyReport")?.addEventListener("click", () => {
+    const txt = [
+      `ModelSig: ${getBhCurrentModelSig()}`,
+      `Profile: ${state.settings.formula_profile||'—'}`,
+      `Calibration cases: ${(state.calibrationLab?.cases?.length||0)}`,
+      `RMSE: ${fmtNum(computeCal2Stats().rmse,0)}`,
+    ].join("\n");
+    navigator.clipboard?.writeText(txt);
+    $("#metaMsg").textContent = "Rapport copié.";
+  });
+
+  $("#metaPresetList")?.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-meta-apply],[data-meta-link]");
+    if (!a) return;
+    const kind = a.dataset.kind;
+    const id = a.dataset.metaApply || a.dataset.metaLink;
+    const list = (kind === "official") ? getBhOfficialList() : getBhLocalList();
+    const p = list.find(x => x.id === id);
+    if (!p) return;
+    if (a.dataset.metaApply){
+      bhWarnIfModelMismatch(p, () => bhApplyPreset(p));
+      return;
+    }
+    if (a.dataset.metaLink){
+      openShareModal(buildSharePayloadFromPreset(p));
+      return;
+    }
+  });
+}
 
 // ---------- Scaling Analyzer ----------
 function refreshScalingSelectors(){
@@ -3814,11 +4103,13 @@ function renderPresetCard(p, kind){
   const actions = isOfficial
     ? `
       <button class="btn" data-bh="copy" data-id="${escapeHtml(p.id)}">Copier en local</button>
+      <button class="btn" data-bh="link" data-id="${escapeHtml(p.id)}">Lien</button>
       <button class="btn primary" data-bh="apply" data-id="${escapeHtml(p.id)}">Appliquer</button>
     `
     : `
       <button class="btn" data-bh="edit" data-id="${escapeHtml(p.id)}">Éditer</button>
       <button class="btn" data-bh="export" data-id="${escapeHtml(p.id)}">Exporter</button>
+      <button class="btn" data-bh="link" data-id="${escapeHtml(p.id)}">Lien</button>
       <button class="btn" data-bh="delete" data-id="${escapeHtml(p.id)}">Supprimer</button>
       <button class="btn primary" data-bh="apply" data-id="${escapeHtml(p.id)}">Appliquer</button>
     `;
@@ -4077,6 +4368,41 @@ function bhImportPresets(){
   input.click();
 }
 
+
+function bhGenerateOfficialPack(){
+  const locals = getBhLocalList().map(p => {
+    const q = deepCopy(p);
+    // Remove local-only fields if any
+    q.status = "OFFICIAL_CANDIDATE";
+    return q;
+  });
+  const pack = {
+    meta: {
+      version: "repo",
+      updated: new Date().toISOString().slice(0,10),
+      note: "Generated from local presets (paste into index.html: bh-presets-official-json)"
+    },
+    presets: locals
+  };
+  const txt = JSON.stringify(pack, null, 2);
+  openModal("Pack officiel (copier/coller)", `
+    <div class="hint">Colle ce JSON dans <b>index.html</b>, bloc <span class="mono">bh-presets-official-json</span>, puis push sur GitHub.</div>
+    <textarea id="bhOfficialPackTxt" style="width:100%; min-height:320px">${escapeHtml(txt)}</textarea>
+    <div class="row" style="margin-top:10px">
+      <button class="btn primary" id="bhOfficialPackCopy">Copier</button>
+      <button class="btn ghost" id="bhOfficialPackDownload">Télécharger</button>
+    </div>
+  `, [{label:"Fermer", kind:"ghost", onClick: closeModal}]);
+  setTimeout(() => {
+    $("#bhOfficialPackCopy")?.addEventListener("click", () => {
+      navigator.clipboard?.writeText(txt);
+    });
+    $("#bhOfficialPackDownload")?.addEventListener("click", () => {
+      downloadJson('bravehearts_presets_official.json', pack);
+    });
+  }, 0);
+}
+
 function bhExportAllLocal(){
   const arr = getBhLocalList();
   const blob = new Blob([JSON.stringify(arr, null, 2)], {type:'application/json'});
@@ -4105,6 +4431,7 @@ function bindBraveHearts(){
   $("#bhCreate")?.addEventListener('click', () => bhCreateOrEditPreset(null));
   $("#bhImport")?.addEventListener('click', bhImportPresets);
   $("#bhExportAll")?.addEventListener('click', bhExportAllLocal);
+  $("#bhExportOfficialPack")?.addEventListener('click', bhGenerateOfficialPack);
 
   // Delegated actions
   $("#view-bravehearts")?.addEventListener('click', (e) => {
@@ -4128,6 +4455,10 @@ function bindBraveHearts(){
     }
     if (act === 'export'){
       bhExportPreset(p);
+      return;
+    }
+    if (act === 'link'){
+      openShareModal(buildSharePayloadFromPreset(p));
       return;
     }
     if (act === 'delete'){
@@ -4206,6 +4537,7 @@ function init(){
   bindCalibration();
   bindCalibrationLab();
   bindBraveHearts();
+  bindMeta();
   bindSettings();
 
   refreshAll();
