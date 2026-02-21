@@ -329,6 +329,9 @@
                   <option value="timeline">Timeline</option>
                 </select>
               </label>
+              <label class="withHelp">Personnage (pour Skill Picker) <span class="help" data-tip="Optionnel. Permet de sélectionner des skills de personnage dans les actions de la rotation.">?</span>
+                <select id="rotChar"><option value="">— Aucun —</option></select>
+              </label>
 
               <div class="row">
                 <button class="btn" id="btnRotWizard">Assistant rotation</button>
@@ -729,6 +732,10 @@
             <div class="p">Tu entres un chiffre vu en jeu. L’outil cherche un <b>K</b> (mitigation DEF) qui colle au mieux.</div>
             <div class="form">
               <label>Build <select id="calBuild"></select></label>
+              <div class="grid2">
+                <label>Personnage <select id="calChar"><option value="">Auto (build)</option></select></label>
+                <label>Skill <select id="calSkill"><option value="">— Aucun —</option></select></label>
+              </div>
               <label>Scénario <select id="calSc"></select></label>
               <div class="grid3">
                 <label>Multiplicateur skill <input id="calMult" type="number" step="0.1" value="2.2"/></label>
@@ -771,6 +778,10 @@
               <div class="card-title">Ajouter un cas</div>
               <div class="form">
                 <label>Build <select id="cal2Build"></select></label>
+                <div class="grid2">
+                  <label>Personnage <select id="cal2Char"><option value="">Auto (build)</option></select></label>
+                  <label>Skill <select id="cal2Skill"><option value="">— Aucun —</option></select></label>
+                </div>
                 <label>Scénario <select id="cal2Sc"></select></label>
                 <div class="grid3">
                   <label>Type

@@ -1281,6 +1281,20 @@ function bindBuilds(){
 // ---------- Rotations CRUD ----------
 let selectedRotId = null;
 
+function refreshRotationCharacterSelect(){
+  const sel = $("#rotChar"); 
+  if (!sel) return;
+  const chars = getKitCharacters();
+  sel.innerHTML = '<option value="">— Aucun —</option>' + chars.map(c => `<option value="${escapeHtml(String(c.id))}">${escapeHtml(c.name)}</option>`).join("");
+  const r = currentRot();
+  if (r && r.character_id) sel.value = String(r.character_id);
+}
+
+function getSkillsForCharacter(charId){
+  const ch = findKitCharById(charId);
+  return (ch && Array.isArray(ch.skills)) ? ch.skills : [];
+}
+
 function rotSummary(r){
   if (r.type === "priority") return `Priority · ${(r.actions||[]).length} actions`;
   return `Timeline · ${(r.timeline||[]).length} events`;
@@ -1299,6 +1313,8 @@ function refreshRotationsUI(){
 function loadRotToForm(r){
   $("#rotName").value = r.name || "";
   $("#rotType").value = r.type || "priority";
+  refreshRotationCharacterSelect();
+  $("#rotChar") && ($("#rotChar").value = r.character_id ? String(r.character_id) : "");
   renderRotActions(r);
 }
 function currentRot(){ return selectedRotId ? findById(state.rotations, selectedRotId) : null; }
@@ -1333,9 +1349,16 @@ function editAction(rot, idx){
   const isTimeline = rot.type === "timeline";
   const arr = isTimeline ? (rot.timeline || []) : (rot.actions || []);
   const a = arr[idx];
+  const charId = rot.character_id || "";
+  const skills = charId ? getSkillsForCharacter(charId) : [];
+  const skillOptions = skills.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ('Skill '+(i+1)))}</option>`).join("");
+  const skillSelectHtml = charId
+    ? `<label class="withHelp">Skill (DB) <span class="help" data-tip="Sélectionne une skill du personnage (auto mult/hits/type + effets).">?</span><select id="eaSkill"><option value="">— Manuel —</option>${skillOptions}</select></label>`
+    : `<div class="hint tiny">Définis un personnage sur la rotation pour activer le Skill Picker.</div>`;
   const body = `
     <div class="form">
       <label>Label <input id="eaLabel" value="${escapeHtml(a.label || "")}"/></label>
+      ${skillSelectHtml}
       ${isTimeline ? `<label>Temps (s) <input id="eaT" type="number" step="0.1" value="${a.t ?? 0}"/></label>` : ``}
       <div class="grid3">
         <label>Multiplicateur <input id="eaMult" type="number" step="0.1" value="${a.mult ?? 1}"/></label>
@@ -1377,10 +1400,33 @@ function editAction(rot, idx){
       if (orbs > 0) a.requiresOrbs = orbs; else delete a.requiresOrbs;
       a.burstEligible = ($("#eaBurst").value === "1");
       a.kind = $("#eaKind").value || a.kind;
+
+      const skSel = $("#eaSkill");
+      const skIdx = skSel ? skSel.value : "";
+      if (skIdx !== ""){
+        a.skill_index = Number(skIdx);
+        const sk = skills[Number(skIdx)];
+        if (sk){
+          const m = toNum(sk.multiplier, null);
+          if (m !== null) a.mult = m/100;
+          a.hits = Math.max(1, Math.round(toNum(sk.hits, a.hits)));
+          const t = String(sk.type||"").toLowerCase();
+          a.kind = t.includes("ult") ? "ultimate" : "skill";
+          if (!a.label) a.label = sk.name || a.label;
+        }
+      }else{
+        delete a.skill_index;
+      }
+
       saveRotDraft(rot);
       closeModal();
     }},
   ]);
+  // Prefill selected skill
+  setTimeout(() => {
+    const s = $("#eaSkill");
+    if (s && a.skill_index !== undefined && a.skill_index !== null) s.value = String(a.skill_index);
+  }, 0);
 }
 
 function addRotAction(kind){
@@ -1462,6 +1508,14 @@ function rotationWizard(){
 }
 
 function bindRotations(){
+  $("#rotChar")?.addEventListener("change", () => {
+    const r = currentRot();
+    if (!r) return;
+    const v = $("#rotChar").value;
+    if (v) r.character_id = v; else delete r.character_id;
+    saveRotDraft(r);
+  });
+
   $("#btnRotClear")?.addEventListener("click", () => {
     if (!selectedRotId){ $("#rotMsg").textContent = "Sélectionne une rotation."; return; }
     const r = currentRot();
@@ -1500,12 +1554,14 @@ function bindRotations(){
     const name = ($("#rotName").value || "").trim();
     if (!name){ $("#rotMsg").textContent = "Donne un nom à la rotation."; return; }
     const type = $("#rotType").value || "priority";
+    const character_id = ($("#rotChar")?.value || "").trim();
 
     if (selectedRotId){
       const r = currentRot();
       if (!r){ $("#rotMsg").textContent = "Rotation introuvable."; return; }
       r.name = name;
       r.type = type;
+      if (character_id) r.character_id = character_id; else delete r.character_id;
       if (type === "priority" && !Array.isArray(r.actions)) r.actions = [];
       if (type === "timeline" && !Array.isArray(r.timeline)) r.timeline = [];
       $("#rotMsg").textContent = "Rotation modifiée.";
@@ -1932,6 +1988,39 @@ function refreshWeightsSelectors(){
   fillSelect($("#wRot"), state.rotations, r => r.name);
   fillSelect($("#wSc"), state.scenarios, s => s.name);
 }
+
+function refreshCalSkillPickers(){
+  // Single calibration
+  const b = findById(state.builds, $("#calBuild")?.value);
+  const baseChar = b?.character_id || "";
+  const calChar = $("#calChar");
+  const calSkill = $("#calSkill");
+  if (calChar){
+    const chars = getKitCharacters();
+    calChar.innerHTML = '<option value="">Auto (build)</option>' + chars.map(c => `<option value="${escapeHtml(String(c.id))}">${escapeHtml(c.name)}</option>`).join("");
+    if (calChar.value === "") calChar.value = "";
+  }
+  const chosenChar = (calChar && calChar.value) ? calChar.value : baseChar;
+  if (calSkill){
+    const skills = getSkillsForCharacter(chosenChar);
+    calSkill.innerHTML = '<option value="">— Aucun —</option>' + skills.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ("Skill "+(i+1)))}</option>`).join("");
+  }
+
+  // Multi-case add
+  const b2 = findById(state.builds, $("#cal2Build")?.value);
+  const baseChar2 = b2?.character_id || "";
+  const cal2Char = $("#cal2Char");
+  const cal2Skill = $("#cal2Skill");
+  if (cal2Char){
+    const chars = getKitCharacters();
+    cal2Char.innerHTML = '<option value="">Auto (build)</option>' + chars.map(c => `<option value="${escapeHtml(String(c.id))}">${escapeHtml(c.name)}</option>`).join("");
+  }
+  const chosenChar2 = (cal2Char && cal2Char.value) ? cal2Char.value : baseChar2;
+  if (cal2Skill){
+    const skills2 = getSkillsForCharacter(chosenChar2);
+    cal2Skill.innerHTML = '<option value="">— Aucun —</option>' + skills2.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ("Skill "+(i+1)))}</option>`).join("");
+  }
+}
 function refreshCalSelectors(){
   fillSelect($("#calBuild"), state.builds, b => b.name);
   fillSelect($("#calSc"), state.scenarios, s => s.name);
@@ -1939,9 +2028,12 @@ function refreshCalSelectors(){
   fillSelect($("#cal2Build"), state.builds, b => b.name);
   fillSelect($("#cal2Sc"), state.scenarios, s => s.name);
   refreshCal2Table();
+  refreshCalSkillPickers();
 }
 function refreshAllSelectors(){
   refreshBuildCharacterSelect();
+  refreshRotationCharacterSelect();
+  refreshCalSkillPickers();
   refreshSimSelectors();
   refreshCompareSelectors();
   refreshWeightsSelectors();
@@ -2187,8 +2279,74 @@ function mitigationFactorWithDefPen(enemyDef, defPenPct, settings, overrideK=nul
   return 1 - red;
 }
 
+
+function applyParsedEffectsToComputedStats(cs, effects, ctx){
+  const out = {...cs};
+  const eff = Array.isArray(effects) ? effects : [];
+  for (const e of eff){
+    if (!e || !e.type) continue;
+    const v = toNum(e.value, 0);
+    switch (e.type){
+      case "atk_pct":
+        out.atk = (out.atk || 0) * (1 + v/100);
+        break;
+      case "crit_dmg_bonus":
+        out.crit_dmg_pct = (out.crit_dmg_pct || 0) + v;
+        break;
+      case "crit_rate_pct":
+        out.crit_rate_pct = (out.crit_rate_pct || 0) + v;
+        break;
+      case "ignore_def_pct":
+        out.def_pen_pct = (out.def_pen_pct || 0) + v;
+        break;
+      case "bonus_if_debuffed":
+        if (ctx?.enemyDebuffed){
+          out.dmg_bonus_pct = (out.dmg_bonus_pct || 0) + v;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  return out;
+}
+
+function resolveSkillForAction(build, rot, action){
+  const charId = build?.character_id || rot?.character_id || null;
+  if (!charId) return null;
+  const ch = findKitCharById(charId);
+  if (!ch || !Array.isArray(ch.skills)) return null;
+  const si = action?.skill_index;
+  if (si === undefined || si === null) return null;
+  return ch.skills[si] || null;
+}
+
+function actionCtxFromAction(build, rot, action, enemy, settings){
+  const skill = resolveSkillForAction(build, rot, action);
+  let kind = action.kind || "skill";
+  let mult = toNum(action.mult, 0);
+  let hits = Math.max(1, Math.round(toNum(action.hits, 1)));
+  let effects = [];
+  if (skill){
+    const m = toNum(skill.multiplier, null);
+    if (m !== null) mult = m/100;
+    hits = Math.max(1, Math.round(toNum(skill.hits, hits)));
+    const t = String(skill.type || "").toLowerCase();
+    if (t.includes("ult")) kind = "ultimate";
+    else if (t.includes("passive")) kind = "passive";
+    else kind = "skill";
+    effects = Array.isArray(skill.parsed_effects) ? skill.parsed_effects : [];
+  }
+  return {
+    kind, mult, hits,
+    effects,
+    enemyDebuffed: !!(enemy?.is_debuffed || settings?.enemy_debuffed || false),
+  };
+}
+
 function singleHitDamage(build, enemy, settings, ctx, mode, rng, overrideK=null){
-  const cs = computedStatsForContext(build, ctx, settings);
+  let cs = computedStatsForContext(build, ctx, settings);
+  cs = applyParsedEffectsToComputedStats(cs, ctx?.effects, ctx);
 
   // Base multipliers
   const enemyRed = 1 - ((enemy.dmg_reduction_pct || 0)/100);
@@ -2322,24 +2480,21 @@ function simulateOnce(build, rot, scen, duration, settings, mode, rng){
     const req = a.requiresOrbs || 0;
     if (req > 0 && orbs < req) return null;
 
-    const hits = Math.max(1, Math.round(a.hits || 1));
-    const mult = a.mult || 0;
-
     let burstMul = 1;
     if (a.burstEligible && isBurstActiveAt(tNow, rot, settings)){
       burstMul *= burstBonusMul * burstRes;
     }
 
-    const ctx = { kind, mult, hits };
+    const ctx = actionCtxFromAction(build, rot, a, enemy, settings);
     const dealt = actionDamage(build, enemy, settings, ctx, (mode === "expected" ? "expected" : "mc"), rng) * burstMul;
     dmg += dealt;
     addTrace(`${tNow.toFixed(1)}s: ${key} dealt=${Math.round(dealt)}`);
 
 
-    if (kind === "skill"){
+    if (ctx.kind === "skill"){
       orbs = Math.min(7, orbs + (settings.orb_gain_per_skill || 0));
     }
-    if (kind === "ultimate"){
+    if (ctx.kind === "ultimate"){
       if (req > 0) orbs = Math.max(0, orbs - req);
     }
 
@@ -2899,9 +3054,6 @@ function runSandbox(){
     const tNow = (turn-1) * secPerTurn;
     const a = chooseActionAtTime(rot, tNow, cds, orbs);
     const key = a.label || a.kind;
-    const hits = Math.max(1, Math.round(a.hits || 1));
-    const mult = a.mult || 0;
-
     let burstMul = 1;
     if (a.burstEligible && isBurstActiveAt(tNow, rot, state.settings)){
       burstMul *= burstBonusMul * burstRes;
@@ -3069,7 +3221,7 @@ function bindBossScaling(){
 }
 
 // ---------- Calibration ----------
-function predictSingleHitDamage(build, scen, mult, hits, burstOn, overrideK){
+function predictSingleHitDamage(build, scen, ctx, burstOn, overrideK){
   const enemy = scen.enemy || {};
 
   let burstMul = 1;
@@ -3079,7 +3231,7 @@ function predictSingleHitDamage(build, scen, mult, hits, burstOn, overrideK){
     burstMul = burstBonusMul * burstRes;
   }
 
-  const ctx = { kind: "skill", mult, hits };
+  ctx = ctx || { kind: "skill", mult: 1, hits: 1 };
   const rng = makeRng(1);
   return actionDamage(build, enemy, state.settings, ctx, "expected", rng, overrideK) * burstMul;
 }
@@ -3087,8 +3239,26 @@ function predictSingleHitDamage(build, scen, mult, hits, burstOn, overrideK){
 function runCalibrate(){
   const build0 = findById(state.builds, $("#calBuild").value);
   const scen = findById(state.scenarios, $("#calSc").value);
-  const mult = toNum($("#calMult").value, 2.2);
-  const hits = Math.max(1, Math.round(toNum($("#calHits").value, 1)));
+  // Base ctx from manual fields
+  let ctx = { kind: "skill", mult: toNum($("#calMult").value, 2.2), hits: Math.max(1, Math.round(toNum($("#calHits").value, 1))) };
+
+  // Skill picker (optional)
+  const charId = ($("#calChar")?.value || build0.character_id || "").trim();
+  const skIdxRaw = $("#calSkill")?.value;
+  if (skIdxRaw !== "" && skIdxRaw != null){
+    const sk = getSkillsForCharacter(charId)[Number(skIdxRaw)];
+    if (sk){
+      const m = toNum(sk.multiplier, null);
+      if (m !== null) ctx.mult = m/100;
+      ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      const t = String(sk.type || "").toLowerCase();
+      ctx.kind = t.includes("ult") ? "ultimate" : "skill";
+      ctx.effects = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
+      // Auto-fill UI for clarity
+      $("#calMult").value = String(ctx.mult);
+      $("#calHits").value = String(ctx.hits);
+    }
+  }
   const obs = toNum($("#calObserved").value, NaN);
   const burstSel = $("#calBurst").value;
 
@@ -3107,7 +3277,7 @@ function runCalibrate(){
   let best = {K: state.settings.mitigation_k, err: Infinity, pred: NaN};
 
   for (let K=Kmin; K<=Kmax; K+=step){
-    const pred = predictSingleHitDamage(build, scen, mult, hits, burstOn, K);
+    const pred = predictSingleHitDamage(build, scen, ctx, burstOn, K);
     const err = Math.abs(pred - obs) / obs;
     if (err < best.err){
       best = {K, err, pred};
@@ -3145,7 +3315,7 @@ function runCalibrate(){
     // very coarse + show curve suggestion
     const ks = [400,800,1200,1600,2200,3000,4500,6500,9000,12000,16000];
     const rows = ks.map(K => {
-      const pred = predictSingleHitDamage(build, scen, mult, hits, burstOn, K);
+      const pred = predictSingleHitDamage(build, scen, ctx, burstOn, K);
       const err = Math.abs(pred-obs)/obs*100;
       return `<div class="item"><div class="item-title">K=${fmt(K)}</div><div class="item-sub">Prévu ${fmt(pred)} · err ${fmtPct(err)}</div></div>`;
     }).join("");
@@ -3159,6 +3329,20 @@ function runCalibrate(){
 
 function bindCalibration(){
   $("#btnCalibrate")?.addEventListener("click", runCalibrate);
+
+  $("#calBuild")?.addEventListener("change", () => { refreshCalSkillPickers(); });
+  $("#calChar")?.addEventListener("change", () => { refreshCalSkillPickers(); });
+  $("#calSkill")?.addEventListener("change", () => {
+    const build0 = findById(state.builds, $("#calBuild")?.value);
+    const charId = ($("#calChar")?.value || build0?.character_id || "").trim();
+    const sk = getSkillsForCharacter(charId)[Number($("#calSkill")?.value)];
+    if (sk){
+      const m = toNum(sk.multiplier, null);
+      if (m !== null) $("#calMult").value = String(m/100);
+      const h = Math.max(1, Math.round(toNum(sk.hits, 1)));
+      $("#calHits").value = String(h);
+    }
+  });
   $("#btnCalExplain")?.addEventListener("click", () => openModal("Comment faire un test", `
     <ol class="list">
       <li>Choisis un boss / dummy stable (même DEF).</li>
@@ -3178,12 +3362,25 @@ function ensureCalibrationLabState(){
 }
 
 function computePredictedForCase(c){
-  const b = state.builds[c.buildIndex] || state.builds.find(x => x.id === c.buildId) || state.builds[0];
+  const b0 = state.builds[c.buildIndex] || state.builds.find(x => x.id === c.buildId) || state.builds[0];
+  const b = b0 ? applyPotentialsToBuild(b0) : null;
   const s = state.scenarios[c.scIndex] || state.scenarios.find(x => x.id === c.scId) || state.scenarios[0];
   if (!b || !s) return 0;
 
   const enemy = s.enemy || {def:0, resistance_pct:0, crit_resist_pct:0, crit_def_pct:0, dmg_reduction_pct:0, element:"neutral"};
-  const ctx = { kind: c.kind || "skill", mult: toNum(c.mult, 1), hits: toNum(c.hits, 1) };
+  let ctx = { kind: c.kind || "skill", mult: toNum(c.mult, 1), hits: toNum(c.hits, 1), effects: [] };
+  const charId = (c.charId || b0?.character_id || "").trim();
+  if (c.skill_index !== undefined && c.skill_index !== null){
+    const sk = getSkillsForCharacter(charId)[Number(c.skill_index)];
+    if (sk){
+      const m = toNum(sk.multiplier, null);
+      if (m !== null) ctx.mult = m/100;
+      ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      const t = String(sk.type||"").toLowerCase();
+      ctx.kind = t.includes("ult") ? "ultimate" : "skill";
+      ctx.effects = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
+    }
+  }
   const rng = mulberry32(1234567);
   // Use expected mode for deterministic calibration
   const dmg = actionDamage(b, enemy, state.settings, ctx, "expected", rng, null);
@@ -3248,9 +3445,23 @@ function addCal2Case(){
   const msg = $("#cal2Msg");
   const buildId = $("#cal2Build")?.value || "";
   const scId = $("#cal2Sc")?.value || "";
-  const kind = $("#cal2Kind")?.value || "skill";
-  const mult = toNum($("#cal2Mult")?.value, 1);
-  const hits = Math.max(1, Math.round(toNum($("#cal2Hits")?.value, 1)));
+  let kind = $("#cal2Kind")?.value || "skill";
+  let mult = toNum($("#cal2Mult")?.value, 1);
+  let hits = Math.max(1, Math.round(toNum($("#cal2Hits")?.value, 1)));
+  const charId = ($("#cal2Char")?.value || findById(state.builds, buildId)?.character_id || "").trim();
+  const skillIdxRaw = $("#cal2Skill")?.value;
+  let skill_index = null;
+  if (skillIdxRaw !== "" && skillIdxRaw != null){
+    skill_index = Number(skillIdxRaw);
+    const sk = getSkillsForCharacter(charId)[skill_index];
+    if (sk){
+      const m = toNum(sk.multiplier, null);
+      if (m !== null) mult = m/100;
+      hits = Math.max(1, Math.round(toNum(sk.hits, hits)));
+      const t = String(sk.type||"").toLowerCase();
+      kind = t.includes("ult") ? "ultimate" : "skill";
+    }
+  }
   const observed = toNum($("#cal2Observed")?.value, 0);
 
   if (!buildId || !scId){
@@ -3264,12 +3475,14 @@ function addCal2Case(){
 
   state.calibrationLab.cases.push({
     id: uid("case"),
-    buildId, scId, kind, mult, hits, observed
+    buildId, scId, kind, mult, hits, observed,
+    charId, skill_index
   });
 
   if (msg) msg.textContent = "Cas ajouté.";
   saveState();
   refreshCal2Table();
+  refreshCalSkillPickers();
 }
 
 function clearCal2Cases(){
@@ -3282,6 +3495,7 @@ function clearCal2Cases(){
   $("#cal2FitMsg") && ($("#cal2FitMsg").textContent = "");
   saveState();
   refreshCal2Table();
+  refreshCalSkillPickers();
 }
 
 function evaluateRMSEForCases(cases){
@@ -3461,6 +3675,7 @@ function runAutoFitAdvanced(){
 
   saveState();
   refreshCal2Table();
+  refreshCalSkillPickers();
 }
 
 function avgObserved(cases){
@@ -3481,11 +3696,29 @@ function applyBestCal2Model(){
   state.settings.hidden_defense_coefficient = best.hidden_defense_coefficient;
   saveState();
   refreshCal2Table();
+  refreshCalSkillPickers();
   toast("Modèle appliqué.");
 }
 
 function bindCalibrationLab(){
   ensureCalibrationLabState();
+
+  $("#cal2Build")?.addEventListener("change", () => { refreshCalSkillPickers(); });
+  $("#cal2Char")?.addEventListener("change", () => { refreshCalSkillPickers(); });
+  $("#cal2Skill")?.addEventListener("change", () => {
+    const build0 = findById(state.builds, $("#cal2Build")?.value);
+    const charId = ($("#cal2Char")?.value || build0?.character_id || "").trim();
+    const sk = getSkillsForCharacter(charId)[Number($("#cal2Skill")?.value)];
+    if (sk){
+      const m = toNum(sk.multiplier, null);
+      if (m !== null) $("#cal2Mult").value = String(m/100);
+      const h = Math.max(1, Math.round(toNum(sk.hits, 1)));
+      $("#cal2Hits").value = String(h);
+      const t = String(sk.type||"").toLowerCase();
+      $("#cal2Kind").value = t.includes("ult") ? "ultimate" : "skill";
+    }
+  });
+
   $("#btnCal2Add")?.addEventListener("click", addCal2Case);
   $("#btnCal2Clear")?.addEventListener("click", clearCal2Cases);
   $("#btnCal2Fit")?.addEventListener("click", runAutoFitAdvanced);

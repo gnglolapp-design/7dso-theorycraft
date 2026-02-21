@@ -32,6 +32,8 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
+from parser_engine import SkillParser, PotentialParser
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 SNAP_DIR = DATA_DIR / "db_snapshots"
@@ -48,6 +50,9 @@ SDSO_BASE = "https://7dsorigin.gg"
 
 USER_AGENT = "BraveHearts-7DSO-Theorycraft/1.0 (+https://github.com/)"
 TIMEOUT = 30
+
+SKILL_PARSER = SkillParser()
+POTENTIAL_PARSER = PotentialParser()
 
 WEAPON_TYPES = {
     "Axe","Book","Cudgel","Gauntlets","Lance","Rapier","Shield","Staff","Wand",
@@ -342,6 +347,27 @@ def parse_genshin_character_page(url: str) -> Tuple[Dict[str,Any], Dict[str,Any]
             skills_by_weapon[wt] = parse_skills_from_lines(sk_lines)
         if pt_lines:
             potentials_by_weapon[wt] = parse_potential_from_lines(pt_lines)
+
+
+    # Enrich skills & potentials with parsed effects (best-effort)
+    for wt, sks in list(skills_by_weapon.items()):
+        for sk in sks:
+            try:
+                sk.update(SKILL_PARSER.parse(sk.get("description","")))
+            except Exception:
+                # never break DB update
+                sk.setdefault("parsed_effects", [])
+                sk.setdefault("confidence_score", 0.0)
+                sk.setdefault("description_raw", sk.get("description",""))
+
+    for wt, tiers in list(potentials_by_weapon.items()):
+        for tier in tiers:
+            try:
+                tier.update(POTENTIAL_PARSER.parse(tier.get("text","")))
+            except Exception:
+                tier.setdefault("parsed_effects", [])
+                tier.setdefault("confidence_score", 0.0)
+                tier.setdefault("description_raw", tier.get("text",""))
 
     # Extended record (normalized)
     char_id = stable_id("ch", name)
@@ -724,6 +750,13 @@ def parse_sdso_skills_section(section_lines: List[str]) -> Dict[str,List[Dict[st
                 "multipliers": multipliers[:50],
                 "source": "7dsorigin",
             }
+            try:
+                sk.update(SKILL_PARSER.parse(sk.get("description","")))
+            except Exception:
+                sk.setdefault("parsed_effects", [])
+                sk.setdefault("confidence_score", 0.0)
+                sk.setdefault("description_raw", sk.get("description",""))
+
             wt = cur_wt or "General"
             skills_by_weapon.setdefault(wt, []).append(sk)
             i = j
@@ -757,7 +790,14 @@ def parse_sdso_potential_section(section_lines: List[str]) -> Dict[str,List[Dict
                 j += 1
             text = " ".join(bits).strip()
             wt = cur_wt or "General"
-            pot_by_weapon.setdefault(wt, []).append({"tier": tier, "text": text})
+            pot = {"tier": tier, "text": text}
+            try:
+                pot.update(POTENTIAL_PARSER.parse(text))
+            except Exception:
+                pot.setdefault("parsed_effects", [])
+                pot.setdefault("confidence_score", 0.0)
+                pot.setdefault("description_raw", text)
+            pot_by_weapon.setdefault(wt, []).append(pot)
             i = j
             continue
         i += 1
