@@ -18,6 +18,8 @@
     </div>
     <div class="topbar-actions">
       <button id="btnMenu" class="btn ghost icon" title="Menu">☰</button>
+      <button id="btnToggleUiMode" class="btn ghost" title="Afficher/masquer les outils experts">Mode expert</button>
+      <span class="badge" id="uiModeBadge">SIMPLE</span>
       <button id="btnTour" class="btn ghost" title="Aide guidée">Visite guidée</button>
       <button id="btnAbout" class="btn ghost" title="Ce que l'outil sait / ne sait pas">Limites</button>
       <button id="btnShare" class="btn" title="Partager un setup via lien (Discord)">Partager</button>
@@ -47,23 +49,23 @@
       </div>
 
       <nav class="nav card" aria-label="Navigation">
-        <button class="nav-item active" data-view="home">Accueil</button>
-        <button class="nav-item" data-view="wizard">Assistant build</button>
-        <button class="nav-item" data-view="database">Base de données</button>
-        <button class="nav-item" data-view="builds">Mes builds</button>
-        <button class="nav-item" data-view="rotations">Rotations</button>
-        <button class="nav-item" data-view="scenarios">Scénarios</button>
-        <button class="nav-item" data-view="simulate">Simuler</button>
-        <button class="nav-item" data-view="compare">Comparer</button>
-        <button class="nav-item" data-view="weights">Priorité des stats</button>
-        <button class="nav-item" data-view="meta">Meta Snapshot</button>
-        <button class="nav-item" data-view="scaling">Scaling analyzer</button>
-        <button class="nav-item" data-view="sandbox">Combat sandbox</button>
-        <button class="nav-item" data-view="boss">Boss scaling infini</button>
-        <button class="nav-item" data-view="calibrate">Calibration</button>
-        <button class="nav-item" data-view="guild">Espace guilde</button>
-        <button class="nav-item" data-view="bravehearts">Brave Hearts</button>
-        <button class="nav-item" data-view="settings">Réglages</button>
+        <button class="nav-item active" data-mode="simple" data-view="home">Accueil</button>
+        <button class="nav-item" data-mode="simple" data-view="wizard">Assistant build</button>
+        <button class="nav-item" data-mode="simple" data-view="database">Base de données</button>
+        <button class="nav-item" data-mode="simple" data-view="builds">Mes builds</button>
+        <button class="nav-item" data-mode="expert" data-view="rotations">Rotations</button>
+        <button class="nav-item" data-mode="expert" data-view="scenarios">Scénarios</button>
+        <button class="nav-item" data-mode="expert" data-view="simulate">Simuler</button>
+        <button class="nav-item" data-mode="simple" data-view="compare">Comparer</button>
+        <button class="nav-item" data-mode="simple" data-view="weights">Priorité des stats</button>
+        <button class="nav-item" data-mode="expert" data-view="meta">Meta Snapshot</button>
+        <button class="nav-item" data-mode="expert" data-view="scaling">Scaling analyzer</button>
+        <button class="nav-item" data-mode="expert" data-view="sandbox">Combat sandbox</button>
+        <button class="nav-item" data-mode="expert" data-view="boss">Boss scaling infini</button>
+        <button class="nav-item" data-mode="expert" data-view="calibrate">Calibration</button>
+        <button class="nav-item" data-mode="simple" data-view="guild">Espace guilde</button>
+        <button class="nav-item" data-mode="simple" data-view="bravehearts">Brave Hearts</button>
+        <button class="nav-item" data-mode="simple" data-view="settings">Réglages</button>
       </nav>
 
       <div class="card">

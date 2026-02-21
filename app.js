@@ -4,6 +4,34 @@
 
 const STORAGE_KEY = "7ds_origin_theorycraft_guided_v9";
 
+// UI complexity mode (Simple vs Expert): controls which sections appear in the sidebar.
+const UI_MODE_KEY = "bh_ui_mode"; // "simple" | "expert"
+function getUiMode(){ return localStorage.getItem(UI_MODE_KEY) || "simple"; }
+function setUiMode(v){ localStorage.setItem(UI_MODE_KEY, v); }
+
+function applyUiModeToNav(){
+  const mode = getUiMode();
+  document.querySelectorAll('.nav-item[data-mode]').forEach(el=>{
+    const req = el.getAttribute('data-mode') || 'simple';
+    el.style.display = (mode === 'expert' || req === 'simple') ? '' : 'none';
+  });
+  const badge = document.getElementById('uiModeBadge');
+  if (badge) badge.textContent = (mode === 'expert') ? 'EXPERT' : 'SIMPLE';
+  const btn = document.getElementById('btnToggleUiMode');
+  if (btn) btn.textContent = (mode === 'expert') ? 'Mode simple' : 'Mode expert';
+}
+
+function bindUiMode(){
+  const btn = document.getElementById('btnToggleUiMode');
+  if (!btn) return;
+  btn.addEventListener('click', ()=>{
+    const next = (getUiMode() === 'simple') ? 'expert' : 'simple';
+    setUiMode(next);
+    applyUiModeToNav();
+  });
+  applyUiModeToNav();
+}
+
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
@@ -4516,6 +4544,7 @@ function refreshAll(){
 function init(){
   ensureIds();
   bindNav();
+  bindUiMode();
   bindMode();
   bindTooltips();
   bindModal();
