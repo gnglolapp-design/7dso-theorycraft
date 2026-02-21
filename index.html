@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>7DS: Origin — Brave Hearts Theorycraft</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="logoImg" src="assets/bravehearts_icon.png" alt="Brave Hearts"/>
+      <div class="brandText">
+        <div class="title">Brave Hearts — Origin Theorycraft</div>
+        <div class="subtitle">Simulateur guidé · Comparaison de builds · Ajustable</div>
+      </div>
+      <span class="badge" id="uiBadge">OFFLINE</span>
+    </div>
+    <div class="topbar-actions">
+      <button id="btnTour" class="btn ghost" title="Aide guidée">Visite guidée</button>
+      <button id="btnAbout" class="btn ghost" title="Ce que l'outil sait / ne sait pas">Limites</button>
+      <button id="btnExport" class="btn">Exporter</button>
+      <button id="btnImport" class="btn">Importer</button>
+    </div>
+  </header>
+
+  <!-- Stickers (décor) -->
+  <img class="sticker melio" src="assets/melio.png" alt="" />
+  <img class="sticker esca" src="assets/escanor.png" alt="" />
+  <img class="sticker hawk" src="assets/hawk.webp" alt="" />
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-title">Démarrer</div>
+        <button id="btnQuickstart" class="btn primary wide">Quickstart (1 clic)</button>
+        <div class="hint">Pour tester sans théoriecraft : Quickstart → ensuite “Comparer”.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Mode</div>
+        <div class="segmented">
+          <button id="modeSimple" class="seg active">Guidé</button>
+          <button id="modeAdvanced" class="seg">Avancé</button>
+        </div>
+        <div class="hint" id="modeHint">Guidé : peu de champs, explications, valeurs conseillées.</div>
+      </div>
+
+      <nav class="nav card" aria-label="Navigation">
+        <button class="nav-item active" data-view="home">Accueil</button>
+        <button class="nav-item" data-view="wizard">Assistant build</button>
+        <button class="nav-item" data-view="database">Base de données</button>
+        <button class="nav-item" data-view="builds">Mes builds</button>
+        <button class="nav-item" data-view="rotations">Rotations</button>
+        <button class="nav-item" data-view="scenarios">Scénarios</button>
+        <button class="nav-item" data-view="simulate">Simuler</button>
+        <button class="nav-item" data-view="compare">Comparer</button>
+        <button class="nav-item" data-view="weights">Priorité des stats</button>
+        <button class="nav-item" data-view="calibrate">Calibration</button>
+        <button class="nav-item" data-view="settings">Réglages</button>
+      </nav>
+
+      <div class="card">
+        <div class="card-title">Status</div>
+        <div class="kv">
+          <div class="k">Version</div><div class="v" id="uiVersion">—</div>
+          <div class="k">Données</div><div class="v" id="uiData">—</div>
+          <div class="k">Mode</div><div class="v" id="uiMode">Guidé</div>
+        </div>
+        <div class="hint tiny" id="uiLimitBadge"></div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="view active" id="view-home">
+        <div class="page-title">Accueil</div>
+
+        <div class="hero">
+          <img class="banner" src="assets/bravehearts_banner.png" alt="Brave Hearts"/>
+          <div class="heroOverlay">
+            <div class="heroTitle">7DS: Origin — Theorycraft pour la guilde</div>
+            <div class="heroSub">
+              Objectif : rendre le theorycraft <b>simple</b> pour tous (même sans stats),
+              tout en gardant des réglages <b>avancés</b> pour les testeurs.
+            </div>
+            <div class="row">
+              <button class="btn primary" data-go="wizard">Assistant build</button>
+              <button class="btn" data-go="compare">Comparer</button>
+              <button class="btn ghost" id="btnHomeWhat">Que faire ici ?</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <div class="card-title">Chemin ultra-simple</div>
+            <ol class="list">
+              <li><b>Quickstart</b> (1 clic)</li>
+              <li>Onglet <b>Comparer</b> → A vs B</li>
+              <li>Onglet <b>Priorité des stats</b> → quoi améliorer</li>
+            </ol>
+            <div class="hint">Tu peux ensuite créer tes propres builds dans “Mes builds”.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Chemin theorycraft</div>
+            <ol class="list">
+              <li>Importe la <b>DB</b> (persos/armes) → “Base de données”</li>
+              <li>Crée un build à partir d’un perso/arme</li>
+              <li>Si tu as des tests : <b>Calibration</b> (ajuste K)</li>
+            </ol>
+            <div class="hint warn">La fiabilité dépend surtout de la DB + de la calibration.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">Exemples prêts à l’emploi</div>
+          <div class="row">
+            <button class="btn" id="btnLoadExample1">Charger “DPS simple”</button>
+            <button class="btn" id="btnLoadExample2">Charger “Burst / Nuke”</button>
+          </div>
+          <div class="hint">Les exemples servent à apprendre. Modifie, renomme, compare.</div>
+        </div>
+      </section>
+
+      <section class="view" id="view-wizard">
+        <div class="page-title">Assistant build (ultra-guidé)</div>
+        <div class="wizard">
+          <div class="steps" id="wizSteps"></div>
+          <div class="card">
+            <div class="card-title" id="wizTitle">—</div>
+            <div id="wizBody"></div>
+            <div class="wizard-actions">
+              <button class="btn ghost" id="wizBack">Retour</button>
+              <button class="btn primary" id="wizNext">Suivant</button>
+            </div>
+            <div class="hint tiny" id="wizHint"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-database">
+        <div class="page-title">Base de données (persos / armes)</div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Importer une DB</div>
+            <div class="p">Format attendu : un JSON contenant un champ <b>db</b> (characters, weapons…).</div>
+            <div class="row">
+              <button class="btn primary" id="btnDbImport">Importer DB</button>
+              <button class="btn" id="btnDbExport">Exporter DB</button>
+              <button class="btn ghost" id="btnDbSample">Voir exemple</button>
+            </div>
+            <div class="hint tiny" id="dbMsg"></div>
+            <div class="hr"></div>
+            <div class="p"><b>DB auto (sources externes)</b></div>
+            <div class="p tiny">Option A (local) : clique <b>UpdateDB.bat</b> (dans le dossier) → ça met à jour <code>data/db_live.js</code>.
+            Option B (public 24/7) : héberger le site en statique (GitHub Pages/Cloudflare Pages) + MAJ automatique.</div>
+            <div class="row">
+              <button class="btn" id="btnDbHowUpdate">Comment mettre à jour ?</button>
+              <button class="btn ghost" id="btnDbSources">Sources utilisées</button>
+            </div>
+            <div class="hint tiny" id="dbLiveStatus"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Créer un build depuis la DB</div>
+            <div class="form">
+              <label>Personnage <select id="dbChar"></select></label>
+              <label>Arme <select id="dbWeapon"></select></label>
+              <div class="row">
+                <button class="btn primary" id="btnDbMakeBuild">Créer build</button>
+                <button class="btn ghost" id="btnDbPreview">Aperçu</button>
+              </div>
+              <div class="hint">Cela crée un build dans “Mes builds” avec ATK auto + champs éditables.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <div class="card-title">Personnages</div>
+            <div id="dbCharList" class="listbox"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">Armes</div>
+            <div id="dbWeaponList" class="listbox"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-builds">
+        <div class="page-title">Mes builds</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Créer / modifier</div>
+            <div class="form">
+              <label>Nom du build <input id="buildName" placeholder="ex: tristan_dps"/></label>
+              <div class="grid2">
+                <label class="withHelp">ATK <span class="help" data-tip="Stat principale de comparaison. Si la DB est importée, ATK peut être auto.">?</span>
+                  <input id="statAtk" type="number" min="0" step="1"/>
+                </label>
+                <label class="withHelp">DEF <span class="help" data-tip="Optionnel. Surtout utile si un skill scale DEF.">?</span>
+                  <input id="statDef" type="number" min="0" step="1"/>
+                </label>
+              </div>
+              <div class="grid3">
+                <label class="withHelp">Crit % <span class="help" data-tip="0–100. Monte‑Carlo tire le crit à chaque hit.">?</span>
+                  <input id="statCrit" type="number" min="0" max="100" step="0.1"/>
+                </label>
+                <label class="withHelp">Crit DMG % <span class="help" data-tip="Ex: 60 = dégâts crit x1.6.">?</span>
+                  <input id="statCritDmg" type="number" min="0" step="0.1"/>
+                </label>
+                <label class="withHelp">Bonus dégâts % <span class="help" data-tip="Bonus générique (buff/passif). 0 si inconnu.">?</span>
+                  <input id="statDmgBonus" type="number" step="0.1"/>
+                </label>
+              </div>
+
+              <div id="advancedBuildBlock" class="advancedBlock">
+                <div class="grid3">
+                  <label class="withHelp">Péné DEF % <span class="help" data-tip="Réduit la DEF ennemie (modèle simplifié).">?</span>
+                    <input id="statDefPen" type="number" step="0.1"/>
+                  </label>
+                  <label class="withHelp">Vulnérabilité % <span class="help" data-tip="Augmente les dégâts subis par l’ennemi (debuff).">?</span>
+                    <input id="statDmgTaken" type="number" step="0.1"/>
+                  </label>
+                  <label class="withHelp">Élément <span class="help" data-tip="Contexte. Dans le jeu, arme/skills peuvent changer l’élément.">?</span>
+                    <select id="statElement">
+                      <option value="neutral">Neutre</option>
+                      <option value="fire">Feu</option>
+                      <option value="water">Eau</option>
+                      <option value="earth">Terre</option>
+                      <option value="wind">Vent</option>
+                      <option value="light">Lumière</option>
+                      <option value="dark">Ténèbres</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="btnSaveBuild">Enregistrer</button>
+                <button class="btn ghost" id="btnNewBuild">Nouveau</button>
+                <button class="btn danger" id="btnDeleteBuild">Supprimer</button>
+              </div>
+              <div class="hint tiny" id="buildMsg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Liste</div>
+            <div id="buildList" class="listbox"></div>
+            <div class="hint">Sélectionne un build puis va sur “Simuler” ou “Comparer”.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-rotations">
+        <div class="page-title">Rotations</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Créer / modifier</div>
+            <div class="form">
+              <label>Nom <input id="rotName" placeholder="ex: basic_priority"/></label>
+              <label class="withHelp">Type <span class="help" data-tip="Priority = actions selon CD/conditions. Timeline = actions à temps fixes.">?</span>
+                <select id="rotType">
+                  <option value="priority">Priority (recommandé)</option>
+                  <option value="timeline">Timeline</option>
+                </select>
+              </label>
+
+              <div class="row">
+                <button class="btn" id="btnRotWizard">Assistant rotation</button>
+                <button class="btn ghost" id="btnRotClear">Vider</button>
+              </div>
+
+              <div class="card subtle">
+                <div class="card-title small">Actions</div>
+                <div id="rotActions" class="listbox"></div>
+                <div class="row">
+                  <button class="btn" id="btnAddSkill">+ Skill</button>
+                  <button class="btn" id="btnAddUlt">+ Ultimate</button>
+                  <button class="btn" id="btnAddWait">+ Attendre</button>
+                </div>
+                <div class="hint tiny">Clique une action pour l’éditer.</div>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="btnSaveRot">Enregistrer</button>
+                <button class="btn danger" id="btnDeleteRot">Supprimer</button>
+              </div>
+              <div class="hint tiny" id="rotMsg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Liste</div>
+            <div id="rotList" class="listbox"></div>
+            <div class="hint">Astuce : une rotation simple suffit pour comparer.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-scenarios">
+        <div class="page-title">Scénarios (ennemis)</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Créer / modifier</div>
+            <div class="form">
+              <label>Nom <input id="scName" placeholder="ex: boss_def_1200"/></label>
+              <div class="grid2">
+                <label class="withHelp">DEF ennemie <span class="help" data-tip="Plus la DEF est haute, plus la réduction est forte selon le modèle.">?</span>
+                  <input id="scDef" type="number" min="0" step="1"/>
+                </label>
+                <label class="withHelp">Résistance Burst <span class="help" data-tip="0.2 = 20% de résistance (modèle).">?</span>
+                  <input id="scBurstRes" type="number" step="0.01"/>
+                </label>
+              </div>
+
+              <div id="advancedScenarioBlock" class="advancedBlock">
+                <div class="grid3">
+                  <label class="withHelp">Réduction dégâts % <span class="help" data-tip="Réduction générique (passifs boss).">?</span>
+                    <input id="scDmgRed" type="number" step="0.1"/>
+                  </label>
+                  <label class="withHelp">Élément (info) <span class="help" data-tip="Optionnel.">?</span>
+                    <select id="scElement">
+                      <option value="neutral">Neutre</option>
+                      <option value="fire">Feu</option>
+                      <option value="water">Eau</option>
+                      <option value="earth">Terre</option>
+                      <option value="wind">Vent</option>
+                      <option value="light">Lumière</option>
+                      <option value="dark">Ténèbres</option>
+                    </select>
+                  </label>
+                  <label class="withHelp">PV (info) <span class="help" data-tip="Optionnel. Utilisable plus tard (phases/exécutions).">?</span>
+                    <input id="scHp" type="number" step="1"/>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="btnSaveSc">Enregistrer</button>
+                <button class="btn ghost" id="btnNewSc">Nouveau</button>
+                <button class="btn danger" id="btnDeleteSc">Supprimer</button>
+              </div>
+              <div class="hint tiny" id="scMsg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Liste</div>
+            <div id="scList" class="listbox"></div>
+            <div class="hint">Astuce : change la DEF pour voir l’impact.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-simulate">
+        <div class="page-title">Simuler</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="form">
+              <label>Build <select id="simBuild"></select></label>
+              <label>Rotation <select id="simRot"></select></label>
+              <label>Scénario <select id="simSc"></select></label>
+
+              <div class="grid3">
+                <label class="withHelp">Durée (s) <span class="help" data-tip="30s est un standard.">?</span>
+                  <input id="simDur" type="number" min="1" step="1" value="30"/>
+                </label>
+                <label class="withHelp">Itérations <span class="help" data-tip="Monte‑Carlo : 2000–10000.">?</span>
+                  <input id="simIters" type="number" min="1" step="1" value="2000"/>
+                </label>
+                <label class="withHelp">Mode <span class="help" data-tip="Expected = rapide et stable. Monte‑Carlo = RNG.">?</span>
+                  <select id="simMode">
+                    <option value="expected">Expected (rapide)</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="row">
+                <button class="btn primary" id="btnRun">Simuler</button>
+                <button class="btn ghost" id="btnTrace">Voir le détail (trace)</button>
+              </div>
+              <div class="hint tiny" id="simMsg"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Résultats</div>
+            <div id="simOut" class="results empty">
+              <div class="emptyState">Lance une simulation pour voir le DPS et les percentiles.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="traceCard" style="display:none;">
+          <div class="card-title">Trace</div>
+          <div id="traceOut" class="mono"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-compare">
+        <div class="page-title">Comparer</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="form">
+              <label>Build A <select id="cmpA"></select></label>
+              <label>Build B <select id="cmpB"></select></label>
+              <label>Rotation <select id="cmpRot"></select></label>
+              <label>Scénario <select id="cmpSc"></select></label>
+              <div class="grid3">
+                <label>Durée (s) <input id="cmpDur" type="number" min="1" step="1" value="30"/></label>
+                <label>Itérations <input id="cmpIters" type="number" min="1" step="1" value="4000"/></label>
+                <label>Mode
+                  <select id="cmpMode">
+                    <option value="expected">Expected</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+              </div>
+              <button class="btn primary" id="btnCompare">Comparer</button>
+              <div class="hint tiny" id="cmpMsg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Résultat</div>
+            <div id="cmpOut" class="results empty">
+              <div class="emptyState">Choisis A/B puis compare.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-weights">
+        <div class="page-title">Priorité des stats</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Entrées</div>
+            <div class="form">
+              <label>Build <select id="wBuild"></select></label>
+              <label>Rotation <select id="wRot"></select></label>
+              <label>Scénario <select id="wSc"></select></label>
+              <div class="grid3">
+                <label>Durée (s) <input id="wDur" type="number" min="1" step="1" value="30"/></label>
+                <label>Mode
+                  <select id="wMode">
+                    <option value="expected">Expected (recommandé)</option>
+                    <option value="mc">Monte‑Carlo</option>
+                  </select>
+                </label>
+                <label class="withHelp">Pas (%) <span class="help" data-tip="On augmente chaque stat de ce % et on mesure le gain.">?</span>
+                  <input id="wStep" type="number" min="0.1" step="0.1" value="1"/>
+                </label>
+              </div>
+              <div class="row">
+                <button class="btn primary" id="btnWeights">Calculer</button>
+                <button class="btn ghost" id="btnWeightsExplain">Comment lire</button>
+              </div>
+              <div class="hint tiny" id="wMsg"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Résultat</div>
+            <div id="wOut" class="results empty">
+              <div class="emptyState">Calcule pour voir ce qui augmente le plus ton DPS ici.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-calibrate">
+        <div class="page-title">Calibration (fiabilité)</div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-title">Entrée : un dégât observé</div>
+            <div class="p">Tu entres un chiffre vu en jeu. L’outil cherche un <b>K</b> (mitigation DEF) qui colle au mieux.</div>
+            <div class="form">
+              <label>Build <select id="calBuild"></select></label>
+              <label>Scénario <select id="calSc"></select></label>
+              <div class="grid3">
+                <label>Multiplicateur skill <input id="calMult" type="number" step="0.1" value="2.2"/></label>
+                <label>Hits <input id="calHits" type="number" step="1" value="1"/></label>
+                <label>Burst actif ?
+                  <select id="calBurst">
+                    <option value="auto">Auto</option>
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                  </select>
+                </label>
+              </div>
+              <label>Dégâts observés (total) <input id="calObserved" type="number" step="1" placeholder="ex: 184532"/></label>
+              <div class="row">
+                <button class="btn primary" id="btnCalibrate">Calibrer K</button>
+                <button class="btn ghost" id="btnCalExplain">Comment faire un test</button>
+              </div>
+              <div class="hint tiny" id="calMsg"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Résultat</div>
+            <div id="calOut" class="results empty">
+              <div class="emptyState">Entre un dégât observé et lance “Calibrer”.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">Recommandation de process</div>
+          <ul class="list">
+            <li>Test sur <b>un même boss</b>, sans buffs variables.</li>
+            <li>Note : ATK, crit%, critDMG%, bonus%, skill utilisé, et le dégât.</li>
+            <li>Fais 3–5 mesures et garde une moyenne.</li>
+          </ul>
+          <div class="hint warn">La calibration améliore beaucoup la fiabilité si vous avez des chiffres CBT/vidéos.</div>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="page-title">Réglages</div>
+        <div class="card">
+          <div class="card-title">Modèle & hypothèses</div>
+          <div class="form">
+            <div class="grid2" style="margin-bottom:10px">
+              <label class="withHelp">Profil de formule <span class="help" data-tip="Un profil = un ensemble d'hypothèses (CBT, release, patch). Tu peux l'appliquer puis affiner.">?</span>
+                <select id="setProfile"></select>
+              </label>
+              <label class="withHelp">Notes profil <span class="help" data-tip="Explique ce que change le profil.">?</span>
+                <input id="setProfileNotes" placeholder="—" disabled/>
+              </label>
+            </div>
+            <div class="row" style="margin-bottom:12px">
+              <button class="btn" id="btnApplyProfile">Appliquer le profil</button>
+              <button class="btn ghost" id="btnResetProfile">Revenir aux réglages actuels</button>
+            </div>
+
+            <div class="grid2">
+              <label class="withHelp">Mitigation DEF <span class="help" data-tip="Tu peux changer le modèle. DEF/(DEF+K) est un standard.">?</span>
+                <select id="setMitigation">
+                  <option value="def_over_def_plus_k">DEF / (DEF + K)</option>
+                  <option value="linear">Linéaire (cap)</option>
+                </select>
+              </label>
+              <label class="withHelp">K <span class="help" data-tip="Plus K est grand, moins la DEF réduit. Calibration aide à trouver K.">?</span>
+                <input id="setK" type="number" min="1" step="1"/>
+              </label>
+            </div>
+
+            <div class="grid3">
+              <label class="withHelp">Cap crit % <span class="help" data-tip="Cap de crit (ex: 100).">?</span>
+                <input id="setCritCap" type="number" min="0" max="100" step="1"/>
+              </label>
+              <label class="withHelp">Burst bonus % <span class="help" data-tip="Bonus dégâts pendant Burst (hypothèse).">?</span>
+                <input id="setBurstBonus" type="number" step="0.1"/>
+              </label>
+              <label class="withHelp">Burst actif ? <span class="help" data-tip="Auto = selon le plan de la rotation.">?</span>
+                <select id="setBurstOn">
+                  <option value="auto">Auto</option>
+                  <option value="off">Off</option>
+                  <option value="on">Toujours on</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="grid3 advancedBlock" id="advancedSettingsBlock">
+              <label class="withHelp">Orbes par skill <span class="help" data-tip="Hypothèse. Ajustable si vous mesurez en jeu.">?</span>
+                <input id="setOrbGain" type="number" min="0" step="1"/>
+              </label>
+              <label class="withHelp">Seed Monte‑Carlo <span class="help" data-tip="Fixe l’aléatoire pour comparer plus facilement.">?</span>
+                <input id="setSeed" type="number" step="1"/>
+              </label>
+              <label class="withHelp">Histogram bins <span class="help" data-tip="Nombre de barres de l’histogramme.">?</span>
+                <input id="setBins" type="number" min="5" max="60" step="1"/>
+              </label>
+            </div>
+
+            <div class="row">
+              <button class="btn primary" id="btnSaveSettings">Enregistrer</button>
+              <button class="btn ghost" id="btnResetSettings">Reset</button>
+            </div>
+            <div class="hint tiny" id="setMsg"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="card-title">Limites & conseils</div>
+          <div class="p" id="limitsBlock"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <div id="modalOverlay" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">—</div>
+        <button class="btn ghost" id="modalClose">Fermer</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <input type="file" id="fileImport" accept=".json,application/json" style="display:none"/>
+  <input type="file" id="fileDbImport" accept=".json,application/json" style="display:none"/>
+
+  <!-- Embedded defaults (no fetch needed for file://) -->
+  <script id="defaults-json" type="application/json">
+{
+  "meta": {
+    "version": "guided-4.0.0",
+    "updated": "2026-02-21",
+    "notes": [
+      "Offline-first (compatible file://).",
+      "Modèle ajustable tant que les formules officielles ne sont pas 100% confirmées.",
+      "Import/Export pour partager builds/rotations/scénarios/DB sur Discord."
+    ]
+  },
+  "settings": {
+    "mode": "simple",
+    "formula_profile": "cbt_v1",
+    "mitigation_model": "def_over_def_plus_k",
+    "mitigation_k": 1200,
+    "crit_cap": 100,
+    "burst_bonus_pct": 25.0,
+    "burst_mode": "auto",
+    "orb_gain_per_skill": 2,
+    "initial_orbs": 0,
+    "mc_seed": 12345,
+    "hist_bins": 24,
+    "verbose_trace": false
+  },
+  "limits": {
+    "confirmed_like": [
+      "Monte-Carlo: crit tiré par hit; Expected: espérance (rapide).",
+      "Comparaison A vs B fiable si tu gardes le même scénario/rotation/durée.",
+      "Import/Export permet de partager presets via Discord."
+    ],
+    "unknown": [
+      "Formule exacte de mitigation DEF (patch/final).",
+      "Gain exact d’orbes/Tag/Burst selon actions/armes.",
+      "Interactions complètes (passifs, sets, armes) — à injecter via DB."
+    ],
+    "how_to_use": [
+      "Choisis un scénario (ex: Boss DEF=1200) et compare toujours dans ce contexte.",
+      "Si tu as des tests en jeu: utilise l’onglet “Calibration” pour ajuster K.",
+      "Garde “Expected” pour la lisibilité; passe en Monte-Carlo pour mesurer la variance RNG."
+    ]
+  },
+  "builds": [
+    {
+      "id": "example_dps",
+      "name": "Exemple — DPS simple",
+      "stats": {
+        "atk": 5000,
+        "def": 0,
+        "crit_rate_pct": 35.0,
+        "crit_dmg_pct": 60.0,
+        "dmg_bonus_pct": 10.0,
+        "def_pen_pct": 0.0,
+        "dmg_taken_pct": 0.0,
+        "element": "neutral"
+      },
+      "source": {
+        "character_id": null,
+        "weapon_id": null
+      }
+    },
+    {
+      "id": "example_burst",
+      "name": "Exemple — Burst / Nuke",
+      "stats": {
+        "atk": 5200,
+        "def": 0,
+        "crit_rate_pct": 45.0,
+        "crit_dmg_pct": 80.0,
+        "dmg_bonus_pct": 12.0,
+        "def_pen_pct": 5.0,
+        "dmg_taken_pct": 0.0,
+        "element": "fire"
+      },
+      "source": {
+        "character_id": null,
+        "weapon_id": null
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "dummy",
+      "name": "Dummy (DEF 800)",
+      "enemy": {
+        "def": 800,
+        "burst_resist": 0.0,
+        "dmg_reduction_pct": 0.0,
+        "hp": 0,
+        "element": "neutral"
+      }
+    },
+    {
+      "id": "boss",
+      "name": "Boss (DEF 1200, BurstRes 20%)",
+      "enemy": {
+        "def": 1200,
+        "burst_resist": 0.2,
+        "dmg_reduction_pct": 5.0,
+        "hp": 0,
+        "element": "neutral"
+      }
+    }
+  ],
+  "rotations": [
+    {
+      "id": "starter",
+      "name": "Starter (Priority — simple)",
+      "type": "priority",
+      "actions": [
+        {
+          "kind": "skill",
+          "label": "Skill 1",
+          "mult": 2.2,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": true
+        },
+        {
+          "kind": "skill",
+          "label": "Skill 2",
+          "mult": 2.8,
+          "hits": 1,
+          "cd": 10,
+          "burstEligible": true
+        },
+        {
+          "kind": "ultimate",
+          "label": "Ultimate",
+          "mult": 6.0,
+          "hits": 1,
+          "cd": 30,
+          "requiresOrbs": 7,
+          "burstEligible": true
+        }
+      ],
+      "burstPlan": {
+        "enabled": true,
+        "start": 10,
+        "duration": 7
+      }
+    },
+    {
+      "id": "burst_nuke",
+      "name": "Burst / Nuke (Timeline — guidé)",
+      "type": "timeline",
+      "loop": true,
+      "period": 20.0,
+      "timeline": [
+        {
+          "t": 0.0,
+          "kind": "skill",
+          "label": "Setup",
+          "mult": 1.8,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": false
+        },
+        {
+          "t": 7.0,
+          "kind": "skill",
+          "label": "Prep",
+          "mult": 2.2,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": false
+        },
+        {
+          "t": 10.0,
+          "kind": "ultimate",
+          "label": "Nuke",
+          "mult": 7.2,
+          "hits": 1,
+          "cd": 30,
+          "requiresOrbs": 7,
+          "burstEligible": true
+        },
+        {
+          "t": 18.0,
+          "kind": "skill",
+          "label": "Follow",
+          "mult": 2.8,
+          "hits": 1,
+          "cd": 10,
+          "burstEligible": true
+        }
+      ],
+      "burstPlan": {
+        "enabled": true,
+        "start": 10,
+        "duration": 7
+      }
+    }
+  ],
+  "db": {
+    "schema_version": "0.1",
+    "characters": [
+      {
+        "id": "char_melio",
+        "name": "Meliodas (exemple)",
+        "element": "dark",
+        "role": "dps",
+        "base_stats": {
+          "atk": 5000,
+          "def": 1200,
+          "hp": 45000
+        },
+        "icon": "assets/melio.png"
+      },
+      {
+        "id": "char_esca",
+        "name": "Escanor (exemple)",
+        "element": "light",
+        "role": "burst",
+        "base_stats": {
+          "atk": 5200,
+          "def": 1100,
+          "hp": 47000
+        },
+        "icon": "assets/escanor.png"
+      }
+    ],
+    "weapons": [
+      {
+        "id": "wp_basic_dark",
+        "name": "Arme sombre (exemple)",
+        "element": "dark",
+        "atk_bonus": 250,
+        "icon": "assets/hawk.webp"
+      },
+      {
+        "id": "wp_basic_light",
+        "name": "Arme lumière (exemple)",
+        "element": "light",
+        "atk_bonus": 280,
+        "icon": "assets/hawk.webp"
+      }
+    ]
+  }
+}
+  </script>
+
+  <script src="data/formula_profiles.js"></script>
+  <script src="data/db_live.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>

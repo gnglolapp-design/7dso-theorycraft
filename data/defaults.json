@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "version": "guided-3.0.0",
+    "updated": "2026-02-21",
+    "notes": [
+      "Offline-first (compatible file://).",
+      "Modèle ajustable tant que les formules officielles ne sont pas 100% confirmées.",
+      "Import/Export pour partager builds/rotations/scénarios/DB sur Discord."
+    ]
+  },
+  "settings": {
+    "mode": "simple",
+    "mitigation_model": "def_over_def_plus_k",
+    "mitigation_k": 1200,
+    "crit_cap": 100,
+    "burst_bonus_pct": 25.0,
+    "burst_mode": "auto",
+    "orb_gain_per_skill": 2,
+    "initial_orbs": 0,
+    "mc_seed": 12345,
+    "hist_bins": 24,
+    "verbose_trace": false
+  },
+  "limits": {
+    "confirmed_like": [
+      "Monte-Carlo: crit tiré par hit; Expected: espérance (rapide).",
+      "Comparaison A vs B fiable si tu gardes le même scénario/rotation/durée.",
+      "Import/Export permet de partager presets via Discord."
+    ],
+    "unknown": [
+      "Formule exacte de mitigation DEF (patch/final).",
+      "Gain exact d’orbes/Tag/Burst selon actions/armes.",
+      "Interactions complètes (passifs, sets, armes) — à injecter via DB."
+    ],
+    "how_to_use": [
+      "Choisis un scénario (ex: Boss DEF=1200) et compare toujours dans ce contexte.",
+      "Si tu as des tests en jeu: utilise l’onglet “Calibration” pour ajuster K.",
+      "Garde “Expected” pour la lisibilité; passe en Monte-Carlo pour mesurer la variance RNG."
+    ]
+  },
+  "builds": [
+    {
+      "id": "example_dps",
+      "name": "Exemple — DPS simple",
+      "stats": {
+        "atk": 5000,
+        "def": 0,
+        "crit_rate_pct": 35.0,
+        "crit_dmg_pct": 60.0,
+        "dmg_bonus_pct": 10.0,
+        "def_pen_pct": 0.0,
+        "dmg_taken_pct": 0.0,
+        "element": "neutral"
+      },
+      "source": {
+        "character_id": null,
+        "weapon_id": null
+      }
+    },
+    {
+      "id": "example_burst",
+      "name": "Exemple — Burst / Nuke",
+      "stats": {
+        "atk": 5200,
+        "def": 0,
+        "crit_rate_pct": 45.0,
+        "crit_dmg_pct": 80.0,
+        "dmg_bonus_pct": 12.0,
+        "def_pen_pct": 5.0,
+        "dmg_taken_pct": 0.0,
+        "element": "fire"
+      },
+      "source": {
+        "character_id": null,
+        "weapon_id": null
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "dummy",
+      "name": "Dummy (DEF 800)",
+      "enemy": {
+        "def": 800,
+        "burst_resist": 0.0,
+        "dmg_reduction_pct": 0.0,
+        "hp": 0,
+        "element": "neutral"
+      }
+    },
+    {
+      "id": "boss",
+      "name": "Boss (DEF 1200, BurstRes 20%)",
+      "enemy": {
+        "def": 1200,
+        "burst_resist": 0.2,
+        "dmg_reduction_pct": 5.0,
+        "hp": 0,
+        "element": "neutral"
+      }
+    }
+  ],
+  "rotations": [
+    {
+      "id": "starter",
+      "name": "Starter (Priority — simple)",
+      "type": "priority",
+      "actions": [
+        {
+          "kind": "skill",
+          "label": "Skill 1",
+          "mult": 2.2,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": true
+        },
+        {
+          "kind": "skill",
+          "label": "Skill 2",
+          "mult": 2.8,
+          "hits": 1,
+          "cd": 10,
+          "burstEligible": true
+        },
+        {
+          "kind": "ultimate",
+          "label": "Ultimate",
+          "mult": 6.0,
+          "hits": 1,
+          "cd": 30,
+          "requiresOrbs": 7,
+          "burstEligible": true
+        }
+      ],
+      "burstPlan": {
+        "enabled": true,
+        "start": 10,
+        "duration": 7
+      }
+    },
+    {
+      "id": "burst_nuke",
+      "name": "Burst / Nuke (Timeline — guidé)",
+      "type": "timeline",
+      "loop": true,
+      "period": 20.0,
+      "timeline": [
+        {
+          "t": 0.0,
+          "kind": "skill",
+          "label": "Setup",
+          "mult": 1.8,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": false
+        },
+        {
+          "t": 7.0,
+          "kind": "skill",
+          "label": "Prep",
+          "mult": 2.2,
+          "hits": 1,
+          "cd": 8,
+          "burstEligible": false
+        },
+        {
+          "t": 10.0,
+          "kind": "ultimate",
+          "label": "Nuke",
+          "mult": 7.2,
+          "hits": 1,
+          "cd": 30,
+          "requiresOrbs": 7,
+          "burstEligible": true
+        },
+        {
+          "t": 18.0,
+          "kind": "skill",
+          "label": "Follow",
+          "mult": 2.8,
+          "hits": 1,
+          "cd": 10,
+          "burstEligible": true
+        }
+      ],
+      "burstPlan": {
+        "enabled": true,
+        "start": 10,
+        "duration": 7
+      }
+    }
+  ],
+  "db": {
+    "schema_version": "0.1",
+    "characters": [
+      {
+        "id": "char_melio",
+        "name": "Meliodas (exemple)",
+        "element": "dark",
+        "role": "dps",
+        "base_stats": {
+          "atk": 5000,
+          "def": 1200,
+          "hp": 45000
+        },
+        "icon": "assets/melio.png"
+      },
+      {
+        "id": "char_esca",
+        "name": "Escanor (exemple)",
+        "element": "light",
+        "role": "burst",
+        "base_stats": {
+          "atk": 5200,
+          "def": 1100,
+          "hp": 47000
+        },
+        "icon": "assets/escanor.png"
+      }
+    ],
+    "weapons": [
+      {
+        "id": "wp_basic_dark",
+        "name": "Arme sombre (exemple)",
+        "element": "dark",
+        "atk_bonus": 250,
+        "icon": "assets/hawk.webp"
+      },
+      {
+        "id": "wp_basic_light",
+        "name": "Arme lumière (exemple)",
+        "element": "light",
+        "atk_bonus": 280,
+        "icon": "assets/hawk.webp"
+      }
+    ]
+  }
+}
