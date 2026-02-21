@@ -19,6 +19,7 @@
     <div class="topbar-actions">
       <button id="btnTour" class="btn ghost" title="Aide guidée">Visite guidée</button>
       <button id="btnAbout" class="btn ghost" title="Ce que l'outil sait / ne sait pas">Limites</button>
+      <button id="btnShare" class="btn" title="Partager un setup via lien (Discord)">Partager</button>
       <button id="btnExport" class="btn">Exporter</button>
       <button id="btnImport" class="btn">Importer</button>
     </div>
@@ -603,6 +604,8 @@
       <div class="modal-actions" id="modalActions"></div>
     </div>
   </div>
+
+  <div id="toast" class="toast hidden" aria-live="polite"></div>
 
   <input type="file" id="fileImport" accept=".json,application/json" style="display:none"/>
   <input type="file" id="fileDbImport" accept=".json,application/json" style="display:none"/>

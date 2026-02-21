@@ -5,7 +5,7 @@ REM =============================
 REM Config
 REM =============================
 REM Set to 1 only if you have permission to use 7dsorigin.gg data
-set ENABLE_7DSORIGIN=1
+set ENABLE_7DSORIGIN=0
 
 REM =============================
 REM Run update

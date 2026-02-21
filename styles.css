@@ -112,6 +112,27 @@ a{color:inherit}
   position:fixed;z-index:9999;max-width:340px;padding:10px 12px;border-radius:14px;border:1px solid var(--border);
   background:rgba(10,12,18,.98);box-shadow:var(--shadow);color:var(--text);font-size:12px;line-height:1.4;display:none
 }
+
+.toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:2500;
+  max-width:min(520px, calc(100vw - 36px));
+  padding:12px 14px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:rgba(15,17,25,.92);
+  backdrop-filter:blur(10px);
+  box-shadow:var(--shadow);
+  font-weight:850;
+  font-size:13px;
+  line-height:1.35;
+}
+.toast.hidden{display:none}
+.toast.good{border-color:rgba(35,196,131,.35)}
+.toast.warn{border-color:rgba(255,211,110,.35)}
+.toast.bad{border-color:rgba(255,77,90,.35)}
 .help{
   display:inline-grid;place-items:center;width:18px;height:18px;border-radius:999px;margin-left:6px;border:1px solid var(--border);
   background:rgba(255,255,255,.05);font-weight:950;cursor:help;user-select:none

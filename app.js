@@ -259,6 +259,39 @@ function bindModal(){
   $("#modalOverlay")?.addEventListener("click", (e) => { if (e.target.id === "modalOverlay") closeModal(); });
 }
 
+// ---------- Toast ----------
+function showToast(msg, kind=""){
+  const t = $("#toast");
+  if (!t) return;
+  t.textContent = msg;
+  t.className = "toast" + (kind ? (" " + kind) : "");
+  t.classList.remove("hidden");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => t.classList.add("hidden"), 2600);
+}
+
+async function copyToClipboard(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    return true;
+  }catch(_e){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.style.position='fixed';
+      ta.style.left='-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return !!ok;
+    }catch(_e2){
+      return false;
+    }
+  }
+}
+
 // ---------- About / Tour ----------
 function renderLimitsHtml(){
   const L = state.limits || {};
@@ -357,6 +390,401 @@ function bindExportImport(){
       e.target.value = "";
     }
   });
+}
+
+// ---------- Share (lien Discord) ----------
+const SHARE_SCHEMA_VERSION = 1;
+const SHARE_MAX_JSON_CHARS = 12000; // safety
+const SHARE_SOFT_URL_MAX = 9000;
+const SHARE_ALLOWED_SETTINGS = [
+  'formula_profile','mitigation_model','mitigation_k','crit_cap','burst_bonus_pct',
+  'burst_mode','orb_gain_per_skill','initial_orbs','mc_seed','hist_bins'
+];
+
+function base64UrlEncode(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  for (let i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+  const b64 = btoa(bin);
+  return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function base64UrlDecode(b64url){
+  let b64 = (b64url||"").replace(/-/g,'+').replace(/_/g,'/');
+  while (b64.length % 4) b64 += "=";
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function getCurrentSimSelection(){
+  const buildId = $("#simBuild")?.value || state.builds[0]?.id || null;
+  const rotId = $("#simRot")?.value || state.rotations[0]?.id || null;
+  const scId = $("#simSc")?.value || state.scenarios[0]?.id || null;
+  const duration = Math.max(1, toNum($("#simDur")?.value, 30));
+  const iters = Math.max(1, Math.round(toNum($("#simIters")?.value, 2000)));
+  const mode = $("#simMode")?.value || 'expected';
+  return {buildId, rotId, scId, duration, iters, mode};
+}
+
+function buildSharePayload(){
+  const sel = getCurrentSimSelection();
+  const build = findById(state.builds, sel.buildId) || state.builds[0];
+  const rot = findById(state.rotations, sel.rotId) || state.rotations[0];
+  const scen = findById(state.scenarios, sel.scId) || state.scenarios[0];
+  if (!build || !rot || !scen) throw new Error('Aucun setup à partager.');
+
+  const db = getActiveDb();
+  const dbWhen = (LIVE_DB_META && (LIVE_DB_META.generated_at || LIVE_DB_META.updated)) || (db && db.updated) || state.meta?.updated || null;
+
+  const settings = {};
+  for (const k of SHARE_ALLOWED_SETTINGS){
+    if (state.settings && (k in state.settings)) settings[k] = state.settings[k];
+  }
+
+  const payload = {
+    v: SHARE_SCHEMA_VERSION,
+    id: uid('sh'),
+    name: (build.name ? (build.name + ' · ' + (scen.name || 'Scénario')) : 'Setup partagé').slice(0, 90),
+    exported_at: new Date().toISOString(),
+    app: { version: state.meta?.version || '—' },
+    db: {
+      label: getActiveDbLabel(),
+      when: dbWhen,
+      counts: { characters: db.characters?.length||0, weapons: db.weapons?.length||0 },
+      sources: (LIVE_DB_META && LIVE_DB_META.sources) ? LIVE_DB_META.sources : null
+    },
+    sim: { duration: sel.duration, iters: sel.iters, mode: sel.mode },
+    items: {
+      build: {
+        name: build.name || 'Build',
+        stats: deepCopy(build.stats || {}),
+        source: deepCopy(build.source || {character_id:null, weapon_id:null}),
+        notes: build.notes || ''
+      },
+      rotation: {
+        name: rot.name || 'Rotation',
+        type: rot.type || 'priority',
+        actions: deepCopy(rot.actions || []),
+        timeline: deepCopy(rot.timeline || []),
+        loop: !!rot.loop,
+        period: rot.period ?? 20,
+        burstPlan: deepCopy(rot.burstPlan || {enabled:true,start:10,duration:7})
+      },
+      scenario: {
+        name: scen.name || 'Scénario',
+        enemy: deepCopy(scen.enemy || {})
+      }
+    },
+    settings
+  };
+
+  // Attach last result if it matches current selection
+  const last = state._lastSimSummary;
+  if (last && last.sim && last.sim.build_id === sel.buildId && last.sim.rot_id === sel.rotId && last.sim.scen_id === sel.scId){
+    payload.last_result = { at: last.at, mean: last.result?.mean, p10: last.result?.p10, p50: last.result?.p50, p90: last.result?.p90, mode: last.sim.mode };
+  }
+  return payload;
+}
+
+function encodeSharePayload(payload){
+  const json = JSON.stringify(payload);
+  if (json.length > SHARE_MAX_JSON_CHARS) throw new Error('Setup trop volumineux pour un lien. Utilise Export JSON.');
+  return base64UrlEncode(json);
+}
+
+function decodeSharePayload(encoded){
+  const json = base64UrlDecode(encoded);
+  if (json.length > SHARE_MAX_JSON_CHARS) throw new Error('Payload trop volumineux.');
+  const obj = JSON.parse(json);
+  validateSharePayload(obj);
+  return obj;
+}
+
+function validateSharePayload(o){
+  if (!o || typeof o !== 'object') throw new Error('Payload invalide.');
+  if (o.v !== SHARE_SCHEMA_VERSION) throw new Error('Version de partage non supportée.');
+  if (typeof o.name !== 'string' || o.name.length > 120) throw new Error('Nom invalide.');
+  if (!o.items || typeof o.items !== 'object') throw new Error('Items manquants.');
+  if (!o.items.build || !o.items.rotation || !o.items.scenario) throw new Error('Build/rotation/scénario manquants.');
+
+  const b = o.items.build;
+  if (typeof b.name !== 'string' || b.name.length > 120) throw new Error('Build.name invalide.');
+  if (!b.stats || typeof b.stats !== 'object') throw new Error('Build.stats invalide.');
+  const allowedStats = ['atk','def','crit_rate_pct','crit_dmg_pct','dmg_bonus_pct','def_pen_pct','dmg_taken_pct','element','hp'];
+  for (const k of Object.keys(b.stats)){
+    if (!allowedStats.includes(k)) delete b.stats[k];
+  }
+  for (const k of Object.keys(b.stats)){
+    const v = b.stats[k];
+    if (k === 'element'){
+      if (typeof v !== 'string' || v.length>20) b.stats[k]='neutral';
+      continue;
+    }
+    if (typeof v !== 'number' || !isFinite(v)) b.stats[k] = 0;
+  }
+
+  const r = o.items.rotation;
+  if (typeof r.name !== 'string' || r.name.length > 120) throw new Error('Rotation.name invalide.');
+  if (!['priority','timeline'].includes(r.type)) r.type = 'priority';
+  const arr = (r.type === 'timeline') ? (r.timeline||[]) : (r.actions||[]);
+  if (!Array.isArray(arr)) throw new Error('Rotation actions/timeline invalide.');
+  if (arr.length > 120) throw new Error('Rotation trop longue.');
+  for (const a of arr){
+    if (!a || typeof a !== 'object') throw new Error('Action invalide.');
+    if (typeof a.label !== 'string') a.label = (a.kind || 'Action');
+    if (a.label.length > 80) a.label = a.label.slice(0,80);
+    if (r.type === 'timeline') a.t = clamp(toNum(a.t,0), 0, 600);
+    a.kind = ['skill','ultimate','wait'].includes(a.kind) ? a.kind : 'skill';
+    a.mult = clamp(toNum(a.mult,1), 0, 50);
+    a.hits = Math.max(1, Math.min(200, Math.round(toNum(a.hits,1))));
+    a.cd = clamp(toNum(a.cd,0), 0, 120);
+    if (a.requiresOrbs != null) a.requiresOrbs = Math.max(0, Math.min(20, Math.round(toNum(a.requiresOrbs,0))));
+    a.burstEligible = !!a.burstEligible;
+  }
+
+  const s = o.items.scenario;
+  if (typeof s.name !== 'string' || s.name.length > 120) throw new Error('Scenario.name invalide.');
+  if (!s.enemy || typeof s.enemy !== 'object') s.enemy = {};
+  const e = s.enemy;
+  e.def = clamp(toNum(e.def,0), 0, 200000);
+  e.burst_resist = clamp(toNum(e.burst_resist,0), 0, 1);
+  e.dmg_reduction_pct = clamp(toNum(e.dmg_reduction_pct,0), 0, 95);
+  e.element = (typeof e.element === 'string' && e.element.length<=20) ? e.element : 'neutral';
+  e.hp = clamp(toNum(e.hp,0), 0, 1e12);
+
+  if (o.settings && typeof o.settings === 'object'){
+    for (const k of Object.keys(o.settings)){
+      if (!SHARE_ALLOWED_SETTINGS.includes(k)) delete o.settings[k];
+    }
+  } else {
+    o.settings = {};
+  }
+}
+
+function shareUrlFromEncoded(encoded){
+  const base = window.location.href.split('#')[0];
+  return base + '#share=' + encoded;
+}
+
+function buildDiscordMessage(payload, url){
+  const b = payload.items?.build?.name || 'Build';
+  const r = payload.items?.rotation?.name || 'Rotation';
+  const s = payload.items?.scenario?.name || 'Scénario';
+  const fp = payload.settings?.formula_profile ? `
+Modèle: \`${payload.settings.formula_profile}\`` : '';
+  let resLine = '';
+  if (payload.last_result && typeof payload.last_result.mean === 'number'){
+    resLine = `
+Résultat (DPS moyen): **${fmt(payload.last_result.mean)}**`;
+  }
+  return `**[7DSO Theorycraft] ${b}**
+Scenario: **${s}**
+Rotation: **${r}**${fp}${resLine}
+
+Lien: ${url}`;
+}
+
+function openShareModal(){
+  let payload;
+  try{
+    payload = buildSharePayload();
+  }catch(err){
+    openModal('Partager', `<div class='p'>Impossible de générer un setup partageable.</div><div class='mono'>${escapeHtml(String(err))}</div>`, [
+      {label:'OK', kind:'primary', onClick: closeModal}
+    ]);
+    return;
+  }
+
+  let encoded = '';
+  let url = '';
+  let warn = '';
+  try{
+    encoded = encodeSharePayload(payload);
+    url = shareUrlFromEncoded(encoded);
+    if (url.length > SHARE_SOFT_URL_MAX){
+      warn = `<div class='hint warn'>Lien long (${url.length} caractères). Si un navigateur refuse, utilise Export JSON.</div>`;
+    }
+  }catch(err){
+    warn = `<div class='hint warn'>${escapeHtml(String(err))}</div>`;
+  }
+
+  const discordMsg = url ? buildDiscordMessage(payload, url) : '';
+
+  const body = `
+    <div class='p'>Partage un setup complet (build + rotation + scénario + paramètres). Les autres pourront l'importer en ouvrant le lien.</div>
+    ${warn}
+    <div class='form'>
+      <label>Lien partage
+        <input id='shareLink' value='${escapeHtml(url)}' readonly/>
+      </label>
+      <label>Message Discord (copiable)
+        <textarea id='shareMsg' readonly>${escapeHtml(discordMsg)}</textarea>
+      </label>
+      <div class='hint tiny'>Astuce : lance une simulation avant de partager pour inclure le DPS moyen.</div>
+    </div>
+  `;
+
+  openModal('Partager', body, [
+    {label:'Copier le lien', kind:'primary', onClick: async () => {
+      const link = $("#shareLink")?.value || url;
+      if (!link){ showToast('Lien indisponible', 'warn'); return; }
+      const ok = await copyToClipboard(link);
+      showToast(ok ? 'Lien copié' : 'Copie impossible', ok ? 'good' : 'bad');
+    }},
+    {label:'Copier message Discord', kind:'ghost', onClick: async () => {
+      const msg = $("#shareMsg")?.value || discordMsg;
+      if (!msg){ showToast('Message indisponible', 'warn'); return; }
+      const ok = await copyToClipboard(msg);
+      showToast(ok ? 'Message copié' : 'Copie impossible', ok ? 'good' : 'bad');
+    }},
+    {label:'Exporter JSON', kind:'ghost', onClick: () => downloadJson('7dso_share_payload.json', payload)},
+    {label:'Fermer', kind:'ghost', onClick: closeModal},
+  ]);
+}
+
+function parseShareFromHash(){
+  const h = (window.location.hash || '').replace(/^#/, '');
+  if (!h) return null;
+  // allow multiple params in hash e.g. share=...&view=...
+  const params = new URLSearchParams(h.replace(/\?/g,''));
+  const encoded = params.get('share');
+  if (encoded) return encoded;
+  if (h.startsWith('share=')) return h.slice(6);
+  return null;
+}
+
+function clearShareFromUrl(){
+  const base = window.location.href.split('#')[0];
+  history.replaceState(null, '', base + '#');
+}
+
+function renderShareImportSummary(o){
+  const b = o.items?.build?.name || '—';
+  const r = o.items?.rotation?.name || '—';
+  const s = o.items?.scenario?.name || '—';
+  const db = o.db ? `${escapeHtml(o.db.label||'DB')} · ${(o.db.when||'—')}` : '—';
+  const fp = o.settings?.formula_profile || state.settings.formula_profile;
+  return `
+    <div class='p'><b>${escapeHtml(o.name||'Setup partagé')}</b></div>
+    <div class='kv'>
+      <div class='k'>Build</div><div class='v'>${escapeHtml(b)}</div>
+      <div class='k'>Rotation</div><div class='v'>${escapeHtml(r)}</div>
+      <div class='k'>Scénario</div><div class='v'>${escapeHtml(s)}</div>
+      <div class='k'>Modèle</div><div class='v'>${escapeHtml(fp||'—')}</div>
+      <div class='k'>DB</div><div class='v'>${db}</div>
+    </div>
+    <div class='hint'>Importer ajoutera ces éléments à ta liste locale (modifiable). Tu pourras ensuite simuler / comparer.</div>
+  `;
+}
+
+function importSharePayload(o){
+  validateSharePayload(o);
+
+  const b = deepCopy(o.items.build);
+  const r = deepCopy(o.items.rotation);
+  const s = deepCopy(o.items.scenario);
+
+  const newBuild = {
+    id: uid('b'),
+    name: (b.name || 'Build importé').slice(0,120),
+    stats: b.stats || {},
+    source: b.source || {character_id:null, weapon_id:null},
+    notes: b.notes || ''
+  };
+
+  const newRot = {
+    id: uid('r'),
+    name: (r.name || 'Rotation importée').slice(0,120),
+    type: r.type || 'priority',
+    burstPlan: r.burstPlan || {enabled:true,start:10,duration:7}
+  };
+  if (newRot.type === 'timeline'){
+    newRot.timeline = Array.isArray(r.timeline) ? r.timeline : [];
+    newRot.loop = !!r.loop;
+    newRot.period = r.period ?? 20;
+  } else {
+    newRot.actions = Array.isArray(r.actions) ? r.actions : [];
+  }
+
+  const newSc = {
+    id: uid('s'),
+    name: (s.name || 'Scénario importé').slice(0,120),
+    enemy: s.enemy || {def:0, burst_resist:0, dmg_reduction_pct:0, element:'neutral', hp:0}
+  };
+
+  // Apply allowed settings
+  if (o.settings){
+    for (const k of SHARE_ALLOWED_SETTINGS){
+      if (k in o.settings) state.settings[k] = o.settings[k];
+    }
+  }
+
+  state.builds.unshift(newBuild);
+  state.rotations.unshift(newRot);
+  state.scenarios.unshift(newSc);
+
+  selectedBuildId = newBuild.id;
+  selectedRotId = newRot.id;
+  selectedScId = newSc.id;
+
+  ensureIds();
+  saveState();
+  refreshAll();
+
+  // Select in simulate
+  $("#simBuild").value = newBuild.id;
+  $("#simRot").value = newRot.id;
+  $("#simSc").value = newSc.id;
+
+  // Apply sim defaults if present
+  if (o.sim){
+    $("#simDur").value = o.sim.duration ?? 30;
+    $("#simIters").value = o.sim.iters ?? 2000;
+    $("#simMode").value = o.sim.mode ?? 'expected';
+  }
+}
+
+function maybePromptShareImport(){
+  const encoded = parseShareFromHash();
+  if (!encoded) return;
+
+  // prevent loops in same tab
+  const key = '7dso_share_seen_' + encoded.slice(0, 16);
+  if (sessionStorage.getItem(key) === '1') return;
+
+  let payload;
+  try{
+    payload = decodeSharePayload(encoded);
+  }catch(err){
+    sessionStorage.setItem(key, '1');
+    openModal('Lien de partage invalide', `<div class='p'>Le lien ne peut pas être importé.</div><div class='mono'>${escapeHtml(String(err))}</div>`, [
+      {label:'OK', kind:'primary', onClick: () => { closeModal(); clearShareFromUrl(); }}
+    ]);
+    return;
+  }
+
+  sessionStorage.setItem(key, '1');
+  openModal('Importer un setup', renderShareImportSummary(payload), [
+    {label:'Annuler', kind:'ghost', onClick: () => { closeModal(); clearShareFromUrl(); }},
+    {label:'Importer', kind:'primary', onClick: () => {
+      try{
+        importSharePayload(payload);
+        closeModal();
+        clearShareFromUrl();
+        setView('simulate');
+        showToast('Setup importé', 'good');
+      }catch(err2){
+        openModal('Erreur import', `<div class='p'>Import impossible.</div><div class='mono'>${escapeHtml(String(err2))}</div>`, [
+          {label:'OK', kind:'primary', onClick: closeModal}
+        ]);
+      }
+    }}
+  ]);
+}
+
+function bindShare(){
+  $("#btnShare")?.addEventListener('click', openShareModal);
 }
 
 // ---------- Data helpers ----------
@@ -1692,6 +2120,17 @@ function runSim(){
   }
   $("#simMsg").textContent = "Simulation...";
   const res = runSimulation(build, rot, scen, duration, iters, mode);
+
+  // Keep a small last-result summary for sharing (Discord)
+  try{
+    state._lastSimSummary = {
+      at: new Date().toISOString(),
+      sim: { build_id: build.id, rot_id: rot.id, scen_id: scen.id, duration, iters, mode },
+      result: { mean: res.mean, p10: res.p10, p50: res.p50, p90: res.p90 }
+    };
+    saveState();
+  }catch(e){ console.warn(e); }
+
   $("#simOut").classList.remove("empty");
   $("#simOut").innerHTML = renderSimOutput(res, mode);
   lastTrace = res.trace;
@@ -1949,6 +2388,7 @@ function init(){
   bindTooltips();
   bindModal();
   bindTopButtons();
+  bindShare();
   bindExportImport();
   bindQuickstart();
   bindWizard();
@@ -1964,5 +2404,8 @@ function init(){
 
   refreshAll();
   setMode(state.settings.mode || "simple");
+
+  // Import share link if present (hash: #share=...)
+  try{ maybePromptShareImport(); }catch(e){ console.warn(e); }
 }
 init();
