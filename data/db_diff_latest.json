@@ -10,7 +10,26 @@
     "skills": []
   },
   "changed": {
-    "characters": [],
+    "characters": [
+      "ch_0e84efa613f7",
+      "ch_11d44ccb41c2",
+      "ch_12ab5fc4592a",
+      "ch_234eead55cec",
+      "ch_47c933d5dcec",
+      "ch_773fb2511a29",
+      "ch_81b424f107e9",
+      "ch_a4603db7cee9",
+      "ch_a7441a63593d",
+      "ch_aeeab13b5dea",
+      "ch_b8d215ef5eba",
+      "ch_bf334f71381a",
+      "ch_c044994bcf37",
+      "ch_c87a4c6ba0cb",
+      "ch_c91ce9376532",
+      "ch_d6d38d7265ff",
+      "ch_da7cd83187da",
+      "ch_f5f84e3499cc"
+    ],
     "weapons": []
   }
 }
