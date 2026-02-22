@@ -3,7 +3,7 @@
 // Données: localStorage + Import/Export (Discord-friendly).
 
 import { $, $$ } from "./core/dom.js";
-import { uid, clamp, pctToMul, toNum, deepCopy, escapeHtml, fmt, fmtPct, quantile } from "./core/utils.js";
+import { uid, clamp, pctToMul, toNum, deepCopy, escapeHtml, escapeAttr, fmt, fmtPct, quantile } from "./core/utils.js";
 import { readEmbeddedDefaults, readEmbeddedJson } from "./core/embedded.js";
 const STORAGE_KEY = "7ds_origin_theorycraft_guided_v9";
 
@@ -12,7 +12,10 @@ const KITS_PACKAGE = readEmbeddedJson("kits-json") || {schema_version:"0.0", cha
 
 let defaults = readEmbeddedDefaults() || {
   meta:{version:"guided-3.0.0", updated:"—"},
-  settings:{mode:"simple", mitigation_model:"def_over_def_plus_k", mitigation_k:1200, crit_cap:100, burst_bonus_pct:25, burst_mode:"auto", orb_gain_per_skill:2, initial_orbs:0, mc_seed:12345, hist_bins:24, verbose_trace:false},
+  settings:{mode:"simple", mitigation_model:"def_over_def_plus_k", mitigation_k:1200, crit_cap:100, burst_bonus_pct:25, burst_mode:"auto", orb_gain_per_skill:2, initial_orbs:0, mc_seed:12345, hist_bins:24, verbose_trace:false,
+    cast_time_skill:0.6, cast_time_ultimate:1.0, cast_time_normal:0.4, cast_time_tag:0.7, cast_time_wait:0.2,
+    initial_tag_gauge:0, tag_gauge_gain_per_hit:0, burst_gauge_threshold:1000, burst_duration_sec:7, combined_attack_triggers_burst:false
+  },
   limits:{confirmed_like:[], unknown:[], how_to_use:[]},
   builds:[], rotations:[], scenarios:[], db:{schema_version:"0.1", characters:[], weapons:[]}
 };
@@ -54,8 +57,21 @@ function loadState(){
     return deepCopy(defaults);
   }
 }
+function persistableState(){
+  // Do not persist session-only DB payloads (can exceed localStorage quota).
+  const st = deepCopy(state);
+  delete st._sessionDb;
+  delete st._sessionDbX;
+  return st;
+}
+
 function saveState(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(persistableState()));
+  }catch(e){
+    console.warn(e);
+    showToast("Stockage local saturé : certaines données ne peuvent pas être sauvegardées.", "warn");
+  }
 }
 
 let state = loadState();
@@ -73,6 +89,20 @@ if (state.settings.context_stacks == null) state.settings.context_stacks = 0;
 if (state.settings.context_debuff_count == null) state.settings.context_debuff_count = 0;
 if (state.settings.context_ally_count == null) state.settings.context_ally_count = 4;
 
+// Cast times (seconds)
+if (state.settings.cast_time_skill == null) state.settings.cast_time_skill = 0.6;
+if (state.settings.cast_time_ultimate == null) state.settings.cast_time_ultimate = 1.0;
+if (state.settings.cast_time_normal == null) state.settings.cast_time_normal = 0.4;
+if (state.settings.cast_time_tag == null) state.settings.cast_time_tag = 0.7;
+if (state.settings.cast_time_wait == null) state.settings.cast_time_wait = 0.2;
+
+// Burst gauge model
+if (state.settings.initial_tag_gauge == null) state.settings.initial_tag_gauge = 0;
+if (state.settings.tag_gauge_gain_per_hit == null) state.settings.tag_gauge_gain_per_hit = 0;
+if (state.settings.burst_gauge_threshold == null) state.settings.burst_gauge_threshold = 1000;
+if (state.settings.burst_duration_sec == null) state.settings.burst_duration_sec = 7;
+if (state.settings.combined_attack_triggers_burst == null) state.settings.combined_attack_triggers_burst = false;
+
 function getActiveDb(){
   if (state.settings.db_source === 'session' && state._sessionDb) return state._sessionDb;
   if (state.settings.db_source === 'imported') return state.db;
@@ -89,23 +119,64 @@ function getActiveDbLabel(){
 }
 
 function getKitCharacters(){
-  // Prefer DB characters if they already contain skills/potentials; else use embedded kits.
+  // Priority: DBX (normalized) → DB (legacy) → embedded kits.
+  const dbx = getActiveDbX();
   const db = getActiveDb();
-  const fromDb = (db?.characters || []).filter(c => Array.isArray(c.skills) || Array.isArray(c.potentials));
-  if (fromDb.length) return fromDb.map(c => ({
-    id: c.id || c.slug || c.name,
-    name: c.name || c.id || "Character",
-    element: c.element || c.elem || "neutral",
-    skills: Array.isArray(c.skills) ? c.skills : [],
-    potentials: Array.isArray(c.potentials) ? c.potentials : []
-  }));
-  return (KITS_PACKAGE.characters || []).map(c => deepCopy(c));
+
+  let chars = [];
+  if (dbx && dbx.modules && dbx.modules.characters){
+    chars = Object.values(dbx.modules.characters).map(c => ({
+      id: c.id,
+      name: c.name || c.id,
+      element: c.element || "neutral",
+      weapon_types: Array.isArray(c.weapon_types) ? c.weapon_types : [],
+      skills: [],
+      potentials: []
+    }));
+  } else if (db && Array.isArray(db.characters) && db.characters.length){
+    chars = db.characters.map(c => ({
+      id: c.id || c.slug || c.name,
+      name: c.name || c.id || "Character",
+      element: c.element || "neutral",
+      weapon_types: Array.isArray(c.weapon_types) ? c.weapon_types : [],
+      skills: Array.isArray(c.skills) ? c.skills : [],
+      potentials: Array.isArray(c.potentials) ? c.potentials : []
+    }));
+  }
+
+  // Embedded kits: placeholders + (potentiels)
+  const kitChars = (KITS_PACKAGE.characters || []).map(c => deepCopy(c));
+  for (const kc of kitChars){
+    if (Array.isArray(kc.skills)){
+      kc.skills = kc.skills.map(s => ({
+        ...s,
+        // normalize: multiplier is stored as percent (ex: 220)
+        multiplier: (s.multiplier != null) ? s.multiplier : (s.mult_pct != null ? s.mult_pct : null),
+        hits: (s.hits != null) ? s.hits : 1,
+        type: s.type || s.kind || "Skill",
+      }));
+    }
+  }
+
+  if (!chars.length){
+    kitChars.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+    return kitChars;
+  }
+
+  // Append kit-only characters (for examples/potentials), without overriding DB entries.
+  const ids = new Set(chars.map(c => String(c.id)));
+  for (const kc of kitChars){
+    if (!ids.has(String(kc.id))) chars.push(kc);
+  }
+
+  chars.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+  return chars;
 }
 
 function findKitCharById(id){
-  if (!id) return null;
-  return getKitCharacters().find(c => String(c.id) === String(id)) || null;
+  return getKitCharacters().find(c => String(c.id) === String(id));
 }
+
 
 function modelSignature(){
   const s = state.settings || {};
@@ -177,20 +248,10 @@ function applyPotentialsToBuild(build, ctx=null){
     // Condition (optional)
     if (!isConditionMet(p.condition, gctx)) continue;
 
-    // Parsed effects (preferred) – same handler as skill effects
+    // Parsed effects: convert to buffs (do NOT bake into base stats to avoid double-counting)
     if (Array.isArray(p.parsed_effects) && p.parsed_effects.length){
-      const cs = computedStatsForContext({stats: b.stats, buffs: b.buffs}, {kind:"skill"}, state.settings);
-      const cs2 = applyParsedEffectsToComputedStats(cs, p.parsed_effects, gctx);
-      // write back only supported stat keys that are safe to merge
-      // (minimal: atk, crit_rate, crit_dmg, dmg_bonus handled via buffs)
-      b.stats.atk = cs2.atk;
-      b.stats.crit_rate_pct = cs2.crit_rate_pct;
-      b.stats.crit_dmg_pct = cs2.crit_dmg_pct;
-      // dmg_bonus_pct is a bucket -> store as buff
-      const deltaBonus = (cs2.dmg_bonus_pct || 0) - (cs.dmg_bonus_pct || 0);
-      if (Math.abs(deltaBonus) > 1e-9){
-        b.buffs.push({stat:"dmg", value: deltaBonus, type:"add", scope:"all", enabled:true, source:"potential", id:"potfx_"+String(p.id)});
-      }
+      const buffs = parsedEffectsToBuffs(p.parsed_effects, gctx, {scope:"all", source:"potential", idPrefix:"potfx_"+String(p.id)});
+      for (const bf of buffs) b.buffs.push(bf);
       continue;
     }
 
@@ -198,7 +259,13 @@ function applyPotentialsToBuild(build, ctx=null){
     const t = p.type || "stat_add";
     if (t === "stat_add"){
       const k = p.stat;
-      b.stats[k] = toNum(b.stats[k], 0) + toNum(p.value, 0);
+      const v = toNum(p.value, 0);
+      // Some stats are modeled as buff buckets (ex: atk_pct) rather than raw base stats.
+      if (k === "atk_pct" || k === "dmg_pct" || k === "dmg" || k === "skill_dmg_pct" || k === "ult_dmg_pct" || k === "def_pen_pct" || k === "res_pen_pct" || k === "pierce_pct"){
+        b.buffs.push({stat:k, value:v, type:"add", scope:"all", enabled:true, source:"potential", id:"pot_"+String(p.id)});
+      } else {
+        b.stats[k] = toNum(b.stats[k], 0) + v;
+      }
     }else if (t === "buff"){
       // Expect same schema as build.buffs[]
       b.buffs.push({
@@ -573,7 +640,9 @@ const SHARE_SOFT_URL_MAX = 9000;
 const SHARE_ALLOWED_SETTINGS = [
   'formula_profile','mitigation_model','mitigation_k','crit_cap','burst_bonus_pct',
   'burst_mode','orb_gain_per_skill','initial_orbs','mc_seed','hist_bins',
-  'pierce_cap','resist_cap','elem_adv_bonus_pct','elem_disadv_penalty_pct'
+  'pierce_cap','resist_cap','elem_adv_bonus_pct','elem_disadv_penalty_pct',
+  'cast_time_skill','cast_time_ultimate','cast_time_normal','cast_time_tag','cast_time_wait',
+  'initial_tag_gauge','tag_gauge_gain_per_hit','burst_gauge_threshold','burst_duration_sec','combined_attack_triggers_burst'
 ];
 
 function base64UrlEncode(str){
@@ -716,6 +785,8 @@ function validateSharePayload(o){
   const r = o.items.rotation;
   if (typeof r.name !== 'string' || r.name.length > 120) throw new Error('Rotation.name invalide.');
   if (!['priority','timeline'].includes(r.type)) r.type = 'priority';
+  if (r.character_id != null) r.character_id = String(r.character_id).slice(0,80);
+  if (r.weapon_type != null) r.weapon_type = String(r.weapon_type).slice(0,40);
   const arr = (r.type === 'timeline') ? (r.timeline||[]) : (r.actions||[]);
   if (!Array.isArray(arr)) throw new Error('Rotation actions/timeline invalide.');
   if (arr.length > 120) throw new Error('Rotation trop longue.');
@@ -724,10 +795,12 @@ function validateSharePayload(o){
     if (typeof a.label !== 'string') a.label = (a.kind || 'Action');
     if (a.label.length > 80) a.label = a.label.slice(0,80);
     if (r.type === 'timeline') a.t = clamp(toNum(a.t,0), 0, 600);
-    a.kind = ['skill','ultimate','wait'].includes(a.kind) ? a.kind : 'skill';
+    a.kind = ['skill','ultimate','wait','normal','tag'].includes(a.kind) ? a.kind : 'skill';
     a.mult = clamp(toNum(a.mult,1), 0, 50);
     a.hits = Math.max(1, Math.min(200, Math.round(toNum(a.hits,1))));
     a.cd = clamp(toNum(a.cd,0), 0, 120);
+    if (a.cast_time != null) a.cast_time = clamp(toNum(a.cast_time,0), 0, 10);
+    if (a.skill_index != null) a.skill_index = Math.max(0, Math.min(999, Math.round(toNum(a.skill_index,0))));
     if (a.requiresOrbs != null) a.requiresOrbs = Math.max(0, Math.min(20, Math.round(toNum(a.requiresOrbs,0))));
     a.burstEligible = !!a.burstEligible;
   }
@@ -1389,12 +1462,119 @@ function refreshRotationCharacterSelect(){
   sel.innerHTML = '<option value="">— Aucun —</option>' + chars.map(c => `<option value="${escapeHtml(String(c.id))}">${escapeHtml(c.name)}</option>`).join("");
   const r = currentRot();
   if (r && r.character_id) sel.value = String(r.character_id);
+  refreshRotationWeaponTypeSelect();
 }
 
-function getSkillsForCharacter(charId){
-  const ch = findKitCharById(charId);
-  return (ch && Array.isArray(ch.skills)) ? ch.skills : [];
+function refreshRotationWeaponTypeSelect(){
+  const sel = $("#rotWeaponType");
+  if (!sel) return;
+  const row = $("#rotWeaponTypeRow");
+  const r = currentRot();
+  const charId = ($("#rotChar")?.value) || (r ? r.character_id : "") || "";
+  const ch = charId ? findKitCharById(charId) : null;
+  const wts = (ch && Array.isArray(ch.weapon_types)) ? ch.weapon_types : [];
+  sel.innerHTML = '<option value="">— Auto —</option>' + wts.map(w => `<option value="${escapeHtml(String(w))}">${escapeHtml(String(w))}</option>`).join("");
+  if (row){
+    row.style.display = wts.length ? "flex" : "none";
+  }
+  if (r && r.weapon_type) sel.value = String(r.weapon_type);
+  else sel.value = "";
 }
+
+
+function parseOrdinalHitMultipliersPct(text){
+  const byHit = new Map();
+  const re = /(\d+)(?:st|nd|rd|th)\s*hit\s*:\s*([0-9]+(?:\.[0-9]+)?)%/gi;
+  let m;
+  const s = String(text || "");
+  while ((m = re.exec(s)) !== null){
+    const hit = Number(m[1]);
+    const pct = Number(m[2]);
+    if (Number.isFinite(hit) && Number.isFinite(pct)) byHit.set(hit, pct);
+  }
+  const hits = [...byHit.keys()].sort((a,b)=>a-b);
+  return hits.map(h => byHit.get(h));
+}
+
+function normalizeDbxSkill(sk){
+  const desc = sk?.description || "";
+  const contexts = Array.isArray(sk?.multipliers) ? sk.multipliers.map(x => x?.context || "").join(" ") : "";
+
+  // Prefer best-effort ordinal parsing when it yields more hits than structured data.
+  const ordHitPcts = parseOrdinalHitMultipliersPct(desc + " " + contexts);
+
+  let structHitPcts = [];
+  if (Array.isArray(sk?.hits) && sk.hits.length){
+    const byHit = new Map();
+    const seq = [];
+    for (const h of sk.hits){
+      const pct = toNum(h?.multiplier_pct ?? h?.value_pct ?? h?.pct, NaN);
+      if (!Number.isFinite(pct)) continue;
+      const hn = toNum(h?.hit, NaN);
+      if (Number.isFinite(hn)) byHit.set(hn, pct);
+      else seq.push(pct);
+    }
+    if (byHit.size){
+      const keys = [...byHit.keys()].sort((a,b)=>a-b);
+      structHitPcts = keys.map(k => byHit.get(k));
+    } else {
+      structHitPcts = seq;
+    }
+  }
+
+  const hitPcts = (ordHitPcts.length > structHitPcts.length) ? ordHitPcts : structHitPcts;
+
+  let primaryMultPct = null;
+  if (hitPcts.length){
+    primaryMultPct = hitPcts.reduce((a,b)=>a+b,0);
+  } else if (Array.isArray(sk?.multipliers) && sk.multipliers.length){
+    primaryMultPct = toNum(sk.multipliers[0].value_pct, null);
+  } else {
+    const m = /([0-9]+(?:\.[0-9]+)?)%/.exec(desc);
+    if (m) primaryMultPct = Number(m[1]);
+  }
+
+  return {
+    id: sk?.id || null,
+    name: sk?.name || sk?.id || "Skill",
+    type: sk?.type || "Skill",
+    key: sk?.key || null,
+    cooldown_sec: sk?.cooldown_sec ?? null,
+    description_raw: desc,
+    multiplier: primaryMultPct, // percent
+    hits: hitPcts.length ? hitPcts.length : (Array.isArray(sk?.hits) && sk.hits.length ? sk.hits.length : 1),
+    hit_multipliers_pct: hitPcts.length ? hitPcts : null,
+    parsed_effects: Array.isArray(sk?.parsed_effects) ? sk.parsed_effects : []
+  };
+}
+
+function getSkillsForCharacter(charId, weaponType=null){
+  if (!charId) return [];
+  const dbx = getActiveDbX();
+  if (dbx && dbx.modules && dbx.modules.skills){
+    let arr = Object.values(dbx.modules.skills).filter(s => String(s.character_id) === String(charId));
+    if (weaponType) arr = arr.filter(s => String(s.weapon_type) === String(weaponType));
+    arr.sort((a,b) => (toNum(a.slot, 999) - toNum(b.slot, 999)) || String(a.name||'').localeCompare(String(b.name||'')) || String(a.id||'').localeCompare(String(b.id||'')));
+    return arr.map(normalizeDbxSkill);
+  }
+  const ch = findKitCharById(charId);
+  if (ch && Array.isArray(ch.skills)){
+    return ch.skills.map(s => ({
+      id: s.id || null,
+      name: s.name || s.id || "Skill",
+      type: s.type || s.kind || "Skill",
+      key: s.key || null,
+      cooldown_sec: s.cooldown_sec ?? s.cd_sec ?? null,
+      description_raw: s.description || "",
+      multiplier: (s.multiplier != null) ? s.multiplier : (s.mult_pct != null ? s.mult_pct : null),
+      hits: Math.max(1, Math.round(toNum(s.hits, 1))),
+      hit_multipliers_pct: Array.isArray(s.hit_multipliers_pct) ? s.hit_multipliers_pct : (Array.isArray(s.hitMultipliersPct) ? s.hitMultipliersPct : null),
+      parsed_effects: Array.isArray(s.parsed_effects) ? s.parsed_effects : []
+    }));
+  }
+  return [];
+}
+
 
 function rotSummary(r){
   if (r.type === "priority") return `Priority · ${(r.actions||[]).length} actions`;
@@ -1416,6 +1596,8 @@ function loadRotToForm(r){
   $("#rotType").value = r.type || "priority";
   refreshRotationCharacterSelect();
   $("#rotChar") && ($("#rotChar").value = r.character_id ? String(r.character_id) : "");
+  refreshRotationWeaponTypeSelect();
+  $("#rotWeaponType") && ($("#rotWeaponType").value = r.weapon_type ? String(r.weapon_type) : "");
   renderRotActions(r);
 }
 function currentRot(){ return selectedRotId ? findById(state.rotations, selectedRotId) : null; }
@@ -1451,14 +1633,14 @@ function editAction(rot, idx){
   const arr = isTimeline ? (rot.timeline || []) : (rot.actions || []);
   const a = arr[idx];
   const charId = rot.character_id || "";
-  const skills = charId ? getSkillsForCharacter(charId) : [];
+  const skills = charId ? getSkillsForCharacter(charId, rot.weapon_type || null) : [];
   const skillOptions = skills.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ('Skill '+(i+1)))}</option>`).join("");
   const skillSelectHtml = charId
     ? `<label class="withHelp">Skill (DB) <span class="help" data-tip="Sélectionne une skill du personnage (auto mult/hits/type + effets).">?</span><select id="eaSkill"><option value="">— Manuel —</option>${skillOptions}</select></label>`
     : `<div class="hint tiny">Définis un personnage sur la rotation pour activer le Skill Picker.</div>`;
   const body = `
     <div class="form">
-      <label>Label <input id="eaLabel" value="${escapeHtml(a.label || "")}"/></label>
+      <label>Label <input id="eaLabel" value="${escapeAttr(a.label || "")}"/></label>
       ${skillSelectHtml}
       <div id="eaSkillDebug" class="hint tiny" style="margin-top:-6px"></div>
       ${isTimeline ? `<label>Temps (s) <input id="eaT" type="number" step="0.1" value="${a.t ?? 0}"/></label>` : ``}
@@ -1467,6 +1649,7 @@ function editAction(rot, idx){
         <label>Hits <input id="eaHits" type="number" step="1" min="1" value="${a.hits ?? 1}"/></label>
         <label>CD (s) <input id="eaCd" type="number" step="0.1" min="0" value="${a.cd ?? 0}"/></label>
       </div>
+      <label>Cast time (s) <input id="eaCast" type="number" step="0.05" min="0" value="${a.cast_time ?? ""}"/></label>
       <div class="grid3">
         <label>Orbes requis <input id="eaOrbs" type="number" step="1" min="0" value="${a.requiresOrbs ?? 0}"/></label>
         <label>Burst éligible
@@ -1480,6 +1663,8 @@ function editAction(rot, idx){
             <option value="skill" ${a.kind==="skill"?"selected":""}>Skill</option>
             <option value="ultimate" ${a.kind==="ultimate"?"selected":""}>Ultimate</option>
             <option value="wait" ${a.kind==="wait"?"selected":""}>Wait</option>
+            <option value="normal" ${a.kind==="normal"?"selected":""}>Normal</option>
+            <option value="tag" ${a.kind==="tag"?"selected":""}>Tag</option>
           </select>
         </label>
       </div>
@@ -1498,6 +1683,11 @@ function editAction(rot, idx){
       a.mult = toNum($("#eaMult").value, a.mult ?? 1);
       a.hits = Math.max(1, Math.round(toNum($("#eaHits").value, a.hits ?? 1)));
       a.cd = Math.max(0, toNum($("#eaCd").value, a.cd ?? 0));
+      {
+        const cv = $("#eaCast") ? $("#eaCast").value : "";
+        const ct = toNum(cv, NaN);
+        if (Number.isFinite(ct) && ct > 0) a.cast_time = ct; else delete a.cast_time;
+      }
       const orbs = Math.max(0, Math.round(toNum($("#eaOrbs").value, a.requiresOrbs ?? 0)));
       if (orbs > 0) a.requiresOrbs = orbs; else delete a.requiresOrbs;
       a.burstEligible = ($("#eaBurst").value === "1");
@@ -1511,10 +1701,22 @@ function editAction(rot, idx){
         if (sk){
           const m = toNum(sk.multiplier, null);
           if (m !== null) a.mult = m/100;
-          a.hits = Math.max(1, Math.round(toNum(sk.hits, a.hits)));
+          if (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length){
+            a.hits = Math.max(1, sk.hit_multipliers_pct.length);
+          } else {
+            a.hits = Math.max(1, Math.round(toNum(sk.hits, a.hits)));
+          }
           const t = String(sk.type||"").toLowerCase();
-          a.kind = t.includes("ult") ? "ultimate" : "skill";
+          if (t.includes("ult")) a.kind = "ultimate";
+          else if (t.includes("tag")) a.kind = "tag";
+          else if (t.includes("normal")) a.kind = "normal";
+          else a.kind = "skill";
           if (!a.label) a.label = sk.name || a.label;
+          // If CD is empty/0, prefer DB cooldown
+          if (!(Number.isFinite(toNum(a.cd, NaN)) && a.cd > 0)){
+            const skcd = toNum(sk.cooldown_sec, NaN);
+            if (Number.isFinite(skcd) && skcd > 0) a.cd = skcd;
+          }
           // Store parsed effects snapshot on the action (optional debug)
           if (Array.isArray(sk.parsed_effects)) a.skill_effects = deepCopy(sk.parsed_effects);
           if (sk.confidence_score != null) a.skill_confidence = sk.confidence_score;
@@ -1639,6 +1841,16 @@ function bindRotations(){
     if (!r) return;
     const v = $("#rotChar").value;
     if (v) r.character_id = v; else delete r.character_id;
+    delete r.weapon_type;
+    refreshRotationWeaponTypeSelect();
+    saveRotDraft(r);
+  });
+
+  $("#rotWeaponType")?.addEventListener("change", () => {
+    const r = currentRot();
+    if (!r) return;
+    const v = ($("#rotWeaponType").value || "").trim();
+    if (v) r.weapon_type = v; else delete r.weapon_type;
     saveRotDraft(r);
   });
 
@@ -1664,7 +1876,7 @@ function bindRotations(){
     if (r.type === newType) return;
     if (newType === "priority"){
       r.type = "priority";
-      r.actions = (r.timeline || []).map(ev => ({kind: ev.kind, label: ev.label, mult: ev.mult, hits: ev.hits, cd: ev.cd, requiresOrbs: ev.requiresOrbs, burstEligible: ev.burstEligible}));
+      r.actions = (r.timeline || []).map(ev => ({kind: ev.kind, label: ev.label, mult: ev.mult, hits: ev.hits, cd: ev.cd, cast_time: ev.cast_time, skill_index: ev.skill_index, requiresOrbs: ev.requiresOrbs, burstEligible: ev.burstEligible}));
       delete r.timeline;
     } else {
       r.type = "timeline";
@@ -1681,6 +1893,7 @@ function bindRotations(){
     if (!name){ $("#rotMsg").textContent = "Donne un nom à la rotation."; return; }
     const type = $("#rotType").value || "priority";
     const character_id = ($("#rotChar")?.value || "").trim();
+    const weapon_type = ($("#rotWeaponType")?.value || "").trim();
 
     if (selectedRotId){
       const r = currentRot();
@@ -1688,11 +1901,14 @@ function bindRotations(){
       r.name = name;
       r.type = type;
       if (character_id) r.character_id = character_id; else delete r.character_id;
+      if (weapon_type) r.weapon_type = weapon_type; else delete r.weapon_type;
       if (type === "priority" && !Array.isArray(r.actions)) r.actions = [];
       if (type === "timeline" && !Array.isArray(r.timeline)) r.timeline = [];
       $("#rotMsg").textContent = "Rotation modifiée.";
     } else {
       const r = {id: uid("r"), name, type, burstPlan:{enabled:true,start:10,duration:7}};
+      if (character_id) r.character_id = character_id;
+      if (weapon_type) r.weapon_type = weapon_type;
       if (type === "priority") r.actions = [];
       else { r.timeline = []; r.loop = true; r.period = 20.0; }
       state.rotations.unshift(r);
@@ -2118,7 +2334,7 @@ function refreshWeightsSelectors(){
 function refreshCalSkillPickers(){
   // Single calibration
   const b = findById(state.builds, $("#calBuild")?.value);
-  const baseChar = b?.character_id || "";
+  const baseChar = b?.character_id || b?.source?.character_id || "";
   const calChar = $("#calChar");
   const calSkill = $("#calSkill");
   if (calChar){
@@ -2128,13 +2344,14 @@ function refreshCalSkillPickers(){
   }
   const chosenChar = (calChar && calChar.value) ? calChar.value : baseChar;
   if (calSkill){
-    const skills = getSkillsForCharacter(chosenChar);
+    const wt = getWeaponTypeForContext(b, null, chosenChar);
+    const skills = getSkillsForCharacter(chosenChar, wt);
     calSkill.innerHTML = '<option value="">— Aucun —</option>' + skills.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ("Skill "+(i+1)))}</option>`).join("");
   }
 
   // Multi-case add
   const b2 = findById(state.builds, $("#cal2Build")?.value);
-  const baseChar2 = b2?.character_id || "";
+  const baseChar2 = b2?.character_id || b2?.source?.character_id || "";
   const cal2Char = $("#cal2Char");
   const cal2Skill = $("#cal2Skill");
   if (cal2Char){
@@ -2143,7 +2360,8 @@ function refreshCalSkillPickers(){
   }
   const chosenChar2 = (cal2Char && cal2Char.value) ? cal2Char.value : baseChar2;
   if (cal2Skill){
-    const skills2 = getSkillsForCharacter(chosenChar2);
+    const wt2 = getWeaponTypeForContext(b2, null, chosenChar2);
+    const skills2 = getSkillsForCharacter(chosenChar2, wt2);
     cal2Skill.innerHTML = '<option value="">— Aucun —</option>' + skills2.map((s,i)=>`<option value="${i}">${escapeHtml(s.name || ("Skill "+(i+1)))}</option>`).join("");
   }
 }
@@ -2186,6 +2404,16 @@ function refreshSettingsUI(){
   $("#setCtxStacks") && ($("#setCtxStacks").value = state.settings.context_stacks);
   $("#setCtxDebuffCount") && ($("#setCtxDebuffCount").value = state.settings.context_debuff_count);
   $("#setCtxAllyCount") && ($("#setCtxAllyCount").value = state.settings.context_ally_count);
+  $("#setCastSkill") && ($("#setCastSkill").value = state.settings.cast_time_skill ?? 0.6);
+  $("#setCastUlt") && ($("#setCastUlt").value = state.settings.cast_time_ultimate ?? 1.0);
+  $("#setCastNormal") && ($("#setCastNormal").value = state.settings.cast_time_normal ?? 0.4);
+  $("#setCastTag") && ($("#setCastTag").value = state.settings.cast_time_tag ?? 0.7);
+  $("#setCastWait") && ($("#setCastWait").value = state.settings.cast_time_wait ?? 0.2);
+  $("#setInitGauge") && ($("#setInitGauge").value = state.settings.initial_tag_gauge ?? 0);
+  $("#setGaugeGain") && ($("#setGaugeGain").value = state.settings.tag_gauge_gain_per_hit ?? 0);
+  $("#setGaugeThr") && ($("#setGaugeThr").value = state.settings.burst_gauge_threshold ?? 1000);
+  $("#setBurstDur") && ($("#setBurstDur").value = state.settings.burst_duration_sec ?? 7);
+  $("#setCombinedTriggers") && ($("#setCombinedTriggers").value = state.settings.combined_attack_triggers_burst ? "1" : "0");
 }
 function bindSettings(){
   // Profiles
@@ -2228,6 +2456,16 @@ function bindSettings(){
     state.settings.burst_bonus_pct = toNum($("#setBurstBonus").value, 25);
     state.settings.burst_mode = $("#setBurstOn").value;
     state.settings.orb_gain_per_skill = Math.max(0, Math.round(toNum($("#setOrbGain").value, 2)));
+    state.settings.cast_time_skill = toNum($("#setCastSkill")?.value, 0.6);
+    state.settings.cast_time_ultimate = toNum($("#setCastUlt")?.value, 1.0);
+    state.settings.cast_time_normal = toNum($("#setCastNormal")?.value, 0.4);
+    state.settings.cast_time_tag = toNum($("#setCastTag")?.value, 0.7);
+    state.settings.cast_time_wait = toNum($("#setCastWait")?.value, 0.2);
+    state.settings.initial_tag_gauge = Math.max(0, toNum($("#setInitGauge")?.value, 0));
+    state.settings.tag_gauge_gain_per_hit = Math.max(0, toNum($("#setGaugeGain")?.value, 0));
+    state.settings.burst_gauge_threshold = Math.max(1, toNum($("#setGaugeThr")?.value, 1000));
+    state.settings.burst_duration_sec = Math.max(0, toNum($("#setBurstDur")?.value, 7));
+    state.settings.combined_attack_triggers_burst = ($("#setCombinedTriggers")?.value === "1");
     state.settings.mc_seed = Math.round(toNum($("#setSeed").value, 12345));
     state.settings.hist_bins = clamp(Math.round(toNum($("#setBins").value, 24)), 5, 60);
 
@@ -2328,9 +2566,15 @@ function aggregateBuffs(build, ctx){
     if (!b || typeof b !== "object") continue;
     if (b.enabled === false) continue;
     const scope = b.scope || "all";
+    const kind = ctx?.kind || "skill";
     if (scope !== "all"){
-      if (ctx?.kind === "skill" && scope !== "skill") continue;
-      if (ctx?.kind === "ultimate" && scope !== "ultimate") continue;
+      if (scope === "skill"){
+        if (!(kind === "skill" || kind === "normal" || kind === "tag")) continue;
+      } else if (scope === "ultimate"){
+        if (kind !== "ultimate") continue;
+      } else {
+        continue;
+      }
     }
     const stat = b.stat;
     const val = toNum(b.value, 0);
@@ -2476,35 +2720,138 @@ function applyParsedEffectsToComputedStats(cs, effects, ctx){
   return out;
 }
 
-function resolveSkillForAction(build, rot, action){
-  const charId = build?.character_id || rot?.character_id || null;
-  if (!charId) return null;
+
+function parsedEffectsToBuffs(effects, ctx, opts={}){
+  const out = [];
+  const scope = opts.scope || "all";
+  const source = opts.source || "effects";
+  const idPrefix = opts.idPrefix || "fx";
+  const eff = Array.isArray(effects) ? effects : [];
+  let i = 0;
+  for (const e of eff){
+    if (!e || !e.type) continue;
+    const v = toNum(e.value, 0);
+    const id = `${idPrefix}_${i++}`;
+
+    // Condition handling for effect types that encode conditions
+    if (e.type === "bonus_if_debuffed" && !(ctx?.enemyDebuffed)) continue;
+    if (e.type === "bonus_if_hp_below"){
+      const thr = toNum(e.threshold, 0);
+      if (toNum(ctx?.hpPct, 100) > thr) continue;
+    }
+    if (e.type === "bonus_if_ally_count_at_least"){
+      const thr = Math.max(0, Math.round(toNum(e.threshold, 0)));
+      if (Math.max(0, Math.round(toNum(ctx?.allyCount, 0))) < thr) continue;
+    }
+
+    // Stack / count scaling
+    let vv = v;
+    if (e.type === "bonus_per_stack"){
+      vv = v * Math.max(0, Math.round(toNum(ctx?.stacks, 0)));
+    }
+    if (e.type === "bonus_per_debuff"){
+      vv = v * Math.max(0, Math.round(toNum(ctx?.debuffCount, 0)));
+    }
+
+    switch (e.type){
+      case "atk_pct":
+        out.push({stat:"atk_pct", value: vv, type:"add", scope, enabled:true, source, id});
+        break;
+      case "crit_rate_pct":
+        out.push({stat:"crit_rate_pct", value: vv, type:"add", scope, enabled:true, source, id});
+        break;
+      case "crit_dmg_bonus":
+        out.push({stat:"crit_dmg_pct", value: vv, type:"add", scope, enabled:true, source, id});
+        break;
+      case "ignore_def_pct":
+        out.push({stat:"def_pen_pct", value: vv, type:"add", scope, enabled:true, source, id});
+        break;
+      case "bonus_if_debuffed":
+      case "bonus_if_hp_below":
+      case "bonus_per_stack":
+      case "bonus_per_debuff":
+      case "bonus_if_ally_count_at_least":
+        out.push({stat:"dmg", value: vv, type:"add", scope, enabled:true, source, id});
+        break;
+      default:
+        // Unknown effect: ignore (keeps engine deterministic)
+        break;
+    }
+  }
+  return out;
+}
+
+
+
+function weaponTypeFromWeaponId(weaponId){
+  if (!weaponId) return null;
+  const dbx = getActiveDbX();
+  if (dbx && dbx.modules && dbx.modules.weapons && dbx.modules.weapons[weaponId]){
+    return dbx.modules.weapons[weaponId].weapon_type || null;
+  }
+  const db = getActiveDb();
+  const w = (db && Array.isArray(db.weapons)) ? db.weapons.find(x => String(x.id) === String(weaponId)) : null;
+  return w?.weapon_type || null;
+}
+
+function getWeaponTypeForContext(build, rot, charId){
+  const rt = (rot && rot.weapon_type) ? String(rot.weapon_type) : "";
+  if (rt) return rt;
+  const bt = (build && build.weapon_type) ? String(build.weapon_type) : "";
+  if (bt) return bt;
+  const wid = build?.source?.weapon_id || build?.source_weapon_id || build?.weapon_id || null;
+  const wt = weaponTypeFromWeaponId(wid);
+  if (wt) return wt;
   const ch = findKitCharById(charId);
-  if (!ch || !Array.isArray(ch.skills)) return null;
+  return (ch && Array.isArray(ch.weapon_types) && ch.weapon_types.length) ? ch.weapon_types[0] : null;
+}
+
+function resolveSkillForAction(build, rot, action){
+  const charId = rot?.character_id || build?.character_id || build?.source?.character_id || null;
+  if (!charId) return null;
+  const wt = getWeaponTypeForContext(build, rot, charId);
+  const skills = getSkillsForCharacter(charId, wt);
   const si = action?.skill_index;
   if (si === undefined || si === null) return null;
-  return ch.skills[si] || null;
+  return skills[si] || null;
 }
+
+
 
 function actionCtxFromAction(build, rot, action, enemy, settings){
   const skill = resolveSkillForAction(build, rot, action);
   let kind = action.kind || "skill";
   let mult = toNum(action.mult, 0);
   let hits = Math.max(1, Math.round(toNum(action.hits, 1)));
+  let hitMultipliers = null;
   let effects = [];
+
   if (skill){
     const m = toNum(skill.multiplier, null);
     if (m !== null) mult = m/100;
-    hits = Math.max(1, Math.round(toNum(skill.hits, hits)));
+
+    if (Array.isArray(skill.hit_multipliers_pct) && skill.hit_multipliers_pct.length){
+      hitMultipliers = skill.hit_multipliers_pct.map(x => toNum(x, 0) / 100);
+      hits = Math.max(1, hitMultipliers.length);
+    } else {
+      hits = Math.max(1, Math.round(toNum(skill.hits, hits)));
+    }
+
     const t = String(skill.type || "").toLowerCase();
     if (t.includes("ult")) kind = "ultimate";
+    else if (t.includes("tag")) kind = "tag";
+    else if (t.includes("normal")) kind = "normal";
     else if (t.includes("passive")) kind = "passive";
     else kind = "skill";
+
     effects = Array.isArray(skill.parsed_effects) ? skill.parsed_effects : [];
   }
+
   return {
     kind, mult, hits,
+    hitMultipliers,
     effects,
+    resolvedSkill: skill || null,
     enemyDebuffed: !!(enemy?.is_debuffed || settings?.enemy_debuffed || settings?.context_enemy_debuffed || false),
     hpPct: toNum(settings?.context_hp_pct, 100),
     stacks: toNum(settings?.context_stacks, 0),
@@ -2512,6 +2859,7 @@ function actionCtxFromAction(build, rot, action, enemy, settings){
     allyCount: toNum(settings?.context_ally_count, 4),
   };
 }
+
 
 function singleHitDamage(build, enemy, settings, ctx, mode, rng, overrideK=null){
   let cs = computedStatsForContext(build, ctx, settings);
@@ -2587,19 +2935,43 @@ function singleHitDamage(build, enemy, settings, ctx, mode, rng, overrideK=null)
 }
 
 
+
 function actionDamage(build, enemy, settings, ctx, mode, rng, overrideK=null){
+  const hitMults = (Array.isArray(ctx?.hitMultipliers) && ctx.hitMultipliers.length) ? ctx.hitMultipliers : null;
+
+  const one = (mult, m) => {
+    const c2 = hitMults ? {...ctx, mult, hits:1, hitMultipliers:null} : ctx;
+    return singleHitDamage(build, enemy, settings, c2, m, rng, overrideK);
+  };
+
+  if (mode === "expected"){
+    if (hitMults){
+      let total = 0;
+      for (const hm of hitMults) total += one(hm, "expected");
+      return total;
+    }
+    const hits = Math.max(1, Math.round(ctx?.hits || 1));
+    return one(ctx?.mult, "expected") * hits;
+  }
+
+  // Monte-Carlo: each hit can crit independently
+  if (hitMults){
+    let total = 0;
+    for (const hm of hitMults){
+      const c2 = {...ctx, mult: hm, hits:1, hitMultipliers:null};
+      total += singleHitDamage(build, enemy, settings, c2, "mc", rng, overrideK);
+    }
+    return total;
+  }
+
   const hits = Math.max(1, Math.round(ctx?.hits || 1));
   let total = 0;
-  if (mode === "expected"){
-    // Expected: per-hit identical expectation
-    total = singleHitDamage(build, enemy, settings, ctx, "expected", rng, overrideK) * hits;
-  } else {
-    for (let i=0;i<hits;i++){
-      total += singleHitDamage(build, enemy, settings, ctx, "mc", rng, overrideK);
-    }
+  for (let i=0;i<hits;i++){
+    total += singleHitDamage(build, enemy, settings, ctx, "mc", rng, overrideK);
   }
   return total;
 }
+
 
 function baseHitDamage(build, enemy, settings, overrideK=null){
   // Legacy helper (for older parts of the UI): one hit, mult=1
@@ -2622,54 +2994,144 @@ function makeRng(seed){
   };
 }
 
+
+function cooldownKeyForAction(a){
+  const base = a?.label || a?.kind || "skill";
+  if (a && a.skill_index !== undefined && a.skill_index !== null) return `${base}#${a.skill_index}`;
+  return base;
+}
+
+function countHitsFromCtx(ctx){
+  const hm = (Array.isArray(ctx?.hitMultipliers) && ctx.hitMultipliers.length) ? ctx.hitMultipliers.length : null;
+  return hm ? hm : Math.max(1, Math.round(ctx?.hits || 1));
+}
+
+function effectiveCooldownSec(a, ctx){
+  const cd = toNum(a?.cd, NaN);
+  if (Number.isFinite(cd) && cd > 0) return cd;
+  const skCd = toNum(ctx?.resolvedSkill?.cooldown_sec, NaN);
+  if (Number.isFinite(skCd) && skCd > 0) return skCd;
+  return 0;
+}
+
+function castTimeSec(a, ctx, settings){
+  const v = toNum(a?.cast_time, NaN);
+  if (Number.isFinite(v) && v > 0) return v;
+  const kind = ctx?.kind || a?.kind || "skill";
+  if (kind === "ultimate") return Math.max(0.05, toNum(settings.cast_time_ultimate, 1.0));
+  if (kind === "normal") return Math.max(0.05, toNum(settings.cast_time_normal, 0.4));
+  if (kind === "tag") return Math.max(0.05, toNum(settings.cast_time_tag, 0.7));
+  if (kind === "wait") return Math.max(0.05, toNum(settings.cast_time_wait, 0.2));
+  return Math.max(0.05, toNum(settings.cast_time_skill, 0.6));
+}
+
+function isBurstActiveNow(tNow, rot, settings, burstState){
+  const mode = settings.burst_mode || "auto";
+  if (mode === "on") return true;
+  if (mode === "off") return false;
+  if (rot?.burstPlan?.enabled){
+    const start = toNum(rot.burstPlan.start, 0);
+    const dur = Math.max(0, toNum(rot.burstPlan.duration, 0));
+    return (tNow >= start) && (tNow < (start + dur));
+  }
+  if (burstState && Number.isFinite(burstState.burstActiveUntil)) return tNow < burstState.burstActiveUntil;
+  return false;
+}
+
+function maybeTriggerBurst(tNow, settings, burstState){
+  const dur = Math.max(0, toNum(settings.burst_duration_sec, 7));
+  if (dur <= 0) return;
+  burstState.burstActiveUntil = Math.max(burstState.burstActiveUntil || 0, tNow + dur);
+}
+
+function updateResourcesAfterAction(ctx, a, enemy, settings, resources, tNow, rot){
+  // Orbs
+  const req = toNum(a?.requiresOrbs, 0);
+  if (ctx.kind === "ultimate"){
+    if (req > 0) resources.orbs = Math.max(0, resources.orbs - req);
+  } else if (ctx.kind !== "wait" && ctx.kind !== "passive"){
+    resources.orbs = Math.min(7, resources.orbs + (settings.orb_gain_per_skill || 0));
+  }
+
+  // Burst gauge (generic "tag gauge" modeled as gain per hit)
+  const gainPerHit = Math.max(0, toNum(settings.tag_gauge_gain_per_hit, 0));
+  if (gainPerHit > 0 && ctx.kind !== "wait" && ctx.kind !== "passive"){
+    resources.tagGauge = Math.max(0, toNum(resources.tagGauge, 0));
+    resources.tagGauge += countHitsFromCtx(ctx) * gainPerHit;
+  }
+
+  // Optional trigger: combined attack triggers burst
+  if (settings.combined_attack_triggers_burst && ctx.kind === "tag"){
+    maybeTriggerBurst(tNow, settings, resources);
+    resources.tagGauge = 0;
+    return;
+  }
+
+  // Auto burst activation by gauge (only if no explicit plan)
+  if ((settings.burst_mode || "auto") === "auto" && !(rot?.burstPlan?.enabled)){
+    const thr = Math.max(1, toNum(settings.burst_gauge_threshold, 1000));
+    if (toNum(resources.tagGauge, 0) >= thr){
+      maybeTriggerBurst(tNow, settings, resources);
+      resources.tagGauge = 0;
+    }
+  }
+}
+
+
 function simulateOnce(build, rot, scen, duration, settings, mode, rng){
   const enemy = scen.enemy || {};
-  // baseHitDamage (legacy) — actionDamage() used per action
   const burstBonusMul = 1 + (settings.burst_bonus_pct || 0)/100;
   const burstRes = 1 - (enemy.burst_resist || 0);
 
   let t = 0;
   let dmg = 0;
-  let orbs = settings.initial_orbs || 0;
-  let trace = [];
-  let cds = new Map();
 
+  const resources = {
+    orbs: settings.initial_orbs || 0,
+    tagGauge: settings.initial_tag_gauge || 0,
+    burstActiveUntil: 0
+  };
+
+  let trace = [];
   const addTrace = (line) => { if (settings.verbose_trace) trace.push(line); };
 
-  const runAction = (a, tNow) => {
-    const kind = a.kind;
-    if (kind === "wait"){
-      const dt = Math.max(0.1, a.cd || 1);
-      return {dt};
+  const cds = new Map();
+
+  const executeAction = (a, tNow) => {
+    const ctx = actionCtxFromAction(build, rot, a, enemy, settings);
+
+    if (ctx.kind === "wait"){
+      const dt = Math.max(0.05, toNum(a.cd, 1));
+      return {dt, dealt: 0, key: "wait"};
     }
-    const key = a.label || kind;
+
+    const key = cooldownKeyForAction(a);
     const readyAt = cds.get(key) ?? 0;
     if (tNow < readyAt) return null;
 
-    const req = a.requiresOrbs || 0;
-    if (req > 0 && orbs < req) return null;
+    const req = toNum(a.requiresOrbs, 0);
+    if (req > 0 && resources.orbs < req) return null;
 
     let burstMul = 1;
-    if (a.burstEligible && isBurstActiveAt(tNow, rot, settings)){
+    const burstActive = (a.burstEligible && isBurstActiveNow(tNow, rot, settings, resources));
+    if (burstActive){
       burstMul *= burstBonusMul * burstRes;
     }
 
-    const ctx = actionCtxFromAction(build, rot, a, enemy, settings);
     const dealt = actionDamage(build, enemy, settings, ctx, (mode === "expected" ? "expected" : "mc"), rng) * burstMul;
     dmg += dealt;
-    addTrace(`${tNow.toFixed(1)}s: ${key} dealt=${Math.round(dealt)}`);
 
+    // Update resources AFTER hit(s)
+    updateResourcesAfterAction(ctx, a, enemy, settings, resources, tNow, rot);
 
-    if (ctx.kind === "skill"){
-      orbs = Math.min(7, orbs + (settings.orb_gain_per_skill || 0));
-    }
-    if (ctx.kind === "ultimate"){
-      if (req > 0) orbs = Math.max(0, orbs - req);
-    }
+    // Cooldown (skill DB > action override)
+    const cdTime = effectiveCooldownSec(a, ctx);
+    cds.set(key, tNow + Math.max(0, cdTime));
 
-    const cdTime = Math.max(0, a.cd || 0);
-    cds.set(key, tNow + cdTime);
-    return {dt: 0.01};
+    const dt = castTimeSec(a, ctx, settings);
+    addTrace(`${tNow.toFixed(2)}s: ${key} kind=${ctx.kind} dealt=${Math.round(dealt)} orbs=${resources.orbs} gauge=${Math.round(resources.tagGauge)} burst=${burstActive ? "on" : "off"}`);
+
+    return {dt, dealt, key};
   };
 
   if (rot.type === "timeline"){
@@ -2688,22 +3150,48 @@ function simulateOnce(build, rot, scen, duration, settings, mode, rng){
     for (const ev of events){
       if (ev.t > duration) break;
       t = ev.t;
-      runAction(ev.a, t);
+      executeAction(ev.a, t);
     }
   } else {
     const actions = rot.actions || [];
-    const dtIdle = 0.1;
+    const dtIdle = 0.25;
     while (t <= duration + 1e-9){
       let did = false;
+      let soon = Infinity;
+      let waitAction = null;
+
       for (const a of actions){
-        const r = runAction(a, t);
+        if ((a.kind || "skill") === "wait" && !waitAction){
+          waitAction = a;
+          continue;
+        }
+        const key = cooldownKeyForAction(a);
+        const readyAt = cds.get(key) ?? 0;
+        if (readyAt > t && readyAt < soon) soon = readyAt;
+
+        const req = toNum(a.requiresOrbs, 0);
+        if (t >= readyAt && (req <= 0 || resources.orbs >= req)){
+          const r = executeAction(a, t);
+          if (r){
+            t += r.dt;
+            did = true;
+            break;
+          }
+        }
+      }
+
+      if (!did && waitAction){
+        const r = executeAction(waitAction, t);
         if (r){
           t += r.dt;
           did = true;
-          break;
         }
       }
-      if (!did) t += dtIdle;
+
+      if (!did){
+        const next = (soon < Infinity && soon > t) ? Math.min(soon, t + dtIdle) : (t + dtIdle);
+        t = next;
+      }
     }
   }
 
@@ -2711,8 +3199,9 @@ function simulateOnce(build, rot, scen, duration, settings, mode, rng){
     trace = [
       `Rotation: ${rot.name} (${rot.type})`,
       `Scénario: ${scen.name}`,
-      `Durée: ${duration}s · Orbes start=${settings.initial_orbs||0} · +${settings.orb_gain_per_skill||0}/skill`,
-      `Burst: ${settings.burst_mode} · bonus=${settings.burst_bonus_pct}% · plan=${rot.burstPlan?.enabled ? (rot.burstPlan.start+"-"+(rot.burstPlan.start+rot.burstPlan.duration)+"s") : "off"}`,
+      `Durée: ${duration}s · Orbes start=${settings.initial_orbs||0} · +${settings.orb_gain_per_skill||0}/action`,
+      `Burst: ${settings.burst_mode} · bonus=${settings.burst_bonus_pct}% · plan=${rot.burstPlan?.enabled ? (rot.burstPlan.start+"-"+(rot.burstPlan.start+rot.burstPlan.duration)+"s") : "auto/gauge"}`,
+      `Tag gauge: start=${settings.initial_tag_gauge||0} · +${settings.tag_gauge_gain_per_hit||0}/hit · thr=${settings.burst_gauge_threshold||1000} · dur=${settings.burst_duration_sec||7}s`,
       `Note: active “Verbose trace” dans Réglages (Avancé) pour voir action par action.`
     ];
   }
@@ -3315,137 +3804,126 @@ function refreshSandboxSelectors(){
 }
 
 function chooseActionAtTime(rot, tNow, cds, orbs){
-  // Similar to simulateOnce scheduling, but we pick the first valid action.
-  const actions = (rot && rot.actions) ? rot.actions : [];
+  const actions = rot?.actions || [];
+  let waitAction = null;
   for (const a of actions){
-    const key = a.label || a.kind;
+    if ((a.kind || "skill") === "wait" && !waitAction){ waitAction = a; continue; }
+    const key = cooldownKeyForAction(a);
     const readyAt = cds.get(key) ?? 0;
     if (tNow < readyAt) continue;
-    const req = a.requiresOrbs || 0;
+    const req = toNum(a.requiresOrbs, 0);
     if (req > 0 && orbs < req) continue;
     return a;
   }
-  return {kind:"wait", label:"wait", cd:1, hits:0, mult:0};
+  return waitAction;
 }
 
 function runSandbox(){
   const build0 = findById(state.builds, $("#sbBuild").value);
   const rot = findById(state.rotations, $("#sbRot").value);
-  const scen = findById(state.scenarios, $("#sbScen").value);
-  const turns = clamp(Math.round(toNum($("#sbTurns").value, 15)), 1, 200);
-  const secPerTurn = Math.max(0.1, toNum($("#sbTurnSeconds").value, 1));
+  const scen = findById(state.scenarios, $("#sbSc").value);
+  const turns = Math.max(1, Math.round(toNum($("#sbTurns").value, 10)));
+  const secPerTurn = Math.max(0.1, toNum($("#sbSecPerTurn").value, 1));
   const mode = $("#sbMode").value;
-  const iters = clamp(Math.round(toNum($("#sbIters").value, 500)), 1, 5000);
+  const iters = Math.max(1, Math.round(toNum($("#sbIters").value, 200)));
 
-  if (!build0 || !rot || !scen){ $("#sbMsg").textContent = "Choisis un build, une rotation et un scénario."; return; }
+  if (!build0 || !rot || !scen){
+    $("#sbMsg").textContent = "Sélectionne build/rotation/scénario.";
+    return;
+  }
+
   const build = applyPotentialsToBuild(build0);
-  $("#sbMsg").textContent = "Simulation...";
-
   const enemy = scen.enemy || {};
-  const base = baseHitDamage(build, enemy, state.settings);
-  const burstBonusMul = 1 + (state.settings.burst_bonus_pct || 0)/100;
+  const settings = state.settings;
+
+  const burstBonusMul = 1 + (settings.burst_bonus_pct || 0)/100;
   const burstRes = 1 - (enemy.burst_resist || 0);
 
-  // Turn-based approximation: each turn we attempt one action.
   const cds = new Map();
-  let orbs = state.settings.initial_orbs || 0;
-  let cum = 0;
-  const rows = [];
-  const cumSeries = [];
-  const rngBase = makeRng(state.settings.mc_seed || 12345);
+  const resources = { orbs: settings.initial_orbs || 0, tagGauge: settings.initial_tag_gauge || 0, burstActiveUntil: 0 };
+
+  const rngBase = makeRng(settings.mc_seed || 12345);
+
+  let rows = [];
+  let total = 0;
+
+  const mcSamples = clamp(iters, 1, 400);
 
   for (let turn=1; turn<=turns; turn++){
     const tNow = (turn-1) * secPerTurn;
-    const a = chooseActionAtTime(rot, tNow, cds, orbs);
-    const key = a.label || a.kind;
-    let burstMul = 1;
-    if (a.burstEligible && isBurstActiveAt(tNow, rot, state.settings)){
-      burstMul *= burstBonusMul * burstRes;
+    const a = chooseActionAtTime(rot, tNow, cds, resources.orbs);
+
+    if (!a){
+      rows.push({turn, tNow, action:"(aucune)", dealt:0, orbs: resources.orbs, gauge: resources.tagGauge, burst: false});
+      continue;
     }
+
+    const ctx = actionCtxFromAction(build, rot, a, enemy, settings);
+    const key = (ctx.kind === "wait") ? "wait" : cooldownKeyForAction(a);
+
+    // Enforce cooldown/requirements (safety)
+    const readyAt = cds.get(key) ?? 0;
+    const req = toNum(a.requiresOrbs, 0);
+    if (ctx.kind !== "wait" && (tNow < readyAt || (req > 0 && resources.orbs < req))){
+      rows.push({turn, tNow, action:`(bloqué) ${key}`, dealt:0, orbs: resources.orbs, gauge: resources.tagGauge, burst: false});
+      continue;
+    }
+
+    const burstActive = (a.burstEligible && isBurstActiveNow(tNow, rot, settings, resources));
+    const burstMul = burstActive ? (burstBonusMul * burstRes) : 1;
 
     let dealt = 0;
-    if (key === 'wait' || a.kind === 'wait' || mult === 0){
+    if (ctx.kind === "wait"){
       dealt = 0;
-    } else if (mode === 'expected'){
-      dealt = base * mult * hits * burstMul * expectedCritMultiplier(build, state.settings);
+    } else if (mode === "expected"){
+      dealt = actionDamage(build, enemy, settings, ctx, "expected", rngBase) * burstMul;
     } else {
-      // MC: sample a single outcome for the turn using deterministic seed per turn.
-      const seed = (Math.floor(rngBase()*1e9) ^ (turn*2654435761)) >>> 0;
-      const rng = makeRng(seed);
-      const cr = clamp(build.stats.crit_rate_pct || 0, 0, state.settings.crit_cap)/100;
-      const cd = (build.stats.crit_dmg_pct || 0)/100;
-      for (let i=0;i<hits;i++){
-        const isCrit = rng() < cr;
-        dealt += base * mult * burstMul * (isCrit ? (1+cd) : 1);
+      // Average MC per turn for stable per-turn output (capped for perf)
+      let sum = 0;
+      for (let i=0;i<mcSamples;i++){
+        const seed = (Math.floor(rngBase()*1e9) ^ (i*2654435761) ^ (turn*97531)) >>> 0;
+        const rng = makeRng(seed);
+        sum += actionDamage(build, enemy, settings, ctx, "mc", rng) * burstMul;
       }
-      // Reduce noise by averaging a few internal samples if requested.
-      if (iters > 1){
-        let sum = dealt;
-        const n = Math.min(iters, 50);
-        for (let k=1;k<n;k++){
-          const r2 = makeRng((seed ^ (k*97))>>>0);
-          let d2 = 0;
-          for (let i=0;i<hits;i++) d2 += base * mult * burstMul * ((r2()<cr)?(1+cd):1);
-          sum += d2;
-        }
-        dealt = sum / Math.min(iters, 50);
-      }
+      dealt = sum / mcSamples;
     }
 
-    // Orb model (same as simulateOnce)
-    if (a.kind === 'skill') orbs = Math.min(7, orbs + (state.settings.orb_gain_per_skill || 0));
-    if (a.kind === 'ultimate'){
-      const req = a.requiresOrbs || 0;
-      if (req > 0) orbs = Math.max(0, orbs - req);
-    }
+    total += dealt;
 
-    const cdTime = Math.max(0, a.cd || 0);
-    cds.set(key, tNow + cdTime);
+    // Update resources deterministically
+    updateResourcesAfterAction(ctx, a, enemy, settings, resources, tNow, rot);
 
-    cum += dealt;
-    rows.push({turn, action:key, dealt, cum, orbs});
-    cumSeries.push(cum);
+    // Set cooldown deterministically
+    const cdTime = effectiveCooldownSec(a, ctx);
+    cds.set(key, tNow + Math.max(0, cdTime));
+
+    rows.push({turn, tNow, action:key, dealt, orbs: resources.orbs, gauge: resources.tagGauge, burst: burstActive});
   }
 
-  // Render table
-  const tbody = $("#sbTable tbody");
-  tbody.innerHTML = rows.map(r => `
+  const table = rows.map(r => `
     <tr>
       <td>${r.turn}</td>
+      <td>${fmt(r.tNow)}</td>
       <td>${escapeHtml(r.action)}</td>
       <td>${fmt(r.dealt)}</td>
-      <td>${fmt(r.cum)}</td>
-      <td>${r.orbs}</td>
+      <td>${fmt(r.orbs)}</td>
+      <td>${fmt(r.gauge)}</td>
+      <td>${r.burst ? "✓" : ""}</td>
     </tr>
   `).join("");
 
-  const totalSeconds = turns * secPerTurn;
-  const dps = cum / totalSeconds;
-  $("#sbSummary").innerHTML = `
-    <div class="results">
-      <div class="kpi"><div class="k">Dégâts totaux</div><div class="v">${fmt(cum)}</div></div>
-      <div class="kpi"><div class="k">Durée</div><div class="v">${fmt(totalSeconds)} s</div></div>
-      <div class="kpi"><div class="k">DPS moyen</div><div class="v">${fmt(dps)}</div></div>
-      <div class="hint tiny">Rotation: <b>${escapeHtml(rot.name)}</b> · Scénario: <b>${escapeHtml(scen.name)}</b></div>
+  $("#sbOut").classList.remove("empty");
+  $("#sbOut").innerHTML = `
+    <div class="pill">Total: <b>${fmt(total)}</b> · Moy/turn: <b>${fmt(total/turns)}</b></div>
+    <div class="hr"></div>
+    <div style="max-height:360px; overflow:auto">
+      <table class="table">
+        <thead><tr><th>Turn</th><th>t(s)</th><th>Action</th><th>Dégâts</th><th>Orbes</th><th>Gauge</th><th>Burst</th></tr></thead>
+        <tbody>${table}</tbody>
+      </table>
     </div>
   `;
-
-  const xs = rows.map(r=>r.turn);
-  drawLineChart($("#sbCanvas"), xs, cumSeries, {title:"Cumul dégâts par tour", xLabelMin:"T1", xLabelMax:`T${turns}`});
   $("#sbMsg").textContent = "Terminé.";
-}
-
-function bindSandbox(){
-  $("#sbRun")?.addEventListener('click', runSandbox);
-  $("#sbExport")?.addEventListener('click', () => exportCanvasPng($("#sbCanvas"), 'combat-sandbox.png'));
-}
-
-
-// ---------- Boss scaling infini ----------
-function refreshBossSelectors(){
-  fillSelect($("#bossBuild"), state.builds, (x)=>x.name, selectedBuildId);
-  fillSelect($("#bossRot"), state.rotations, (x)=>x.name, selectedRotId);
-  fillSelect($("#bossScen"), state.scenarios, (x)=>x.name, selectedScId);
 }
 
 function runBossScaling(){
@@ -3547,16 +4025,25 @@ function runCalibrate(){
   let ctx = { kind: "skill", mult: toNum($("#calMult").value, 2.2), hits: Math.max(1, Math.round(toNum($("#calHits").value, 1))) };
 
   // Skill picker (optional)
-  const charId = ($("#calChar")?.value || build0.character_id || "").trim();
+  const charId = ($("#calChar")?.value || build0.character_id || build0.source?.character_id || "").trim();
   const skIdxRaw = $("#calSkill")?.value;
   if (skIdxRaw !== "" && skIdxRaw != null){
-    const sk = getSkillsForCharacter(charId)[Number(skIdxRaw)];
+    const wt = getWeaponTypeForContext(build0, null, charId);
+    const sk = getSkillsForCharacter(charId, wt)[Number(skIdxRaw)];
     if (sk){
       const m = toNum(sk.multiplier, null);
       if (m !== null) ctx.mult = m/100;
-      ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      if (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length){
+        ctx.hitMultipliers = sk.hit_multipliers_pct.map(x => toNum(x,0)/100);
+        ctx.hits = Math.max(1, ctx.hitMultipliers.length);
+      } else {
+        ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      }
       const t = String(sk.type || "").toLowerCase();
-      ctx.kind = t.includes("ult") ? "ultimate" : "skill";
+      if (t.includes("ult")) ctx.kind = "ultimate";
+      else if (t.includes("tag")) ctx.kind = "tag";
+      else if (t.includes("normal")) ctx.kind = "normal";
+      else ctx.kind = "skill";
       ctx.effects = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
       // Auto-fill UI for clarity
       $("#calMult").value = String(ctx.mult);
@@ -3638,12 +4125,13 @@ function bindCalibration(){
   $("#calChar")?.addEventListener("change", () => { refreshCalSkillPickers(); });
   $("#calSkill")?.addEventListener("change", () => {
     const build0 = findById(state.builds, $("#calBuild")?.value);
-    const charId = ($("#calChar")?.value || build0?.character_id || "").trim();
-    const sk = getSkillsForCharacter(charId)[Number($("#calSkill")?.value)];
+    const charId = ($("#calChar")?.value || build0?.character_id || build0?.source?.character_id || "").trim();
+    const wt = getWeaponTypeForContext(build0, null, charId);
+    const sk = getSkillsForCharacter(charId, wt)[Number($("#calSkill")?.value)];
     if (sk){
       const m = toNum(sk.multiplier, null);
       if (m !== null) $("#calMult").value = String(m/100);
-      const h = Math.max(1, Math.round(toNum(sk.hits, 1)));
+      const h = (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length) ? sk.hit_multipliers_pct.length : Math.max(1, Math.round(toNum(sk.hits, 1)));
       $("#calHits").value = String(h);
     }
   });
@@ -3673,15 +4161,24 @@ function computePredictedForCase(c){
 
   const enemy = s.enemy || {def:0, resistance_pct:0, crit_resist_pct:0, crit_def_pct:0, dmg_reduction_pct:0, element:"neutral"};
   let ctx = { kind: c.kind || "skill", mult: toNum(c.mult, 1), hits: toNum(c.hits, 1), effects: [] };
-  const charId = (c.charId || b0?.character_id || "").trim();
+  const charId = (c.charId || b0?.character_id || b0?.source?.character_id || "").trim();
   if (c.skill_index !== undefined && c.skill_index !== null){
-    const sk = getSkillsForCharacter(charId)[Number(c.skill_index)];
+    const wt = getWeaponTypeForContext(b0, null, charId);
+    const sk = getSkillsForCharacter(charId, wt)[Number(c.skill_index)];
     if (sk){
       const m = toNum(sk.multiplier, null);
       if (m !== null) ctx.mult = m/100;
-      ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      if (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length){
+        ctx.hitMultipliers = sk.hit_multipliers_pct.map(x => toNum(x,0)/100);
+        ctx.hits = Math.max(1, ctx.hitMultipliers.length);
+      } else {
+        ctx.hits = Math.max(1, Math.round(toNum(sk.hits, ctx.hits)));
+      }
       const t = String(sk.type||"").toLowerCase();
-      ctx.kind = t.includes("ult") ? "ultimate" : "skill";
+      if (t.includes("ult")) ctx.kind = "ultimate";
+      else if (t.includes("tag")) ctx.kind = "tag";
+      else if (t.includes("normal")) ctx.kind = "normal";
+      else ctx.kind = "skill";
       ctx.effects = Array.isArray(sk.parsed_effects) ? sk.parsed_effects : [];
     }
   }
@@ -3752,18 +4249,27 @@ function addCal2Case(){
   let kind = $("#cal2Kind")?.value || "skill";
   let mult = toNum($("#cal2Mult")?.value, 1);
   let hits = Math.max(1, Math.round(toNum($("#cal2Hits")?.value, 1)));
-  const charId = ($("#cal2Char")?.value || findById(state.builds, buildId)?.character_id || "").trim();
+  const b0 = findById(state.builds, buildId);
+  const charId = ($("#cal2Char")?.value || b0?.character_id || b0?.source?.character_id || "").trim();
   const skillIdxRaw = $("#cal2Skill")?.value;
   let skill_index = null;
   if (skillIdxRaw !== "" && skillIdxRaw != null){
     skill_index = Number(skillIdxRaw);
-    const sk = getSkillsForCharacter(charId)[skill_index];
+    const wt = getWeaponTypeForContext(b0, null, charId);
+    const sk = getSkillsForCharacter(charId, wt)[skill_index];
     if (sk){
       const m = toNum(sk.multiplier, null);
       if (m !== null) mult = m/100;
-      hits = Math.max(1, Math.round(toNum(sk.hits, hits)));
+      if (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length){
+        hits = Math.max(1, sk.hit_multipliers_pct.length);
+      } else {
+        hits = Math.max(1, Math.round(toNum(sk.hits, hits)));
+      }
       const t = String(sk.type||"").toLowerCase();
-      kind = t.includes("ult") ? "ultimate" : "skill";
+      if (t.includes("ult")) kind = "ultimate";
+      else if (t.includes("tag")) kind = "tag";
+      else if (t.includes("normal")) kind = "normal";
+      else kind = "skill";
     }
   }
   const observed = toNum($("#cal2Observed")?.value, 0);
@@ -4011,15 +4517,19 @@ function bindCalibrationLab(){
   $("#cal2Char")?.addEventListener("change", () => { refreshCalSkillPickers(); });
   $("#cal2Skill")?.addEventListener("change", () => {
     const build0 = findById(state.builds, $("#cal2Build")?.value);
-    const charId = ($("#cal2Char")?.value || build0?.character_id || "").trim();
-    const sk = getSkillsForCharacter(charId)[Number($("#cal2Skill")?.value)];
+    const charId = ($("#cal2Char")?.value || build0?.character_id || build0?.source?.character_id || "").trim();
+    const wt = getWeaponTypeForContext(build0, null, charId);
+    const sk = getSkillsForCharacter(charId, wt)[Number($("#cal2Skill")?.value)];
     if (sk){
       const m = toNum(sk.multiplier, null);
       if (m !== null) $("#cal2Mult").value = String(m/100);
-      const h = Math.max(1, Math.round(toNum(sk.hits, 1)));
+      const h = (Array.isArray(sk.hit_multipliers_pct) && sk.hit_multipliers_pct.length) ? sk.hit_multipliers_pct.length : Math.max(1, Math.round(toNum(sk.hits, 1)));
       $("#cal2Hits").value = String(h);
       const t = String(sk.type||"").toLowerCase();
-      $("#cal2Kind").value = t.includes("ult") ? "ultimate" : "skill";
+      if (t.includes("ult")) $("#cal2Kind").value = "ultimate";
+      else if (t.includes("tag")) $("#cal2Kind").value = "tag";
+      else if (t.includes("normal")) $("#cal2Kind").value = "normal";
+      else $("#cal2Kind").value = "skill";
     }
   });
 

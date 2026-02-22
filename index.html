@@ -345,7 +345,13 @@
                 <select id="rotChar"><option value="">— Aucun —</option></select>
               </label>
 
-              <div class="row">
+              
+              <div class="row" id="rotWeaponTypeRow" style="display:none">
+                <label class="withHelp" style="flex:1">Type d'arme <span class="help" data-tip="Optionnel. Filtre le Skill Picker par type d'arme (si le perso en a plusieurs).">?</span>
+                  <select id="rotWeaponType"></select>
+                </label>
+              </div>
+<div class="row">
                 <button class="btn" id="btnRotWizard">Assistant rotation</button>
                 <button class="btn ghost" id="btnRotClear">Vider</button>
               </div>

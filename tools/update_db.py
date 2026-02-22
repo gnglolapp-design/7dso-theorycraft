@@ -174,19 +174,41 @@ _ORDINAL_MAP = {
     "10th": 10
 }
 
+
+def _parse_hits_in_text(text: str) -> List[Dict[str,Any]]:
+    """Extract per-hit multipliers from a string (can contain multiple hits).
+
+    Accepts patterns such as:
+      - "1st hit: 21% of Attack"
+      - "1st hit: 21% 2nd hit: 23% ..."
+      - "Hit 1: 21% of Attack"
+      - "1st hit: 21%"
+    """
+    s = (text or "").strip()
+    out: List[Dict[str,Any]] = []
+
+    # 1) ordinal hits: "1st hit: 21% ..."
+    for m in re.finditer(r"(?i)(\d+)(?:st|nd|rd|th)\s*hit\s*:\s*([0-9]+(?:\.[0-9]+)?)%\s*(?:of\s+Attack|of\s+ATK|of\s+Atk|)?", s):
+        out.append({"hit": int(m.group(1)), "multiplier_pct": float(m.group(2)), "scaling": "ATK"})
+
+    # 2) explicit index: "Hit 1: 21% ..."
+    for m in re.finditer(r"(?i)\bhit\s*(\d+)\s*:\s*([0-9]+(?:\.[0-9]+)?)%\s*(?:of\s+Attack|of\s+ATK|of\s+Atk|)?", s):
+        out.append({"hit": int(m.group(1)), "multiplier_pct": float(m.group(2)), "scaling": "ATK"})
+
+    if not out:
+        return []
+
+    # De-dup by hit number while keeping the first occurrence.
+    by_hit: Dict[int, Dict[str,Any]] = {}
+    for h in out:
+        if h["hit"] not in by_hit:
+            by_hit[h["hit"]] = h
+    return [by_hit[k] for k in sorted(by_hit.keys())]
+
 def _parse_hit_line(line: str) -> Optional[Dict[str,Any]]:
-    # Examples:
-    # "1st hit: 21% of Attack"
-    # "4th hit: 25% of Attack"
-    m = re.match(r"^(\d+(?:st|nd|rd|th)) hit:\s*([0-9]+(?:\.[0-9]+)?)%\s+of\s+Attack", line, re.I)
-    if not m:
-        return None
-    ord_s = m.group(1).lower()
-    ord_num = _ORDINAL_MAP.get(ord_s)
-    if not ord_num:
-        # generic ordinal parsing
-        ord_num = int(re.match(r"^(\d+)", ord_s).group(1))
-    return {"hit": ord_num, "multiplier_pct": float(m.group(2)), "scaling": "ATK"}
+    """Backward-compatible: returns the first hit parsed from the line."""
+    hits = _parse_hits_in_text(line)
+    return hits[0] if hits else None
 
 def parse_skills_from_lines(lines: List[str]) -> List[Dict[str,Any]]:
     """
@@ -232,9 +254,9 @@ def parse_skills_from_lines(lines: List[str]) -> List[Dict[str,Any]]:
             if mcd:
                 cooldown = float(mcd.group(1))
                 continue
-            h = _parse_hit_line(ln)
-            if h:
-                hits.append(h)
+            hs = _parse_hits_in_text(ln)
+            if hs:
+                hits.extend(hs)
                 continue
             # generic multiplier
             mm = re.search(r"([0-9]+(?:\.[0-9]+)?)%\s+of\s+Attack", ln, re.I)
@@ -250,7 +272,7 @@ def parse_skills_from_lines(lines: List[str]) -> List[Dict[str,Any]]:
             "key": key,
             "cooldown_sec": cooldown,
             "description": description,
-            "hits": sorted(hits, key=lambda x: x["hit"]) if hits else [],
+            "hits": sorted({h["hit"]: h for h in hits}.values(), key=lambda x: x["hit"]) if hits else [],
             "multipliers": multipliers[:50],
         })
     # De-dup skills that can appear repeated in text dumps

@@ -4,7 +4,20 @@ export function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
 export function pctToMul(p){ return 1 + (p/100); }
 export function toNum(x, d=0){ const n = Number(x); return Number.isFinite(n) ? n : d; }
 export function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
-export function escapeHtml(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;"); }
+export function escapeHtml(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+// Use for HTML attribute values (still safe for text nodes)
+export function escapeAttr(s){
+  // Normalize newlines to avoid attribute breaking
+  return escapeHtml(String(s)).replace(/\r?\n/g, " ");
+}
 
 export function fmt(n){
   if (!isFinite(n)) return "—";
