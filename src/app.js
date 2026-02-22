@@ -4069,7 +4069,7 @@ function stableStringify(obj){
   return '{' + keys.map(k => JSON.stringify(k)+':'+stableStringify(obj[k])).join(',') + '}';
 }
 
-function modelSignature(settings){
+function modelSignatureHash(settings){
   // Minimal signature for mismatch warnings (not security).
   const pick = {
     formula_profile: settings.formula_profile || 'cbt_v1',
@@ -4090,7 +4090,7 @@ function modelSignature(settings){
 }
 
 function getBhCurrentModelSig(){
-  return modelSignature(state.settings || {});
+  return modelSignatureHash(state.settings || {});
 }
 
 function ensureBhPresetId(p){
