@@ -1,1 +1,1 @@
-// Legacy file kept for reference. The app now loads from src/main.js.
+﻿// Legacy stub file. The app is now loaded from src/main.js (ES modules).
