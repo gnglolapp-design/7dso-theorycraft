@@ -19,6 +19,7 @@
     <div class="topbar-actions">
       <button id="btnMenu" class="btn ghost icon" title="Menu">☰</button>
       <button id="btnTour" class="btn ghost" title="Aide guidée">Visite guidée</button>
+      <button id="btnGlossary" class="btn ghost" title="Définitions des termes">Glossaire</button>
       <button id="btnAbout" class="btn ghost" title="Ce que l'outil sait / ne sait pas">Limites</button>
       <button id="btnShare" class="btn" title="Partager un setup via lien (Discord)">Partager</button>
       <button id="btnExport" class="btn">Exporter</button>
@@ -51,16 +52,16 @@
         <button class="nav-item" data-view="wizard">Assistant build</button>
         <button class="nav-item" data-view="database">Base de données</button>
         <button class="nav-item" data-view="builds">Mes builds</button>
-        <button class="nav-item" data-view="rotations">Rotations</button>
-        <button class="nav-item" data-view="scenarios">Scénarios</button>
-        <button class="nav-item" data-view="simulate">Simuler</button>
+        <button class="nav-item advancedBlock" data-view="rotations">Rotations</button>
+        <button class="nav-item advancedBlock" data-view="scenarios">Scénarios</button>
+        <button class="nav-item advancedBlock" data-view="simulate">Simuler</button>
         <button class="nav-item" data-view="compare">Comparer</button>
         <button class="nav-item" data-view="weights">Priorité des stats</button>
-        <button class="nav-item" data-view="meta">Meta Snapshot</button>
-        <button class="nav-item" data-view="scaling">Scaling analyzer</button>
-        <button class="nav-item" data-view="sandbox">Combat sandbox</button>
-        <button class="nav-item" data-view="boss">Boss scaling infini</button>
-        <button class="nav-item" data-view="calibrate">Calibration</button>
+        <button class="nav-item advancedBlock" data-view="meta">Meta Snapshot</button>
+        <button class="nav-item advancedBlock" data-view="scaling">Impact des stats</button>
+        <button class="nav-item advancedBlock" data-view="sandbox">Simulation longue</button>
+        <button class="nav-item advancedBlock" data-view="boss">Boss scaling infini</button>
+        <button class="nav-item advancedBlock" data-view="calibrate">Aligner avec le jeu</button>
         <button class="nav-item" data-view="guild">Espace guilde</button>
         <button class="nav-item" data-view="bravehearts">Brave Hearts</button>
         <button class="nav-item" data-view="settings">Réglages</button>
@@ -78,48 +79,97 @@
     </aside>
 
     <section class="content">
+      <!-- Parcours guidé (toujours visible) -->
+      <div class="journey" id="journeyBar" aria-label="Parcours guidé">
+        <div class="journey-step">
+          <div class="journey-k">1</div>
+          <div class="journey-v">
+            <div class="journey-t">Choisir un build</div>
+            <div class="journey-s">Assistant ou Mes builds</div>
+          </div>
+          <div class="journey-actions">
+            <button class="btn small primary" data-go="wizard">Assistant</button>
+            <button class="btn small" data-go="builds">Mes builds</button>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-k">2</div>
+          <div class="journey-v">
+            <div class="journey-t">Choisir un objectif</div>
+            <div class="journey-s">Scénario + rotation</div>
+          </div>
+          <div class="journey-actions">
+            <button class="btn small" data-go="scenarios">Scénarios</button>
+            <button class="btn small" data-go="rotations">Rotations</button>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-k">3</div>
+          <div class="journey-v">
+            <div class="journey-t">Résultat</div>
+            <div class="journey-s">Comparer + stats à améliorer</div>
+          </div>
+          <div class="journey-actions">
+            <button class="btn small" data-go="compare">Comparer</button>
+            <button class="btn small" data-go="weights">Priorité</button>
+          </div>
+        </div>
+      </div>
       <section class="view active" id="view-home">
         <div class="page-title">Accueil</div>
 
-        <div class="hero">
+        <div class="heroSimple">
           <img class="banner" src="assets/bravehearts_banner.png" alt="Brave Hearts"/>
-          <div class="heroOverlay">
-            <div class="ctaRow">
-              <button class="btn primary" data-go="wizard">Démarrer (assistant)</button>
-              <button class="btn" data-go="simulate">Simuler</button>
-              <button class="btn ghost" data-go="guild">Espace guilde</button>
-            </div>
-            <div class="heroTitle">7DS: Origin — Theorycraft pour la guilde</div>
-            <div class="heroSub">
-              Objectif : rendre le theorycraft <b>simple</b> pour tous (même sans stats),
-              tout en gardant des réglages <b>avancés</b> pour les testeurs.
-            </div>
+          <div class="heroSimpleOverlay">
+            <div class="heroTitle">7DS: Origin — Outil guilde (Brave Hearts)</div>
+            <div class="heroSub">Choisis une action. Le reste est guidé.</div>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-top:14px">
+          <div class="card ctaCard">
+            <div class="card-title">Optimiser mon perso</div>
+            <div class="p">Crée un build sans connaître les stats. Recommandations incluses.</div>
             <div class="row">
-              <button class="btn primary" data-go="wizard">Assistant build</button>
-              <button class="btn" data-go="compare">Comparer</button>
-              <button class="btn ghost" id="btnHomeWhat">Que faire ici ?</button>
+              <button class="btn primary" data-go="wizard">Ouvrir l’assistant</button>
+              <span class="help" data-tip="Idéal si tu ne sais pas par où commencer.">?</span>
+            </div>
+          </div>
+          <div class="card ctaCard">
+            <div class="card-title">Comparer deux builds</div>
+            <div class="p">A vs B, même scénario/rotation. C’est l’outil principal de la guilde.</div>
+            <div class="row">
+              <button class="btn primary" data-go="compare">Comparer</button>
+              <span class="help" data-tip="Garde le même scénario/rotation pour une comparaison fiable.">?</span>
+            </div>
+          </div>
+          <div class="card ctaCard">
+            <div class="card-title">Appliquer un preset Brave Hearts</div>
+            <div class="p">Builds validés guilde. 1 clic pour tester / partager.</div>
+            <div class="row">
+              <button class="btn primary" data-go="bravehearts">Presets</button>
+              <span class="help" data-tip="Recommandé pour les membres : rapide, standardisé, partageable.">?</span>
             </div>
           </div>
         </div>
 
         <div class="grid2" style="margin-top:14px">
           <div class="card">
-            <div class="card-title">Chemin ultra-simple</div>
+            <div class="card-title">Tu veux juste un résultat vite ?</div>
             <ol class="list">
-              <li><b>Quickstart</b> (1 clic)</li>
-              <li>Onglet <b>Comparer</b> → A vs B</li>
-              <li>Onglet <b>Priorité des stats</b> → quoi améliorer</li>
+              <li>Clique <b>Quickstart</b> (sidebar)</li>
+              <li>Va sur <b>Comparer</b></li>
+              <li>Regarde <b>Priorité des stats</b> pour savoir quoi améliorer</li>
             </ol>
-            <div class="hint">Tu peux ensuite créer tes propres builds dans “Mes builds”.</div>
           </div>
           <div class="card">
-            <div class="card-title">Chemin theorycraft</div>
+            <div class="card-title">Tu veux de la précision (testeurs) ?</div>
             <ol class="list">
-              <li>Importe la <b>DB</b> (persos/armes) → “Base de données”</li>
-              <li>Crée un build à partir d’un perso/arme</li>
-              <li>Si tu as des tests : <b>Calibration</b> (ajuste K)</li>
+              <li>Vérifie la <b>Base de données</b> (persos/armes)</li>
+              <li>Renseigne tes tests dans <b>Aligner avec le jeu</b></li>
+              <li>Ensuite compare en gardant le même scénario</li>
             </ol>
-            <div class="hint warn">La fiabilité dépend surtout de la DB + de la calibration.</div>
+            <div class="hint warn">Plus la DB + calibration sont bonnes, plus les résultats sont fiables.</div>
           </div>
         </div>
 
@@ -129,47 +179,7 @@
             <button class="btn" id="btnLoadExample1">Charger “DPS simple”</button>
             <button class="btn" id="btnLoadExample2">Charger “Burst / Nuke”</button>
           </div>
-          <div class="hint">Les exemples servent à apprendre. Modifie, renomme, compare.</div>
-        </div>
-
-        <div class="grid3" style="margin-top:14px">
-          <div class="card">
-            <div class="card-title">Fonctionnalités</div>
-            <ul class="list">
-              <li><b>Simulation</b> (expected + Monte‑Carlo)</li>
-              <li><b>Comparer</b> A/B instantané</li>
-              <li><b>Priorité des stats</b> (poids)</li>
-              <li><b>Scénarios</b> + rotations</li>
-              <li><b>DB</b> (persos / armes) + presets</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="card-title">Pour la guilde</div>
-            <ul class="list">
-              <li>Presets “Brave Hearts” (validés)</li>
-              <li>Partage Discord (export + lien)</li>
-              <li>Mode guilde (accès local)</li>
-              <li>Changelog et versions</li>
-              <li>Templates pour testeurs</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="card-title">Méthodologie</div>
-            <div class="p">
-              L’outil est un <b>modèle ajustable</b> : la précision dépend de la DB et de la calibration.
-              Utilise <b>Comparer</b> en gardant le même scénario/rotation.
-            </div>
-            <div class="kv" style="margin-top:10px">
-              <div class="k">Version</div><div class="v"><span id="homeVersion">—</span></div>
-              <div class="k">Données</div><div class="v"><span id="homeData">—</span></div>
-              <div class="k">Mode</div><div class="v"><span id="homeMode">—</span></div>
-            </div>
-            <div class="row" style="margin-top:12px">
-              <button class="btn primary" data-go="wizard">Démarrer</button>
-              <button class="btn" data-go="compare">Comparer</button>
-              <button class="btn ghost" data-go="settings">Méthode</button>
-            </div>
-          </div>
+          <div class="hint">Pour comprendre rapidement : charge un exemple → Compare → ajuste.</div>
         </div>
       </section>
 
@@ -538,7 +548,7 @@
       </section>
 
       <section class="view" id="view-scaling">
-        <div class="page-title">Scaling analyzer</div>
+        <div class="page-title">Impact des stats</div>
         <div class="grid2">
           <div class="card">
             <div class="card-title">Entrées</div>
@@ -591,7 +601,7 @@
       </section>
 
       <section class="view" id="view-sandbox">
-        <div class="page-title">Combat sandbox</div>
+        <div class="page-title">Simulation longue</div>
         <div class="p">Simulation multi-tours (orbes/énergie + rotation). C’est un outil comparatif : il vise la reproductibilité, pas une fidélité 1:1 au jeu.</div>
         <div class="grid3">
           <div class="card">
@@ -727,7 +737,7 @@
       </section>
 
       <section class="view" id="view-calibrate">
-        <div class="page-title">Calibration (fiabilité)</div>
+        <div class="page-title">Aligner avec le jeu (calibration)</div>
         <div class="grid2">
           <div class="card">
             <div class="card-title">Entrée : un dégât observé</div>

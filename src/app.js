@@ -432,6 +432,9 @@ function startTour(){
 }
 
 function bindTopButtons(){
+  $("#btnGlossary")?.addEventListener("click", () => openModal("Glossaire (termes)", renderGlossaryHtml(), [
+    {label:"OK", kind:"primary", onClick: closeModal}
+  ]));
   $("#btnAbout")?.addEventListener("click", () => openModal("Limites & hypothèses", renderLimitsHtml(), [
     {label:"OK", kind:"primary", onClick: closeModal}
   ]));
@@ -445,6 +448,68 @@ function bindTopButtons(){
       <li>“Priorité des stats” te dit ce qui rapporte le plus dans ce contexte.</li>
     </ol>
   `, [{label:"OK", kind:"primary", onClick: closeModal}]));
+}
+
+function renderGlossaryHtml(){
+  const items = [
+    {k:"ATK/HP/DEF", v:"Stats de base utilisées par les multiplicateurs de compétences."},
+    {k:"Crit%", v:"Chance de critique. Capée selon les règles du modèle."},
+    {k:"Crit DMG", v:"Dégâts critiques. S’applique seulement si un coup crit."},
+    {k:"Pierce / Perforation", v:"Réduit/contourne une partie de la réduction liée à la DEF (selon le modèle)."},
+    {k:"Résistance", v:"Réduit certains effets (selon le modèle) — à calibrer si le jeu diffère."},
+    {k:"Multiplicateur (skill)", v:"Ex: 320% ATK. Le parser tente d’extraire ce chiffre depuis la description."},
+    {k:"Effets parsés", v:"Effets détectés automatiquement (ignore DEF, bonus si debuff, etc.)."},
+    {k:"Calibration / K", v:"Ajuste le modèle pour coller au jeu (à partir de dégâts observés)."},
+    {k:"Scénario", v:"Contexte d’ennemi (DEF, RES, type). Sert à comparer dans un même cadre."},
+    {k:"Rotation", v:"Ordre des actions. Important pour comparer des builds de façon juste."},
+    {k:"Monte‑Carlo", v:"Simule beaucoup de runs RNG pour estimer la distribution des dégâts."},
+    {k:"Priorité des stats (weights)", v:"Estime ce qui rapporte le plus (ATK vs crit vs crit dmg…) dans ce contexte."},
+  ];
+  const rows = items.map(it => `
+    <div class='kv'>
+      <div class='k'>${escapeHtml(it.k)}</div>
+      <div class='v'>${escapeHtml(it.v)}</div>
+    </div>
+  `).join("");
+  return `
+    <div class='p'>Objectif : réduire le jargon. Si un terme manque, dis‑le et on l’ajoute.</div>
+    <div class='hr'></div>
+    ${rows}
+  `;
+}
+
+const FIRST_RUN_KEY = "bh_first_run_final";
+function maybeShowFirstRun(){
+  try{
+    if (localStorage.getItem(FIRST_RUN_KEY)) return;
+    localStorage.setItem(FIRST_RUN_KEY, "1");
+    openModal("Bienvenue", `
+      <div class='p'><b>3 façons d’utiliser l’outil</b> :</div>
+      <div class='grid3'>
+        <div class='card'>
+          <div class='card-title'>Optimiser</div>
+          <div class='p'>Assistant build guidé.</div>
+          <button class='btn primary wide' id='frGoWizard'>Ouvrir</button>
+        </div>
+        <div class='card'>
+          <div class='card-title'>Comparer</div>
+          <div class='p'>A vs B (même scénario).</div>
+          <button class='btn primary wide' id='frGoCompare'>Ouvrir</button>
+        </div>
+        <div class='card'>
+          <div class='card-title'>Presets</div>
+          <div class='p'>Brave Hearts validés.</div>
+          <button class='btn primary wide' id='frGoPresets'>Ouvrir</button>
+        </div>
+      </div>
+      <div class='hint'>Le parcours guidé (1→2→3) est visible en haut.</div>
+    `, [{label:"OK", kind:"ghost", onClick: closeModal}]);
+    setTimeout(() => {
+      $("#frGoWizard")?.addEventListener("click", () => { closeModal(); setView("wizard"); });
+      $("#frGoCompare")?.addEventListener("click", () => { closeModal(); setView("compare"); });
+      $("#frGoPresets")?.addEventListener("click", () => { closeModal(); setView("bravehearts"); });
+    }, 0);
+  }catch(_e){ /* ignore */ }
 }
 
 // ---------- Export / Import ----------
@@ -4492,6 +4557,9 @@ function init(){
 
   refreshAll();
   setMode(state.settings.mode || "simple");
+
+  // UX: first run onboarding
+  try{ maybeShowFirstRun(); }catch(e){ console.warn(e); }
 
   // Import share link if present (hash: #share=...)
   try{ maybePromptShareImport(); }catch(e){ console.warn(e); }
