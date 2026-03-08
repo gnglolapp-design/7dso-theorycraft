@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-02-21T23:06:58Z",
+  "generated_at": "2026-03-08T05:56:36Z",
   "modules": {
     "characters": {
       "ch_bf334f71381a": {
@@ -21,15 +21,30 @@
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Expands the crafting queue for consecutive crafting. Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "Expands the crafting queue for consecutive crafting.",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
@@ -54,15 +69,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 12.0,
-              "description": "Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 12 sec [Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec .",
@@ -146,8 +176,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding . Daisy Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 29% 2nd hit: 32% 3rd hit: 52% 4th hit: 85% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Using the Special Attack does not decrease Movement Speed, and its range is greatly increased. The Magic Gauge recovery from Staggering nearby enemies increases by 100% . 6 Decreases the Magic consumption of the Special Attack and Normal Skill when riding by 50% . 7 Slightly increases the range of the Normal Skill while riding. Taking damage from a Normal Skill increases the enemy's damage taken by 20% . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Normal Skill by 90% and increases the riding duration by 10 sec . 10 Changes the Normal Skill into a skill that can be used 2 time(s) while riding. The Special Attack's damage dealt increases by 100% when fully charged.",
-              "hits": [],
+              "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 32.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 52.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 85.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": []
             }
           ]
@@ -188,15 +239,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Additionally inflicts damage equal to 10% of Defense when attacking the enemy. Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%",
-              "hits": [],
-              "multipliers": [
+              "description": "Additionally inflicts damage equal to 10% of Defense when attacking the enemy.",
+              "hits": [
                 {
-                  "value_pct": 111.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 47.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%",
@@ -221,15 +287,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 111.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 47.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 10 sec Inflicts damage equal to 120% of Attack. 50% chance to reset the Normal Skill cooldown on the final strike.",
@@ -304,18 +385,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% ) Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 41% 4th hit: 67% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 100% chance to reset the Normal Skill cooldown and increase damage dealt with the Normal Skill by 50% once when landing the final strike of the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Additionally inflicts damage equal to 270% of Attack when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases damage dealt by the Special Attack's final strike by 300% and decreases the enemy's Earth Defense by 30% for 20 sec .",
-              "hits": [],
+              "description": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% )",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 41.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 67.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 286.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% )"
-                },
-                {
-                  "value_pct": 270.0,
-                  "scaling": "ATK",
-                  "context": "Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 41% 4th hit: 67% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 100% chance to reset the Normal Skill cooldown and increase damage dealt with the Normal Skill by 50% once when landing the final strike of the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Additionally inflicts damage equal to 270% of Attack when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases damage dealt by the Special Attack's final strike by 300% and decreases the enemy's Earth Defense by 30% for 20 sec ."
                 }
               ]
             }
@@ -357,15 +454,35 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "25% chance to decrease the cooldown of the Normal Skill by 2 sec when using a Normal Attack on an enemy with Lightning Burst activated. Normal Attack Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%",
-              "hits": [],
-              "multipliers": [
+              "description": "25% chance to decrease the cooldown of the Normal Skill by 2 sec when using a Normal Attack on an enemy with Lightning Burst activated.",
+              "hits": [
                 {
-                  "value_pct": 164.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 44.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 57.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%",
@@ -390,15 +507,35 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 9.0,
-              "description": "Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 164.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 44.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 57.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 9 sec Inflicts damage equal to 124% of Attack. Increases the Burst duration by 2 sec each time the attack hits an enemy with Lightning Burst activated.",
@@ -473,18 +610,39 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero. Drake Greatsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 40% 4th hit: 61% 5th hit: 80% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Slightly increases the range of the Special Attack. Decreases Normal Skill cooldown by 3 sec when using the Special Attack on an enemy with Lightning Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the maximum number of King's Magic granted by the Normal Skill by 2 . Increases the duration of the hero's King of the Dracos effect by 1 sec when landing the Normal Skill. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 130% of Attack with the first strike of the Ultimate Move.",
-              "hits": [],
+              "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero.",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 26.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 40.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 80.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 356.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero."
-                },
-                {
-                  "value_pct": 130.0,
-                  "scaling": "ATK",
-                  "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 40% 4th hit: 61% 5th hit: 80% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Slightly increases the range of the Special Attack. Decreases Normal Skill cooldown by 3 sec when using the Special Attack on an enemy with Lightning Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the maximum number of King's Magic granted by the Normal Skill by 2 . Increases the duration of the hero's King of the Dracos effect by 1 sec when landing the Normal Skill. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 130% of Attack with the first strike of the Ultimate Move."
                 }
               ]
             }
@@ -526,15 +684,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Activating Earth Burst inflicts Petrify on the enemy for 6 sec . Increases all allied heroes' damage dealt to Petrified enemies by 100% when the hero is set to the team. ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Normal Attack Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%",
-              "hits": [],
-              "multipliers": [
+              "description": "Activating Earth Burst inflicts Petrify on the enemy for 6 sec . Increases all allied heroes' damage dealt to Petrified enemies by 100% when the hero is set to the team. ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% .",
+              "hits": [
                 {
-                  "value_pct": 116.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%"
+                  "hit": 1,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 30.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 49.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%",
@@ -559,15 +732,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 12.0,
-              "description": "Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 116.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%"
+                  "hit": 1,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 30.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 49.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 12 sec Applies Saintess's Mark to nearby allies and enemies for 20 sec . ※ Saintess's Mark : Effects differ based on the target. Allies: Decreases damage taken by 50% while they have a barrier . Enemies: Decreases Earth Burst Resistance by 30% .",
@@ -631,8 +819,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 268% of Attack and Binds for 3 sec . Inflicts Petrify for 6 sec when attacking an enemy affected by Saintess's Mark . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Elaine Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the duration of the Special Attack's Saintess's Mark by 10 sec . 5 Increases the Earth damage of allies with Saintess's Mark by 50% . 6 Increases the Normal Skill's barrier by 66% . 7 Changes the Special Attack into a skill that can be used 2 time(s) and slightly increases its range. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Ultimate Move also inflicts Petrify on enemies without Saintess's Mark for 6 sec . Inflicts Petrify on enemies with Saintess's Mark for 12 sec .",
-              "hits": [],
+              "description": "Inflicts damage equal to 268% of Attack and Binds for 3 sec . Inflicts Petrify for 6 sec when attacking an enemy affected by Saintess's Mark . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 24.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 26.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 42.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 68.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 268.0,
@@ -679,15 +888,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Gains Impulse for 20 sec when successfully attacking an enemy while not in Demon Form . (Max: 10 ) ※ Impulse : Increases Crit Chance by 3% per 1 effect(s) while in Demon Form. If the hero has the maximum number of Impulse effects, Normal Skill cooldown decreases by 1 sec when attacking an enemy with Fire Burst activated. Normal Attack Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%",
-              "hits": [],
-              "multipliers": [
+              "description": "Gains Impulse for 20 sec when successfully attacking an enemy while not in Demon Form . (Max: 10 ) ※ Impulse : Increases Crit Chance by 3% per 1 effect(s) while in Demon Form. If the hero has the maximum number of Impulse effects, Normal Skill cooldown decreases by 1 sec when attacking an enemy with Fire Burst activated.",
+              "hits": [
                 {
-                  "value_pct": 135.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%"
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 22.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 58.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%",
@@ -712,15 +936,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 8.0,
-              "description": "Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 135.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%"
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 22.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 58.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 8 sec Inflicts damage equal to 139% of Attack, then gains 2 Impulse effect(s). Inflicts damage equal to 160% of Attack and decreases the Normal Skill cooldown by 50% when landing a Critical Hit while in Demon Form .",
@@ -795,15 +1034,30 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 30.0,
-              "description": "Enters Demon Form for 20 sec . Guila Lance Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 31% 3rd hit: 50% 4th hit: 81% Increases damage dealt with Normal Attacks by 50% while in Demon Form . 1st hit: 33% 2nd hit: 35% 3rd hit: 58% 4th hit: 95% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . Increases damage dealt with the Special Attack by 65% while in Demon Form . 5 Increases the casting speed of the Special Attack, and increases the Normal Skill cooldown reduction by 100% while in Demon Form . 6 Increases damage dealt with the Normal Skill by 60% . Increases damage dealt with the Normal Skill by 80% while in Demon Form . 7 Increases the number of Normal Skill hits by 2 while in Demon Form . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Special Attack by 75% , and damage dealt with the Normal Skill by 60% while in Demon Form . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
-              "hits": [],
-              "multipliers": [
+              "description": "Enters Demon Form for 20 sec .",
+              "hits": [
                 {
-                  "value_pct": 25.0,
-                  "scaling": "ATK",
-                  "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 31% 3rd hit: 50% 4th hit: 81% Increases damage dealt with Normal Attacks by 50% while in Demon Form . 1st hit: 33% 2nd hit: 35% 3rd hit: 58% 4th hit: 95% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . Increases damage dealt with the Special Attack by 65% while in Demon Form . 5 Increases the casting speed of the Special Attack, and increases the Normal Skill cooldown reduction by 100% while in Demon Form . 6 Increases damage dealt with the Normal Skill by 60% . Increases damage dealt with the Normal Skill by 80% while in Demon Form . 7 Increases the number of Normal Skill hits by 2 while in Demon Form . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Special Attack by 75% , and damage dealt with the Normal Skill by 60% while in Demon Form . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
+                  "hit": 1,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 31.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 50.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 81.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             }
           ]
         },
@@ -843,15 +1097,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Activating Cold Burst inflicts Freeze on the enemy for 6 sec . ※ Freeze : Incapacitated. When hit with a skill, inflicts 20% of damage taken and removes Freeze. Normal Attack Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%",
-              "hits": [],
-              "multipliers": [
+              "description": "Activating Cold Burst inflicts Freeze on the enemy for 6 sec . ※ Freeze : Incapacitated. When hit with a skill, inflicts 20% of damage taken and removes Freeze.",
+              "hits": [
                 {
-                  "value_pct": 107.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 46.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%",
@@ -876,15 +1145,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 19.0,
-              "description": "Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 107.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 46.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 19 sec Inflicts damage equal to 111% of Attack. Inflicts Freeze on the target for 6 sec if the hero has a Frozen Saber effect when landing the final strike. ※ Freeze : Incapacitated. When hit with a skill, inflicts 20% of damage taken and removes Freeze.",
@@ -959,18 +1243,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% . Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 65% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 100% . 6 Increases Frozen Saber duration by 50% and Burst Gauge increase by 100% . 7 The Ultimate Move creates additional afterimages, each inflicting damage equal to 55% of Attack and increasing the Burst Gauge by 200 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Adds 2 projectile(s) to the Ultimate Move, inflicting damage equal to 320% of Attack.",
-              "hits": [],
+              "description": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 22.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 24.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 39.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 65.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 262.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% ."
-                },
-                {
-                  "value_pct": 55.0,
-                  "scaling": "ATK",
-                  "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 65% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 100% . 6 Increases Frozen Saber duration by 50% and Burst Gauge increase by 100% . 7 The Ultimate Move creates additional afterimages, each inflicting damage equal to 55% of Attack and increasing the Burst Gauge by 200 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Adds 2 projectile(s) to the Ultimate Move, inflicting damage equal to 320% of Attack."
                 }
               ]
             }
@@ -1012,15 +1312,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Decreases all allied heroes' damage taken by 20% and increases the hero's Healing Efficiency by 50% when HP is 30% or lower. Normal Attack Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% .",
-              "hits": [],
-              "multipliers": [
+              "description": "Decreases all allied heroes' damage taken by 20% and increases the hero's Healing Efficiency by 50% when HP is 30% or lower.",
+              "hits": [
                 {
-                  "value_pct": 99.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% ."
+                  "hit": 1,
+                  "multiplier_pct": 15.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 26.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 42.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% .",
@@ -1045,15 +1360,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 12.0,
-              "description": "Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% .",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 99.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% ."
+                  "hit": 1,
+                  "multiplier_pct": 15.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 26.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 42.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 12 sec Decreases damage taken by 20% and increases Healing Efficiency by 3% every 0.5 sec for 10 sec while the stance is maintained. (Max: 15% ) When hit, the stance is removed, then the hero inflicts damage equal to 99% of Attack and restores HP by 30% of Attack. Increases damage dealt by 5% per 1 Mark of the Forest on the enemy.",
@@ -1128,8 +1458,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a barrier equal to 50% of Max HP. Restores HP by 35% of Attack every 2 sec . King Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 20% 2nd hit: 22% 3rd hit: 36% 4th hit: 59% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the Special Attack's HP Recovery by 50% . 5 Becomes immune to Reactions and decreases damage taken by 30% when using the Special Attack while the stance is maintained. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the Normal Skill's number of Mark of the Forest effects applied by 2 , and restores the Magic Gauge by 75 per every 1 Mark of the Forest effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases the HP Recovery of Forest's Protection by 50% . 10 Increases the duration of Forest's Protection by 10 sec , and increases Defense by 20% while it is active.",
-              "hits": [],
+              "description": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a barrier equal to 50% of Max HP. Restores HP by 35% of Attack every 2 sec .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 22.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 36.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 59.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 35.0,
@@ -1176,15 +1527,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "When an allied hero attacks an enemy affected by Punishment , their Ultimate Move damage increases by 30% . Normal Attack Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%",
-              "hits": [],
-              "multipliers": [
+              "description": "When an allied hero attacks an enemy affected by Punishment , their Ultimate Move damage increases by 30% .",
+              "hits": [
                 {
-                  "value_pct": 108.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 46.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%",
@@ -1209,15 +1575,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 15.0,
-              "description": "Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 108.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 46.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 15 sec Grants allies in range the Draco Priestess effect for 15 sec . ※ Draco Priestess : Increases Crit Damage by 30% .",
@@ -1286,8 +1667,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 158% of Attack. Inflicts damage equal to 20% of Attack every 1 sec for 5 sec and inflicts Stigmata for 30 sec to enemies in range. Also resets Normal Skill cooldowns of all allied heroes. ※ Stigmata : Decreases All Element Defense by 20% . Manny Staff Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 39% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Normal Skill by 30% . 5 Increases the duration of the Special Attack by 5 sec , and increases the Crit Damage boost of Draco Priestess by 50% . 6 Increases the duration of the Normal Skill's Punishment by 15 sec . 7 Changes the Normal Skill into a skill that can be used 2 time(s) . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Slightly increases the range of the Ultimate Move and increases the duration by 5 sec .",
-              "hits": [],
+              "description": "Inflicts damage equal to 158% of Attack. Inflicts damage equal to 20% of Attack every 1 sec for 5 sec and inflicts Stigmata for 30 sec to enemies in range. Also resets Normal Skill cooldowns of all allied heroes. ※ Stigmata : Decreases All Element Defense by 20% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 39.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 64.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 158.0,
@@ -1340,18 +1742,34 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated. Normal Attack Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%",
-              "hits": [],
+              "description": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated.",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 100.0,
                   "scaling": "ATK",
                   "context": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated."
-                },
-                {
-                  "value_pct": 132.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%"
                 }
               ]
             },
@@ -1378,15 +1796,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 18.0,
-              "description": "Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 132.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%"
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 18 sec Inflicts damage equal to 132% of Attack and increases the hero's Darkness Attack by 25% for 20 sec . (Max: 2 times ) Additionally gains 1 effect(s) when landing the attack on an enemy with Darkness Burst activated.",
@@ -1451,18 +1884,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst . Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 29% 3rd hit: 49% 4th hit: 78% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts damage equal to 100% of Attack to nearby enemies and additionally restores the Magic Gauge by 500 with the final strike of the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 Using the Special Attack increases the hero's Crit Chance by 20% for 20 sec . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 350% of Attack when using the Ultimate Move.",
-              "hits": [],
+              "description": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 49.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 78.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 342.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst ."
-                },
-                {
-                  "value_pct": 100.0,
-                  "scaling": "ATK",
-                  "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 29% 3rd hit: 49% 4th hit: 78% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts damage equal to 100% of Attack to nearby enemies and additionally restores the Magic Gauge by 500 with the final strike of the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 Using the Special Attack increases the hero's Crit Chance by 20% for 20 sec . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 350% of Attack when using the Ultimate Move."
                 }
               ]
             }
@@ -1504,15 +1953,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases damage dealt to enemies with Fire Burst activated by 15% . Attacking an enemy with Fire Burst activated transforms the Special Attack into an enhanced Special Attack for 5 sec , increasing damage dealt by 30% . Normal Attack Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%",
-              "hits": [],
-              "multipliers": [
+              "description": "Increases damage dealt to enemies with Fire Burst activated by 15% . Attacking an enemy with Fire Burst activated transforms the Special Attack into an enhanced Special Attack for 5 sec , increasing damage dealt by 30% .",
+              "hits": [
                 {
-                  "value_pct": 128.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%"
+                  "hit": 1,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 33.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%",
@@ -1537,15 +2001,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 9.0,
-              "description": "Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 128.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%"
+                  "hit": 1,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 33.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 9 sec Inflicts damage equal to 77% of Attack.",
@@ -1673,15 +2152,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases damage dealt with Back Attacks by 50% . Normal Attack Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "Increases damage dealt with Back Attacks by 50% .",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
@@ -1706,15 +2200,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 18.0,
-              "description": "Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 18 sec Teleports behind the enemy and inflicts damage equal to 146% of Attack, then inflicts Curse for 15 sec . ※ Curse : Inflicts damage equal to 15% of Attack every 3 sec and decreases Darkness Defense by 15% .",
@@ -1789,8 +2298,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt to Cursed enemies by 10% . Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 30% 2nd hit: 32% 3rd hit: 52% 4th hit: 86% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Resets the Special Attack cooldown when landing the final strike of the Normal Attack on an enemy with Darkness Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the hero's Crit Chance by 30% for 10 sec when successfully landing a Back Attack. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Special Attack inflicts Stun for 4 sec .",
-              "hits": [],
+              "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt to Cursed enemies by 10% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 30.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 32.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 52.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 86.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 356.0,
@@ -1837,15 +2367,35 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": 60.0,
-              "description": "Normal Attack Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 147.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%"
+                  "hit": 1,
+                  "multiplier_pct": 14.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 40.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 51.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%",
@@ -1870,15 +2420,35 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 20.0,
-              "description": "Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 147.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%"
+                  "hit": 1,
+                  "multiplier_pct": 14.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 40.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 51.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 20 sec Gains a barrier equal to 50% of Defense while the stance is maintained. The stance lasts up to 10 sec , and is removed when the barrier is removed. When hit while the stance is maintained, the attacking enemy's Burst Gauge increases by 100 , and all allied heroes' Defense increases by 5% for 20 sec . (Max: 25% )",
@@ -1947,8 +2517,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Increases the hero's Max HP equal to 100% of Defense for 20 sec . Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 20% 2nd hit: 24% 3rd hit: 35% 4th hit: 56% 5th hit: 71% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the Defense boost gained when hit while the Special Attack's stance is maintained by 100% . 5 Increases the damage taken reduction by 70% and slightly increases Movement Speed while the Special Attack's stance is maintained. 6 Increases damage dealt with the Normal Skill by 60% . 7 Restores HP of nearby allies by 10% of Defense every 1 sec for 10 sec when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases the Ultimate Move's Max HP boost to 200% of the hero's Defense. 10 Increases the HP of barriers from the Passive to 100% of Max HP. Restores HP by 50% of Max HP when gaining a barrier .",
-              "hits": [],
+              "description": "Increases the hero's Max HP equal to 100% of Defense for 20 sec .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 24.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 71.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": []
             }
           ]
@@ -1989,15 +2585,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases all allied heroes' DoT by 15% . Decreases the DoT interval by 50% for 5 sec when the hero attacks a Stunned or Paralyzed enemy. Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%",
-              "hits": [],
-              "multipliers": [
+              "description": "Increases all allied heroes' DoT by 15% . Decreases the DoT interval by 50% for 5 sec when the hero attacks a Stunned or Paralyzed enemy.",
+              "hits": [
                 {
-                  "value_pct": 111.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 48.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%",
@@ -2022,15 +2633,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 13.0,
-              "description": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 111.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 28.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 48.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 13 sec Inflicts damage equal to 114% of Attack. Landing the final strike inflicts 1 Weaken effect(s) for 20 sec . ※ Weaken : Increases DoT damage taken by 5% . (Max: 25% )",
@@ -2105,18 +2731,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec . Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 40% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases damage dealt with the Normal Skill by 35% and the number of hits by 4 . Increases the Tag Gauge recovery by 40 for every 1 Weaken effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Inflicts damage equal to 30% of Attack to enemies in range every 1 sec for 5 sec when using the Ultimate Move.",
-              "hits": [],
+              "description": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 40.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 68.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 271.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec ."
-                },
-                {
-                  "value_pct": 30.0,
-                  "scaling": "ATK",
-                  "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 40% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases damage dealt with the Normal Skill by 35% and the number of hits by 4 . Increases the Tag Gauge recovery by 40 for every 1 Weaken effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Inflicts damage equal to 30% of Attack to enemies in range every 1 sec for 5 sec when using the Ultimate Move."
                 }
               ]
             }
@@ -2179,15 +2821,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases Defense by 15% when all allied heroes have barriers . Normal Attack Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%",
-              "hits": [],
-              "multipliers": [
+              "description": "Increases Defense by 15% when all allied heroes have barriers .",
+              "hits": [
                 {
-                  "value_pct": 113.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 49.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%",
@@ -2212,15 +2869,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 13.0,
-              "description": "Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 113.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 49.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 13 sec Increases Defense by 25% while the stance is maintained. Restores the hero's Tag Gauge by 100 when hit while the stance is maintained. The stance lasts up to 10 sec , and it is removed when hit 5 time(s) .",
@@ -2280,8 +2952,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 284% of Attack and decreases the enemy's Shatter Resistance by 5% for 20 sec . Griamore Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 41% 4th hit: 69% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases Special Attack's Defense boost by 40% . 5 Using the Normal Skill increases the hero's Defense by 20% for 15 sec . 6 Increases damage dealt with the Normal Skill by 60% . 7 Gains a barrier equal to 20% of Max HP while the Special Attack's stance is maintained. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Ultimate Move inflicts additional damage equal to 150% of Defense.",
-              "hits": [],
+              "description": "Inflicts damage equal to 284% of Attack and decreases the enemy's Shatter Resistance by 5% for 20 sec .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 26.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 41.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 69.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 284.0,
@@ -2328,15 +3021,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases all allied heroes' Crit Chance by 10% when any ally attacks an enemy with reduced Movement Speed. Normal Attack Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "Increases all allied heroes' Crit Chance by 10% when any ally attacks an enemy with reduced Movement Speed.",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
@@ -2361,15 +3069,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 9.0,
-              "description": "Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 142.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 9 sec Teleports behind the enemy and inflicts damage equal to 146% of Attack. Attacking an enemy with reduced Movement Speed Stuns them for 5 sec and increases the hero's Crit Chance by 10% for 10 sec .",
@@ -2444,8 +3167,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 357% of Attack and the hero gains Keen Eye for 5 sec . ※ Keen Eye : Consumes 100 from the Tag Gauge every 0.5 sec to increase Crit Damage by 20% . Hendrickson Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 29% 2nd hit: 31% 3rd hit: 51% 4th hit: 86% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Restores Magic by 100 and restores the Tag Gauge by 150 when landing a Critical Hit with the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases Crit Damage by 30% when landing a Back Attack with the Normal Skill. Landing a Critical Hit restores the Tag Gauge by 300 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases the duration of the Ultimate Move's Keen Eye by 5 sec and decreases the Tag Gauge consumption by 45 .",
-              "hits": [],
+              "description": "Inflicts damage equal to 357% of Attack and the hero gains Keen Eye for 5 sec . ※ Keen Eye : Consumes 100 from the Tag Gauge every 0.5 sec to increase Crit Damage by 20% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 31.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 51.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 86.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 357.0,
@@ -2492,15 +3236,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Attacking an enemy with Wind Burst activated increases the hero's Wind Attack by 3% for 20 sec . (Max: 10 times) Normal Attack Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%",
-              "hits": [],
-              "multipliers": [
+              "description": "Attacking an enemy with Wind Burst activated increases the hero's Wind Attack by 3% for 20 sec . (Max: 10 times)",
+              "hits": [
                 {
-                  "value_pct": 127.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%"
+                  "hit": 1,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 34.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%",
@@ -2525,15 +3284,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 127.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%"
+                  "hit": 1,
+                  "multiplier_pct": 18.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 34.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 56.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 10 sec Inflicts damage equal to 120% of Attack, and the hero gains Gust for 20 sec . ※ Gust : Inflicts additional damage equal to 30% of the damage dealt with the Normal Skill or Ultimate Move.",
@@ -2661,15 +3435,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "When an allied hero attacks an enemy with decreased Fire Defense , Crit Chance increases by 8% . Normal Attack Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%",
-              "hits": [],
-              "multipliers": [
+              "description": "When an allied hero attacks an enemy with decreased Fire Defense , Crit Chance increases by 8% .",
+              "hits": [
                 {
-                  "value_pct": 115.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 31.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 48.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%",
@@ -2694,15 +3483,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 15.0,
-              "description": "Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 115.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%"
+                  "hit": 1,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 19.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 31.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 48.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 15 sec Normal Attacks are enhanced for 10 sec , slightly increasing damage. Landing an enhanced Normal Attack inflicts Combustion on the enemy for 10 sec . ※ Combustion : Decreases Attack by 5% .",
@@ -2771,8 +3575,29 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 273% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Tioreh Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 24% 2nd hit: 27% 3rd hit: 43% 4th hit: 68% Increases damage dealt with enhanced Normal Attacks by 50% . 1st hit: 35% 2nd hit: 39% 3rd hit: 63% 4th hit: 107% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 15 sec . 5 Slightly increases the range of the Ultimate Move and increases damage dealt to enemies affected by Combustion by 20% . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the duration of Combustion by 5 sec , and increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases Movement Speed by 50% and becomes immune to Reactions while using the Normal Skill.",
-              "hits": [],
+              "description": "Inflicts damage equal to 273% of Attack. Increases damage dealt to enemies affected by Combustion by 20% .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 24.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 27.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 43.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 68.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 273.0,
@@ -2819,15 +3644,30 @@
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "When Fire Burst is activated, all allied heroes' Fire Attack increases by 15% for 20 sec . Normal Attack Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%",
-              "hits": [],
-              "multipliers": [
+              "description": "When Fire Burst is activated, all allied heroes' Fire Attack increases by 15% for 20 sec .",
+              "hits": [
                 {
-                  "value_pct": 105.0,
-                  "scaling": "ATK",
-                  "context": "Normal Attack Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 27.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 45.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Normal Attack Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%",
@@ -2852,15 +3692,30 @@
               "type": "Normal Attack",
               "key": null,
               "cooldown_sec": 7.5,
-              "description": "Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%",
-              "hits": [],
-              "multipliers": [
+              "description": "",
+              "hits": [
                 {
-                  "value_pct": 105.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%"
+                  "hit": 1,
+                  "multiplier_pct": 16.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 17.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 27.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 45.0,
+                  "scaling": "ATK"
                 }
-              ]
+              ],
+              "multipliers": []
             },
             {
               "name": "Special Attack Cooldown: 7.5 sec Inflicts damage equal to 101% of Attack. Decreases the enemy's Fire Defense by 10% for 20 sec .",
@@ -2935,18 +3790,34 @@
               "type": "Ultimate Move",
               "key": "Q",
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec . Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 38% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts Fire damage equal to 45% of Attack to enemies around the target if Fire Burst activates with the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 When a Critical Hit is landed with a Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 3 time(s) in a row. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 When Fire Burst activates, all allied heroes' Fire Attack increases by 30% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
-              "hits": [],
+              "description": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 22.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 24.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 38.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 64.0,
+                  "scaling": "ATK"
+                }
+              ],
               "multipliers": [
                 {
                   "value_pct": 261.0,
                   "scaling": "ATK",
                   "context": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec ."
-                },
-                {
-                  "value_pct": 45.0,
-                  "scaling": "ATK",
-                  "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 38% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts Fire damage equal to 45% of Attack to enemies around the target if Fire Burst activates with the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 When a Critical Hit is landed with a Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 3 time(s) in a row. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 When Fire Burst activates, all allied heroes' Fire Attack increases by 30% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
                 }
               ]
             }
@@ -4517,15 +5388,30 @@
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Expands the crafting queue for consecutive crafting. Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "Expands the crafting queue for consecutive crafting.",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/daisy/"
@@ -4577,15 +5463,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 12.0,
-        "description": "Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/daisy/"
@@ -4732,8 +5633,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding . Daisy Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 29% 2nd hit: 32% 3rd hit: 52% 4th hit: 85% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Using the Special Attack does not decrease Movement Speed, and its range is greatly increased. The Magic Gauge recovery from Staggering nearby enemies increases by 100% . 6 Decreases the Magic consumption of the Special Attack and Normal Skill when riding by 50% . 7 Slightly increases the range of the Normal Skill while riding. Taking damage from a Normal Skill increases the enemy's damage taken by 20% . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Normal Skill by 90% and increases the riding duration by 10 sec . 10 Changes the Normal Skill into a skill that can be used 2 time(s) while riding. The Special Attack's damage dealt increases by 100% when fully charged.",
-        "hits": [],
+        "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 32.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 52.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 85.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [],
         "sources": {
           "genshin": {
@@ -4768,15 +5690,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Additionally inflicts damage equal to 10% of Defense when attacking the enemy. Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%",
-        "hits": [],
-        "multipliers": [
+        "description": "Additionally inflicts damage equal to 10% of Defense when attacking the enemy.",
+        "hits": [
           {
-            "value_pct": 111.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 47.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/diane/"
@@ -4828,15 +5765,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 111.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 47%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 47.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/diane/"
@@ -4965,18 +5917,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% ) Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 41% 4th hit: 67% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 100% chance to reset the Normal Skill cooldown and increase damage dealt with the Normal Skill by 50% once when landing the final strike of the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Additionally inflicts damage equal to 270% of Attack when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases damage dealt by the Special Attack's final strike by 300% and decreases the enemy's Earth Defense by 30% for 20 sec .",
-        "hits": [],
+        "description": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% )",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 41.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 67.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 286.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 286% of Attack and gains Heavy Metal for 15 sec . ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 and increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 30% )"
-          },
-          {
-            "value_pct": 270.0,
-            "scaling": "ATK",
-            "context": "Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 41% 4th hit: 67% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 100% chance to reset the Normal Skill cooldown and increase damage dealt with the Normal Skill by 50% once when landing the final strike of the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Additionally inflicts damage equal to 270% of Attack when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases damage dealt by the Special Attack's final strike by 300% and decreases the enemy's Earth Defense by 30% for 20 sec ."
           }
         ],
         "sources": {
@@ -5012,15 +5980,35 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "25% chance to decrease the cooldown of the Normal Skill by 2 sec when using a Normal Attack on an enemy with Lightning Burst activated. Normal Attack Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%",
-        "hits": [],
-        "multipliers": [
+        "description": "25% chance to decrease the cooldown of the Normal Skill by 2 sec when using a Normal Attack on an enemy with Lightning Burst activated.",
+        "hits": [
           {
-            "value_pct": 164.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 44.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 57.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/drake/"
@@ -5072,15 +6060,35 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 9.0,
-        "description": "Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 164.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 164% of Attack. 1st hit: 16% 2nd hit: 19% 3rd hit: 28% 4th hit: 44% 5th hit: 57%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 44.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 57.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/drake/"
@@ -5209,18 +6217,39 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero. Drake Greatsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 40% 4th hit: 61% 5th hit: 80% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Slightly increases the range of the Special Attack. Decreases Normal Skill cooldown by 3 sec when using the Special Attack on an enemy with Lightning Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the maximum number of King's Magic granted by the Normal Skill by 2 . Increases the duration of the hero's King of the Dracos effect by 1 sec when landing the Normal Skill. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 130% of Attack with the first strike of the Ultimate Move.",
-        "hits": [],
+        "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero.",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 26.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 40.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 80.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 356.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 356% of Attack. Increases damage dealt by 30% per every 1 King's Magic effect on the hero."
-          },
-          {
-            "value_pct": 130.0,
-            "scaling": "ATK",
-            "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 40% 4th hit: 61% 5th hit: 80% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Slightly increases the range of the Special Attack. Decreases Normal Skill cooldown by 3 sec when using the Special Attack on an enemy with Lightning Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the maximum number of King's Magic granted by the Normal Skill by 2 . Increases the duration of the hero's King of the Dracos effect by 1 sec when landing the Normal Skill. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 130% of Attack with the first strike of the Ultimate Move."
           }
         ],
         "sources": {
@@ -5256,15 +6285,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Activating Earth Burst inflicts Petrify on the enemy for 6 sec . Increases all allied heroes' damage dealt to Petrified enemies by 100% when the hero is set to the team. ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Normal Attack Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%",
-        "hits": [],
-        "multipliers": [
+        "description": "Activating Earth Burst inflicts Petrify on the enemy for 6 sec . Increases all allied heroes' damage dealt to Petrified enemies by 100% when the hero is set to the team. ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% .",
+        "hits": [
           {
-            "value_pct": 116.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%"
+            "hit": 1,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 30.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 49.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/elaine/"
@@ -5316,15 +6360,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 12.0,
-        "description": "Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 116.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 116% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 30% 4th hit: 49%"
+            "hit": 1,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 30.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 49.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/elaine/"
@@ -5442,8 +6501,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 268% of Attack and Binds for 3 sec . Inflicts Petrify for 6 sec when attacking an enemy affected by Saintess's Mark . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Elaine Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the duration of the Special Attack's Saintess's Mark by 10 sec . 5 Increases the Earth damage of allies with Saintess's Mark by 50% . 6 Increases the Normal Skill's barrier by 66% . 7 Changes the Special Attack into a skill that can be used 2 time(s) and slightly increases its range. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Ultimate Move also inflicts Petrify on enemies without Saintess's Mark for 6 sec . Inflicts Petrify on enemies with Saintess's Mark for 12 sec .",
-        "hits": [],
+        "description": "Inflicts damage equal to 268% of Attack and Binds for 3 sec . Inflicts Petrify for 6 sec when attacking an enemy affected by Saintess's Mark . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 24.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 26.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 42.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 68.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 268.0,
@@ -5484,15 +6564,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Gains Impulse for 20 sec when successfully attacking an enemy while not in Demon Form . (Max: 10 ) ※ Impulse : Increases Crit Chance by 3% per 1 effect(s) while in Demon Form. If the hero has the maximum number of Impulse effects, Normal Skill cooldown decreases by 1 sec when attacking an enemy with Fire Burst activated. Normal Attack Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%",
-        "hits": [],
-        "multipliers": [
+        "description": "Gains Impulse for 20 sec when successfully attacking an enemy while not in Demon Form . (Max: 10 ) ※ Impulse : Increases Crit Chance by 3% per 1 effect(s) while in Demon Form. If the hero has the maximum number of Impulse effects, Normal Skill cooldown decreases by 1 sec when attacking an enemy with Fire Burst activated.",
+        "hits": [
           {
-            "value_pct": 135.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%"
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 22.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 58.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/guila/"
@@ -5544,15 +6639,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 8.0,
-        "description": "Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 135.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 135% of Attack. 1st hit: 20% 2nd hit: 22% 3rd hit: 35% 4th hit: 58% Inflicts damage equal to 148% of Attack while in Demon Form . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 63%"
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 22.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 58.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/guila/"
@@ -5681,15 +6791,30 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 30.0,
-        "description": "Enters Demon Form for 20 sec . Guila Lance Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 31% 3rd hit: 50% 4th hit: 81% Increases damage dealt with Normal Attacks by 50% while in Demon Form . 1st hit: 33% 2nd hit: 35% 3rd hit: 58% 4th hit: 95% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . Increases damage dealt with the Special Attack by 65% while in Demon Form . 5 Increases the casting speed of the Special Attack, and increases the Normal Skill cooldown reduction by 100% while in Demon Form . 6 Increases damage dealt with the Normal Skill by 60% . Increases damage dealt with the Normal Skill by 80% while in Demon Form . 7 Increases the number of Normal Skill hits by 2 while in Demon Form . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Special Attack by 75% , and damage dealt with the Normal Skill by 60% while in Demon Form . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
-        "hits": [],
-        "multipliers": [
+        "description": "Enters Demon Form for 20 sec .",
+        "hits": [
           {
-            "value_pct": 25.0,
-            "scaling": "ATK",
-            "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 31% 3rd hit: 50% 4th hit: 81% Increases damage dealt with Normal Attacks by 50% while in Demon Form . 1st hit: 33% 2nd hit: 35% 3rd hit: 58% 4th hit: 95% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . Increases damage dealt with the Special Attack by 65% while in Demon Form . 5 Increases the casting speed of the Special Attack, and increases the Normal Skill cooldown reduction by 100% while in Demon Form . 6 Increases damage dealt with the Normal Skill by 60% . Increases damage dealt with the Normal Skill by 80% while in Demon Form . 7 Increases the number of Normal Skill hits by 2 while in Demon Form . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Special Attack by 75% , and damage dealt with the Normal Skill by 60% while in Demon Form . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
+            "hit": 1,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 31.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 50.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 81.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/guila/"
@@ -5723,15 +6848,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Activating Cold Burst inflicts Freeze on the enemy for 6 sec . ※ Freeze : Incapacitated. When hit with a skill, inflicts 20% of damage taken and removes Freeze. Normal Attack Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%",
-        "hits": [],
-        "multipliers": [
+        "description": "Activating Cold Burst inflicts Freeze on the enemy for 6 sec . ※ Freeze : Incapacitated. When hit with a skill, inflicts 20% of damage taken and removes Freeze.",
+        "hits": [
           {
-            "value_pct": 107.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 46.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/jericho/"
@@ -5783,15 +6923,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 19.0,
-        "description": "Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 107.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 107% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 28% 4th hit: 46%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 46.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/jericho/"
@@ -5920,18 +7075,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% . Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 65% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 100% . 6 Increases Frozen Saber duration by 50% and Burst Gauge increase by 100% . 7 The Ultimate Move creates additional afterimages, each inflicting damage equal to 55% of Attack and increasing the Burst Gauge by 200 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Adds 2 projectile(s) to the Ultimate Move, inflicting damage equal to 320% of Attack.",
-        "hits": [],
+        "description": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 22.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 24.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 39.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 65.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 262.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 262% of Attack and decreases Cold Resistance by 20% . If the hero has a Frozen Saber effect, the Ultimate Move's Crit Damage increases by 60% ."
-          },
-          {
-            "value_pct": 55.0,
-            "scaling": "ATK",
-            "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 39% 4th hit: 65% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 100% . 6 Increases Frozen Saber duration by 50% and Burst Gauge increase by 100% . 7 The Ultimate Move creates additional afterimages, each inflicting damage equal to 55% of Attack and increasing the Burst Gauge by 200 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Adds 2 projectile(s) to the Ultimate Move, inflicting damage equal to 320% of Attack."
           }
         ],
         "sources": {
@@ -5967,15 +7138,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Decreases all allied heroes' damage taken by 20% and increases the hero's Healing Efficiency by 50% when HP is 30% or lower. Normal Attack Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% .",
-        "hits": [],
-        "multipliers": [
+        "description": "Decreases all allied heroes' damage taken by 20% and increases the hero's Healing Efficiency by 50% when HP is 30% or lower.",
+        "hits": [
           {
-            "value_pct": 99.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% ."
+            "hit": 1,
+            "multiplier_pct": 15.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 26.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 42.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/king/"
@@ -6027,15 +7213,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 12.0,
-        "description": "Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% .",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 99.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 99% of Attack. 20% chance to inflict Mark of the Forest for 10 sec . (Max: 10 times ) 1st hit: 15% 2nd hit: 16% 3rd hit: 26% 4th hit: 42% ※ Mark of the Forest : Increases damage taken by 1% and Earth damage taken by 3% ."
+            "hit": 1,
+            "multiplier_pct": 15.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 26.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 42.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/king/"
@@ -6164,8 +7365,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a barrier equal to 50% of Max HP. Restores HP by 35% of Attack every 2 sec . King Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 20% 2nd hit: 22% 3rd hit: 36% 4th hit: 59% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the Special Attack's HP Recovery by 50% . 5 Becomes immune to Reactions and decreases damage taken by 30% when using the Special Attack while the stance is maintained. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the Normal Skill's number of Mark of the Forest effects applied by 2 , and restores the Magic Gauge by 75 per every 1 Mark of the Forest effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases the HP Recovery of Forest's Protection by 50% . 10 Increases the duration of Forest's Protection by 10 sec , and increases Defense by 20% while it is active.",
-        "hits": [],
+        "description": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a barrier equal to 50% of Max HP. Restores HP by 35% of Attack every 2 sec .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 22.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 36.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 59.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 35.0,
@@ -6206,15 +7428,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "When an allied hero attacks an enemy affected by Punishment , their Ultimate Move damage increases by 30% . Normal Attack Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%",
-        "hits": [],
-        "multipliers": [
+        "description": "When an allied hero attacks an enemy affected by Punishment , their Ultimate Move damage increases by 30% .",
+        "hits": [
           {
-            "value_pct": 108.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 46.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/manny/"
@@ -6266,15 +7503,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 15.0,
-        "description": "Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 108.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 108% of Attack. 1st hit: 16% 2nd hit: 18% 3rd hit: 28% 4th hit: 46%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 46.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/manny/"
@@ -6397,8 +7649,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 158% of Attack. Inflicts damage equal to 20% of Attack every 1 sec for 5 sec and inflicts Stigmata for 30 sec to enemies in range. Also resets Normal Skill cooldowns of all allied heroes. ※ Stigmata : Decreases All Element Defense by 20% . Manny Staff Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 39% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Normal Skill by 30% . 5 Increases the duration of the Special Attack by 5 sec , and increases the Crit Damage boost of Draco Priestess by 50% . 6 Increases the duration of the Normal Skill's Punishment by 15 sec . 7 Changes the Normal Skill into a skill that can be used 2 time(s) . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Slightly increases the range of the Ultimate Move and increases the duration by 5 sec .",
-        "hits": [],
+        "description": "Inflicts damage equal to 158% of Attack. Inflicts damage equal to 20% of Attack every 1 sec for 5 sec and inflicts Stigmata for 30 sec to enemies in range. Also resets Normal Skill cooldowns of all allied heroes. ※ Stigmata : Decreases All Element Defense by 20% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 39.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 64.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 158.0,
@@ -6445,18 +7718,34 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated. Normal Attack Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%",
-        "hits": [],
+        "description": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated.",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 100.0,
             "scaling": "ATK",
             "context": "Decreases Darkness Burst duration by 3 sec and additionally inflicts damage equal to 100% of Attack when landing a skill on an enemy with Darkness Burst activated."
-          },
-          {
-            "value_pct": 132.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%"
           }
         ],
         "sources": {
@@ -6510,15 +7799,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 18.0,
-        "description": "Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 132.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 132% of Attack. 1st hit: 20% 2nd hit: 21% 3rd hit: 35% 4th hit: 56%"
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/meliodas/"
@@ -6628,18 +7932,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst . Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 29% 3rd hit: 49% 4th hit: 78% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts damage equal to 100% of Attack to nearby enemies and additionally restores the Magic Gauge by 500 with the final strike of the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 Using the Special Attack increases the hero's Crit Chance by 20% for 20 sec . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 350% of Attack when using the Ultimate Move.",
-        "hits": [],
+        "description": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 49.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 78.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 342.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 342% of Attack and increases damage dealt to enemies with Darkness Burst activated by 100% , then removes the target's Darkness Burst ."
-          },
-          {
-            "value_pct": 100.0,
-            "scaling": "ATK",
-            "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 28% 2nd hit: 29% 3rd hit: 49% 4th hit: 78% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts damage equal to 100% of Attack to nearby enemies and additionally restores the Magic Gauge by 500 with the final strike of the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 Using the Special Attack increases the hero's Crit Chance by 20% for 20 sec . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Additionally inflicts damage equal to 350% of Attack when using the Ultimate Move."
           }
         ],
         "sources": {
@@ -6675,15 +7995,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases damage dealt to enemies with Fire Burst activated by 15% . Attacking an enemy with Fire Burst activated transforms the Special Attack into an enhanced Special Attack for 5 sec , increasing damage dealt by 30% . Normal Attack Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%",
-        "hits": [],
-        "multipliers": [
+        "description": "Increases damage dealt to enemies with Fire Burst activated by 15% . Attacking an enemy with Fire Burst activated transforms the Special Attack into an enhanced Special Attack for 5 sec , increasing damage dealt by 30% .",
+        "hits": [
           {
-            "value_pct": 128.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%"
+            "hit": 1,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 33.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/slader/"
@@ -6735,15 +8070,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 9.0,
-        "description": "Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 128.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 128% of Attack. 1st hit: 19% 2nd hit: 21% 3rd hit: 33% 4th hit: 56%"
+            "hit": 1,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 33.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/slader/"
@@ -6919,15 +8269,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases damage dealt with Back Attacks by 50% . Normal Attack Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "Increases damage dealt with Back Attacks by 50% .",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/bug/"
@@ -6979,15 +8344,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 18.0,
-        "description": "Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 142% of Attack. 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/bug/"
@@ -7116,8 +8496,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt to Cursed enemies by 10% . Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 30% 2nd hit: 32% 3rd hit: 52% 4th hit: 86% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Resets the Special Attack cooldown when landing the final strike of the Normal Attack on an enemy with Darkness Burst activated. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the hero's Crit Chance by 30% for 10 sec when successfully landing a Back Attack. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Special Attack inflicts Stun for 4 sec .",
-        "hits": [],
+        "description": "Inflicts damage equal to 356% of Attack. Increases damage dealt to Cursed enemies by 10% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 30.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 32.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 52.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 86.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 356.0,
@@ -7158,15 +8559,35 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": 60.0,
-        "description": "Normal Attack Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 147.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%"
+            "hit": 1,
+            "multiplier_pct": 14.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 40.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 51.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/dreydrin/"
@@ -7218,15 +8639,35 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 20.0,
-        "description": "Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 147.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 147% of Attack. 1st hit: 14% 2nd hit: 17% 3rd hit: 25% 4th hit: 40% 5th hit: 51%"
+            "hit": 1,
+            "multiplier_pct": 14.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 40.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 51.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/dreydrin/"
@@ -7349,8 +8790,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Increases the hero's Max HP equal to 100% of Defense for 20 sec . Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 20% 2nd hit: 24% 3rd hit: 35% 4th hit: 56% 5th hit: 71% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the Defense boost gained when hit while the Special Attack's stance is maintained by 100% . 5 Increases the damage taken reduction by 70% and slightly increases Movement Speed while the Special Attack's stance is maintained. 6 Increases damage dealt with the Normal Skill by 60% . 7 Restores HP of nearby allies by 10% of Defense every 1 sec for 10 sec when using the Ultimate Move. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases the Ultimate Move's Max HP boost to 200% of the hero's Defense. 10 Increases the HP of barriers from the Passive to 100% of Max HP. Restores HP by 50% of Max HP when gaining a barrier .",
-        "hits": [],
+        "description": "Increases the hero's Max HP equal to 100% of Defense for 20 sec .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 24.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 71.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [],
         "sources": {
           "genshin": {
@@ -7385,15 +8852,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases all allied heroes' DoT by 15% . Decreases the DoT interval by 50% for 5 sec when the hero attacks a Stunned or Paralyzed enemy. Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%",
-        "hits": [],
-        "multipliers": [
+        "description": "Increases all allied heroes' DoT by 15% . Decreases the DoT interval by 50% for 5 sec when the hero attacks a Stunned or Paralyzed enemy.",
+        "hits": [
           {
-            "value_pct": 111.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 48.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/dreyfus/"
@@ -7445,15 +8927,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 13.0,
-        "description": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 111.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 111% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 28% 4th hit: 48%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 28.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 48.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/dreyfus/"
@@ -7582,18 +9079,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec . Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 40% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases damage dealt with the Normal Skill by 35% and the number of hits by 4 . Increases the Tag Gauge recovery by 40 for every 1 Weaken effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Inflicts damage equal to 30% of Attack to enemies in range every 1 sec for 5 sec when using the Ultimate Move.",
-        "hits": [],
+        "description": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 40.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 68.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 271.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 271% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 5 sec ."
-          },
-          {
-            "value_pct": 30.0,
-            "scaling": "ATK",
-            "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 25% 3rd hit: 40% 4th hit: 68% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases damage dealt with the Normal Skill by 35% and the number of hits by 4 . Increases the Tag Gauge recovery by 40 for every 1 Weaken effect(s) on the enemy. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Inflicts damage equal to 30% of Attack to enemies in range every 1 sec for 5 sec when using the Ultimate Move."
           }
         ],
         "sources": {
@@ -7629,15 +9142,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases Defense by 15% when all allied heroes have barriers . Normal Attack Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%",
-        "hits": [],
-        "multipliers": [
+        "description": "Increases Defense by 15% when all allied heroes have barriers .",
+        "hits": [
           {
-            "value_pct": 113.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 49.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/griamore/"
@@ -7689,15 +9217,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 13.0,
-        "description": "Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 113.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 113% of Attack. 1st hit: 17% 2nd hit: 18% 3rd hit: 29% 4th hit: 49%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 49.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/griamore/"
@@ -7802,8 +9345,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 284% of Attack and decreases the enemy's Shatter Resistance by 5% for 20 sec . Griamore Shield Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 23% 2nd hit: 26% 3rd hit: 41% 4th hit: 69% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases Special Attack's Defense boost by 40% . 5 Using the Normal Skill increases the hero's Defense by 20% for 15 sec . 6 Increases damage dealt with the Normal Skill by 60% . 7 Gains a barrier equal to 20% of Max HP while the Special Attack's stance is maintained. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Landing the Ultimate Move inflicts additional damage equal to 150% of Defense.",
-        "hits": [],
+        "description": "Inflicts damage equal to 284% of Attack and decreases the enemy's Shatter Resistance by 5% for 20 sec .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 26.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 41.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 69.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 284.0,
@@ -7844,15 +9408,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases all allied heroes' Crit Chance by 10% when any ally attacks an enemy with reduced Movement Speed. Normal Attack Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "Increases all allied heroes' Crit Chance by 10% when any ally attacks an enemy with reduced Movement Speed.",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/hendrickson/"
@@ -7904,15 +9483,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 9.0,
-        "description": "Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 142.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 142% of Attack. 15% chance to decrease the Special Attack cooldown by 1 sec . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%"
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/hendrickson/"
@@ -8041,8 +9635,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 357% of Attack and the hero gains Keen Eye for 5 sec . ※ Keen Eye : Consumes 100 from the Tag Gauge every 0.5 sec to increase Crit Damage by 20% . Hendrickson Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 29% 2nd hit: 31% 3rd hit: 51% 4th hit: 86% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Restores Magic by 100 and restores the Tag Gauge by 150 when landing a Critical Hit with the Special Attack. 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases Crit Damage by 30% when landing a Back Attack with the Normal Skill. Landing a Critical Hit restores the Tag Gauge by 300 . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases the duration of the Ultimate Move's Keen Eye by 5 sec and decreases the Tag Gauge consumption by 45 .",
-        "hits": [],
+        "description": "Inflicts damage equal to 357% of Attack and the hero gains Keen Eye for 5 sec . ※ Keen Eye : Consumes 100 from the Tag Gauge every 0.5 sec to increase Crit Damage by 20% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 31.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 51.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 86.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 357.0,
@@ -8083,15 +9698,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Attacking an enemy with Wind Burst activated increases the hero's Wind Attack by 3% for 20 sec . (Max: 10 times) Normal Attack Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%",
-        "hits": [],
-        "multipliers": [
+        "description": "Attacking an enemy with Wind Burst activated increases the hero's Wind Attack by 3% for 20 sec . (Max: 10 times)",
+        "hits": [
           {
-            "value_pct": 127.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%"
+            "hit": 1,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 34.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/howzer/"
@@ -8143,15 +9773,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 127.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 127% of Attack. 1st hit: 18% 2nd hit: 19% 3rd hit: 34% 4th hit: 56%"
+            "hit": 1,
+            "multiplier_pct": 18.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 34.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 56.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/howzer/"
@@ -8327,15 +9972,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "When an allied hero attacks an enemy with decreased Fire Defense , Crit Chance increases by 8% . Normal Attack Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%",
-        "hits": [],
-        "multipliers": [
+        "description": "When an allied hero attacks an enemy with decreased Fire Defense , Crit Chance increases by 8% .",
+        "hits": [
           {
-            "value_pct": 115.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 31.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 48.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tioreh/"
@@ -8387,15 +10047,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 15.0,
-        "description": "Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 115.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 115% of Attack. 1st hit: 17% 2nd hit: 19% 3rd hit: 31% 4th hit: 48% Enhanced Normal Attacks inflict damage equal to 164% of Attack. 1st hit: 24% 2nd hit: 26% 3rd hit: 42% 4th hit: 72%"
+            "hit": 1,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 19.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 31.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 48.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tioreh/"
@@ -8518,8 +10193,29 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 273% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Tioreh Book Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 24% 2nd hit: 27% 3rd hit: 43% 4th hit: 68% Increases damage dealt with enhanced Normal Attacks by 50% . 1st hit: 35% 2nd hit: 39% 3rd hit: 63% 4th hit: 107% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 15 sec . 5 Slightly increases the range of the Ultimate Move and increases damage dealt to enemies affected by Combustion by 20% . 6 Increases damage dealt with the Normal Skill by 60% . 7 Increases the duration of Combustion by 5 sec , and increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 Increases Movement Speed by 50% and becomes immune to Reactions while using the Normal Skill.",
-        "hits": [],
+        "description": "Inflicts damage equal to 273% of Attack. Increases damage dealt to enemies affected by Combustion by 20% .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 24.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 27.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 43.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 68.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 273.0,
@@ -8560,15 +10256,30 @@
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "When Fire Burst is activated, all allied heroes' Fire Attack increases by 15% for 20 sec . Normal Attack Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%",
-        "hits": [],
-        "multipliers": [
+        "description": "When Fire Burst is activated, all allied heroes' Fire Attack increases by 15% for 20 sec .",
+        "hits": [
           {
-            "value_pct": 105.0,
-            "scaling": "ATK",
-            "context": "Normal Attack Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 27.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 45.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tristan/"
@@ -8620,15 +10331,30 @@
         "type": "Normal Attack",
         "key": null,
         "cooldown_sec": 7.5,
-        "description": "Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%",
-        "hits": [],
-        "multipliers": [
+        "description": "",
+        "hits": [
           {
-            "value_pct": 105.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 105% of Attack. 1st hit: 16% 2nd hit: 17% 3rd hit: 27% 4th hit: 45%"
+            "hit": 1,
+            "multiplier_pct": 16.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 17.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 27.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 45.0,
+            "scaling": "ATK"
           }
         ],
+        "multipliers": [],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tristan/"
@@ -8757,18 +10483,34 @@
         "type": "Ultimate Move",
         "key": "Q",
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec . Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 38% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts Fire damage equal to 45% of Attack to enemies around the target if Fire Burst activates with the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 When a Critical Hit is landed with a Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 3 time(s) in a row. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 When Fire Burst activates, all allied heroes' Fire Attack increases by 30% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
-        "hits": [],
+        "description": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 22.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 24.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 38.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 64.0,
+            "scaling": "ATK"
+          }
+        ],
         "multipliers": [
           {
             "value_pct": 261.0,
             "scaling": "ATK",
             "context": "Inflicts damage equal to 261% of Attack. Increases all allied heroes' All Elemental Burst Efficiency by 15% for 20 sec ."
-          },
-          {
-            "value_pct": 45.0,
-            "scaling": "ATK",
-            "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 2 Increases damage dealt with Normal Attacks by 40% . 1st hit: 22% 2nd hit: 24% 3rd hit: 38% 4th hit: 64% 3 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 4 Increases damage dealt with the Special Attack by 50% . 5 Inflicts Fire damage equal to 45% of Attack to enemies around the target if Fire Burst activates with the Normal Skill. 6 Increases damage dealt with the Normal Skill by 60% . 7 When a Critical Hit is landed with a Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 3 time(s) in a row. 8 Increases Attack by 25% , Defense by 20% , and Max HP by 8% . 9 Increases damage dealt with the Ultimate Move by 50% . 10 When Fire Burst activates, all allied heroes' Fire Attack increases by 30% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
           }
         ],
         "sources": {
