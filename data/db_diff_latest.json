@@ -1,10 +1,5 @@
 {
   "added": {
-    "characters": [],
-    "weapons": [],
-    "skills": []
-  },
-  "removed": {
     "characters": [
       "ch_bf334f71381a"
     ],
@@ -22,6 +17,11 @@
       "sk_e353a6da2f24",
       "sk_e83a5d8c1725"
     ]
+  },
+  "removed": {
+    "characters": [],
+    "weapons": [],
+    "skills": []
   },
   "changed": {
     "characters": [],

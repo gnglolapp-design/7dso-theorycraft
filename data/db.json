@@ -1,8 +1,217 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-03-09T06:13:34Z",
+  "generated_at": "2026-03-09T08:00:33Z",
   "modules": {
     "characters": {
+      "ch_bf334f71381a": {
+        "id": "ch_bf334f71381a",
+        "name": "Daisy",
+        "image_url": "https://sunderarmor.com/7DSO/portrait_hero/slot_daisy_001.png",
+        "description": "Shield Book Wand Shield Book",
+        "weapon_types": [
+          "Shield",
+          "Book",
+          "Wand"
+        ],
+        "costumes": [],
+        "skills_by_weapon": {
+          "Shield": [
+            {
+              "name": "Artisan's Touch",
+              "type": "Adventure Skill",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Expands the crafting queue for consecutive crafting.",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": []
+            },
+            {
+              "name": "Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
+              "type": "Normal Attack",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Normal Attack",
+              "type": "Normal Attack",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Normal Attack",
+              "type": "Normal Attack",
+              "key": null,
+              "cooldown_sec": 12.0,
+              "description": "",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 21.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 37.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 61.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": []
+            },
+            {
+              "name": "Special Attack Cooldown: 12 sec [Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec .",
+              "type": "Special Attack",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Special Attack",
+              "type": "Special Attack",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Special Attack",
+              "type": "Special Attack",
+              "key": null,
+              "cooldown_sec": 12.0,
+              "description": "[Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec . Offbeat Girl Passive Increases the default state's Magic Charging Efficiency by 50% , and the Ultimate Move does not consume Magic. Offbeat Girl Passive Offbeat Girl Passive Offbeat Girl",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 163.0,
+                  "scaling": "ATK",
+                  "context": "[Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec ."
+                }
+              ]
+            },
+            {
+              "name": "Offbeat Girl",
+              "type": "Passive",
+              "key": null,
+              "cooldown_sec": 18.0,
+              "description": "Increases the default state's Magic Charging Efficiency by 50% , and the Ultimate Move does not consume Magic. E Go Away / Energy Blast Normal Skill E Go Away / Energy Blast Normal Skill Go Away / Energy Blast",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Go Away / Energy Blast",
+              "type": "Normal Skill",
+              "key": "E",
+              "cooldown_sec": 18.0,
+              "description": "[Default] Inflicts damage equal to 174% of Attack. Magic Gauge is restored by 300 if an enemy is struck, and their Earth Resistance is decreased by 20% for 20 sec . [Riding] Inflicts damage equal to 256% of Attack. Each hit consumes 100 of the Magic Gauge to increase damage by 10% . Restores the Magic Gauge by 100 when the same target is hit 5 time(s) . Here Comes Daisy Tag Skill Inflicts damage equal to 113% of Attack. Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 174.0,
+                  "scaling": "ATK",
+                  "context": "[Default] Inflicts damage equal to 174% of Attack. Magic Gauge is restored by 300 if an enemy is struck, and their Earth Resistance is decreased by 20% for 20 sec . [Riding] Inflicts damage equal to 256% of Attack. Each hit consumes 100 of the Magic Gauge to increase damage by 10% . Restores the Magic Gauge by 100 when the same target is hit 5 time(s) ."
+                },
+                {
+                  "value_pct": 113.0,
+                  "scaling": "ATK",
+                  "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 113% of Attack."
+                }
+              ]
+            },
+            {
+              "name": "Here Comes Daisy",
+              "type": "Tag Skill",
+              "key": null,
+              "cooldown_sec": 10.0,
+              "description": "Inflicts damage equal to 113% of Attack. Q Help Me, Domby Ultimate Move Q Help Me, Domby Ultimate Move Help Me, Domby",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 113.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 113% of Attack."
+                }
+              ]
+            },
+            {
+              "name": "Help Me, Domby",
+              "type": "Ultimate Move",
+              "key": "Q",
+              "cooldown_sec": 10.0,
+              "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding .",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 29.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 32.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 52.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 85.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": []
+            }
+          ]
+        },
+        "potential_by_weapon": {
+          "Shield": []
+        },
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
       "ch_aeeab13b5dea": {
         "id": "ch_aeeab13b5dea",
         "name": "Diane",
@@ -5170,6 +5379,290 @@
       }
     },
     "skills": {
+      "sk_1652db806008": {
+        "id": "sk_1652db806008",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 0,
+        "name": "Artisan's Touch",
+        "type": "Adventure Skill",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Expands the crafting queue for consecutive crafting.",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_861a90c9cd21": {
+        "id": "sk_861a90c9cd21",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 1,
+        "name": "Normal Attack Inflicts damage equal to 142% of Attack. Increases damage dealt by 30% when Riding . 1st hit: 21% 2nd hit: 23% 3rd hit: 37% 4th hit: 61%",
+        "type": "Normal Attack",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_e353a6da2f24": {
+        "id": "sk_e353a6da2f24",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 2,
+        "name": "Normal Attack",
+        "type": "Normal Attack",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_625048e62a92": {
+        "id": "sk_625048e62a92",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 3,
+        "name": "Normal Attack",
+        "type": "Normal Attack",
+        "key": null,
+        "cooldown_sec": 12.0,
+        "description": "",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 21.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 37.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 61.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_db8539eb8c74": {
+        "id": "sk_db8539eb8c74",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 4,
+        "name": "Special Attack Cooldown: 12 sec [Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec .",
+        "type": "Special Attack",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_e83a5d8c1725": {
+        "id": "sk_e83a5d8c1725",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 5,
+        "name": "Special Attack",
+        "type": "Special Attack",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_0e94bec914c7": {
+        "id": "sk_0e94bec914c7",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 6,
+        "name": "Special Attack",
+        "type": "Special Attack",
+        "key": null,
+        "cooldown_sec": 12.0,
+        "description": "[Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec . Offbeat Girl Passive Increases the default state's Magic Charging Efficiency by 50% , and the Ultimate Move does not consume Magic. Offbeat Girl Passive Offbeat Girl Passive Offbeat Girl",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 163.0,
+            "scaling": "ATK",
+            "context": "[Default] Decreases damage taken by 70% while the stance is maintained. Additionally, nearby enemies are Staggered and the Magic Gauge is restored by 100 every 1 sec. [Riding] Inflicts damage equal to up to 163% of Attack. Consumes 100 Magic Gauge to increase damage by 10% every 0.4 sec while the stance is maintained. Restores Magic by 300 when the stance is maintained for 2 sec ."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_3e417bbd59de": {
+        "id": "sk_3e417bbd59de",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 7,
+        "name": "Offbeat Girl",
+        "type": "Passive",
+        "key": null,
+        "cooldown_sec": 18.0,
+        "description": "Increases the default state's Magic Charging Efficiency by 50% , and the Ultimate Move does not consume Magic. E Go Away / Energy Blast Normal Skill E Go Away / Energy Blast Normal Skill Go Away / Energy Blast",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_b4cc1e3418b1": {
+        "id": "sk_b4cc1e3418b1",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 8,
+        "name": "Go Away / Energy Blast",
+        "type": "Normal Skill",
+        "key": "E",
+        "cooldown_sec": 18.0,
+        "description": "[Default] Inflicts damage equal to 174% of Attack. Magic Gauge is restored by 300 if an enemy is struck, and their Earth Resistance is decreased by 20% for 20 sec . [Riding] Inflicts damage equal to 256% of Attack. Each hit consumes 100 of the Magic Gauge to increase damage by 10% . Restores the Magic Gauge by 100 when the same target is hit 5 time(s) . Here Comes Daisy Tag Skill Inflicts damage equal to 113% of Attack. Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 174.0,
+            "scaling": "ATK",
+            "context": "[Default] Inflicts damage equal to 174% of Attack. Magic Gauge is restored by 300 if an enemy is struck, and their Earth Resistance is decreased by 20% for 20 sec . [Riding] Inflicts damage equal to 256% of Attack. Each hit consumes 100 of the Magic Gauge to increase damage by 10% . Restores the Magic Gauge by 100 when the same target is hit 5 time(s) ."
+          },
+          {
+            "value_pct": 113.0,
+            "scaling": "ATK",
+            "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 113% of Attack."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_3dc1e33b6ec8": {
+        "id": "sk_3dc1e33b6ec8",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 9,
+        "name": "Here Comes Daisy",
+        "type": "Tag Skill",
+        "key": null,
+        "cooldown_sec": 10.0,
+        "description": "Inflicts damage equal to 113% of Attack. Q Help Me, Domby Ultimate Move Q Help Me, Domby Ultimate Move Help Me, Domby",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 113.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 113% of Attack."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_2176af8c2c0a": {
+        "id": "sk_2176af8c2c0a",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 10,
+        "name": "Help Me, Domby",
+        "type": "Ultimate Move",
+        "key": "Q",
+        "cooldown_sec": 10.0,
+        "description": "The hero summons and rides Domby for 20 sec . The hero gains Reaction Immunity while riding .",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 29.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 32.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 52.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 85.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
       "sk_421c5c028d6b": {
         "id": "sk_421c5c028d6b",
         "character_id": "ch_aeeab13b5dea",
@@ -10036,6 +10529,7 @@
     "characters": [
       "ch_22cdc44ac2e6",
       "ch_b8d215ef5eba",
+      "ch_bf334f71381a",
       "ch_a1c945bbd31e",
       "ch_aeeab13b5dea",
       "ch_81b424f107e9",
