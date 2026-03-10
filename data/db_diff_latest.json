@@ -1,22 +1,8 @@
 {
   "added": {
-    "characters": [
-      "ch_bf334f71381a"
-    ],
+    "characters": [],
     "weapons": [],
-    "skills": [
-      "sk_0e94bec914c7",
-      "sk_1652db806008",
-      "sk_2176af8c2c0a",
-      "sk_3dc1e33b6ec8",
-      "sk_3e417bbd59de",
-      "sk_625048e62a92",
-      "sk_861a90c9cd21",
-      "sk_b4cc1e3418b1",
-      "sk_db8539eb8c74",
-      "sk_e353a6da2f24",
-      "sk_e83a5d8c1725"
-    ]
+    "skills": []
   },
   "removed": {
     "characters": [],
