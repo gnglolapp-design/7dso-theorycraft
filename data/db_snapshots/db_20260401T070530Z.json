@@ -1,149 +1,140 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-03-17T08:05:44Z",
+  "generated_at": "2026-04-01T07:05:27Z",
   "modules": {
     "characters": {
       "ch_aeeab13b5dea": {
         "id": "ch_aeeab13b5dea",
         "name": "Diane",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_diane_001.png",
-        "description": "Gauntlets Axe Cudgel Gauntlets Axe",
+        "description": "Axe Gauntlets Cudgel Axe Gauntlets",
         "weapon_types": [
-          "Gauntlets",
           "Axe",
+          "Gauntlets",
           "Cudgel"
         ],
         "costumes": [],
         "skills_by_weapon": {
-          "Gauntlets": [
+          "Axe": [
             {
               "name": "Summon Rock",
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Gathers the power of the earth to summon rocks from the ground. Secret Art of the Giants Passive Inflicts additional damage equal to 10% of Defense with each hit on the enemy. Grants Passion for 10 sec when landing alternating Normal and Special Attacks. ※ Passion : Each hit additionally increases Burst Gauge by 20 . (Max: 5 times ) Gauge Charge Secret Art of the Giants Passive Secret Art of the Giants Passive Secret Art of the Giants",
+              "description": "Gathers the power of the earth to summon rocks from the ground. Giant Girl Passive Increases damage dealt to enemies with Earth Burst activated by 25% . Inflicts Breaker for 10 sec when attacking them 5 time(s) . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Giant Girl Passive Giant Girl Passive Giant Girl",
               "hits": [],
               "multipliers": []
             },
             {
-              "name": "Secret Art of the Giants",
+              "name": "Giant Girl",
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Inflicts additional damage equal to 10% of Defense with each hit on the enemy. Grants Passion for 10 sec when landing alternating Normal and Special Attacks. ※ Passion : Each hit additionally increases Burst Gauge by 20 . (Max: 5 times ) Gauge Charge Gauge Charge Terra Punch Normal Attack Terra Punch Normal Attack Terra Punch",
+              "description": "Increases damage dealt to enemies with Earth Burst activated by 25% . Inflicts Breaker for 10 sec when attacking them 5 time(s) . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Gauge Charge Earth Cleaver Normal Attack Earth Cleaver Normal Attack Earth Cleaver",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 15.0,
+                  "multiplier_pct": 26.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 17.0,
+                  "multiplier_pct": 31.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 27.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 4,
-                  "multiplier_pct": 44.0,
+                  "multiplier_pct": 52.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": []
             },
             {
-              "name": "Terra Punch",
+              "name": "Earth Cleaver",
               "type": "Normal Attack",
               "key": null,
-              "cooldown_sec": 15.0,
-              "description": "Gauge Charge Burst Gauge: 14 Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Burst Gauge: 14 Tag Gauge: 21 Magic Gauge: 6 Combination Kick Active Third Combination Kick Active Third Combination Kick Active Third Gauge Charge Burst Gauge: 22 Tag Gauge: 30 Magic Gauge: 10 Gauge Charge Burst Gauge: 22 Tag Gauge: 30 Magic Gauge: 10 Martial Drive Normal Skill Martial Drive Normal Skill Martial Drive",
+              "cooldown_sec": 20.0,
+              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 23 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 23 Magic Gauge: 7 Quake Smash Active Third Quake Smash Active Third Quake Smash Active Third Inflicts damage equal to 100% / 307% of Attack based on the charge level. A fully charged attack resets the cooldown when landing the final strike on an enemy affected by Breaker . Gauge Charge Burst Gauge: 18 Tag Gauge: 304 Magic Gauge: 130 Gauge Charge Burst Gauge: 18 Tag Gauge: 304 Magic Gauge: 130 Charged Slash Normal Skill Charged Slash Normal Skill Charged Slash",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 30.0,
+                  "multiplier_pct": 26.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 45.0,
+                  "multiplier_pct": 31.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 70.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 4,
-                  "multiplier_pct": 44.0,
+                  "multiplier_pct": 52.0,
                   "scaling": "ATK"
                 }
               ],
-              "multipliers": []
-            },
-            {
-              "name": "Martial Drive",
-              "type": "Normal Skill",
-              "key": null,
-              "cooldown_sec": 15.0,
-              "description": "Inflicts damage equal to 181% of Attack. Increases the hero's Defense by 30% for 30 sec . Gauge Charge Burst Gauge: 217 Tag Gauge: 133 Magic Gauge: 105 Gauge Charge Burst Gauge: 217 Tag Gauge: 133 Magic Gauge: 105 Rock Down Tag Skill Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Rock Down Tag Skill Rock Down Tag Skill Rock Down",
-              "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 181.0,
+                  "value_pct": 307.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 181% of Attack. Increases the hero's Defense by 30% for 30 sec ."
-                },
-                {
-                  "value_pct": 88.0,
-                  "scaling": "ATK",
-                  "context": "Rock Down Tag Skill Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175"
+                  "context": "Inflicts damage equal to 100% / 307% of Attack based on the charge level. A fully charged attack resets the cooldown when landing the final strike on an enemy affected by Breaker ."
                 }
               ]
             },
             {
-              "name": "Rock Down",
+              "name": "Charged Slash",
+              "type": "Normal Skill",
+              "key": null,
+              "cooldown_sec": 20.0,
+              "description": "Inflicts damage equal to 205% of Attack. Attacking an enemy with Earth Burst activated increases the hero's Crit Damage by 50% for 20 sec . Gauge Charge Burst Gauge: 37 Tag Gauge: 191 Magic Gauge: 167 Gauge Charge Burst Gauge: 37 Tag Gauge: 191 Magic Gauge: 167 Ground Down Tag Skill Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Ground Down Tag Skill Ground Down Tag Skill Ground Down",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 205.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 205% of Attack. Attacking an enemy with Earth Burst activated increases the hero's Crit Damage by 50% for 20 sec ."
+                },
+                {
+                  "value_pct": 143.0,
+                  "scaling": "ATK",
+                  "context": "Ground Down Tag Skill Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+                }
+              ]
+            },
+            {
+              "name": "Ground Down",
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Metal Drop Ultimate Move Metal Drop Ultimate Move Metal Drop",
+              "description": "Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Rock Blast Ultimate Move Rock Blast Ultimate Move Rock Blast",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 88.0,
+                  "value_pct": 143.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 88% of Attack. Taunts for 3 sec ."
+                  "context": "Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies."
                 }
               ]
             },
             {
-              "name": "Metal Drop",
+              "name": "Rock Blast",
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Gains Heavy Metal for 15 sec , then inflicts damage equal to 278% of Attack. ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 . Increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 10 times ) Gauge Charge Burst Gauge: 191 Gauge Charge Burst Gauge: 191 Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Enhances the Normal Skill for 5 sec when the hero activates Earth Burst . The enhanced Normal Skill inflicts damage equal to 200% of Attack, and its damage increases by 100% when attacking an enemy with Earth Burst activated. 6 Amplifies Normal Skill power by 30% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 270% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Amplifies the Special Attack's final strike skill power by 300% . Decreases the enemy's Earth Resistance by 30% for 30 sec .",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack skill power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 278.0,
+                  "value_pct": 371.0,
                   "scaling": "ATK",
-                  "context": "Gains Heavy Metal for 15 sec , then inflicts damage equal to 278% of Attack. ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 . Increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 10 times )"
-                },
-                {
-                  "value_pct": 200.0,
-                  "scaling": "ATK",
-                  "context": "Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Enhances the Normal Skill for 5 sec when the hero activates Earth Burst . The enhanced Normal Skill inflicts damage equal to 200% of Attack, and its damage increases by 100% when attacking an enemy with Earth Burst activated. 6 Amplifies Normal Skill power by 30% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 270% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Amplifies the Special Attack's final strike skill power by 300% . Decreases the enemy's Earth Resistance by 30% for 30 sec ."
+                  "context": "Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% ."
                 }
               ]
             }
           ]
         },
         "potential_by_weapon": {
-          "Gauntlets": []
+          "Axe": []
         },
         "sources": {
           "genshin": {
@@ -319,144 +310,149 @@
         "id": "ch_f5f84e3499cc",
         "name": "Elaine",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_elaine_001.png",
-        "description": "Book Wand Staff Book Wand",
+        "description": "Wand Staff Book Wand Staff",
         "weapon_types": [
-          "Book",
           "Wand",
-          "Staff"
+          "Staff",
+          "Book"
         ],
         "costumes": [],
         "skills_by_weapon": {
-          "Book": [
+          "Wand": [
             {
               "name": "Gentle Breeze",
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Greatly fills an object's Wind gauge based on the charge level. Saintess's Protection Passive Increases Earth damage by 30% and Tag Skill damage by 50% while an allied hero has a Barrier . Gauge Charge Saintess's Protection Passive Saintess's Protection Passive Saintess's Protection",
+              "description": "Greatly fills an object's Wind gauge based on the charge level. Saintess's Judgment Passive Each attack on an enemy with Wind Burst activated increases Crit Chance by 33% for 5 sec . Gauge Charge Saintess's Judgment Passive Saintess's Judgment Passive Saintess's Judgment",
               "hits": [],
               "multipliers": []
             },
             {
-              "name": "Saintess's Protection",
+              "name": "Saintess's Judgment",
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Increases Earth damage by 30% and Tag Skill damage by 50% while an allied hero has a Barrier . Gauge Charge Gauge Charge Windflower Normal Attack Windflower Normal Attack Windflower",
+              "description": "Each attack on an enemy with Wind Burst activated increases Crit Chance by 33% for 5 sec . Gauge Charge Gauge Charge Wind Bead Normal Attack Wind Bead Normal Attack Wind Bead",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 13.0,
+                  "multiplier_pct": 25.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 14.0,
+                  "multiplier_pct": 27.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 23.0,
+                  "multiplier_pct": 43.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 39.0,
+                  "multiplier_pct": 59.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": []
             },
             {
-              "name": "Windflower",
+              "name": "Wind Bead",
               "type": "Normal Attack",
               "key": null,
-              "cooldown_sec": 35.0,
-              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 37 Magic Gauge: 16 Gauge Charge Burst Gauge: 2 Tag Gauge: 37 Magic Gauge: 16 Saintess's Domain Active Third Saintess's Domain Active Third Saintess's Domain Active Third Inflicts damage equal to 79% of Attack, then applies Saintess's Mark to nearby allies and enemies for 20 sec . ※ Saintess's Mark : Effects differ based on the target. Allies: Restores the Tag Gauge by 50 every 1 sec . Enemies: Decreases Earth Burst Resistance by 20% . Gauge Charge Burst Gauge: 18 Tag Gauge: 230 Magic Gauge: 133 Gauge Charge Burst Gauge: 18 Tag Gauge: 230 Magic Gauge: 133 Guardian's Blossom Normal Skill Guardian's Blossom Normal Skill Guardian's Blossom",
+              "cooldown_sec": 17.3,
+              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 6 Whirlwind Veil Active Third Whirlwind Veil Active Third Whirlwind Veil Active Third Inflicts damage equal to 66% of Attack every 1 sec while the stance is maintained. Each hit decreases the hero's Normal Skill cooldown by 3 sec . Gauge Charge Burst Gauge: 25 Tag Gauge: 97 Magic Gauge: 41 Gauge Charge Burst Gauge: 25 Tag Gauge: 97 Magic Gauge: 41 Razorwind Normal Skill Razorwind Normal Skill Razorwind",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 13.0,
+                  "multiplier_pct": 25.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 14.0,
+                  "multiplier_pct": 27.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 23.0,
+                  "multiplier_pct": 43.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 39.0,
+                  "multiplier_pct": 59.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": [
                 {
-                  "value_pct": 79.0,
+                  "value_pct": 66.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 79% of Attack, then applies Saintess's Mark to nearby allies and enemies for 20 sec . ※ Saintess's Mark : Effects differ based on the target. Allies: Restores the Tag Gauge by 50 every 1 sec . Enemies: Decreases Earth Burst Resistance by 20% ."
+                  "context": "Inflicts damage equal to 66% of Attack every 1 sec while the stance is maintained. Each hit decreases the hero's Normal Skill cooldown by 3 sec ."
                 }
               ]
             },
             {
-              "name": "Guardian's Blossom",
+              "name": "Razorwind",
               "type": "Normal Skill",
               "key": null,
-              "cooldown_sec": 35.0,
-              "description": "Inflicts damage equal to 126% of Attack. Grants allies Barriers equal to 135% of Defense for 20 sec . Allies' damage taken decreases by 10% while the Barriers are active. Gauge Charge Burst Gauge: 37 Tag Gauge: 565 Magic Gauge: 666 Gauge Charge Burst Gauge: 37 Tag Gauge: 565 Magic Gauge: 666 Forest Savior Tag Skill Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Forest Savior Tag Skill Forest Savior Tag Skill Forest Savior",
+              "cooldown_sec": 17.3,
+              "description": "Max Stacks: 3 Inflicts damage equal to 202% of Attack. Each Critical Hit increases the hero's Crit Damage by 20% for 5 sec . (Max: 3 times ) Gauge Charge Burst Gauge: 38 Tag Gauge: 171 Magic Gauge: 150 Gauge Charge Burst Gauge: 38 Tag Gauge: 171 Magic Gauge: 150 Forest Tornado Tag Skill Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Forest Tornado Tag Skill Forest Tornado Tag Skill Forest Tornado",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 126.0,
+                  "value_pct": 202.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 126% of Attack. Grants allies Barriers equal to 135% of Defense for 20 sec . Allies' damage taken decreases by 10% while the Barriers are active."
+                  "context": "Inflicts damage equal to 202% of Attack. Each Critical Hit increases the hero's Crit Damage by 20% for 5 sec . (Max: 3 times )"
                 },
                 {
-                  "value_pct": 66.0,
+                  "value_pct": 138.0,
                   "scaling": "ATK",
-                  "context": "Forest Savior Tag Skill Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
+                  "context": "Forest Tornado Tag Skill Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
                 }
               ]
             },
             {
-              "name": "Forest Savior",
+              "name": "Forest Tornado",
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Dust Seal Ultimate Move Dust Seal Ultimate Move Dust Seal",
+              "description": "Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Wind Blast Ultimate Move Wind Blast Ultimate Move Wind Blast",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 66.0,
+                  "value_pct": 138.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 66% of Attack."
+                  "context": "Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 ."
                 }
               ]
             },
             {
-              "name": "Dust Seal",
+              "name": "Wind Blast",
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 206% of Attack. Inflicts Petrify for 6 sec . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Elaine Book Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Increases the duration of the Special Attack's Saintess's Mark by 10 sec . 5 Increases the Earth damage of allies with Saintess's Mark by 30% . 6 Increases the duration of the Normal Skill's Barriers by 10 sec and decreases the cooldown by 5 sec . 7 Changes the Special Attack into a skill that can be used 2 time(s) and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases all allied heroes' Defense by 20% . Decreases the enemy's Earth Resistance by 20% for 40 sec when using the Ultimate Move.",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 402% of Attack. Decreases the hero's Normal Skill cooldown by 15 sec . Gauge Charge Burst Gauge: 34 Gauge Charge Burst Gauge: 34 Elaine Wand Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 10% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Using the Tag Skill increases the hero's Normal Skill damage by 50% for 20 sec . 6 Amplifies Normal Skill power by 20% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 260% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 30% . 10 Adds 2 projectile(s) to the Normal Skill for 15 sec when the Normal Skill is used 2 time(s) within 15 sec .",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 206.0,
+                  "value_pct": 402.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 206% of Attack. Inflicts Petrify for 6 sec . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% ."
+                  "context": "Inflicts damage equal to 402% of Attack. Decreases the hero's Normal Skill cooldown by 15 sec ."
+                },
+                {
+                  "value_pct": 260.0,
+                  "scaling": "ATK",
+                  "context": "Elaine Wand Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 10% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Using the Tag Skill increases the hero's Normal Skill damage by 50% for 20 sec . 6 Amplifies Normal Skill power by 20% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 260% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 30% . 10 Adds 2 projectile(s) to the Normal Skill for 15 sec when the Normal Skill is used 2 time(s) within 15 sec ."
                 }
               ]
             }
           ]
         },
         "potential_by_weapon": {
-          "Book": []
+          "Wand": []
         },
         "sources": {
           "genshin": {
@@ -771,144 +767,149 @@
         "id": "ch_c044994bcf37",
         "name": "King",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_king_001.png",
-        "description": "Book Wand Staff Book Wand",
+        "description": "Staff Book Wand Staff Book",
         "weapon_types": [
+          "Staff",
           "Book",
-          "Wand",
-          "Staff"
+          "Wand"
         ],
         "costumes": [],
         "skills_by_weapon": {
-          "Book": [
+          "Staff": [
             {
               "name": "Flight",
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Flies at high speeds to a specific location. Sacred Tree's Protection Passive Decreases all allied heroes' damage taken by 20% and increases Healing Efficiency by 30% if the remaining HP is 30% or lower. Gauge Charge Sacred Tree's Protection Passive Sacred Tree's Protection Passive Sacred Tree's Protection",
+              "description": "Flies at high speeds to a specific location. Fairy King Passive Gains Bloom for 1 sec when landing a Critical Hit. Gains Bloom for 1 sec when attacking an enemy with a Burst activated. (Max: 20 ) ※ Bloom : Increases Attack by 15 for every 1% stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 25% sec . ※ Full Bloom : Increases Attack by 10% and Defense Shatter by 7 . Gauge Charge Fairy King Passive Fairy King Passive Fairy King",
               "hits": [],
               "multipliers": []
             },
             {
-              "name": "Sacred Tree's Protection",
+              "name": "Fairy King",
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Decreases all allied heroes' damage taken by 20% and increases Healing Efficiency by 30% if the remaining HP is 30% or lower. Gauge Charge Gauge Charge Guardian Punch Normal Attack Guardian Punch Normal Attack Guardian Punch",
+              "description": "Gains Bloom for 1 sec when landing a Critical Hit. Gains Bloom for 1 sec when attacking an enemy with a Burst activated. (Max: 20 ) ※ Bloom : Increases Attack by 15 for every 1% stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 25% sec . ※ Full Bloom : Increases Attack by 10% and Defense Shatter by 7 . Gauge Charge Gauge Charge Piercing Staff Normal Attack Piercing Staff Normal Attack Piercing Staff",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 11.0,
+                  "multiplier_pct": 20.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 12.0,
+                  "multiplier_pct": 22.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 18.0,
+                  "multiplier_pct": 36.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 31.0,
+                  "multiplier_pct": 62.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": []
             },
             {
-              "name": "Guardian Punch",
+              "name": "Piercing Staff",
               "type": "Normal Attack",
               "key": null,
-              "cooldown_sec": 16.0,
-              "description": "Gauge Charge Burst Gauge: 4 Tag Gauge: 38 Magic Gauge: 17 Gauge Charge Burst Gauge: 4 Tag Gauge: 38 Magic Gauge: 17 Guardian Shield Active Third Guardian Shield Active Third Guardian Shield Active Third Becomes immune to Reactions and decreases damage taken by 65% while the stance is maintained. Inflicts Mark of the Forest on nearby enemies for 40 sec every 1 sec while the stance is maintained. (Max: 10 times ) Maintains stance for up to 5 sec . When maintained for the maximum duration, the stance is removed, inflicting damage equal to 97% of Attack and restoring HP equal to 15% of Max HP + 150% of Attack. This attack's damage dealt increases by 5% for each Mark of the Forest stack on the enemy. ※ Mark of the Forest : Increases damage taken by 2% . Gauge Charge Burst Gauge: 18 Tag Gauge: 325 Magic Gauge: 188 Gauge Charge Burst Gauge: 18 Tag Gauge: 325 Magic Gauge: 188 Protector of the Forest Normal Skill Protector of the Forest Normal Skill Protector of the Forest",
+              "cooldown_sec": 12.0,
+              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Tempest Staff Active Third Tempest Staff Active Third Tempest Staff Active Third Gains 1 Bloom stack(s) for 20 sec (Max: 15 ), then inflicts damage equal to 166% of Attack. ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 29 Tag Gauge: 76 Magic Gauge: 33 Gauge Charge Burst Gauge: 29 Tag Gauge: 76 Magic Gauge: 33 Holy Swarm Normal Skill Holy Swarm Normal Skill Holy Swarm",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 11.0,
+                  "multiplier_pct": 20.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 12.0,
+                  "multiplier_pct": 22.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 18.0,
+                  "multiplier_pct": 36.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 31.0,
+                  "multiplier_pct": 62.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": [
                 {
-                  "value_pct": 97.0,
+                  "value_pct": 166.0,
                   "scaling": "ATK",
-                  "context": "Becomes immune to Reactions and decreases damage taken by 65% while the stance is maintained. Inflicts Mark of the Forest on nearby enemies for 40 sec every 1 sec while the stance is maintained. (Max: 10 times ) Maintains stance for up to 5 sec . When maintained for the maximum duration, the stance is removed, inflicting damage equal to 97% of Attack and restoring HP equal to 15% of Max HP + 150% of Attack. This attack's damage dealt increases by 5% for each Mark of the Forest stack on the enemy. ※ Mark of the Forest : Increases damage taken by 2% ."
+                  "context": "Gains 1 Bloom stack(s) for 20 sec (Max: 15 ), then inflicts damage equal to 166% of Attack. ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
                 }
               ]
             },
             {
-              "name": "Protector of the Forest",
+              "name": "Holy Swarm",
               "type": "Normal Skill",
               "key": null,
-              "cooldown_sec": 16.0,
-              "description": "Inflicts damage equal to 151% of Attack, then inflicts 3 Mark of the Forest stack(s) for 40 sec . (Max: 10 times ) ※ Mark of the Forest : Increases damage taken by 2% . Gauge Charge Burst Gauge: 38 Tag Gauge: 285 Magic Gauge: 335 Gauge Charge Burst Gauge: 38 Tag Gauge: 285 Magic Gauge: 335 Upper Arc Tag Skill Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Upper Arc Tag Skill Upper Arc Tag Skill Upper Arc",
+              "cooldown_sec": 12.0,
+              "description": "Inflicts damage equal to 245% of Attack, then gains Bloom stack(s) equal to the number of enemies hit by the first strike for 20 sec . (Max: 15 ) Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 40% . ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom effects are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 31 Tag Gauge: 133 Magic Gauge: 116 Gauge Charge Burst Gauge: 31 Tag Gauge: 133 Magic Gauge: 116 Bee Chase Tag Skill Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Bee Chase Tag Skill Bee Chase Tag Skill Bee Chase",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 151.0,
+                  "value_pct": 245.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 151% of Attack, then inflicts 3 Mark of the Forest stack(s) for 40 sec . (Max: 10 times ) ※ Mark of the Forest : Increases damage taken by 2% ."
+                  "context": "Inflicts damage equal to 245% of Attack, then gains Bloom stack(s) equal to the number of enemies hit by the first strike for 20 sec . (Max: 15 ) Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 40% . ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom effects are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
                 },
                 {
-                  "value_pct": 70.0,
+                  "value_pct": 114.0,
                   "scaling": "ATK",
-                  "context": "Upper Arc Tag Skill Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
+                  "context": "Bee Chase Tag Skill Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
                 }
               ]
             },
             {
-              "name": "Upper Arc",
+              "name": "Bee Chase",
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Forest's Protection Ultimate Move Forest's Protection Ultimate Move Forest's Protection",
+              "description": "Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Shining Blaze Ultimate Move Shining Blaze Ultimate Move Shining Blaze",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 70.0,
+                  "value_pct": 114.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 70% of Attack."
+                  "context": "Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec ."
                 }
               ]
             },
             {
-              "name": "Forest's Protection",
+              "name": "Shining Blaze",
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 4 Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a Barrier equal to 18% of Max HP. Restores HP equal to 0.8% of Max HP + 25% of Attack every 2 sec . Gauge Charge Gauge Charge King Book Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies the Special Attack's HP Recovery by 50% . 5 Using the Special Attack on an enemy with 10 or more Mark of the Forest stacks decreases the cooldown by 50% . 6 Additionally increases the Passive's damage taken reduction by 10% and Healing Efficiency boost by 20% . 7 Increases the Normal Skill's number of Mark of the Forest stacks applied by 2 . Restores the Magic Gauge by 75 for every 1 Mark of the Forest stack(s) on the enemy. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies the HP Recovery of Forest's Protection by 50% . 10 Increases the duration of Forest's Protection by 10 sec . Increases Defense by 20% .",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 25.0,
+                  "value_pct": 433.0,
                   "scaling": "ATK",
-                  "context": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a Barrier equal to 18% of Max HP. Restores HP equal to 0.8% of Max HP + 25% of Attack every 2 sec ."
+                  "context": "Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
+                },
+                {
+                  "value_pct": 35.0,
+                  "scaling": "ATK",
+                  "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
                 }
               ]
             }
           ]
         },
         "potential_by_weapon": {
-          "Book": []
+          "Staff": []
         },
         "sources": {
           "genshin": {
@@ -1219,30 +1220,30 @@
         "id": "ch_b8d215ef5eba",
         "name": "Bug",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_bug_001.png",
-        "description": "Dual Swords Axe Book Dual Swords Axe",
+        "description": "Axe Dual Swords Book Axe Dual Swords",
         "weapon_types": [
-          "Dual Swords",
           "Axe",
+          "Dual Swords",
           "Book"
         ],
         "costumes": [],
         "skills_by_weapon": {
-          "Dual Swords": [
+          "Axe": [
             {
               "name": "Downsize",
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Turns into a small demon that can fly. Blitz Passive Back Attacks increase damage by 35% . Gauge Charge Blitz Passive Blitz Passive Blitz",
+              "description": "Turns into a small demon that can fly. Troublemaker Passive Attacking an enemy with Darkness Burst activated increases Crit Damage by 45% . Gauge Charge Troublemaker Passive Troublemaker Passive Troublemaker",
               "hits": [],
               "multipliers": []
             },
             {
-              "name": "Blitz",
+              "name": "Troublemaker",
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "Back Attacks increase damage by 35% . Gauge Charge Gauge Charge Dual Shadow Slash Normal Attack Dual Shadow Slash Normal Attack Dual Shadow Slash",
+              "description": "Attacking an enemy with Darkness Burst activated increases Crit Damage by 45% . Gauge Charge Gauge Charge Shadow Cleaver Normal Attack Shadow Cleaver Normal Attack Shadow Cleaver",
               "hits": [
                 {
                   "hit": 1,
@@ -1256,23 +1257,23 @@
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 42.0,
+                  "multiplier_pct": 41.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 70.0,
+                  "multiplier_pct": 69.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": []
             },
             {
-              "name": "Dual Shadow Slash",
+              "name": "Shadow Cleaver",
               "type": "Normal Attack",
               "key": null,
-              "cooldown_sec": 20.9,
-              "description": "Gauge Charge Tag Gauge: 20 Magic Gauge: 6 Gauge Charge Tag Gauge: 20 Magic Gauge: 6 Dual Abyss Slash Active Third Dual Abyss Slash Active Third Dual Abyss Slash Active Third Increases the hero's Darkness damage by 10% for 20 sec (Max: 3 times ), then the hero teleports behind the enemy and inflicts damage equal to 165% of Attack. Gauge Charge Tag Gauge: 115 Magic Gauge: 49 Gauge Charge Tag Gauge: 115 Magic Gauge: 49 Annihilation Normal Skill Annihilation Normal Skill Annihilation",
+              "cooldown_sec": 14.0,
+              "description": "Gauge Charge Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Tag Gauge: 21 Magic Gauge: 6 Abyss Smasher Active Third Abyss Smasher Active Third Abyss Smasher Active Third Inflicts damage equal to 166% / 237% of Attack based on the charge level. Inflicts damage equal to 100% of Attack when overcharged. While charging, attacking when the weapon is glowing results in a Critical Hit. Gauge Charge Tag Gauge: 129 Magic Gauge: 55 Gauge Charge Tag Gauge: 129 Magic Gauge: 55 Dark Thrash Normal Skill Dark Thrash Normal Skill Dark Thrash",
               "hits": [
                 {
                   "hit": 1,
@@ -1286,82 +1287,82 @@
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 42.0,
+                  "multiplier_pct": 41.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 70.0,
+                  "multiplier_pct": 69.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": [
                 {
-                  "value_pct": 165.0,
+                  "value_pct": 237.0,
                   "scaling": "ATK",
-                  "context": "Increases the hero's Darkness damage by 10% for 20 sec (Max: 3 times ), then the hero teleports behind the enemy and inflicts damage equal to 165% of Attack."
+                  "context": "Inflicts damage equal to 166% / 237% of Attack based on the charge level. Inflicts damage equal to 100% of Attack when overcharged. While charging, attacking when the weapon is glowing results in a Critical Hit."
                 }
               ]
             },
             {
-              "name": "Annihilation",
+              "name": "Dark Thrash",
               "type": "Normal Skill",
               "key": null,
-              "cooldown_sec": 20.9,
-              "description": "Inflicts damage equal to 263% of Attack. Back Attacks reset the Special Attack cooldown. Gauge Charge Tag Gauge: 197 Magic Gauge: 173 Gauge Charge Tag Gauge: 197 Magic Gauge: 173 Blade Dance Tag Skill Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225 Blade Dance Tag Skill Blade Dance Tag Skill Blade Dance",
+              "cooldown_sec": 14.0,
+              "description": "Inflicts damage equal to 188% of Attack on the enemy and pulls them to the center. Gauge Charge Tag Gauge: 147 Magic Gauge: 129 Gauge Charge Tag Gauge: 147 Magic Gauge: 129 Dark Axe Slash Tag Skill Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225 Dark Axe Slash Tag Skill Dark Axe Slash Tag Skill Dark Axe Slash",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 263.0,
+                  "value_pct": 188.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 263% of Attack. Back Attacks reset the Special Attack cooldown."
+                  "context": "Inflicts damage equal to 188% of Attack on the enemy and pulls them to the center."
                 },
                 {
-                  "value_pct": 120.0,
+                  "value_pct": 129.0,
                   "scaling": "ATK",
-                  "context": "Blade Dance Tag Skill Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225"
+                  "context": "Dark Axe Slash Tag Skill Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225"
                 }
               ]
             },
             {
-              "name": "Blade Dance",
+              "name": "Dark Axe Slash",
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225 Gauge Charge Magic Gauge: 225 The End Ultimate Move The End Ultimate Move The End",
+              "description": "Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225 Gauge Charge Magic Gauge: 225 Death Swarm Ultimate Move Death Swarm Ultimate Move Death Swarm",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 120.0,
+                  "value_pct": 129.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 120% of Attack."
+                  "context": "Inflicts damage equal to 129% of Attack."
                 }
               ]
             },
             {
-              "name": "The End",
+              "name": "Death Swarm",
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 326% of Attack. Each hit inflicts additional damage equal to 32% of Attack to enemies with Darkness Burst activated. The final strike removes the target's Darkness Burst . Gauge Charge Gauge Charge Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 Back Attacks increase the hero's Crit Chance by 30% for 3 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Special Attack inflicts additional damage equal to 100% of Attack.",
+              "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 326.0,
+                  "value_pct": 380.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 326% of Attack. Each hit inflicts additional damage equal to 32% of Attack to enemies with Darkness Burst activated. The final strike removes the target's Darkness Burst ."
+                  "context": "Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack."
                 },
                 {
-                  "value_pct": 100.0,
+                  "value_pct": 30.0,
                   "scaling": "ATK",
-                  "context": "Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 Back Attacks increase the hero's Crit Chance by 30% for 3 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Special Attack inflicts additional damage equal to 100% of Attack."
+                  "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
                 }
               ]
             }
           ]
         },
         "potential_by_weapon": {
-          "Dual Swords": []
+          "Axe": []
         },
         "sources": {
           "genshin": {
@@ -1684,6 +1685,15 @@
         "skills_by_weapon": {
           "Longsword": [
             {
+              "name": "Lightning Javelin",
+              "type": "Adventure Skill",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Greatly fills an object's Lightning gauge based on the charge level. Lightning King's Strike Passive Additionally increases Burst Gauge by 20 with each hit on a Shocked enemy. When the hero activates Lightning Burst , the enemy's Lightning Resistance decreases by 15% for 20 sec . Gauge Charge Lightning King's Strike Passive Lightning King's Strike Passive Lightning King's Strike",
+              "hits": [],
+              "multipliers": []
+            },
+            {
               "name": "Lightning King's Strike",
               "type": "Passive",
               "key": null,
@@ -1948,144 +1958,139 @@
         "id": "ch_da7cd83187da",
         "name": "Hendrickson",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_hendrickson_001.png",
-        "description": "Dual Swords Longsword Lance Dual Swords Longsword",
+        "description": "Longsword Dual Swords Lance Longsword Dual Swords",
         "weapon_types": [
-          "Dual Swords",
           "Longsword",
+          "Dual Swords",
           "Lance"
         ],
         "costumes": [],
         "skills_by_weapon": {
-          "Dual Swords": [
+          "Longsword": [
             {
               "name": "Phytocommunication",
               "type": "Adventure Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Marks nearby gathering points. Morale Boost Passive When an allied hero attacks an enemy with reduced Movement Speed, their Crit Chance increases by 10% . Gauge Charge Morale Boost Passive Morale Boost Passive Morale Boost",
+              "description": "Marks nearby gathering points. Grandmaster's Rally Passive Using the Tag Skill restores the Magic Gauge by 500 at 3 or less Magic Points. Gauge Charge Grandmaster's Rally Passive Grandmaster's Rally Passive Grandmaster's Rally",
               "hits": [],
               "multipliers": []
             },
             {
-              "name": "Morale Boost",
+              "name": "Grandmaster's Rally",
               "type": "Passive",
               "key": null,
               "cooldown_sec": null,
-              "description": "When an allied hero attacks an enemy with reduced Movement Speed, their Crit Chance increases by 10% . Gauge Charge Gauge Charge Dual Strike Normal Attack Dual Strike Normal Attack Dual Strike",
+              "description": "Using the Tag Skill restores the Magic Gauge by 500 at 3 or less Magic Points. Gauge Charge Gauge Charge Radiant Slash Normal Attack Radiant Slash Normal Attack Radiant Slash",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 21.0,
+                  "multiplier_pct": 11.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 22.0,
+                  "multiplier_pct": 12.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 37.0,
+                  "multiplier_pct": 19.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 63.0,
+                  "multiplier_pct": 33.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": []
             },
             {
-              "name": "Dual Strike",
+              "name": "Radiant Slash",
               "type": "Normal Attack",
               "key": null,
-              "cooldown_sec": 12.0,
-              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Flash Sword Active Third Flash Sword Active Third Flash Sword Active Third Teleports behind the enemy, then inflicts damage equal to 178% of Attack. Attacking an enemy with reduced Movement Speed Stuns them for 5 sec and increases the hero's Crit Chance by 10% for 20 sec . Gauge Charge Burst Gauge: 19 Tag Gauge: 101 Magic Gauge: 43 Gauge Charge Burst Gauge: 19 Tag Gauge: 101 Magic Gauge: 43 Rapid Edge Normal Skill Rapid Edge Normal Skill Rapid Edge",
+              "cooldown_sec": 14.0,
+              "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 38 Magic Gauge: 17 Gauge Charge Burst Gauge: 2 Tag Gauge: 38 Magic Gauge: 17 Divine Pierce Active Third Divine Pierce Active Third Divine Pierce Active Third Inflicts damage equal to 99% of Attack. Increases the hero's Healing Efficiency by 10% for 30 sec . Gauge Charge Burst Gauge: 19 Tag Gauge: 163 Magic Gauge: 94 Gauge Charge Burst Gauge: 19 Tag Gauge: 163 Magic Gauge: 94 Defensive Spell Normal Skill Defensive Spell Normal Skill Defensive Spell",
               "hits": [
                 {
                   "hit": 1,
-                  "multiplier_pct": 21.0,
+                  "multiplier_pct": 11.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 2,
-                  "multiplier_pct": 22.0,
+                  "multiplier_pct": 12.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 3,
-                  "multiplier_pct": 37.0,
+                  "multiplier_pct": 19.0,
                   "scaling": "ATK"
                 },
                 {
                   "hit": 4,
-                  "multiplier_pct": 63.0,
+                  "multiplier_pct": 33.0,
                   "scaling": "ATK"
                 }
               ],
               "multipliers": [
                 {
-                  "value_pct": 178.0,
+                  "value_pct": 99.0,
                   "scaling": "ATK",
-                  "context": "Teleports behind the enemy, then inflicts damage equal to 178% of Attack. Attacking an enemy with reduced Movement Speed Stuns them for 5 sec and increases the hero's Crit Chance by 10% for 20 sec ."
+                  "context": "Inflicts damage equal to 99% of Attack. Increases the hero's Healing Efficiency by 10% for 30 sec ."
                 }
               ]
             },
             {
-              "name": "Rapid Edge",
+              "name": "Defensive Spell",
               "type": "Normal Skill",
               "key": null,
-              "cooldown_sec": 12.0,
-              "description": "Inflicts damage equal to 281% of Attack. Back Attacks increase Crit Damage by 30% . Gauge Charge Burst Gauge: 37 Tag Gauge: 133 Magic Gauge: 116 Gauge Charge Burst Gauge: 37 Tag Gauge: 133 Magic Gauge: 116 Double Slash Tag Skill Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Double Slash Tag Skill Double Slash Tag Skill Double Slash",
+              "cooldown_sec": 14.0,
+              "description": "Increases all allied heroes' Defense by 20% for 40 sec . Gauge Charge Tag Gauge: 316 Magic Gauge: 372 Gauge Charge Tag Gauge: 316 Magic Gauge: 372 Thrusting Slash Tag Skill Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Thrusting Slash Tag Skill Thrusting Slash Tag Skill Thrusting Slash",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 281.0,
+                  "value_pct": 85.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 281% of Attack. Back Attacks increase Crit Damage by 30% ."
-                },
-                {
-                  "value_pct": 127.0,
-                  "scaling": "ATK",
-                  "context": "Double Slash Tag Skill Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+                  "context": "Thrusting Slash Tag Skill Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
                 }
               ]
             },
             {
-              "name": "Double Slash",
+              "name": "Thrusting Slash",
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Knight's Sword Ultimate Move Knight's Sword Ultimate Move Knight's Sword",
+              "description": "Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Magic Unleashed Ultimate Move Magic Unleashed Ultimate Move Magic Unleashed",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 127.0,
+                  "value_pct": 85.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 127% of Attack."
+                  "context": "Inflicts damage equal to 85% of Attack."
                 }
               ]
             },
             {
-              "name": "Knight's Sword",
+              "name": "Magic Unleashed",
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 421% of Attack. Decreases Movement Speed by 30% for 20 sec . Gauge Charge Burst Gauge: 30 Gauge Charge Burst Gauge: 30 Hendrickson Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Restores the Magic Gauge by 100 and Tag Gauge by 150 when landing a Critical Hit with the Special Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Normal Skill's Crit Damage boost by 30% . Restores the Tag Gauge by 300 when landing a Critical Hit. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 75% . 10 Slightly increases the range of the Ultimate Move. Additionally increases the Ultimate Move's Movement Speed reduction by 15% and the duration by 10 .",
+              "description": "Magic Consumption: 4 Restores HP of allies in range by 0.5% of Max HP + 25% of Attack every 1 sec for 10 sec . Gauge Charge Gauge Charge Hendrickson Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies the Passive's Magic Recovery by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . Changes the Healing Efficiency boost effect to be applied up to 2 times . 6 Additionally increases the Normal Skill's Defense boost by 10% . 7 The Defense boost from the Normal Skill also applies to nearby allies. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's HP Recovery by 20% . 10 Slightly increases the range of the Ultimate Move.",
               "hits": [],
               "multipliers": [
                 {
-                  "value_pct": 421.0,
+                  "value_pct": 25.0,
                   "scaling": "ATK",
-                  "context": "Inflicts damage equal to 421% of Attack. Decreases Movement Speed by 30% for 20 sec ."
+                  "context": "Restores HP of allies in range by 0.5% of Max HP + 25% of Attack every 1 sec for 10 sec ."
                 }
               ]
             }
           ]
         },
         "potential_by_weapon": {
-          "Dual Swords": []
+          "Longsword": []
         },
         "sources": {
           "genshin": {
@@ -2560,11 +2565,11 @@
         "id": "ch_234eead55cec",
         "name": "Tristan",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_tristan_001.png",
-        "description": "Dual Swords Longsword Greatsword Dual Swords Longsword",
+        "description": "Dual Swords Greatsword Longsword Dual Swords Greatsword",
         "weapon_types": [
           "Dual Swords",
-          "Longsword",
-          "Greatsword"
+          "Greatsword",
+          "Longsword"
         ],
         "costumes": [],
         "skills_by_weapon": {
@@ -2869,11 +2874,11 @@
         "id": "ch_c47151a474e5",
         "name": "Klotho",
         "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_klotho_001.png",
-        "description": "Rapier Staff Book Rapier Staff",
+        "description": "Rapier Book Staff Rapier Book",
         "weapon_types": [
           "Rapier",
-          "Staff",
-          "Book"
+          "Book",
+          "Staff"
         ],
         "costumes": [],
         "skills_by_weapon": {},
@@ -3698,16 +3703,16 @@
       }
     },
     "skills": {
-      "sk_421c5c028d6b": {
-        "id": "sk_421c5c028d6b",
+      "sk_f521f2cc18df": {
+        "id": "sk_f521f2cc18df",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 0,
         "name": "Summon Rock",
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Gathers the power of the earth to summon rocks from the ground. Secret Art of the Giants Passive Inflicts additional damage equal to 10% of Defense with each hit on the enemy. Grants Passion for 10 sec when landing alternating Normal and Special Attacks. ※ Passion : Each hit additionally increases Burst Gauge by 20 . (Max: 5 times ) Gauge Charge Secret Art of the Giants Passive Secret Art of the Giants Passive Secret Art of the Giants",
+        "description": "Gathers the power of the earth to summon rocks from the ground. Giant Girl Passive Increases damage dealt to enemies with Earth Burst activated by 25% . Inflicts Breaker for 10 sec when attacking them 5 time(s) . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Giant Girl Passive Giant Girl Passive Giant Girl",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -3716,35 +3721,30 @@
           }
         }
       },
-      "sk_6ee5bd301278": {
-        "id": "sk_6ee5bd301278",
+      "sk_c8d2bb3b46a7": {
+        "id": "sk_c8d2bb3b46a7",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 1,
-        "name": "Secret Art of the Giants",
+        "name": "Giant Girl",
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Inflicts additional damage equal to 10% of Defense with each hit on the enemy. Grants Passion for 10 sec when landing alternating Normal and Special Attacks. ※ Passion : Each hit additionally increases Burst Gauge by 20 . (Max: 5 times ) Gauge Charge Gauge Charge Terra Punch Normal Attack Terra Punch Normal Attack Terra Punch",
+        "description": "Increases damage dealt to enemies with Earth Burst activated by 25% . Inflicts Breaker for 10 sec when attacking them 5 time(s) . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Gauge Charge Earth Cleaver Normal Attack Earth Cleaver Normal Attack Earth Cleaver",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 15.0,
+            "multiplier_pct": 26.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 17.0,
+            "multiplier_pct": 31.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 27.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 4,
-            "multiplier_pct": 44.0,
+            "multiplier_pct": 52.0,
             "scaling": "ATK"
           }
         ],
@@ -3755,66 +3755,67 @@
           }
         }
       },
-      "sk_22e5b19c76bf": {
-        "id": "sk_22e5b19c76bf",
+      "sk_8205e0f0fdd1": {
+        "id": "sk_8205e0f0fdd1",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 2,
-        "name": "Terra Punch",
+        "name": "Earth Cleaver",
         "type": "Normal Attack",
         "key": null,
-        "cooldown_sec": 15.0,
-        "description": "Gauge Charge Burst Gauge: 14 Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Burst Gauge: 14 Tag Gauge: 21 Magic Gauge: 6 Combination Kick Active Third Combination Kick Active Third Combination Kick Active Third Gauge Charge Burst Gauge: 22 Tag Gauge: 30 Magic Gauge: 10 Gauge Charge Burst Gauge: 22 Tag Gauge: 30 Magic Gauge: 10 Martial Drive Normal Skill Martial Drive Normal Skill Martial Drive",
+        "cooldown_sec": 20.0,
+        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 23 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 23 Magic Gauge: 7 Quake Smash Active Third Quake Smash Active Third Quake Smash Active Third Inflicts damage equal to 100% / 307% of Attack based on the charge level. A fully charged attack resets the cooldown when landing the final strike on an enemy affected by Breaker . Gauge Charge Burst Gauge: 18 Tag Gauge: 304 Magic Gauge: 130 Gauge Charge Burst Gauge: 18 Tag Gauge: 304 Magic Gauge: 130 Charged Slash Normal Skill Charged Slash Normal Skill Charged Slash",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 30.0,
+            "multiplier_pct": 26.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 45.0,
+            "multiplier_pct": 31.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 70.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 4,
-            "multiplier_pct": 44.0,
+            "multiplier_pct": 52.0,
             "scaling": "ATK"
           }
         ],
-        "multipliers": [],
+        "multipliers": [
+          {
+            "value_pct": 307.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 100% / 307% of Attack based on the charge level. A fully charged attack resets the cooldown when landing the final strike on an enemy affected by Breaker ."
+          }
+        ],
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/diane/"
           }
         }
       },
-      "sk_8dce204d89cb": {
-        "id": "sk_8dce204d89cb",
+      "sk_1b31cd1d238a": {
+        "id": "sk_1b31cd1d238a",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 3,
-        "name": "Martial Drive",
+        "name": "Charged Slash",
         "type": "Normal Skill",
         "key": null,
-        "cooldown_sec": 15.0,
-        "description": "Inflicts damage equal to 181% of Attack. Increases the hero's Defense by 30% for 30 sec . Gauge Charge Burst Gauge: 217 Tag Gauge: 133 Magic Gauge: 105 Gauge Charge Burst Gauge: 217 Tag Gauge: 133 Magic Gauge: 105 Rock Down Tag Skill Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Rock Down Tag Skill Rock Down Tag Skill Rock Down",
+        "cooldown_sec": 20.0,
+        "description": "Inflicts damage equal to 205% of Attack. Attacking an enemy with Earth Burst activated increases the hero's Crit Damage by 50% for 20 sec . Gauge Charge Burst Gauge: 37 Tag Gauge: 191 Magic Gauge: 167 Gauge Charge Burst Gauge: 37 Tag Gauge: 191 Magic Gauge: 167 Ground Down Tag Skill Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Ground Down Tag Skill Ground Down Tag Skill Ground Down",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 181.0,
+            "value_pct": 205.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 181% of Attack. Increases the hero's Defense by 30% for 30 sec ."
+            "context": "Inflicts damage equal to 205% of Attack. Attacking an enemy with Earth Burst activated increases the hero's Crit Damage by 50% for 20 sec ."
           },
           {
-            "value_pct": 88.0,
+            "value_pct": 143.0,
             "scaling": "ATK",
-            "context": "Rock Down Tag Skill Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175"
+            "context": "Ground Down Tag Skill Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
           }
         ],
         "sources": {
@@ -3823,22 +3824,22 @@
           }
         }
       },
-      "sk_29f93efa5d67": {
-        "id": "sk_29f93efa5d67",
+      "sk_3d27f89c0941": {
+        "id": "sk_3d27f89c0941",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 4,
-        "name": "Rock Down",
+        "name": "Ground Down",
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 88% of Attack. Taunts for 3 sec . Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Gauge Charge Burst Gauge: 300 Magic Gauge: 175 Metal Drop Ultimate Move Metal Drop Ultimate Move Metal Drop",
+        "description": "Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Rock Blast Ultimate Move Rock Blast Ultimate Move Rock Blast",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 88.0,
+            "value_pct": 143.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 88% of Attack. Taunts for 3 sec ."
+            "context": "Inflicts damage equal to 143% of Attack. Results in a Critical Hit when attacking Petrified enemies."
           }
         ],
         "sources": {
@@ -3847,27 +3848,22 @@
           }
         }
       },
-      "sk_aabd78c209f9": {
-        "id": "sk_aabd78c209f9",
+      "sk_be47bd131dde": {
+        "id": "sk_be47bd131dde",
         "character_id": "ch_aeeab13b5dea",
-        "weapon_type": "Gauntlets",
+        "weapon_type": "Axe",
         "slot": 5,
-        "name": "Metal Drop",
+        "name": "Rock Blast",
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Gains Heavy Metal for 15 sec , then inflicts damage equal to 278% of Attack. ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 . Increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 10 times ) Gauge Charge Burst Gauge: 191 Gauge Charge Burst Gauge: 191 Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Enhances the Normal Skill for 5 sec when the hero activates Earth Burst . The enhanced Normal Skill inflicts damage equal to 200% of Attack, and its damage increases by 100% when attacking an enemy with Earth Burst activated. 6 Amplifies Normal Skill power by 30% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 270% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Amplifies the Special Attack's final strike skill power by 300% . Decreases the enemy's Earth Resistance by 30% for 30 sec .",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack skill power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 278.0,
+            "value_pct": 371.0,
             "scaling": "ATK",
-            "context": "Gains Heavy Metal for 15 sec , then inflicts damage equal to 278% of Attack. ※ Heavy Metal : Becomes immune to Reactions. Increases the enemy's Burst Gauge by 50 . Increases the hero's Shatter Resistance by 3% for 20 sec when hit. (Max: 10 times )"
-          },
-          {
-            "value_pct": 200.0,
-            "scaling": "ATK",
-            "context": "Diane Gauntlets Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Enhances the Normal Skill for 5 sec when the hero activates Earth Burst . The enhanced Normal Skill inflicts damage equal to 200% of Attack, and its damage increases by 100% when attacking an enemy with Earth Burst activated. 6 Amplifies Normal Skill power by 30% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 270% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Amplifies the Special Attack's final strike skill power by 300% . Decreases the enemy's Earth Resistance by 30% for 30 sec ."
+            "context": "Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% ."
           }
         ],
         "sources": {
@@ -4070,16 +4066,16 @@
           }
         }
       },
-      "sk_0fa2246c7ce8": {
-        "id": "sk_0fa2246c7ce8",
+      "sk_1add0477f957": {
+        "id": "sk_1add0477f957",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 0,
         "name": "Gentle Breeze",
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Greatly fills an object's Wind gauge based on the charge level. Saintess's Protection Passive Increases Earth damage by 30% and Tag Skill damage by 50% while an allied hero has a Barrier . Gauge Charge Saintess's Protection Passive Saintess's Protection Passive Saintess's Protection",
+        "description": "Greatly fills an object's Wind gauge based on the charge level. Saintess's Judgment Passive Each attack on an enemy with Wind Burst activated increases Crit Chance by 33% for 5 sec . Gauge Charge Saintess's Judgment Passive Saintess's Judgment Passive Saintess's Judgment",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -4088,35 +4084,35 @@
           }
         }
       },
-      "sk_103ef6c03310": {
-        "id": "sk_103ef6c03310",
+      "sk_a81b87255ad7": {
+        "id": "sk_a81b87255ad7",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 1,
-        "name": "Saintess's Protection",
+        "name": "Saintess's Judgment",
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Increases Earth damage by 30% and Tag Skill damage by 50% while an allied hero has a Barrier . Gauge Charge Gauge Charge Windflower Normal Attack Windflower Normal Attack Windflower",
+        "description": "Each attack on an enemy with Wind Burst activated increases Crit Chance by 33% for 5 sec . Gauge Charge Gauge Charge Wind Bead Normal Attack Wind Bead Normal Attack Wind Bead",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 13.0,
+            "multiplier_pct": 25.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 14.0,
+            "multiplier_pct": 27.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 23.0,
+            "multiplier_pct": 43.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 39.0,
+            "multiplier_pct": 59.0,
             "scaling": "ATK"
           }
         ],
@@ -4127,43 +4123,43 @@
           }
         }
       },
-      "sk_0b4f1d45d107": {
-        "id": "sk_0b4f1d45d107",
+      "sk_466749d7b52a": {
+        "id": "sk_466749d7b52a",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 2,
-        "name": "Windflower",
+        "name": "Wind Bead",
         "type": "Normal Attack",
         "key": null,
-        "cooldown_sec": 35.0,
-        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 37 Magic Gauge: 16 Gauge Charge Burst Gauge: 2 Tag Gauge: 37 Magic Gauge: 16 Saintess's Domain Active Third Saintess's Domain Active Third Saintess's Domain Active Third Inflicts damage equal to 79% of Attack, then applies Saintess's Mark to nearby allies and enemies for 20 sec . ※ Saintess's Mark : Effects differ based on the target. Allies: Restores the Tag Gauge by 50 every 1 sec . Enemies: Decreases Earth Burst Resistance by 20% . Gauge Charge Burst Gauge: 18 Tag Gauge: 230 Magic Gauge: 133 Gauge Charge Burst Gauge: 18 Tag Gauge: 230 Magic Gauge: 133 Guardian's Blossom Normal Skill Guardian's Blossom Normal Skill Guardian's Blossom",
+        "cooldown_sec": 17.3,
+        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 6 Whirlwind Veil Active Third Whirlwind Veil Active Third Whirlwind Veil Active Third Inflicts damage equal to 66% of Attack every 1 sec while the stance is maintained. Each hit decreases the hero's Normal Skill cooldown by 3 sec . Gauge Charge Burst Gauge: 25 Tag Gauge: 97 Magic Gauge: 41 Gauge Charge Burst Gauge: 25 Tag Gauge: 97 Magic Gauge: 41 Razorwind Normal Skill Razorwind Normal Skill Razorwind",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 13.0,
+            "multiplier_pct": 25.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 14.0,
+            "multiplier_pct": 27.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 23.0,
+            "multiplier_pct": 43.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 39.0,
+            "multiplier_pct": 59.0,
             "scaling": "ATK"
           }
         ],
         "multipliers": [
           {
-            "value_pct": 79.0,
+            "value_pct": 66.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 79% of Attack, then applies Saintess's Mark to nearby allies and enemies for 20 sec . ※ Saintess's Mark : Effects differ based on the target. Allies: Restores the Tag Gauge by 50 every 1 sec . Enemies: Decreases Earth Burst Resistance by 20% ."
+            "context": "Inflicts damage equal to 66% of Attack every 1 sec while the stance is maintained. Each hit decreases the hero's Normal Skill cooldown by 3 sec ."
           }
         ],
         "sources": {
@@ -4172,27 +4168,27 @@
           }
         }
       },
-      "sk_292a6a4d60a1": {
-        "id": "sk_292a6a4d60a1",
+      "sk_1d25e80cee6e": {
+        "id": "sk_1d25e80cee6e",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 3,
-        "name": "Guardian's Blossom",
+        "name": "Razorwind",
         "type": "Normal Skill",
         "key": null,
-        "cooldown_sec": 35.0,
-        "description": "Inflicts damage equal to 126% of Attack. Grants allies Barriers equal to 135% of Defense for 20 sec . Allies' damage taken decreases by 10% while the Barriers are active. Gauge Charge Burst Gauge: 37 Tag Gauge: 565 Magic Gauge: 666 Gauge Charge Burst Gauge: 37 Tag Gauge: 565 Magic Gauge: 666 Forest Savior Tag Skill Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Forest Savior Tag Skill Forest Savior Tag Skill Forest Savior",
+        "cooldown_sec": 17.3,
+        "description": "Max Stacks: 3 Inflicts damage equal to 202% of Attack. Each Critical Hit increases the hero's Crit Damage by 20% for 5 sec . (Max: 3 times ) Gauge Charge Burst Gauge: 38 Tag Gauge: 171 Magic Gauge: 150 Gauge Charge Burst Gauge: 38 Tag Gauge: 171 Magic Gauge: 150 Forest Tornado Tag Skill Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Forest Tornado Tag Skill Forest Tornado Tag Skill Forest Tornado",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 126.0,
+            "value_pct": 202.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 126% of Attack. Grants allies Barriers equal to 135% of Defense for 20 sec . Allies' damage taken decreases by 10% while the Barriers are active."
+            "context": "Inflicts damage equal to 202% of Attack. Each Critical Hit increases the hero's Crit Damage by 20% for 5 sec . (Max: 3 times )"
           },
           {
-            "value_pct": 66.0,
+            "value_pct": 138.0,
             "scaling": "ATK",
-            "context": "Forest Savior Tag Skill Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
+            "context": "Forest Tornado Tag Skill Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
           }
         ],
         "sources": {
@@ -4201,22 +4197,22 @@
           }
         }
       },
-      "sk_d6013bf6732f": {
-        "id": "sk_d6013bf6732f",
+      "sk_ac3f021c4def": {
+        "id": "sk_ac3f021c4def",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 4,
-        "name": "Forest Savior",
+        "name": "Forest Tornado",
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 66% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Dust Seal Ultimate Move Dust Seal Ultimate Move Dust Seal",
+        "description": "Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Wind Blast Ultimate Move Wind Blast Ultimate Move Wind Blast",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 66.0,
+            "value_pct": 138.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 66% of Attack."
+            "context": "Inflicts damage equal to 138% of Attack. Each Critical Hit restores the Tag Gauge by 35 ."
           }
         ],
         "sources": {
@@ -4225,22 +4221,27 @@
           }
         }
       },
-      "sk_0b8f93f8395b": {
-        "id": "sk_0b8f93f8395b",
+      "sk_d3cc4d47a9a3": {
+        "id": "sk_d3cc4d47a9a3",
         "character_id": "ch_f5f84e3499cc",
-        "weapon_type": "Book",
+        "weapon_type": "Wand",
         "slot": 5,
-        "name": "Dust Seal",
+        "name": "Wind Blast",
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 206% of Attack. Inflicts Petrify for 6 sec . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Elaine Book Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Increases the duration of the Special Attack's Saintess's Mark by 10 sec . 5 Increases the Earth damage of allies with Saintess's Mark by 30% . 6 Increases the duration of the Normal Skill's Barriers by 10 sec and decreases the cooldown by 5 sec . 7 Changes the Special Attack into a skill that can be used 2 time(s) and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases all allied heroes' Defense by 20% . Decreases the enemy's Earth Resistance by 20% for 40 sec when using the Ultimate Move.",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 402% of Attack. Decreases the hero's Normal Skill cooldown by 15 sec . Gauge Charge Burst Gauge: 34 Gauge Charge Burst Gauge: 34 Elaine Wand Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 10% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Using the Tag Skill increases the hero's Normal Skill damage by 50% for 20 sec . 6 Amplifies Normal Skill power by 20% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 260% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 30% . 10 Adds 2 projectile(s) to the Normal Skill for 15 sec when the Normal Skill is used 2 time(s) within 15 sec .",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 206.0,
+            "value_pct": 402.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 206% of Attack. Inflicts Petrify for 6 sec . ※ Petrify : Incapacitated. Increases Physical and Earth damage taken by 50% , and decreases damage taken from elements other than Physical and Earth by 75% ."
+            "context": "Inflicts damage equal to 402% of Attack. Decreases the hero's Normal Skill cooldown by 15 sec ."
+          },
+          {
+            "value_pct": 260.0,
+            "scaling": "ATK",
+            "context": "Elaine Wand Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 10% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Using the Tag Skill increases the hero's Normal Skill damage by 50% for 20 sec . 6 Amplifies Normal Skill power by 20% . 7 The final strike of the Ultimate Move inflicts additional damage equal to 260% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 30% . 10 Adds 2 projectile(s) to the Normal Skill for 15 sec when the Normal Skill is used 2 time(s) within 15 sec ."
           }
         ],
         "sources": {
@@ -4612,16 +4613,16 @@
           }
         }
       },
-      "sk_4f53636c5117": {
-        "id": "sk_4f53636c5117",
+      "sk_9387420f4fe1": {
+        "id": "sk_9387420f4fe1",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 0,
         "name": "Flight",
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Flies at high speeds to a specific location. Sacred Tree's Protection Passive Decreases all allied heroes' damage taken by 20% and increases Healing Efficiency by 30% if the remaining HP is 30% or lower. Gauge Charge Sacred Tree's Protection Passive Sacred Tree's Protection Passive Sacred Tree's Protection",
+        "description": "Flies at high speeds to a specific location. Fairy King Passive Gains Bloom for 1 sec when landing a Critical Hit. Gains Bloom for 1 sec when attacking an enemy with a Burst activated. (Max: 20 ) ※ Bloom : Increases Attack by 15 for every 1% stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 25% sec . ※ Full Bloom : Increases Attack by 10% and Defense Shatter by 7 . Gauge Charge Fairy King Passive Fairy King Passive Fairy King",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -4630,35 +4631,35 @@
           }
         }
       },
-      "sk_b7e878ef1846": {
-        "id": "sk_b7e878ef1846",
+      "sk_3b8a4a9dea7d": {
+        "id": "sk_3b8a4a9dea7d",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 1,
-        "name": "Sacred Tree's Protection",
+        "name": "Fairy King",
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Decreases all allied heroes' damage taken by 20% and increases Healing Efficiency by 30% if the remaining HP is 30% or lower. Gauge Charge Gauge Charge Guardian Punch Normal Attack Guardian Punch Normal Attack Guardian Punch",
+        "description": "Gains Bloom for 1 sec when landing a Critical Hit. Gains Bloom for 1 sec when attacking an enemy with a Burst activated. (Max: 20 ) ※ Bloom : Increases Attack by 15 for every 1% stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 25% sec . ※ Full Bloom : Increases Attack by 10% and Defense Shatter by 7 . Gauge Charge Gauge Charge Piercing Staff Normal Attack Piercing Staff Normal Attack Piercing Staff",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 11.0,
+            "multiplier_pct": 20.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 12.0,
+            "multiplier_pct": 22.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 18.0,
+            "multiplier_pct": 36.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 31.0,
+            "multiplier_pct": 62.0,
             "scaling": "ATK"
           }
         ],
@@ -4669,43 +4670,43 @@
           }
         }
       },
-      "sk_26255738866b": {
-        "id": "sk_26255738866b",
+      "sk_db3e64002205": {
+        "id": "sk_db3e64002205",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 2,
-        "name": "Guardian Punch",
+        "name": "Piercing Staff",
         "type": "Normal Attack",
         "key": null,
-        "cooldown_sec": 16.0,
-        "description": "Gauge Charge Burst Gauge: 4 Tag Gauge: 38 Magic Gauge: 17 Gauge Charge Burst Gauge: 4 Tag Gauge: 38 Magic Gauge: 17 Guardian Shield Active Third Guardian Shield Active Third Guardian Shield Active Third Becomes immune to Reactions and decreases damage taken by 65% while the stance is maintained. Inflicts Mark of the Forest on nearby enemies for 40 sec every 1 sec while the stance is maintained. (Max: 10 times ) Maintains stance for up to 5 sec . When maintained for the maximum duration, the stance is removed, inflicting damage equal to 97% of Attack and restoring HP equal to 15% of Max HP + 150% of Attack. This attack's damage dealt increases by 5% for each Mark of the Forest stack on the enemy. ※ Mark of the Forest : Increases damage taken by 2% . Gauge Charge Burst Gauge: 18 Tag Gauge: 325 Magic Gauge: 188 Gauge Charge Burst Gauge: 18 Tag Gauge: 325 Magic Gauge: 188 Protector of the Forest Normal Skill Protector of the Forest Normal Skill Protector of the Forest",
+        "cooldown_sec": 12.0,
+        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Tempest Staff Active Third Tempest Staff Active Third Tempest Staff Active Third Gains 1 Bloom stack(s) for 20 sec (Max: 15 ), then inflicts damage equal to 166% of Attack. ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 29 Tag Gauge: 76 Magic Gauge: 33 Gauge Charge Burst Gauge: 29 Tag Gauge: 76 Magic Gauge: 33 Holy Swarm Normal Skill Holy Swarm Normal Skill Holy Swarm",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 11.0,
+            "multiplier_pct": 20.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 12.0,
+            "multiplier_pct": 22.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 18.0,
+            "multiplier_pct": 36.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 31.0,
+            "multiplier_pct": 62.0,
             "scaling": "ATK"
           }
         ],
         "multipliers": [
           {
-            "value_pct": 97.0,
+            "value_pct": 166.0,
             "scaling": "ATK",
-            "context": "Becomes immune to Reactions and decreases damage taken by 65% while the stance is maintained. Inflicts Mark of the Forest on nearby enemies for 40 sec every 1 sec while the stance is maintained. (Max: 10 times ) Maintains stance for up to 5 sec . When maintained for the maximum duration, the stance is removed, inflicting damage equal to 97% of Attack and restoring HP equal to 15% of Max HP + 150% of Attack. This attack's damage dealt increases by 5% for each Mark of the Forest stack on the enemy. ※ Mark of the Forest : Increases damage taken by 2% ."
+            "context": "Gains 1 Bloom stack(s) for 20 sec (Max: 15 ), then inflicts damage equal to 166% of Attack. ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom stacks are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
           }
         ],
         "sources": {
@@ -4714,27 +4715,27 @@
           }
         }
       },
-      "sk_0f56bcd0dafe": {
-        "id": "sk_0f56bcd0dafe",
+      "sk_7501504c7c06": {
+        "id": "sk_7501504c7c06",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 3,
-        "name": "Protector of the Forest",
+        "name": "Holy Swarm",
         "type": "Normal Skill",
         "key": null,
-        "cooldown_sec": 16.0,
-        "description": "Inflicts damage equal to 151% of Attack, then inflicts 3 Mark of the Forest stack(s) for 40 sec . (Max: 10 times ) ※ Mark of the Forest : Increases damage taken by 2% . Gauge Charge Burst Gauge: 38 Tag Gauge: 285 Magic Gauge: 335 Gauge Charge Burst Gauge: 38 Tag Gauge: 285 Magic Gauge: 335 Upper Arc Tag Skill Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Upper Arc Tag Skill Upper Arc Tag Skill Upper Arc",
+        "cooldown_sec": 12.0,
+        "description": "Inflicts damage equal to 245% of Attack, then gains Bloom stack(s) equal to the number of enemies hit by the first strike for 20 sec . (Max: 15 ) Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 40% . ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom effects are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 31 Tag Gauge: 133 Magic Gauge: 116 Gauge Charge Burst Gauge: 31 Tag Gauge: 133 Magic Gauge: 116 Bee Chase Tag Skill Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Bee Chase Tag Skill Bee Chase Tag Skill Bee Chase",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 151.0,
+            "value_pct": 245.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 151% of Attack, then inflicts 3 Mark of the Forest stack(s) for 40 sec . (Max: 10 times ) ※ Mark of the Forest : Increases damage taken by 2% ."
+            "context": "Inflicts damage equal to 245% of Attack, then gains Bloom stack(s) equal to the number of enemies hit by the first strike for 20 sec . (Max: 15 ) Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 40% . ※ Bloom : Increases Attack by 1% for every 1 stack(s) . When Bloom is at max stacks, all Bloom effects are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
           },
           {
-            "value_pct": 70.0,
+            "value_pct": 114.0,
             "scaling": "ATK",
-            "context": "Upper Arc Tag Skill Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
+            "context": "Bee Chase Tag Skill Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
           }
         ],
         "sources": {
@@ -4743,22 +4744,22 @@
           }
         }
       },
-      "sk_9c5f1600ab0c": {
-        "id": "sk_9c5f1600ab0c",
+      "sk_79abfe1901eb": {
+        "id": "sk_79abfe1901eb",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 4,
-        "name": "Upper Arc",
+        "name": "Bee Chase",
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 70% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Forest's Protection Ultimate Move Forest's Protection Ultimate Move Forest's Protection",
+        "description": "Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec . Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Shining Blaze Ultimate Move Shining Blaze Ultimate Move Shining Blaze",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 70.0,
+            "value_pct": 114.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 70% of Attack."
+            "context": "Inflicts damage equal to 114% of Attack. Increases the hero's Crit Chance by 15% for 20 sec ."
           }
         ],
         "sources": {
@@ -4767,22 +4768,27 @@
           }
         }
       },
-      "sk_3e33904b52be": {
-        "id": "sk_3e33904b52be",
+      "sk_e08631dd3fdd": {
+        "id": "sk_e08631dd3fdd",
         "character_id": "ch_c044994bcf37",
-        "weapon_type": "Book",
+        "weapon_type": "Staff",
         "slot": 5,
-        "name": "Forest's Protection",
+        "name": "Shining Blaze",
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 4 Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a Barrier equal to 18% of Max HP. Restores HP equal to 0.8% of Max HP + 25% of Attack every 2 sec . Gauge Charge Gauge Charge King Book Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies the Special Attack's HP Recovery by 50% . 5 Using the Special Attack on an enemy with 10 or more Mark of the Forest stacks decreases the cooldown by 50% . 6 Additionally increases the Passive's damage taken reduction by 10% and Healing Efficiency boost by 20% . 7 Increases the Normal Skill's number of Mark of the Forest stacks applied by 2 . Restores the Magic Gauge by 75 for every 1 Mark of the Forest stack(s) on the enemy. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies the HP Recovery of Forest's Protection by 50% . 10 Increases the duration of Forest's Protection by 10 sec . Increases Defense by 20% .",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 25.0,
+            "value_pct": 433.0,
             "scaling": "ATK",
-            "context": "Grants all allied heroes Forest's Protection for 20 sec . ※ Forest's Protection : Grants a Barrier equal to 18% of Max HP. Restores HP equal to 0.8% of Max HP + 25% of Attack every 2 sec ."
+            "context": "Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% ."
+          },
+          {
+            "value_pct": 35.0,
+            "scaling": "ATK",
+            "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
           }
         ],
         "sources": {
@@ -5141,16 +5147,16 @@
           }
         }
       },
-      "sk_bfac5237af9d": {
-        "id": "sk_bfac5237af9d",
+      "sk_08d19b7bf432": {
+        "id": "sk_08d19b7bf432",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 0,
         "name": "Downsize",
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Turns into a small demon that can fly. Blitz Passive Back Attacks increase damage by 35% . Gauge Charge Blitz Passive Blitz Passive Blitz",
+        "description": "Turns into a small demon that can fly. Troublemaker Passive Attacking an enemy with Darkness Burst activated increases Crit Damage by 45% . Gauge Charge Troublemaker Passive Troublemaker Passive Troublemaker",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -5159,16 +5165,16 @@
           }
         }
       },
-      "sk_3e0c7578dc0e": {
-        "id": "sk_3e0c7578dc0e",
+      "sk_b138f8f4c856": {
+        "id": "sk_b138f8f4c856",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 1,
-        "name": "Blitz",
+        "name": "Troublemaker",
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "Back Attacks increase damage by 35% . Gauge Charge Gauge Charge Dual Shadow Slash Normal Attack Dual Shadow Slash Normal Attack Dual Shadow Slash",
+        "description": "Attacking an enemy with Darkness Burst activated increases Crit Damage by 45% . Gauge Charge Gauge Charge Shadow Cleaver Normal Attack Shadow Cleaver Normal Attack Shadow Cleaver",
         "hits": [
           {
             "hit": 1,
@@ -5182,12 +5188,12 @@
           },
           {
             "hit": 3,
-            "multiplier_pct": 42.0,
+            "multiplier_pct": 41.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 70.0,
+            "multiplier_pct": 69.0,
             "scaling": "ATK"
           }
         ],
@@ -5198,16 +5204,16 @@
           }
         }
       },
-      "sk_5af3494072ad": {
-        "id": "sk_5af3494072ad",
+      "sk_a9ec7cea03b1": {
+        "id": "sk_a9ec7cea03b1",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 2,
-        "name": "Dual Shadow Slash",
+        "name": "Shadow Cleaver",
         "type": "Normal Attack",
         "key": null,
-        "cooldown_sec": 20.9,
-        "description": "Gauge Charge Tag Gauge: 20 Magic Gauge: 6 Gauge Charge Tag Gauge: 20 Magic Gauge: 6 Dual Abyss Slash Active Third Dual Abyss Slash Active Third Dual Abyss Slash Active Third Increases the hero's Darkness damage by 10% for 20 sec (Max: 3 times ), then the hero teleports behind the enemy and inflicts damage equal to 165% of Attack. Gauge Charge Tag Gauge: 115 Magic Gauge: 49 Gauge Charge Tag Gauge: 115 Magic Gauge: 49 Annihilation Normal Skill Annihilation Normal Skill Annihilation",
+        "cooldown_sec": 14.0,
+        "description": "Gauge Charge Tag Gauge: 21 Magic Gauge: 6 Gauge Charge Tag Gauge: 21 Magic Gauge: 6 Abyss Smasher Active Third Abyss Smasher Active Third Abyss Smasher Active Third Inflicts damage equal to 166% / 237% of Attack based on the charge level. Inflicts damage equal to 100% of Attack when overcharged. While charging, attacking when the weapon is glowing results in a Critical Hit. Gauge Charge Tag Gauge: 129 Magic Gauge: 55 Gauge Charge Tag Gauge: 129 Magic Gauge: 55 Dark Thrash Normal Skill Dark Thrash Normal Skill Dark Thrash",
         "hits": [
           {
             "hit": 1,
@@ -5221,20 +5227,20 @@
           },
           {
             "hit": 3,
-            "multiplier_pct": 42.0,
+            "multiplier_pct": 41.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 70.0,
+            "multiplier_pct": 69.0,
             "scaling": "ATK"
           }
         ],
         "multipliers": [
           {
-            "value_pct": 165.0,
+            "value_pct": 237.0,
             "scaling": "ATK",
-            "context": "Increases the hero's Darkness damage by 10% for 20 sec (Max: 3 times ), then the hero teleports behind the enemy and inflicts damage equal to 165% of Attack."
+            "context": "Inflicts damage equal to 166% / 237% of Attack based on the charge level. Inflicts damage equal to 100% of Attack when overcharged. While charging, attacking when the weapon is glowing results in a Critical Hit."
           }
         ],
         "sources": {
@@ -5243,27 +5249,27 @@
           }
         }
       },
-      "sk_a7f678ba5d3f": {
-        "id": "sk_a7f678ba5d3f",
+      "sk_7542a0fa53bc": {
+        "id": "sk_7542a0fa53bc",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 3,
-        "name": "Annihilation",
+        "name": "Dark Thrash",
         "type": "Normal Skill",
         "key": null,
-        "cooldown_sec": 20.9,
-        "description": "Inflicts damage equal to 263% of Attack. Back Attacks reset the Special Attack cooldown. Gauge Charge Tag Gauge: 197 Magic Gauge: 173 Gauge Charge Tag Gauge: 197 Magic Gauge: 173 Blade Dance Tag Skill Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225 Blade Dance Tag Skill Blade Dance Tag Skill Blade Dance",
+        "cooldown_sec": 14.0,
+        "description": "Inflicts damage equal to 188% of Attack on the enemy and pulls them to the center. Gauge Charge Tag Gauge: 147 Magic Gauge: 129 Gauge Charge Tag Gauge: 147 Magic Gauge: 129 Dark Axe Slash Tag Skill Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225 Dark Axe Slash Tag Skill Dark Axe Slash Tag Skill Dark Axe Slash",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 263.0,
+            "value_pct": 188.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 263% of Attack. Back Attacks reset the Special Attack cooldown."
+            "context": "Inflicts damage equal to 188% of Attack on the enemy and pulls them to the center."
           },
           {
-            "value_pct": 120.0,
+            "value_pct": 129.0,
             "scaling": "ATK",
-            "context": "Blade Dance Tag Skill Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225"
+            "context": "Dark Axe Slash Tag Skill Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225"
           }
         ],
         "sources": {
@@ -5272,22 +5278,22 @@
           }
         }
       },
-      "sk_b3a9c3249d5c": {
-        "id": "sk_b3a9c3249d5c",
+      "sk_01625d377573": {
+        "id": "sk_01625d377573",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 4,
-        "name": "Blade Dance",
+        "name": "Dark Axe Slash",
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 120% of Attack. Gauge Charge Magic Gauge: 225 Gauge Charge Magic Gauge: 225 The End Ultimate Move The End Ultimate Move The End",
+        "description": "Inflicts damage equal to 129% of Attack. Gauge Charge Magic Gauge: 225 Gauge Charge Magic Gauge: 225 Death Swarm Ultimate Move Death Swarm Ultimate Move Death Swarm",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 120.0,
+            "value_pct": 129.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 120% of Attack."
+            "context": "Inflicts damage equal to 129% of Attack."
           }
         ],
         "sources": {
@@ -5296,27 +5302,27 @@
           }
         }
       },
-      "sk_ce9d06db3596": {
-        "id": "sk_ce9d06db3596",
+      "sk_2e864c735dde": {
+        "id": "sk_2e864c735dde",
         "character_id": "ch_b8d215ef5eba",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Axe",
         "slot": 5,
-        "name": "The End",
+        "name": "Death Swarm",
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 326% of Attack. Each hit inflicts additional damage equal to 32% of Attack to enemies with Darkness Burst activated. The final strike removes the target's Darkness Burst . Gauge Charge Gauge Charge Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 Back Attacks increase the hero's Crit Chance by 30% for 3 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Special Attack inflicts additional damage equal to 100% of Attack.",
+        "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 326.0,
+            "value_pct": 380.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 326% of Attack. Each hit inflicts additional damage equal to 32% of Attack to enemies with Darkness Burst activated. The final strike removes the target's Darkness Burst ."
+            "context": "Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack."
           },
           {
-            "value_pct": 100.0,
+            "value_pct": 30.0,
             "scaling": "ATK",
-            "context": "Bug Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 Back Attacks increase the hero's Crit Chance by 30% for 3 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Special Attack inflicts additional damage equal to 100% of Attack."
+            "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
           }
         ],
         "sources": {
@@ -5686,11 +5692,29 @@
           }
         }
       },
-      "sk_9e7336c2f7dd": {
-        "id": "sk_9e7336c2f7dd",
+      "sk_093544756ad0": {
+        "id": "sk_093544756ad0",
         "character_id": "ch_65a04325b1c1",
         "weapon_type": "Longsword",
         "slot": 0,
+        "name": "Lightning Javelin",
+        "type": "Adventure Skill",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Greatly fills an object's Lightning gauge based on the charge level. Lightning King's Strike Passive Additionally increases Burst Gauge by 20 with each hit on a Shocked enemy. When the hero activates Lightning Burst , the enemy's Lightning Resistance decreases by 15% for 20 sec . Gauge Charge Lightning King's Strike Passive Lightning King's Strike Passive Lightning King's Strike",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/gilthunder/"
+          }
+        }
+      },
+      "sk_b304727feb71": {
+        "id": "sk_b304727feb71",
+        "character_id": "ch_65a04325b1c1",
+        "weapon_type": "Longsword",
+        "slot": 1,
         "name": "Lightning King's Strike",
         "type": "Passive",
         "key": null,
@@ -5725,11 +5749,11 @@
           }
         }
       },
-      "sk_87dd9bbed89b": {
-        "id": "sk_87dd9bbed89b",
+      "sk_1183d258410d": {
+        "id": "sk_1183d258410d",
         "character_id": "ch_65a04325b1c1",
         "weapon_type": "Longsword",
-        "slot": 1,
+        "slot": 2,
         "name": "Thunderstrike",
         "type": "Normal Attack",
         "key": null,
@@ -5770,11 +5794,11 @@
           }
         }
       },
-      "sk_1a93165df0b3": {
-        "id": "sk_1a93165df0b3",
+      "sk_55d459cf4fcd": {
+        "id": "sk_55d459cf4fcd",
         "character_id": "ch_65a04325b1c1",
         "weapon_type": "Longsword",
-        "slot": 2,
+        "slot": 3,
         "name": "Lightning Sword",
         "type": "Normal Skill",
         "key": null,
@@ -5799,11 +5823,11 @@
           }
         }
       },
-      "sk_7e4de0e892d2": {
-        "id": "sk_7e4de0e892d2",
+      "sk_156acc6b12dc": {
+        "id": "sk_156acc6b12dc",
         "character_id": "ch_65a04325b1c1",
         "weapon_type": "Longsword",
-        "slot": 3,
+        "slot": 4,
         "name": "Lightning Strike",
         "type": "Tag Skill",
         "key": null,
@@ -5823,11 +5847,11 @@
           }
         }
       },
-      "sk_6d198a6e901a": {
-        "id": "sk_6d198a6e901a",
+      "sk_06e5bea7c97b": {
+        "id": "sk_06e5bea7c97b",
         "character_id": "ch_65a04325b1c1",
         "weapon_type": "Longsword",
-        "slot": 4,
+        "slot": 5,
         "name": "Lightning Flash",
         "type": "Ultimate Move",
         "key": null,
@@ -6002,16 +6026,16 @@
           }
         }
       },
-      "sk_e64400d1ed38": {
-        "id": "sk_e64400d1ed38",
+      "sk_cd9e7fdaa3e8": {
+        "id": "sk_cd9e7fdaa3e8",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 0,
         "name": "Phytocommunication",
         "type": "Adventure Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Marks nearby gathering points. Morale Boost Passive When an allied hero attacks an enemy with reduced Movement Speed, their Crit Chance increases by 10% . Gauge Charge Morale Boost Passive Morale Boost Passive Morale Boost",
+        "description": "Marks nearby gathering points. Grandmaster's Rally Passive Using the Tag Skill restores the Magic Gauge by 500 at 3 or less Magic Points. Gauge Charge Grandmaster's Rally Passive Grandmaster's Rally Passive Grandmaster's Rally",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -6020,35 +6044,35 @@
           }
         }
       },
-      "sk_ef57a716a1c0": {
-        "id": "sk_ef57a716a1c0",
+      "sk_f647f3e6baf5": {
+        "id": "sk_f647f3e6baf5",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 1,
-        "name": "Morale Boost",
+        "name": "Grandmaster's Rally",
         "type": "Passive",
         "key": null,
         "cooldown_sec": null,
-        "description": "When an allied hero attacks an enemy with reduced Movement Speed, their Crit Chance increases by 10% . Gauge Charge Gauge Charge Dual Strike Normal Attack Dual Strike Normal Attack Dual Strike",
+        "description": "Using the Tag Skill restores the Magic Gauge by 500 at 3 or less Magic Points. Gauge Charge Gauge Charge Radiant Slash Normal Attack Radiant Slash Normal Attack Radiant Slash",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 21.0,
+            "multiplier_pct": 11.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 22.0,
+            "multiplier_pct": 12.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 37.0,
+            "multiplier_pct": 19.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 63.0,
+            "multiplier_pct": 33.0,
             "scaling": "ATK"
           }
         ],
@@ -6059,43 +6083,43 @@
           }
         }
       },
-      "sk_250fd7e5f995": {
-        "id": "sk_250fd7e5f995",
+      "sk_5c16a071f3be": {
+        "id": "sk_5c16a071f3be",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 2,
-        "name": "Dual Strike",
+        "name": "Radiant Slash",
         "type": "Normal Attack",
         "key": null,
-        "cooldown_sec": 12.0,
-        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Gauge Charge Burst Gauge: 2 Tag Gauge: 21 Magic Gauge: 7 Flash Sword Active Third Flash Sword Active Third Flash Sword Active Third Teleports behind the enemy, then inflicts damage equal to 178% of Attack. Attacking an enemy with reduced Movement Speed Stuns them for 5 sec and increases the hero's Crit Chance by 10% for 20 sec . Gauge Charge Burst Gauge: 19 Tag Gauge: 101 Magic Gauge: 43 Gauge Charge Burst Gauge: 19 Tag Gauge: 101 Magic Gauge: 43 Rapid Edge Normal Skill Rapid Edge Normal Skill Rapid Edge",
+        "cooldown_sec": 14.0,
+        "description": "Gauge Charge Burst Gauge: 2 Tag Gauge: 38 Magic Gauge: 17 Gauge Charge Burst Gauge: 2 Tag Gauge: 38 Magic Gauge: 17 Divine Pierce Active Third Divine Pierce Active Third Divine Pierce Active Third Inflicts damage equal to 99% of Attack. Increases the hero's Healing Efficiency by 10% for 30 sec . Gauge Charge Burst Gauge: 19 Tag Gauge: 163 Magic Gauge: 94 Gauge Charge Burst Gauge: 19 Tag Gauge: 163 Magic Gauge: 94 Defensive Spell Normal Skill Defensive Spell Normal Skill Defensive Spell",
         "hits": [
           {
             "hit": 1,
-            "multiplier_pct": 21.0,
+            "multiplier_pct": 11.0,
             "scaling": "ATK"
           },
           {
             "hit": 2,
-            "multiplier_pct": 22.0,
+            "multiplier_pct": 12.0,
             "scaling": "ATK"
           },
           {
             "hit": 3,
-            "multiplier_pct": 37.0,
+            "multiplier_pct": 19.0,
             "scaling": "ATK"
           },
           {
             "hit": 4,
-            "multiplier_pct": 63.0,
+            "multiplier_pct": 33.0,
             "scaling": "ATK"
           }
         ],
         "multipliers": [
           {
-            "value_pct": 178.0,
+            "value_pct": 99.0,
             "scaling": "ATK",
-            "context": "Teleports behind the enemy, then inflicts damage equal to 178% of Attack. Attacking an enemy with reduced Movement Speed Stuns them for 5 sec and increases the hero's Crit Chance by 10% for 20 sec ."
+            "context": "Inflicts damage equal to 99% of Attack. Increases the hero's Healing Efficiency by 10% for 30 sec ."
           }
         ],
         "sources": {
@@ -6104,27 +6128,22 @@
           }
         }
       },
-      "sk_b51d9c8e4bf8": {
-        "id": "sk_b51d9c8e4bf8",
+      "sk_75e4ac756f10": {
+        "id": "sk_75e4ac756f10",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 3,
-        "name": "Rapid Edge",
+        "name": "Defensive Spell",
         "type": "Normal Skill",
         "key": null,
-        "cooldown_sec": 12.0,
-        "description": "Inflicts damage equal to 281% of Attack. Back Attacks increase Crit Damage by 30% . Gauge Charge Burst Gauge: 37 Tag Gauge: 133 Magic Gauge: 116 Gauge Charge Burst Gauge: 37 Tag Gauge: 133 Magic Gauge: 116 Double Slash Tag Skill Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Double Slash Tag Skill Double Slash Tag Skill Double Slash",
+        "cooldown_sec": 14.0,
+        "description": "Increases all allied heroes' Defense by 20% for 40 sec . Gauge Charge Tag Gauge: 316 Magic Gauge: 372 Gauge Charge Tag Gauge: 316 Magic Gauge: 372 Thrusting Slash Tag Skill Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Thrusting Slash Tag Skill Thrusting Slash Tag Skill Thrusting Slash",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 281.0,
+            "value_pct": 85.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 281% of Attack. Back Attacks increase Crit Damage by 30% ."
-          },
-          {
-            "value_pct": 127.0,
-            "scaling": "ATK",
-            "context": "Double Slash Tag Skill Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+            "context": "Thrusting Slash Tag Skill Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650"
           }
         ],
         "sources": {
@@ -6133,22 +6152,22 @@
           }
         }
       },
-      "sk_b9d6171e195f": {
-        "id": "sk_b9d6171e195f",
+      "sk_ae7a7bc66c96": {
+        "id": "sk_ae7a7bc66c96",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 4,
-        "name": "Double Slash",
+        "name": "Thrusting Slash",
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 127% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Knight's Sword Ultimate Move Knight's Sword Ultimate Move Knight's Sword",
+        "description": "Inflicts damage equal to 85% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Gauge Charge Burst Gauge: 150 Magic Gauge: 650 Magic Unleashed Ultimate Move Magic Unleashed Ultimate Move Magic Unleashed",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 127.0,
+            "value_pct": 85.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 127% of Attack."
+            "context": "Inflicts damage equal to 85% of Attack."
           }
         ],
         "sources": {
@@ -6157,22 +6176,22 @@
           }
         }
       },
-      "sk_e374fe3e34db": {
-        "id": "sk_e374fe3e34db",
+      "sk_e2e748470c70": {
+        "id": "sk_e2e748470c70",
         "character_id": "ch_da7cd83187da",
-        "weapon_type": "Dual Swords",
+        "weapon_type": "Longsword",
         "slot": 5,
-        "name": "Knight's Sword",
+        "name": "Magic Unleashed",
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 421% of Attack. Decreases Movement Speed by 30% for 20 sec . Gauge Charge Burst Gauge: 30 Gauge Charge Burst Gauge: 30 Hendrickson Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Restores the Magic Gauge by 100 and Tag Gauge by 150 when landing a Critical Hit with the Special Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Normal Skill's Crit Damage boost by 30% . Restores the Tag Gauge by 300 when landing a Critical Hit. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 75% . 10 Slightly increases the range of the Ultimate Move. Additionally increases the Ultimate Move's Movement Speed reduction by 15% and the duration by 10 .",
+        "description": "Magic Consumption: 4 Restores HP of allies in range by 0.5% of Max HP + 25% of Attack every 1 sec for 10 sec . Gauge Charge Gauge Charge Hendrickson Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies the Passive's Magic Recovery by 50% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . Changes the Healing Efficiency boost effect to be applied up to 2 times . 6 Additionally increases the Normal Skill's Defense boost by 10% . 7 The Defense boost from the Normal Skill also applies to nearby allies. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's HP Recovery by 20% . 10 Slightly increases the range of the Ultimate Move.",
         "hits": [],
         "multipliers": [
           {
-            "value_pct": 421.0,
+            "value_pct": 25.0,
             "scaling": "ATK",
-            "context": "Inflicts damage equal to 421% of Attack. Decreases Movement Speed by 30% for 20 sec ."
+            "context": "Restores HP of allies in range by 0.5% of Max HP + 25% of Attack every 1 sec for 10 sec ."
           }
         ],
         "sources": {
