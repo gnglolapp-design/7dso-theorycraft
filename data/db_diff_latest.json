@@ -10,7 +10,10 @@
     "skills": []
   },
   "changed": {
-    "characters": [],
+    "characters": [
+      "ch_bf334f71381a",
+      "ch_d6d38d7265ff"
+    ],
     "weapons": []
   }
 }
