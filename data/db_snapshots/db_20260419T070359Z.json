@@ -1,8 +1,163 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-04-04T06:43:34Z",
+  "generated_at": "2026-04-19T07:03:53Z",
   "modules": {
     "characters": {
+      "ch_bf334f71381a": {
+        "id": "ch_bf334f71381a",
+        "name": "Daisy",
+        "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_daisy_001.png",
+        "description": "Shield Book Wand Shield Book",
+        "weapon_types": [
+          "Shield",
+          "Book",
+          "Wand"
+        ],
+        "costumes": [],
+        "skills_by_weapon": {
+          "Shield": [
+            {
+              "name": "Artisan's Touch",
+              "type": "Adventure Skill",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Unlocks exclusive crafting blueprints at workbenches and expands the crafting queue for consecutive crafting. (Effect activates upon obtaining the hero) Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 41.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 67.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": []
+            },
+            {
+              "name": "Secret Fairy Technique: Wild Swings",
+              "type": "Normal Attack",
+              "key": null,
+              "cooldown_sec": 15.0,
+              "description": "Gauge Charge Gauge Charge Block It, Domby Active Third Block It, Domby Active Third Block It, Domby Active Third Decreases damage taken by 90% and gains Energy Charge for 20 sec when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 5 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 20 sec . [Daisy and Domby] Inflicts damage equal to 98% / 270% of Attack and gains 2 / 4 stack(s) of Energy Charge for 20 sec based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Help Me, Domby Normal Skill Help Me, Domby Normal Skill Help Me, Domby",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 25.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 41.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 67.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": [
+                {
+                  "value_pct": 270.0,
+                  "scaling": "ATK",
+                  "context": "Decreases damage taken by 90% and gains Energy Charge for 20 sec when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 5 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 20 sec . [Daisy and Domby] Inflicts damage equal to 98% / 270% of Attack and gains 2 / 4 stack(s) of Energy Charge for 20 sec based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
+                }
+              ]
+            },
+            {
+              "name": "Help Me, Domby",
+              "type": "Normal Skill",
+              "key": null,
+              "cooldown_sec": 10.0,
+              "description": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed. Gauge Charge Gauge Charge Go Away Ultimate Move Go Away Ultimate Move Go Away",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 253.0,
+                  "scaling": "ATK",
+                  "context": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed."
+                }
+              ]
+            },
+            {
+              "name": "Go Away",
+              "type": "Ultimate Move",
+              "key": null,
+              "cooldown_sec": 10.0,
+              "description": "Inflicts damage equal to 319% of Attack, inflicts Fairy of the Earth on the enemy for 20 sec , then gains 5 Energy Charge stack(s) for 20 sec . [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its stack maximum, each hit on the enemy with Earth Burst activated additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge My Friend Domby Passive Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 20 sec by consuming 50 from the Magic Gauge every 0.5 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge My Friend Domby Passive My Friend Domby Passive My Friend Domby",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 319.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 319% of Attack, inflicts Fairy of the Earth on the enemy for 20 sec , then gains 5 Energy Charge stack(s) for 20 sec . [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its stack maximum, each hit on the enemy with Earth Burst activated additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
+                }
+              ]
+            },
+            {
+              "name": "My Friend Domby",
+              "type": "Passive",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 20 sec by consuming 50 from the Magic Gauge every 0.5 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 160.0,
+                  "scaling": "ATK",
+                  "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+                }
+              ]
+            },
+            {
+              "name": "Here Comes Daisy",
+              "type": "Tag Skill",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 160.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 160% of Attack."
+                },
+                {
+                  "value_pct": 33.0,
+                  "scaling": "ATK",
+                  "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
+                }
+              ]
+            }
+          ]
+        },
+        "potential_by_weapon": {
+          "Shield": []
+        },
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
       "ch_aeeab13b5dea": {
         "id": "ch_aeeab13b5dea",
         "name": "Diane",
@@ -1039,13 +1194,13 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Stigmata for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Stigmata : Decreases All Element Resistance by 20% . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Manny Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Normal Skill power by 20% . 5 Slightly increases the range of the Special Attack and increases its duration by 5 sec . Additionally increases the Crit Damage boost of Draco Priestess by 15% . 6 Increases the duration of the Normal Skill's Punishment by 5 sec . 7 Decreases the Normal Skill cooldown by 11 sec if Draco Priestess is active on the hero. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 20% . Additionally increases Combined Attack damage boost by 20% . 10 Slightly increases the range of the Ultimate Move and increases its duration by 5 sec . Decreases the Ultimate Move's Magic Point consumption by 1 .",
+              "description": "Magic Consumption: 3 Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Star Trace for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Star Trace : Decreases All Element Resistance by 20% . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Manny Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Normal Skill power by 20% . 5 Slightly increases the range of the Special Attack and increases its duration by 5 sec . Additionally increases the Crit Damage boost of Draco Priestess by 15% . 6 Increases the duration of the Normal Skill's Punishment by 5 sec . 7 Decreases the Normal Skill cooldown by 11 sec if Draco Priestess is active on the hero. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 20% . Additionally increases Combined Attack damage boost by 20% . 10 Slightly increases the range of the Ultimate Move and increases its duration by 5 sec . Decreases the Ultimate Move's Magic Point consumption by 1 .",
               "hits": [],
               "multipliers": [
                 {
                   "value_pct": 93.0,
                   "scaling": "ATK",
-                  "context": "Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Stigmata for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Stigmata : Decreases All Element Resistance by 20% ."
+                  "context": "Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Star Trace for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Star Trace : Decreases All Element Resistance by 20% ."
                 }
               ]
             }
@@ -2715,161 +2870,6 @@
           }
         }
       },
-      "ch_bf334f71381a": {
-        "id": "ch_bf334f71381a",
-        "name": "Daisy",
-        "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_daisy_001.png",
-        "description": "Shield Book Wand Shield Book",
-        "weapon_types": [
-          "Shield",
-          "Book",
-          "Wand"
-        ],
-        "costumes": [],
-        "skills_by_weapon": {
-          "Shield": [
-            {
-              "name": "Artisan's Touch",
-              "type": "Adventure Skill",
-              "key": null,
-              "cooldown_sec": null,
-              "description": "Unlocks exclusive crafting blueprints at workbenches and expands the crafting queue for consecutive crafting. (Effect activates upon obtaining the hero) Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings",
-              "hits": [
-                {
-                  "hit": 1,
-                  "multiplier_pct": 23.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 2,
-                  "multiplier_pct": 25.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 3,
-                  "multiplier_pct": 41.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 4,
-                  "multiplier_pct": 67.0,
-                  "scaling": "ATK"
-                }
-              ],
-              "multipliers": []
-            },
-            {
-              "name": "Secret Fairy Technique: Wild Swings",
-              "type": "Normal Attack",
-              "key": null,
-              "cooldown_sec": 15.0,
-              "description": "Gauge Charge Gauge Charge Block It, Domby Active Third Block It, Domby Active Third Block It, Domby Active Third Decreases damage taken by 90% and gains Energy Charge when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 11 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 10 sec . [Daisy and Domby] Inflicts damage equal to 155% / 215% of Attack and gains 12 / 13 stack(s) of Energy Charge based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Help Me, Domby Normal Skill Help Me, Domby Normal Skill Help Me, Domby",
-              "hits": [
-                {
-                  "hit": 1,
-                  "multiplier_pct": 23.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 2,
-                  "multiplier_pct": 25.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 3,
-                  "multiplier_pct": 41.0,
-                  "scaling": "ATK"
-                },
-                {
-                  "hit": 4,
-                  "multiplier_pct": 67.0,
-                  "scaling": "ATK"
-                }
-              ],
-              "multipliers": [
-                {
-                  "value_pct": 215.0,
-                  "scaling": "ATK",
-                  "context": "Decreases damage taken by 90% and gains Energy Charge when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 11 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 10 sec . [Daisy and Domby] Inflicts damage equal to 155% / 215% of Attack and gains 12 / 13 stack(s) of Energy Charge based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
-                }
-              ]
-            },
-            {
-              "name": "Help Me, Domby",
-              "type": "Normal Skill",
-              "key": null,
-              "cooldown_sec": 10.0,
-              "description": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed. Gauge Charge Gauge Charge Go Away Ultimate Move Go Away Ultimate Move Go Away",
-              "hits": [],
-              "multipliers": [
-                {
-                  "value_pct": 253.0,
-                  "scaling": "ATK",
-                  "context": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed."
-                }
-              ]
-            },
-            {
-              "name": "Go Away",
-              "type": "Ultimate Move",
-              "key": null,
-              "cooldown_sec": 10.0,
-              "description": "Inflicts damage equal to 319% of Attack, then inflicts Fairy of the Earth on the enemy for 20 sec . Gains 5 Energy Charge stack(s) for 10 sec when the attack lands. [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its max, each hit on the enemy additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge My Friend Domby Passive Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 10 sec by consuming 50 from the Magic Gauge every 1 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge My Friend Domby Passive My Friend Domby Passive My Friend Domby",
-              "hits": [],
-              "multipliers": [
-                {
-                  "value_pct": 319.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 319% of Attack, then inflicts Fairy of the Earth on the enemy for 20 sec . Gains 5 Energy Charge stack(s) for 10 sec when the attack lands. [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its max, each hit on the enemy additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
-                }
-              ]
-            },
-            {
-              "name": "My Friend Domby",
-              "type": "Passive",
-              "key": null,
-              "cooldown_sec": null,
-              "description": "Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 10 sec by consuming 50 from the Magic Gauge every 1 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
-              "hits": [],
-              "multipliers": [
-                {
-                  "value_pct": 160.0,
-                  "scaling": "ATK",
-                  "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
-                }
-              ]
-            },
-            {
-              "name": "Here Comes Daisy",
-              "type": "Tag Skill",
-              "key": null,
-              "cooldown_sec": null,
-              "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies Ultimate Move skill power by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , or 60% while [Daisy and Domby] is active. 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 10 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 10 sec .",
-              "hits": [],
-              "multipliers": [
-                {
-                  "value_pct": 160.0,
-                  "scaling": "ATK",
-                  "context": "Inflicts damage equal to 160% of Attack."
-                },
-                {
-                  "value_pct": 33.0,
-                  "scaling": "ATK",
-                  "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies Ultimate Move skill power by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , or 60% while [Daisy and Domby] is active. 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 10 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 10 sec ."
-                }
-              ]
-            }
-          ]
-        },
-        "potential_by_weapon": {
-          "Shield": []
-        },
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
       "ch_c47151a474e5": {
         "id": "ch_c47151a474e5",
         "name": "Klotho",
@@ -3703,6 +3703,191 @@
       }
     },
     "skills": {
+      "sk_1652db806008": {
+        "id": "sk_1652db806008",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 0,
+        "name": "Artisan's Touch",
+        "type": "Adventure Skill",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Unlocks exclusive crafting blueprints at workbenches and expands the crafting queue for consecutive crafting. (Effect activates upon obtaining the hero) Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 41.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 67.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_974d90e6556d": {
+        "id": "sk_974d90e6556d",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 1,
+        "name": "Secret Fairy Technique: Wild Swings",
+        "type": "Normal Attack",
+        "key": null,
+        "cooldown_sec": 15.0,
+        "description": "Gauge Charge Gauge Charge Block It, Domby Active Third Block It, Domby Active Third Block It, Domby Active Third Decreases damage taken by 90% and gains Energy Charge for 20 sec when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 5 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 20 sec . [Daisy and Domby] Inflicts damage equal to 98% / 270% of Attack and gains 2 / 4 stack(s) of Energy Charge for 20 sec based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Help Me, Domby Normal Skill Help Me, Domby Normal Skill Help Me, Domby",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 25.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 41.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 67.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [
+          {
+            "value_pct": 270.0,
+            "scaling": "ATK",
+            "context": "Decreases damage taken by 90% and gains Energy Charge for 20 sec when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 5 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 20 sec . [Daisy and Domby] Inflicts damage equal to 98% / 270% of Attack and gains 2 / 4 stack(s) of Energy Charge for 20 sec based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_b8276f3530d4": {
+        "id": "sk_b8276f3530d4",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 2,
+        "name": "Help Me, Domby",
+        "type": "Normal Skill",
+        "key": null,
+        "cooldown_sec": 10.0,
+        "description": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed. Gauge Charge Gauge Charge Go Away Ultimate Move Go Away Ultimate Move Go Away",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 253.0,
+            "scaling": "ATK",
+            "context": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_9761b6fd031f": {
+        "id": "sk_9761b6fd031f",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 3,
+        "name": "Go Away",
+        "type": "Ultimate Move",
+        "key": null,
+        "cooldown_sec": 10.0,
+        "description": "Inflicts damage equal to 319% of Attack, inflicts Fairy of the Earth on the enemy for 20 sec , then gains 5 Energy Charge stack(s) for 20 sec . [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its stack maximum, each hit on the enemy with Earth Burst activated additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge My Friend Domby Passive Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 20 sec by consuming 50 from the Magic Gauge every 0.5 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge My Friend Domby Passive My Friend Domby Passive My Friend Domby",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 319.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 319% of Attack, inflicts Fairy of the Earth on the enemy for 20 sec , then gains 5 Energy Charge stack(s) for 20 sec . [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its stack maximum, each hit on the enemy with Earth Burst activated additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_5bea9537fcd4": {
+        "id": "sk_5bea9537fcd4",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 4,
+        "name": "My Friend Domby",
+        "type": "Passive",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 20 sec by consuming 50 from the Magic Gauge every 0.5 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 160.0,
+            "scaling": "ATK",
+            "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
+      "sk_441453091345": {
+        "id": "sk_441453091345",
+        "character_id": "ch_bf334f71381a",
+        "weapon_type": "Shield",
+        "slot": 5,
+        "name": "Here Comes Daisy",
+        "type": "Tag Skill",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 160.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 160% of Attack."
+          },
+          {
+            "value_pct": 33.0,
+            "scaling": "ATK",
+            "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/daisy/"
+          }
+        }
+      },
       "sk_f521f2cc18df": {
         "id": "sk_f521f2cc18df",
         "character_id": "ch_aeeab13b5dea",
@@ -4955,13 +5140,13 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Stigmata for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Stigmata : Decreases All Element Resistance by 20% . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Manny Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Normal Skill power by 20% . 5 Slightly increases the range of the Special Attack and increases its duration by 5 sec . Additionally increases the Crit Damage boost of Draco Priestess by 15% . 6 Increases the duration of the Normal Skill's Punishment by 5 sec . 7 Decreases the Normal Skill cooldown by 11 sec if Draco Priestess is active on the hero. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 20% . Additionally increases Combined Attack damage boost by 20% . 10 Slightly increases the range of the Ultimate Move and increases its duration by 5 sec . Decreases the Ultimate Move's Magic Point consumption by 1 .",
+        "description": "Magic Consumption: 3 Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Star Trace for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Star Trace : Decreases All Element Resistance by 20% . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Manny Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Tag Skill skill power by 25% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Normal Skill power by 20% . 5 Slightly increases the range of the Special Attack and increases its duration by 5 sec . Additionally increases the Crit Damage boost of Draco Priestess by 15% . 6 Increases the duration of the Normal Skill's Punishment by 5 sec . 7 Decreases the Normal Skill cooldown by 11 sec if Draco Priestess is active on the hero. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 20% . Additionally increases Combined Attack damage boost by 20% . 10 Slightly increases the range of the Ultimate Move and increases its duration by 5 sec . Decreases the Ultimate Move's Magic Point consumption by 1 .",
         "hits": [],
         "multipliers": [
           {
             "value_pct": 93.0,
             "scaling": "ATK",
-            "context": "Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Stigmata for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Stigmata : Decreases All Element Resistance by 20% ."
+            "context": "Resets Normal Skill cooldowns of all allied heroes. The first strike inflicts damage equal to 93% of Attack and inflicts Star Trace for 30 sec . Inflicts damage equal to 20% of Attack on enemies hit every 1 sec for 5 sec . ※ Star Trace : Decreases All Element Resistance by 20% ."
           }
         ],
         "sources": {
@@ -6934,191 +7119,6 @@
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/characters/tristan/"
-          }
-        }
-      },
-      "sk_1652db806008": {
-        "id": "sk_1652db806008",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 0,
-        "name": "Artisan's Touch",
-        "type": "Adventure Skill",
-        "key": null,
-        "cooldown_sec": null,
-        "description": "Unlocks exclusive crafting blueprints at workbenches and expands the crafting queue for consecutive crafting. (Effect activates upon obtaining the hero) Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings Normal Attack Secret Fairy Technique: Wild Swings",
-        "hits": [
-          {
-            "hit": 1,
-            "multiplier_pct": 23.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 2,
-            "multiplier_pct": 25.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 3,
-            "multiplier_pct": 41.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 4,
-            "multiplier_pct": 67.0,
-            "scaling": "ATK"
-          }
-        ],
-        "multipliers": [],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
-      "sk_974d90e6556d": {
-        "id": "sk_974d90e6556d",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 1,
-        "name": "Secret Fairy Technique: Wild Swings",
-        "type": "Normal Attack",
-        "key": null,
-        "cooldown_sec": 15.0,
-        "description": "Gauge Charge Gauge Charge Block It, Domby Active Third Block It, Domby Active Third Block It, Domby Active Third Decreases damage taken by 90% and gains Energy Charge when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 11 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 10 sec . [Daisy and Domby] Inflicts damage equal to 155% / 215% of Attack and gains 12 / 13 stack(s) of Energy Charge based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Help Me, Domby Normal Skill Help Me, Domby Normal Skill Help Me, Domby",
-        "hits": [
-          {
-            "hit": 1,
-            "multiplier_pct": 23.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 2,
-            "multiplier_pct": 25.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 3,
-            "multiplier_pct": 41.0,
-            "scaling": "ATK"
-          },
-          {
-            "hit": 4,
-            "multiplier_pct": 67.0,
-            "scaling": "ATK"
-          }
-        ],
-        "multipliers": [
-          {
-            "value_pct": 215.0,
-            "scaling": "ATK",
-            "context": "Decreases damage taken by 90% and gains Energy Charge when hit while the stance is maintained. Maintaining the stance for 3 sec grants the hero 11 stack(s) of Energy Charge , and the Magic Gauge is restored by 500 for 10 sec . [Daisy and Domby] Inflicts damage equal to 155% / 215% of Attack and gains 12 / 13 stack(s) of Energy Charge based on the charge level. Consumes 100 Magic Gauge every 0.4 sec to increase damage by 10% while the stance is maintained. ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
-          }
-        ],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
-      "sk_b8276f3530d4": {
-        "id": "sk_b8276f3530d4",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 2,
-        "name": "Help Me, Domby",
-        "type": "Normal Skill",
-        "key": null,
-        "cooldown_sec": 10.0,
-        "description": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed. Gauge Charge Gauge Charge Go Away Ultimate Move Go Away Ultimate Move Go Away",
-        "hits": [],
-        "multipliers": [
-          {
-            "value_pct": 253.0,
-            "scaling": "ATK",
-            "context": "Activates [Daisy and Domby] . [Daisy and Domby] Inflicts damage equal to 253% of Attack, then [Daisy and Domby] is removed."
-          }
-        ],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
-      "sk_9761b6fd031f": {
-        "id": "sk_9761b6fd031f",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 3,
-        "name": "Go Away",
-        "type": "Ultimate Move",
-        "key": null,
-        "cooldown_sec": 10.0,
-        "description": "Inflicts damage equal to 319% of Attack, then inflicts Fairy of the Earth on the enemy for 20 sec . Gains 5 Energy Charge stack(s) for 10 sec when the attack lands. [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its max, each hit on the enemy additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge My Friend Domby Passive Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 10 sec by consuming 50 from the Magic Gauge every 1 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge My Friend Domby Passive My Friend Domby Passive My Friend Domby",
-        "hits": [],
-        "multipliers": [
-          {
-            "value_pct": 319.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 319% of Attack, then inflicts Fairy of the Earth on the enemy for 20 sec . Gains 5 Energy Charge stack(s) for 10 sec when the attack lands. [Daisy and Domby] Inflicts damage equal to 150% of Attack. When Energy Charge is at its max, each hit on the enemy additionally inflicts damage equal to 75% of Attack, then Energy Charge is removed. Each hit consumes 100 from the Magic Gauge to increase damage by 10% . ※ Fairy of the Earth : Increases damage taken from the caster by 30% . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times )"
-          }
-        ],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
-      "sk_5bea9537fcd4": {
-        "id": "sk_5bea9537fcd4",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 4,
-        "name": "My Friend Domby",
-        "type": "Passive",
-        "key": null,
-        "cooldown_sec": null,
-        "description": "Increases the hero's Magic Charging Efficiency by 50% . [Daisy and Domby] Becomes immune to Reactions. Gains Energy Charge for 10 sec by consuming 50 from the Magic Gauge every 1 sec . ※ Energy Charge : Increases Ultimate Move damage by 2% while [Daisy and Domby] is active. (Max: 30 times ) Gauge Charge Gauge Charge Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Here Comes Daisy Tag Skill Here Comes Daisy Tag Skill Here Comes Daisy",
-        "hits": [],
-        "multipliers": [
-          {
-            "value_pct": 160.0,
-            "scaling": "ATK",
-            "context": "Here Comes Daisy Tag Skill Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
-          }
-        ],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
-          }
-        }
-      },
-      "sk_441453091345": {
-        "id": "sk_441453091345",
-        "character_id": "ch_bf334f71381a",
-        "weapon_type": "Shield",
-        "slot": 5,
-        "name": "Here Comes Daisy",
-        "type": "Tag Skill",
-        "key": null,
-        "cooldown_sec": null,
-        "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies Ultimate Move skill power by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , or 60% while [Daisy and Domby] is active. 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 10 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 10 sec .",
-        "hits": [],
-        "multipliers": [
-          {
-            "value_pct": 160.0,
-            "scaling": "ATK",
-            "context": "Inflicts damage equal to 160% of Attack."
-          },
-          {
-            "value_pct": 33.0,
-            "scaling": "ATK",
-            "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies Ultimate Move skill power by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , or 60% while [Daisy and Domby] is active. 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 10 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 10 sec ."
-          }
-        ],
-        "sources": {
-          "genshin": {
-            "source_url": "https://genshin.gg/7dso/characters/daisy/"
           }
         }
       }
