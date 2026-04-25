@@ -1,16 +1,48 @@
 {
   "added": {
-    "characters": [],
-    "weapons": [],
-    "skills": []
+    "characters": [
+      "ch_1ae76cbc0b5b"
+    ],
+    "weapons": [
+      "wp_61b825c58566",
+      "wp_adc51debf823"
+    ],
+    "skills": [
+      "sk_38e1c9f9048d",
+      "sk_50427196a23f",
+      "sk_b1a35ffb09b9",
+      "sk_d4c104c8e3de",
+      "sk_d5952b41cfb5",
+      "sk_ed23b6cd8ff3"
+    ]
   },
   "removed": {
     "characters": [],
-    "weapons": [],
+    "weapons": [
+      "wp_26f6c6c2e8cd"
+    ],
     "skills": []
   },
   "changed": {
-    "characters": [],
-    "weapons": []
+    "characters": [
+      "ch_0e84efa613f7",
+      "ch_11d44ccb41c2",
+      "ch_12ab5fc4592a",
+      "ch_234eead55cec",
+      "ch_47c933d5dcec",
+      "ch_65a04325b1c1",
+      "ch_773fb2511a29",
+      "ch_81b424f107e9",
+      "ch_a4603db7cee9",
+      "ch_aeeab13b5dea",
+      "ch_b8d215ef5eba",
+      "ch_bf334f71381a",
+      "ch_c044994bcf37",
+      "ch_c87a4c6ba0cb",
+      "ch_c91ce9376532"
+    ],
+    "weapons": [
+      "wp_ea02a51447b2"
+    ]
   }
 }
