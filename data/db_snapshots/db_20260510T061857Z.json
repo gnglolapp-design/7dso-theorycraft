@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-04-24T07:22:21Z",
+  "generated_at": "2026-05-10T06:18:50Z",
   "modules": {
     "characters": {
       "ch_bf334f71381a": {
@@ -132,7 +132,7 @@
               "type": "Tag Skill",
               "key": null,
               "cooldown_sec": null,
-              "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
+              "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
               "hits": [],
               "multipliers": [
                 {
@@ -143,7 +143,7 @@
                 {
                   "value_pct": 33.0,
                   "scaling": "ATK",
-                  "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
+                  "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
                 }
               ]
             }
@@ -276,7 +276,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack skill power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
               "hits": [],
               "multipliers": [
                 {
@@ -435,7 +435,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Inflicts damage equal to 461% of Attack. Increases damage dealt by 30% for every 1 King's Magic stack on the hero. The first strike decreases the Normal Skill cooldown by 50% . Gauge Charge Burst Gauge: 40 Gauge Charge Burst Gauge: 40 Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack.",
+              "description": "Magic Consumption: 2 Inflicts damage equal to 461% of Attack. Increases damage dealt by 30% for every 1 King's Magic stack on the hero. The first strike decreases the Normal Skill cooldown by 50% . Gauge Charge Burst Gauge: 40 Gauge Charge Burst Gauge: 40 Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack.",
               "hits": [],
               "multipliers": [
                 {
@@ -446,7 +446,7 @@
                 {
                   "value_pct": 180.0,
                   "scaling": "ATK",
-                  "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack."
+                  "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack."
                 }
               ]
             }
@@ -615,6 +615,170 @@
           }
         }
       },
+      "ch_1ae76cbc0b5b": {
+        "id": "ch_1ae76cbc0b5b",
+        "name": "Escanor",
+        "image_url": "https://sunderarmor.com/7DSO/Live/portraits/slot_escanor_001.png",
+        "description": "Axe Greatsword Shield Axe Greatsword",
+        "weapon_types": [
+          "Axe",
+          "Greatsword",
+          "Shield"
+        ],
+        "costumes": [],
+        "skills_by_weapon": {
+          "Axe": [
+            {
+              "name": "Rift in Time",
+              "type": "Adventure Skill",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "By distorting time and space, stats are no longer affected by time. Sunspot Explosion Passive Gains 1 Sunspot stack(s) for 20 sec when attacking an enemy without Flare or Fading Sun active. (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Sunspot Explosion Passive Sunspot Explosion Passive Sunspot Explosion",
+              "hits": [],
+              "multipliers": []
+            },
+            {
+              "name": "Sunspot Explosion",
+              "type": "Passive",
+              "key": null,
+              "cooldown_sec": null,
+              "description": "Gains 1 Sunspot stack(s) for 20 sec when attacking an enemy without Flare or Fading Sun active. (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Gauge Charge Merciless Cleave Normal Attack Merciless Cleave Normal Attack Merciless Cleave",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 54.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 70.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": []
+            },
+            {
+              "name": "Merciless Cleave",
+              "type": "Normal Attack",
+              "key": null,
+              "cooldown_sec": 15.0,
+              "description": "Gauge Charge Burst Gauge: 3 Tag Gauge: 12 Magic Gauge: 5 Gauge Charge Burst Gauge: 3 Tag Gauge: 12 Magic Gauge: 5 Condensed Sun Active Third Condensed Sun Active Third Condensed Sun Active Third Immune to Reactions and decreases damage taken by 30% while the stance is maintained. Inflicts damage equal to 150% / 170% / 202% of Attack based on the charge level. A fully charged attack on an enemy with Fire Burst activated inflicts additional damage equal to 17% of the remaining HP. Gauge Charge Burst Gauge: 38 Tag Gauge: 112 Magic Gauge: 48 Gauge Charge Burst Gauge: 38 Tag Gauge: 112 Magic Gauge: 48 Prideful Line Normal Skill Prideful Line Normal Skill Prideful Line",
+              "hits": [
+                {
+                  "hit": 1,
+                  "multiplier_pct": 20.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 2,
+                  "multiplier_pct": 23.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 3,
+                  "multiplier_pct": 35.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 4,
+                  "multiplier_pct": 54.0,
+                  "scaling": "ATK"
+                },
+                {
+                  "hit": 5,
+                  "multiplier_pct": 70.0,
+                  "scaling": "ATK"
+                }
+              ],
+              "multipliers": [
+                {
+                  "value_pct": 202.0,
+                  "scaling": "ATK",
+                  "context": "Immune to Reactions and decreases damage taken by 30% while the stance is maintained. Inflicts damage equal to 150% / 170% / 202% of Attack based on the charge level. A fully charged attack on an enemy with Fire Burst activated inflicts additional damage equal to 17% of the remaining HP."
+                }
+              ]
+            },
+            {
+              "name": "Prideful Line",
+              "type": "Normal Skill",
+              "key": null,
+              "cooldown_sec": 15.0,
+              "description": "Inflicts damage equal to 279% of Attack, then additionally gains 2 Sunspot stack(s) for 20 sec . (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and the hero's Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Burst Gauge: 50 Tag Gauge: 155 Magic Gauge: 135 Gauge Charge Burst Gauge: 50 Tag Gauge: 155 Magic Gauge: 135 Sun's Arrival Tag Skill Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Sun's Arrival Tag Skill Sun's Arrival Tag Skill Sun's Arrival",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 279.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 279% of Attack, then additionally gains 2 Sunspot stack(s) for 20 sec . (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and the hero's Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP."
+                },
+                {
+                  "value_pct": 138.0,
+                  "scaling": "ATK",
+                  "context": "Sun's Arrival Tag Skill Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+                }
+              ]
+            },
+            {
+              "name": "Sun's Arrival",
+              "type": "Tag Skill",
+              "key": null,
+              "cooldown_sec": 10.0,
+              "description": "Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Cleansing Fire Ultimate Move Cleansing Fire Ultimate Move Cleansing Fire",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 138.0,
+                  "scaling": "ATK",
+                  "context": "Inflicts damage equal to 138% of Attack."
+                }
+              ]
+            },
+            {
+              "name": "Cleansing Fire",
+              "type": "Ultimate Move",
+              "key": null,
+              "cooldown_sec": 10.0,
+              "description": "Magic Consumption: 2 The first hit inflicts damage equal to 397% of Attack, and additional damage equal to 30% of remaining HP when attacking an enemy with Fire Burst activated. The attack consumes all Magic Points, increasing damage by 50% to 350% depending on points used. Afterward, inflicts damage equal to 2% of Attack to enemies in range every 0.2 sec for 2 sec. Using a Combined Attack with the hero's Ultimate Move as the base increases the hero's Max HP by 30% for 20 sec . Gauge Charge Burst Gauge: 55 Gauge Charge Burst Gauge: 55 Escanor Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Special Attack power by 45% 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 20% . 5 The Ultimate Move's final strike inflicts damage equal to 25% of Attack + 2% of remaining HP to enemies in range every 1 sec for 5 sec . Increases the hero's Fire damage by 5% every 1 sec for 20 sec while in range. (Max: 5 times ) 6 Amplifies Special Attack power by 70% and decreases the HP reduction of Fading Sun by 10% . 7 Adds 2 projectile(s) to the Normal Skill. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 60% . Additionally increases the damage reduction from Flare by 20% . 10 The Special Attack inflicts damage equal to 5% / 7% / 12% of Attack + 0.42% / 0.60% / 1.05% of remaining HP every 1 sec for 20 sec based on the charge level. Increases the hero's damage dealt to enemies in range by 5% / 10% / 20% . Additionally increases damage reduction by 30% while charging the Special Attack.",
+              "hits": [],
+              "multipliers": [
+                {
+                  "value_pct": 397.0,
+                  "scaling": "ATK",
+                  "context": "The first hit inflicts damage equal to 397% of Attack, and additional damage equal to 30% of remaining HP when attacking an enemy with Fire Burst activated. The attack consumes all Magic Points, increasing damage by 50% to 350% depending on points used. Afterward, inflicts damage equal to 2% of Attack to enemies in range every 0.2 sec for 2 sec. Using a Combined Attack with the hero's Ultimate Move as the base increases the hero's Max HP by 30% for 20 sec ."
+                },
+                {
+                  "value_pct": 25.0,
+                  "scaling": "ATK",
+                  "context": "Escanor Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Special Attack power by 45% 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 20% . 5 The Ultimate Move's final strike inflicts damage equal to 25% of Attack + 2% of remaining HP to enemies in range every 1 sec for 5 sec . Increases the hero's Fire damage by 5% every 1 sec for 20 sec while in range. (Max: 5 times ) 6 Amplifies Special Attack power by 70% and decreases the HP reduction of Fading Sun by 10% . 7 Adds 2 projectile(s) to the Normal Skill. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 60% . Additionally increases the damage reduction from Flare by 20% . 10 The Special Attack inflicts damage equal to 5% / 7% / 12% of Attack + 0.42% / 0.60% / 1.05% of remaining HP every 1 sec for 20 sec based on the charge level. Increases the hero's damage dealt to enemies in range by 5% / 10% / 20% . Additionally increases damage reduction by 30% while charging the Special Attack."
+                }
+              ]
+            }
+          ]
+        },
+        "potential_by_weapon": {
+          "Axe": []
+        },
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
       "ch_773fb2511a29": {
         "id": "ch_773fb2511a29",
         "name": "Guila",
@@ -743,13 +907,13 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 40.0,
-              "description": "Magic Consumption: 2 Enters Demon Form for 30 sec . Gauge Charge Gauge Charge Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% , or 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 30% , or 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack skill power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
+              "description": "Magic Consumption: 2 Enters Demon Form for 30 sec . Gauge Charge Gauge Charge Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% , or by 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 30% , or by 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
               "hits": [],
               "multipliers": [
                 {
                   "value_pct": 25.0,
                   "scaling": "ATK",
-                  "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% , or 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 30% , or 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack skill power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
+                  "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% , or by 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 30% , or by 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
                 }
               ]
             }
@@ -892,7 +1056,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 246% of Attack. Each hit additionally inflicts damage equal to 40% of damage dealt while Frozen Saber is active. Gauge Charge Burst Gauge: 193 Gauge Charge Burst Gauge: 193 Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack skill power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 246% of Attack. Each hit additionally inflicts damage equal to 40% of damage dealt while Frozen Saber is active. Gauge Charge Burst Gauge: 193 Gauge Charge Burst Gauge: 193 Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )",
               "hits": [],
               "multipliers": [
                 {
@@ -903,7 +1067,7 @@
                 {
                   "value_pct": 44.0,
                   "scaling": "ATK",
-                  "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack skill power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )"
+                  "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )"
                 }
               ]
             }
@@ -1046,7 +1210,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
               "hits": [],
               "multipliers": [
                 {
@@ -1057,7 +1221,7 @@
                 {
                   "value_pct": 35.0,
                   "scaling": "ATK",
-                  "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
+                  "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
                 }
               ]
             }
@@ -1345,7 +1509,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 449% of Attack. Attacking enemies with Darkness Burst activated increases damage by 100% . The final strike removes the target's Darkness Burst . Using a Combined Attack with the hero's Ultimate Move as the base inflicts Opening on the enemy for 20 sec . ※ Opening : Increases Speed Master damage taken by 50% . Gauge Charge Gauge Charge Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive skill power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack.",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 449% of Attack. Attacking enemies with Darkness Burst activated increases damage by 100% . The final strike removes the target's Darkness Burst . Using a Combined Attack with the hero's Ultimate Move as the base inflicts Opening on the enemy for 20 sec . ※ Opening : Increases Speed Master damage taken by 50% . Gauge Charge Gauge Charge Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack.",
               "hits": [],
               "multipliers": [
                 {
@@ -1356,7 +1520,7 @@
                 {
                   "value_pct": 220.0,
                   "scaling": "ATK",
-                  "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive skill power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack."
+                  "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack."
                 }
               ]
             }
@@ -1499,7 +1663,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
+              "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 70% 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
               "hits": [],
               "multipliers": [
                 {
@@ -1510,7 +1674,7 @@
                 {
                   "value_pct": 30.0,
                   "scaling": "ATK",
-                  "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
+                  "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 70% 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
                 }
               ]
             }
@@ -1657,7 +1821,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Increases all allied heroes' Defense by 20% and Max HP by 100% of the hero's Defense for 20 sec . Gauge Charge Gauge Charge Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Additionally increases the Defense gained from the Special Attack by 5% . 5 Amplifies the Special Attack's Barriers by 100% . Increases Movement Speed by 100% . 6 Amplifies Normal Skill power by 30% . 7 Using the Ultimate Move restores HP of allies in range by 10% of Defense every 1 sec for 10 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's Max HP boost by 100% . 10 Amplifies the Passive's Barrier generation by 100% . Restores HP by 25% of Max HP when granting Barriers .",
+              "description": "Magic Consumption: 2 Increases all allied heroes' Defense by 20% and Max HP by 100% of the hero's Defense for 20 sec . Gauge Charge Gauge Charge Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Additionally increases the Defense gained from the Special Attack by 5% . 5 Amplifies the Special Attack's Barriers by 100% . Increases Movement Speed by 100% . 6 Amplifies Normal Skill power by 30% . 7 Using the Ultimate Move restores HP of allies in range by 10% of Defense every 1 sec for 10 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's Max HP boost by 100% . 10 Amplifies the Passive's Barrier generation by 100% . Restores HP by 25% of Max HP when granting Barriers .",
               "hits": [],
               "multipliers": []
             }
@@ -1800,7 +1964,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 161% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 8 sec . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 65% . 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec .",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 161% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 8 sec . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 65% 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec .",
               "hits": [],
               "multipliers": [
                 {
@@ -1811,7 +1975,7 @@
                 {
                   "value_pct": 30.0,
                   "scaling": "ATK",
-                  "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 65% . 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec ."
+                  "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 65% 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec ."
                 }
               ]
             }
@@ -1954,7 +2118,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Inflicts damage equal to 259% of Attack. Decreases Lightning Burst Resistance of enemies in range by 20% for 5 sec . Gauge Charge Burst Gauge: 192 Gauge Charge Burst Gauge: 192 Gil Thunder Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Normal Skill into a skill that can be used 2 time(s) . Amplifies the skill power by 10% . 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Ultimate Move's Lightning Burst Resistance reduction by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Changes the Special Attack into a skill that can be used 2 time(s) . Increases damage dealt to Shocked enemies by 50% .",
+              "description": "Magic Consumption: 2 Inflicts damage equal to 259% of Attack. Decreases Lightning Burst Resistance of enemies in range by 20% for 5 sec . Gauge Charge Burst Gauge: 192 Gauge Charge Burst Gauge: 192 Gil Thunder Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Normal Skill into a skill that can be used 2 time(s) . Amplifies the skill power by 10% . 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Ultimate Move's Lightning Burst Resistance reduction by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Changes the Special Attack into a skill that can be used 2 time(s) . Increases damage dealt to Shocked enemies by 50% .",
               "hits": [],
               "multipliers": [
                 {
@@ -2381,7 +2545,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 406% of Attack on the enemy and pulls them toward the center. Increases Crit Chance by 50% when attacking a Bleeding enemy. Gauge Charge Burst Gauge: 41 Gauge Charge Burst Gauge: 41 Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack.",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 406% of Attack on the enemy and pulls them toward the center. Increases Crit Chance by 50% when attacking a Bleeding enemy. Gauge Charge Burst Gauge: 41 Gauge Charge Burst Gauge: 41 Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack power by 20% 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack.",
               "hits": [],
               "multipliers": [
                 {
@@ -2392,7 +2556,7 @@
                 {
                   "value_pct": 170.0,
                   "scaling": "ATK",
-                  "context": "Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack."
+                  "context": "Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack power by 20% 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack."
                 }
               ]
             }
@@ -2547,7 +2711,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 3 Inflicts damage equal to 416% of Attack. If the enemy has Fire Burst activated, they are Stunned for 5 sec . Gauge Charge Burst Gauge: 33 Gauge Charge Burst Gauge: 33 Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack skill power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack.",
+              "description": "Magic Consumption: 3 Inflicts damage equal to 416% of Attack. If the enemy has Fire Burst activated, they are Stunned for 5 sec . Gauge Charge Burst Gauge: 33 Gauge Charge Burst Gauge: 33 Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack.",
               "hits": [],
               "multipliers": [
                 {
@@ -2558,7 +2722,7 @@
                 {
                   "value_pct": 8.0,
                   "scaling": "ATK",
-                  "context": "Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack skill power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack."
+                  "context": "Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack."
                 }
               ]
             }
@@ -2695,7 +2859,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Inflicts damage equal to 180% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Gauge Charge Burst Gauge: 42 Gauge Charge Burst Gauge: 42 Tioreh Book Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% and enhanced Normal Attack skill power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 5 sec . 5 Slightly increases the range of the Ultimate Move. Additionally increases damage dealt to enemies affected by Combustion by 20% . 6 Amplifies Normal Skill power by 30% . 7 Increases the duration of Combustion by 10 sec . Increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases Movement Speed by 50% . Becomes immune to Reactions while using the Normal Skill.",
+              "description": "Magic Consumption: 2 Inflicts damage equal to 180% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Gauge Charge Burst Gauge: 42 Gauge Charge Burst Gauge: 42 Tioreh Book Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% and enhanced Normal Attack power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 5 sec . 5 Slightly increases the range of the Ultimate Move. Additionally increases damage dealt to enemies affected by Combustion by 20% . 6 Amplifies Normal Skill power by 30% . 7 Increases the duration of Combustion by 10 sec . Increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases Movement Speed by 50% . Becomes immune to Reactions while using the Normal Skill.",
               "hits": [],
               "multipliers": [
                 {
@@ -2844,7 +3008,7 @@
               "type": "Ultimate Move",
               "key": null,
               "cooldown_sec": 10.0,
-              "description": "Magic Consumption: 2 Increases the hero's Fire Burst Efficiency by 30% for 20 sec , then inflicts damage equal to 241% of Attack. Gauge Charge Burst Gauge: 175 Gauge Charge Burst Gauge: 175 Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
+              "description": "Magic Consumption: 2 Increases the hero's Fire Burst Efficiency by 30% for 20 sec , then inflicts damage equal to 241% of Attack. Gauge Charge Burst Gauge: 175 Gauge Charge Burst Gauge: 175 Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
               "hits": [],
               "multipliers": [
                 {
@@ -2855,7 +3019,7 @@
                 {
                   "value_pct": 85.0,
                   "scaling": "ATK",
-                  "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
+                  "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
                 }
               ]
             }
@@ -2891,15 +3055,30 @@
       }
     },
     "weapons": {
-      "wp_26f6c6c2e8cd": {
-        "id": "wp_26f6c6c2e8cd",
-        "name": "Black Flame Wings Axe",
+      "wp_61b825c58566": {
+        "id": "wp_61b825c58566",
+        "name": "Gluttonous Soul Axe",
         "weapon_type": "Axe",
-        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0302.png",
-        "equipment_attack": 605,
-        "substat_name": "Crit Damage",
-        "substat_value": "9.72%",
-        "passive_text": "Activating a",
+        "image_url": "https://sunderarmor.com/7DSO/weapon/short_axe_0501.png",
+        "equipment_attack": 637,
+        "substat_name": "Fire Attack",
+        "substat_value": "6.83%",
+        "passive_text": "NEW",
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/weapons/"
+          }
+        }
+      },
+      "wp_adc51debf823": {
+        "id": "wp_adc51debf823",
+        "name": "Gluttonous Soul Sword and Shield",
+        "weapon_type": "Shield",
+        "image_url": "https://sunderarmor.com/7DSO/weapon/short_shield_0501.png",
+        "equipment_attack": 637,
+        "substat_name": "6.83%",
+        "substat_value": "Black Flame Wings Axe",
+        "passive_text": "NEW",
         "sources": {
           "genshin": {
             "source_url": "https://genshin.gg/7dso/weapons/"
@@ -3077,7 +3256,7 @@
         "weapon_type": "Longsword",
         "image_url": "https://sunderarmor.com/7DSO/weapon/short_sword1h_0501.png",
         "equipment_attack": 637,
-        "substat_name": "4.52%",
+        "substat_name": "6.83%",
         "substat_value": "Black Shadow Greatsword",
         "passive_text": "Each Normal Skill use increases",
         "sources": {
@@ -3868,7 +4047,7 @@
         "type": "Tag Skill",
         "key": null,
         "cooldown_sec": null,
-        "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
+        "description": "Inflicts damage equal to 160% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec .",
         "hits": [],
         "multipliers": [
           {
@@ -3879,7 +4058,7 @@
           {
             "value_pct": 33.0,
             "scaling": "ATK",
-            "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack skill power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
+            "context": "Daisy Shield Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 40% , or by 50% while [Daisy and Domby] is active. 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 50% while [Daisy and Domby] is active. 5 When fully charged while [Daisy and Domby] is active, Special Attack power is amplified by 100% and additionally grants the hero 5 Energy Charge stack(s). 6 Decreases the Special Attack and Ultimate Move's Magic consumption by 50% and additionally increases the damage boost gained from using the Magic Gauge by 20% while [Daisy and Domby] is active. 7 Slightly increases the Ultimate Move's range and amplifies additional damage by 20% while [Daisy and Domby] is active. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 40% , and while [Daisy and Domby] is active, additional damage by 60% . 10 Using the Special Attack increases Movement Speed by 50% and inflicts damage equal to 33% of Attack to enemies in range every 0.5 sec . Each time this attack lands, the hero gains Energy Charge for 20 sec . Landing the Ultimate Move additionally grants the hero 5 Energy Charge stack(s) for 20 sec ."
           }
         ],
         "sources": {
@@ -4042,7 +4221,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack skill power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 371% of Attack. Inflicts Breaker for 10 sec . Using a Combined Attack with the hero's Ultimate Move as the base increases Defense by 30% and Normal Skill damage by 30% for 20 sec . ※ Breaker : Inflicts Stun for 4 sec the first time the effect is inflicted. Inflicts damage equal to 150% of Defense. Increases damage taken from the caster by 30% . Gauge Charge Burst Gauge: 29 Gauge Charge Burst Gauge: 29 Diane Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Decreases the time required to charge the Special Attack to the max by 20% . Increases Attack Speed by 20% . Becomes immune to Reactions while using the Special Attack. 6 Amplifies Normal Skill power by 60% , and additionally increases its Crit Damage by 25% . 7 Amplifies Special Attack power by 55% , and slightly increases its range. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 50% . 10 Amplifies the skill power of Breaker by 100% . Attacking enemies affected by Breaker with the Special Attack inflicts additional damage equal to 120% of Defense.",
         "hits": [],
         "multipliers": [
           {
@@ -4231,7 +4410,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Inflicts damage equal to 461% of Attack. Increases damage dealt by 30% for every 1 King's Magic stack on the hero. The first strike decreases the Normal Skill cooldown by 50% . Gauge Charge Burst Gauge: 40 Gauge Charge Burst Gauge: 40 Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack.",
+        "description": "Magic Consumption: 2 Inflicts damage equal to 461% of Attack. Increases damage dealt by 30% for every 1 King's Magic stack on the hero. The first strike decreases the Normal Skill cooldown by 50% . Gauge Charge Burst Gauge: 40 Gauge Charge Burst Gauge: 40 Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack.",
         "hits": [],
         "multipliers": [
           {
@@ -4242,7 +4421,7 @@
           {
             "value_pct": 180.0,
             "scaling": "ATK",
-            "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack."
+            "context": "Drake Greatsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack. Additionally increases the Normal Skill cooldown reduction by 50% . 6 Amplifies Normal Skill power by 70% . 7 Increases the maximum number of the Normal Skill's King's Magic by 2 . Increases Normal Skill damage by 10% for every 1 Cooldown Reduction boost(s) applied with the Passive. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 30% . Increases the Ultimate Move's damage boost by 15% for every 1 King's Magic stack(s). 10 The first strike of the Ultimate Move inflicts additional damage equal to 180% of Attack."
           }
         ],
         "sources": {
@@ -4435,6 +4614,200 @@
           }
         }
       },
+      "sk_d5952b41cfb5": {
+        "id": "sk_d5952b41cfb5",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 0,
+        "name": "Rift in Time",
+        "type": "Adventure Skill",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "By distorting time and space, stats are no longer affected by time. Sunspot Explosion Passive Gains 1 Sunspot stack(s) for 20 sec when attacking an enemy without Flare or Fading Sun active. (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Sunspot Explosion Passive Sunspot Explosion Passive Sunspot Explosion",
+        "hits": [],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
+      "sk_b1a35ffb09b9": {
+        "id": "sk_b1a35ffb09b9",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 1,
+        "name": "Sunspot Explosion",
+        "type": "Passive",
+        "key": null,
+        "cooldown_sec": null,
+        "description": "Gains 1 Sunspot stack(s) for 20 sec when attacking an enemy without Flare or Fading Sun active. (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Gauge Charge Merciless Cleave Normal Attack Merciless Cleave Normal Attack Merciless Cleave",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 54.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 70.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
+      "sk_d4c104c8e3de": {
+        "id": "sk_d4c104c8e3de",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 2,
+        "name": "Merciless Cleave",
+        "type": "Normal Attack",
+        "key": null,
+        "cooldown_sec": 15.0,
+        "description": "Gauge Charge Burst Gauge: 3 Tag Gauge: 12 Magic Gauge: 5 Gauge Charge Burst Gauge: 3 Tag Gauge: 12 Magic Gauge: 5 Condensed Sun Active Third Condensed Sun Active Third Condensed Sun Active Third Immune to Reactions and decreases damage taken by 30% while the stance is maintained. Inflicts damage equal to 150% / 170% / 202% of Attack based on the charge level. A fully charged attack on an enemy with Fire Burst activated inflicts additional damage equal to 17% of the remaining HP. Gauge Charge Burst Gauge: 38 Tag Gauge: 112 Magic Gauge: 48 Gauge Charge Burst Gauge: 38 Tag Gauge: 112 Magic Gauge: 48 Prideful Line Normal Skill Prideful Line Normal Skill Prideful Line",
+        "hits": [
+          {
+            "hit": 1,
+            "multiplier_pct": 20.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 2,
+            "multiplier_pct": 23.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 3,
+            "multiplier_pct": 35.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 4,
+            "multiplier_pct": 54.0,
+            "scaling": "ATK"
+          },
+          {
+            "hit": 5,
+            "multiplier_pct": 70.0,
+            "scaling": "ATK"
+          }
+        ],
+        "multipliers": [
+          {
+            "value_pct": 202.0,
+            "scaling": "ATK",
+            "context": "Immune to Reactions and decreases damage taken by 30% while the stance is maintained. Inflicts damage equal to 150% / 170% / 202% of Attack based on the charge level. A fully charged attack on an enemy with Fire Burst activated inflicts additional damage equal to 17% of the remaining HP."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
+      "sk_50427196a23f": {
+        "id": "sk_50427196a23f",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 3,
+        "name": "Prideful Line",
+        "type": "Normal Skill",
+        "key": null,
+        "cooldown_sec": 15.0,
+        "description": "Inflicts damage equal to 279% of Attack, then additionally gains 2 Sunspot stack(s) for 20 sec . (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and the hero's Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP. Gauge Charge Burst Gauge: 50 Tag Gauge: 155 Magic Gauge: 135 Gauge Charge Burst Gauge: 50 Tag Gauge: 155 Magic Gauge: 135 Sun's Arrival Tag Skill Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Sun's Arrival Tag Skill Sun's Arrival Tag Skill Sun's Arrival",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 279.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 279% of Attack, then additionally gains 2 Sunspot stack(s) for 20 sec . (Max: 12 times ) ※ Sunspot : Increases Fire damage by 3% and the hero's Max HP by 1.5% for every 1 stack(s). At max stacks, removes Sunspot and gains Flare for 15 sec . ※ Flare : Restores 10% of Max HP the first time the effect is granted. Increases Fire damage by 50% and the hero's Max HP by 25% , and decreases damage taken by 20% . Gains Fading Sun for 10 sec when Flare is removed. ※ Fading Sun : Decreases the hero's Max HP by 25% while keeping the same remaining HP."
+          },
+          {
+            "value_pct": 138.0,
+            "scaling": "ATK",
+            "context": "Sun's Arrival Tag Skill Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225"
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
+      "sk_ed23b6cd8ff3": {
+        "id": "sk_ed23b6cd8ff3",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 4,
+        "name": "Sun's Arrival",
+        "type": "Tag Skill",
+        "key": null,
+        "cooldown_sec": 10.0,
+        "description": "Inflicts damage equal to 138% of Attack. Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Gauge Charge Burst Gauge: 150 Magic Gauge: 225 Cleansing Fire Ultimate Move Cleansing Fire Ultimate Move Cleansing Fire",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 138.0,
+            "scaling": "ATK",
+            "context": "Inflicts damage equal to 138% of Attack."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
+      "sk_38e1c9f9048d": {
+        "id": "sk_38e1c9f9048d",
+        "character_id": "ch_1ae76cbc0b5b",
+        "weapon_type": "Axe",
+        "slot": 5,
+        "name": "Cleansing Fire",
+        "type": "Ultimate Move",
+        "key": null,
+        "cooldown_sec": 10.0,
+        "description": "Magic Consumption: 2 The first hit inflicts damage equal to 397% of Attack, and additional damage equal to 30% of remaining HP when attacking an enemy with Fire Burst activated. The attack consumes all Magic Points, increasing damage by 50% to 350% depending on points used. Afterward, inflicts damage equal to 2% of Attack to enemies in range every 0.2 sec for 2 sec. Using a Combined Attack with the hero's Ultimate Move as the base increases the hero's Max HP by 30% for 20 sec . Gauge Charge Burst Gauge: 55 Gauge Charge Burst Gauge: 55 Escanor Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Special Attack power by 45% 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 20% . 5 The Ultimate Move's final strike inflicts damage equal to 25% of Attack + 2% of remaining HP to enemies in range every 1 sec for 5 sec . Increases the hero's Fire damage by 5% every 1 sec for 20 sec while in range. (Max: 5 times ) 6 Amplifies Special Attack power by 70% and decreases the HP reduction of Fading Sun by 10% . 7 Adds 2 projectile(s) to the Normal Skill. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 60% . Additionally increases the damage reduction from Flare by 20% . 10 The Special Attack inflicts damage equal to 5% / 7% / 12% of Attack + 0.42% / 0.60% / 1.05% of remaining HP every 1 sec for 20 sec based on the charge level. Increases the hero's damage dealt to enemies in range by 5% / 10% / 20% . Additionally increases damage reduction by 30% while charging the Special Attack.",
+        "hits": [],
+        "multipliers": [
+          {
+            "value_pct": 397.0,
+            "scaling": "ATK",
+            "context": "The first hit inflicts damage equal to 397% of Attack, and additional damage equal to 30% of remaining HP when attacking an enemy with Fire Burst activated. The attack consumes all Magic Points, increasing damage by 50% to 350% depending on points used. Afterward, inflicts damage equal to 2% of Attack to enemies in range every 0.2 sec for 2 sec. Using a Combined Attack with the hero's Ultimate Move as the base increases the hero's Max HP by 30% for 20 sec ."
+          },
+          {
+            "value_pct": 25.0,
+            "scaling": "ATK",
+            "context": "Escanor Axe Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Special Attack power by 45% 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 20% . 5 The Ultimate Move's final strike inflicts damage equal to 25% of Attack + 2% of remaining HP to enemies in range every 1 sec for 5 sec . Increases the hero's Fire damage by 5% every 1 sec for 20 sec while in range. (Max: 5 times ) 6 Amplifies Special Attack power by 70% and decreases the HP reduction of Fading Sun by 10% . 7 Adds 2 projectile(s) to the Normal Skill. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Ultimate Move skill power by 60% . Additionally increases the damage reduction from Flare by 20% . 10 The Special Attack inflicts damage equal to 5% / 7% / 12% of Attack + 0.42% / 0.60% / 1.05% of remaining HP every 1 sec for 20 sec based on the charge level. Increases the hero's damage dealt to enemies in range by 5% / 10% / 20% . Additionally increases damage reduction by 30% while charging the Special Attack."
+          }
+        ],
+        "sources": {
+          "genshin": {
+            "source_url": "https://genshin.gg/7dso/characters/escanor/"
+          }
+        }
+      },
       "sk_1a1288f7d6a0": {
         "id": "sk_1a1288f7d6a0",
         "character_id": "ch_773fb2511a29",
@@ -4599,13 +4972,13 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 40.0,
-        "description": "Magic Consumption: 2 Enters Demon Form for 30 sec . Gauge Charge Gauge Charge Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% , or 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 30% , or 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack skill power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
+        "description": "Magic Consumption: 2 Enters Demon Form for 30 sec . Gauge Charge Gauge Charge Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% , or by 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 30% , or by 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form .",
         "hits": [],
         "multipliers": [
           {
             "value_pct": 25.0,
             "scaling": "ATK",
-            "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% , or 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 30% , or 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack skill power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
+            "context": "Guila Lance Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% , or by 25% while in [Demon Form] . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 30% , or by 40% while in [Demon Form] . 5 Increases the Special Attack's Normal Skill cooldown reduction by 7.5 sec while in [Demon Form] . 6 Amplifies Normal Skill power by 30% , or 40% while in [Demon Form] . 7 Additionally increases Normal Skill's number of attacks by 2 while in [Demon Form] . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Special Attack power by 60% and Normal Skill power by 45% while in [Demon Form] . 10 Inflicts damage equal to 25% of Attack to nearby enemies every 1 sec while in Demon Form ."
           }
         ],
         "sources": {
@@ -4778,7 +5151,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 246% of Attack. Each hit additionally inflicts damage equal to 40% of damage dealt while Frozen Saber is active. Gauge Charge Burst Gauge: 193 Gauge Charge Burst Gauge: 193 Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack skill power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 246% of Attack. Each hit additionally inflicts damage equal to 40% of damage dealt while Frozen Saber is active. Gauge Charge Burst Gauge: 193 Gauge Charge Burst Gauge: 193 Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )",
         "hits": [],
         "multipliers": [
           {
@@ -4789,7 +5162,7 @@
           {
             "value_pct": 44.0,
             "scaling": "ATK",
-            "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack skill power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )"
+            "context": "Jericho Dual Swords Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 15% . 5 Increases the additional damage of Normal Attacks enhanced by Frozen Saber by 50% and Burst Gauge by 100% . 6 Increases the duration of Frozen Saber by 5 sec . Amplifies Normal Skill power by 30% . 7 The Ultimate Move creates 5 additional afterimages, each inflicting damage equal to 44% of Attack and increasing the Burst Gauge by 120 . Results in a Critical Hit when attacking an enemy with Cold Burst activated. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Attack power by 80% . 10 Adds 2 projectile(s) to the Ultimate Move, each inflicting damage equal to 160% of Attack. Each hit increases the Burst Gauge by 100 , and decreases Cold Resistance by 20% for 30 sec . (Max: 2 times )"
           }
         ],
         "sources": {
@@ -4962,7 +5335,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 433% of Attack. Increases damage dealt by 2% for every 1 Bloom stack on the hero. If the hero has a Full Bloom effect, damage dealt increases by 50% and Crit Chance by 50% . Using a Combined Attack with the hero's Ultimate Move as the base increases all allied heroes' Magic Charging Efficiency by 30% for 40 sec . When Bloom is at max stacks, they are removed and the hero gains Full Bloom for 20 sec . ※ Full Bloom : Increases Attack by 25% and Defense Shatter by 10% . Gauge Charge Burst Gauge: 49 Gauge Charge Burst Gauge: 49 King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec .",
         "hits": [],
         "multipliers": [
           {
@@ -4973,7 +5346,7 @@
           {
             "value_pct": 35.0,
             "scaling": "ATK",
-            "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
+            "context": "King Staff Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Special Attack and increases the number of hits by 4 . 6 Amplifies Normal Skill power by 75% . 7 Increases the number of the Normal Skill's Bloom stacks by 2 and hits by 2 . 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 The Ultimate Move's damage increases by 1% for every 1 active Bloom stack(s). Additionally increases damage by 50% if Full Bloom is active. 10 The Ultimate Move's final strike inflicts damage equal to 35% of Attack to enemies in range every 0.5 sec for 5 sec ."
           }
         ],
         "sources": {
@@ -5312,7 +5685,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 449% of Attack. Attacking enemies with Darkness Burst activated increases damage by 100% . The final strike removes the target's Darkness Burst . Using a Combined Attack with the hero's Ultimate Move as the base inflicts Opening on the enemy for 20 sec . ※ Opening : Increases Speed Master damage taken by 50% . Gauge Charge Gauge Charge Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive skill power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack.",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 449% of Attack. Attacking enemies with Darkness Burst activated increases damage by 100% . The final strike removes the target's Darkness Burst . Using a Combined Attack with the hero's Ultimate Move as the base inflicts Opening on the enemy for 20 sec . ※ Opening : Increases Speed Master damage taken by 50% . Gauge Charge Gauge Charge Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack.",
         "hits": [],
         "multipliers": [
           {
@@ -5323,7 +5696,7 @@
           {
             "value_pct": 220.0,
             "scaling": "ATK",
-            "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive skill power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack."
+            "context": "Meliodas Longsword Potential Tier Bonus 1 Increases Attack by 5% , Defense by 4% , and Max HP by 2% . 2 Amplifies Normal Skill power by 15% . 3 Increases Attack by 10% , Defense by 8% , and Max HP by 3% . 4 Amplifies Ultimate Move skill power by 30% . 5 Decreases the Passive effect's Darkness Burst duration reduction by 25% . Additionally increases Normal Skill cooldown reduction by 15% . Using the Special Attack additionally grants 1 Haste stack(s). 6 Amplifies Passive power by 75% . 7 The Normal Skill's final strike inflicts additional damage equal to 220% of Attack. 8 Increases Attack by 15% , Defense by 12% , and Max HP by 5% . 9 Amplifies Normal Skill power by 100% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 350% of Attack."
           }
         ],
         "sources": {
@@ -5496,7 +5869,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
+        "description": "Magic Consumption: 2 Increases the hero's Darkness damage by 30% for 20 sec , then inflicts damage equal to 380% of Attack. Gauge Charge Gauge Charge Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 70% 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% .",
         "hits": [],
         "multipliers": [
           {
@@ -5507,7 +5880,7 @@
           {
             "value_pct": 30.0,
             "scaling": "ATK",
-            "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 70% . 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
+            "context": "Bug Axe Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Slightly increases the range of the Normal Skill. Additionally inflicts damage equal to 30% of Attack each time the attack hits targets in the central area. 6 Amplifies Ultimate Move skill power by 20% . 7 Each hit on the same enemy with the Ultimate Move increases damage by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 70% 10 Gains Reaction Immunity while charging the Special Attack. Landing the attack while the weapon is glowing increases damage dealt by 75% ."
           }
         ],
         "sources": {
@@ -5684,7 +6057,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Increases all allied heroes' Defense by 20% and Max HP by 100% of the hero's Defense for 20 sec . Gauge Charge Gauge Charge Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Additionally increases the Defense gained from the Special Attack by 5% . 5 Amplifies the Special Attack's Barriers by 100% . Increases Movement Speed by 100% . 6 Amplifies Normal Skill power by 30% . 7 Using the Ultimate Move restores HP of allies in range by 10% of Defense every 1 sec for 10 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's Max HP boost by 100% . 10 Amplifies the Passive's Barrier generation by 100% . Restores HP by 25% of Max HP when granting Barriers .",
+        "description": "Magic Consumption: 2 Increases all allied heroes' Defense by 20% and Max HP by 100% of the hero's Defense for 20 sec . Gauge Charge Gauge Charge Dreydrin Shield Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Additionally increases the Defense gained from the Special Attack by 5% . 5 Amplifies the Special Attack's Barriers by 100% . Increases Movement Speed by 100% . 6 Amplifies Normal Skill power by 30% . 7 Using the Ultimate Move restores HP of allies in range by 10% of Defense every 1 sec for 10 sec . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies the Ultimate Move's Max HP boost by 100% . 10 Amplifies the Passive's Barrier generation by 100% . Restores HP by 25% of Max HP when granting Barriers .",
         "hits": [],
         "multipliers": [],
         "sources": {
@@ -5857,7 +6230,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 161% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 8 sec . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 65% . 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec .",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 161% of Attack. When the Weaken effect on the enemy reaches max stacks, it Stuns them for 8 sec . Gauge Charge Burst Gauge: 37 Gauge Charge Burst Gauge: 37 Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 65% 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec .",
         "hits": [],
         "multipliers": [
           {
@@ -5868,7 +6241,7 @@
           {
             "value_pct": 30.0,
             "scaling": "ATK",
-            "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack skill power by 65% . 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec ."
+            "context": "Dreyfus Rapier Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Special Attack into a skill that can be used 2 time(s) . 6 Amplifies Normal Skill power by 30% . 7 The Normal Skill's power increases by 15% and hits 4 more time(s). Increases the Tag Gauge Recovery by 40 for every 1 Weaken stacks(s) on the enemy. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Special Attack power by 65% 10 The Ultimate Move inflicts damage equal to 30% of Attack every 1 sec for 5 sec ."
           }
         ],
         "sources": {
@@ -6041,7 +6414,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Inflicts damage equal to 259% of Attack. Decreases Lightning Burst Resistance of enemies in range by 20% for 5 sec . Gauge Charge Burst Gauge: 192 Gauge Charge Burst Gauge: 192 Gil Thunder Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Changes the Normal Skill into a skill that can be used 2 time(s) . Amplifies the skill power by 10% . 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Ultimate Move's Lightning Burst Resistance reduction by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Changes the Special Attack into a skill that can be used 2 time(s) . Increases damage dealt to Shocked enemies by 50% .",
+        "description": "Magic Consumption: 2 Inflicts damage equal to 259% of Attack. Decreases Lightning Burst Resistance of enemies in range by 20% for 5 sec . Gauge Charge Burst Gauge: 192 Gauge Charge Burst Gauge: 192 Gil Thunder Longsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Changes the Normal Skill into a skill that can be used 2 time(s) . Amplifies the skill power by 10% . 6 Amplifies Normal Skill power by 30% . 7 Additionally increases the Ultimate Move's Lightning Burst Resistance reduction by 10% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Changes the Special Attack into a skill that can be used 2 time(s) . Increases damage dealt to Shocked enemies by 50% .",
         "hits": [],
         "multipliers": [
           {
@@ -6549,7 +6922,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 406% of Attack on the enemy and pulls them toward the center. Increases Crit Chance by 50% when attacking a Bleeding enemy. Gauge Charge Burst Gauge: 41 Gauge Charge Burst Gauge: 41 Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack.",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 406% of Attack on the enemy and pulls them toward the center. Increases Crit Chance by 50% when attacking a Bleeding enemy. Gauge Charge Burst Gauge: 41 Gauge Charge Burst Gauge: 41 Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack power by 20% 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack.",
         "hits": [],
         "multipliers": [
           {
@@ -6560,7 +6933,7 @@
           {
             "value_pct": 170.0,
             "scaling": "ATK",
-            "context": "Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack."
+            "context": "Howzer Lance Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Special Attack power by 20% 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Tag Skill skill power by 45% . 5 The final strike of the Normal Skill inflicts additional damage equal to 170% of Attack. 6 Amplifies Normal Skill power by 30% . 7 Additionally inflicts damage equal to 12% of Attack to enemies in the central area of the Ultimate Move. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 225% of Attack."
           }
         ],
         "sources": {
@@ -6745,7 +7118,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 3 Inflicts damage equal to 416% of Attack. If the enemy has Fire Burst activated, they are Stunned for 5 sec . Gauge Charge Burst Gauge: 33 Gauge Charge Burst Gauge: 33 Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack skill power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack.",
+        "description": "Magic Consumption: 3 Inflicts damage equal to 416% of Attack. If the enemy has Fire Burst activated, they are Stunned for 5 sec . Gauge Charge Burst Gauge: 33 Gauge Charge Burst Gauge: 33 Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack.",
         "hits": [],
         "multipliers": [
           {
@@ -6756,7 +7129,7 @@
           {
             "value_pct": 8.0,
             "scaling": "ATK",
-            "context": "Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack skill power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack."
+            "context": "Slader Greatsword Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies enhanced Special Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Normal Skill power by 20% . 5 Using the Normal Skill to attack an enemy with Fire Burst activated inflicts damage equal to 8% of Attack on nearby enemies every 0.5 sec for 5 sec . 6 Amplifies enhanced Special Attack power by 50% . 7 Decreases Normal Skill cooldown by 50% when landing the enhanced Special Attack. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 The final strike of the Ultimate Move inflicts additional damage equal to 120% of Attack."
           }
         ],
         "sources": {
@@ -6923,7 +7296,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Inflicts damage equal to 180% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Gauge Charge Burst Gauge: 42 Gauge Charge Burst Gauge: 42 Tioreh Book Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% and enhanced Normal Attack skill power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 5 sec . 5 Slightly increases the range of the Ultimate Move. Additionally increases damage dealt to enemies affected by Combustion by 20% . 6 Amplifies Normal Skill power by 30% . 7 Increases the duration of Combustion by 10 sec . Increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases Movement Speed by 50% . Becomes immune to Reactions while using the Normal Skill.",
+        "description": "Magic Consumption: 2 Inflicts damage equal to 180% of Attack. Increases damage dealt to enemies affected by Combustion by 20% . Gauge Charge Burst Gauge: 42 Gauge Charge Burst Gauge: 42 Tioreh Book Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% and enhanced Normal Attack power by 25% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Increases the duration of the Special Attack's Normal Attack enhancement by 5 sec . 5 Slightly increases the range of the Ultimate Move. Additionally increases damage dealt to enemies affected by Combustion by 20% . 6 Amplifies Normal Skill power by 30% . 7 Increases the duration of Combustion by 10 sec . Increases Normal Attack and enhanced Normal Attack damage dealt to enemies affected by Combustion by 20% . 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 Increases Movement Speed by 50% . Becomes immune to Reactions while using the Normal Skill.",
         "hits": [],
         "multipliers": [
           {
@@ -7102,7 +7475,7 @@
         "type": "Ultimate Move",
         "key": null,
         "cooldown_sec": 10.0,
-        "description": "Magic Consumption: 2 Increases the hero's Fire Burst Efficiency by 30% for 20 sec , then inflicts damage equal to 241% of Attack. Gauge Charge Burst Gauge: 175 Gauge Charge Burst Gauge: 175 Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
+        "description": "Magic Consumption: 2 Increases the hero's Fire Burst Efficiency by 30% for 20 sec , then inflicts damage equal to 241% of Attack. Gauge Charge Burst Gauge: 175 Gauge Charge Burst Gauge: 175 Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec .",
         "hits": [],
         "multipliers": [
           {
@@ -7113,7 +7486,7 @@
           {
             "value_pct": 85.0,
             "scaling": "ATK",
-            "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack skill power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack skill power by 35% . 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
+            "context": "Tristan Dual Swords Potential Tier Bonus 1 Increases Attack by 3% , Defense by 2% , and Max HP by 1% . 2 Amplifies Normal Attack power by 20% . 3 Increases Attack by 6% , Defense by 5% , and Max HP by 2% . 4 Amplifies Special Attack power by 35% 5 Additionally inflicts damage equal to 85% of Attack when the hero activates Fire Burst . 6 Amplifies Normal Skill power by 30% . 7 When landing a Critical Hit with the Special Attack, its cooldown is reset and its damage dealt is increased by 30% for 10 sec . Cooldown reset can be triggered up to 2 times in a row. 8 Increases Attack by 9% , Defense by 7% , and Max HP by 3% . 9 Amplifies Ultimate Move skill power by 30% . 10 When the hero activates Fire Burst , all allied heroes' Fire damage increases by 15% , and Fire heroes' Crit Chance increases by 10% for 30 sec ."
           }
         ],
         "sources": {
@@ -7137,6 +7510,7 @@
       "ch_c91ce9376532",
       "ch_0e84efa613f7",
       "ch_f5f84e3499cc",
+      "ch_1ae76cbc0b5b",
       "ch_65a04325b1c1",
       "ch_a7441a63593d",
       "ch_773fb2511a29",
@@ -7152,7 +7526,6 @@
       "ch_234eead55cec"
     ],
     "weapons": [
-      "wp_26f6c6c2e8cd",
       "wp_d8ac30c34cf0",
       "wp_79ee7e6c71bd",
       "wp_c82cdbc5375c",
@@ -7190,7 +7563,9 @@
       "wp_5b9367bb8f7d",
       "wp_f335d6c4ef91",
       "wp_ff4b17a0b5c8",
+      "wp_61b825c58566",
       "wp_ea02a51447b2",
+      "wp_adc51debf823",
       "wp_abd86bb0503e",
       "wp_ed348382e301",
       "wp_02f7badbe960",
